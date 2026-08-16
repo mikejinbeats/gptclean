@@ -420,22 +420,51 @@ iframe[src*="adnxs.com"] {
    4. GESTOR DE PASTAS OBSIDIAN GLASS NA BARRA LATERAL
    -------------------------------------------------------------------------- */
 .chatgpt-clean-folders-container {
-  padding: 10px 12px;
+  padding: 8px 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   margin-bottom: 8px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .chatgpt-clean-folders-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 6px;
   font-size: 10px;
   font-weight: 700;
-  color: #64748b;
+  color: #94a3b8;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   margin-bottom: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.folders-header-left {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.folders-header-left span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 9.5px;
+  color: #94a3b8;
+}
+
+.folders-3d-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .chatgpt-clean-add-folder-btn {
@@ -447,12 +476,18 @@ iframe[src*="adnxs.com"] {
   padding: 2px 7px;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  transition: all 0.15s ease;
 }
 
 .chatgpt-clean-add-folder-btn:hover {
   background: #38bdf8;
   color: #000;
+  transform: translateY(-1px);
 }
 
 .chatgpt-clean-folder-list {
