@@ -184,28 +184,19 @@ body.theme-white ::-webkit-scrollbar-thumb:hover {
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
-.logo-badge {
-  width: 30px;
-  height: 30px;
-  background: linear-gradient(135deg, var(--accent-cyan-bg), rgba(99, 102, 241, 0.15));
-  border: 1px solid var(--border-glass);
-  box-shadow: 0 0 12px var(--accent-cyan-glow);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo-icon {
-  font-size: 15px;
-  filter: drop-shadow(0 0 4px var(--accent-cyan));
+.app-logo-img {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
 }
 
 .brand-info h1 {
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-main);
@@ -213,20 +204,56 @@ body.theme-white ::-webkit-scrollbar-thumb:hover {
 }
 
 .version-tag {
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.06em;
   color: var(--text-dim);
   text-transform: uppercase;
 }
 
-.status-indicator {
+.header-controls {
   display: flex;
   align-items: center;
   gap: 6px;
+}
+
+.lang-select {
+  background: var(--glass-surface-card);
+  border: 1px solid var(--border-glass);
+  color: var(--text-main);
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 6px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.lang-select:hover, .lang-select:focus {
+  border-color: var(--accent-cyan);
+  background: var(--glass-surface-elevated);
+}
+
+.lang-select option {
+  background: #0f172a;
+  color: #f8fafc;
+  font-size: 11px;
+}
+
+body.theme-white .lang-select option {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   background: var(--accent-green-bg);
   border: 1px solid var(--accent-green);
-  padding: 4px 9px;
+  padding: 3px 8px;
   border-radius: var(--radius-full);
 }
 

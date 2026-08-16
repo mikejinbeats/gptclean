@@ -36,23 +36,592 @@ document.addEventListener('DOMContentLoaded', () => {
   const licenseMsg = document.getElementById('license-msg');
   const pricingBox = document.getElementById('pricing-box');
 
-  const DEFAULT_PROMPTS = [
-    {
-      title: "⚡ Resumir em Bullet Points",
-      desc: "Transforma textos longos em tópicos diretos e objetivos.",
-      text: "Por favor, resume o texto anterior em tópicos claros, diretos e objetivos (bullet points), destacando apenas os pontos mais importantes."
+  const langSelect = document.getElementById('lang-select');
+
+  // --------------------------------------------------------------------------
+  // DICIONÁRIO DE INTERNACIONALIZAÇÃO (8 IDIOMAS MAIS FALADOS)
+  // --------------------------------------------------------------------------
+  const I18N = {
+    pt: {
+      statusProtected: "Protegido",
+      statusDisabled: "Desativado",
+      tabShield: "ESCUDO",
+      tabPrompts: "PROMPTS",
+      tabTools: "FERRAMENTAS",
+      tabPro: "PRO",
+      blockAdsTitle: "Bloquear Anúncios",
+      blockAdsDesc: "Elimina conteúdo patrocinado em tempo real",
+      statTodayLabel: "BLOQUEADOS HOJE",
+      statTotalLabel: "TOTAL ACUMULADO",
+      btnUpdateFilters: "Atualizar Filtros Anti-Ad",
+      updatingFilters: "A verificar...",
+      updatedFilters: "✅ Filtros Atualizados!",
+      shieldInfoDesc: "O escudo monitoriza o DOM do ChatGPT e destrói anúncios antes de serem renderizados.",
+      promptsTitle: "⚡ Prompts de Produtividade",
+      promptsCount: "3 Prontos",
+      promptsHint: "Clica para injetar instantaneamente no chat ativo:",
+      newPromptHeader: "✨ Novo Prompt Personalizado",
+      promptTitlePlaceholder: "Título (ex: 🎯 Copy de Vendas)",
+      promptDescPlaceholder: "Descrição curta (opcional)",
+      promptTextPlaceholder: "Escreve aqui o comando completo do prompt...",
+      btnSavePrompt: "Guardar Prompt",
+      btnCancelPrompt: "Cancelar",
+      btnOpenPromptForm: "✨ + Criar Novo Prompt PRO",
+      lockTitle: "Adicionar Prompts Ilimitados",
+      lockDesc: "Guarda a tua biblioteca de comandos na versão PRO.",
+      themeTitle: "🎨 Tema Visual do Menu",
+      themeDesc: "Personaliza a estética da extensão:",
+      exportMenuTitle: "📥 Menu de Exportação",
+      exportMenuDesc: "Exportação em PDF, Word (.doc) e Markdown (.md)",
+      exportQuotaBadge: (rem) => `🎁 ${rem}/2 hoje`,
+      exportQuotaBadgePro: "👑 PRO Vitalício",
+      foldersTitle: "📁 Pastas na Barra Lateral",
+      badgeFoldersActive: "Ativo",
+      foldersDesc: "Organiza e guarda chats favoritos em categorias",
+      proHeroTitle: "ChatGPT Power PRO",
+      proHeroDesc: "Desbloqueia todo o ecossistema com licença única vitalícia.",
+      proB1: "✨ <strong>Exportações 100% Ilimitadas</strong> (Sem limite de 2 por dia)",
+      proB2: "✨ <strong>Pastas & Marcadores ilimitados</strong> na barra lateral",
+      proB3: "✨ <strong>Biblioteca pessoal</strong> de prompts personalizados",
+      proB4: "✨ <strong>Atualizações prioritárias</strong> de filtros anti-anúncio",
+      proSinglePay: "Pagamento Único",
+      btnBuyPro: "🚀 Desbloquear Modo PRO (2,99€)",
+      proLicenseLabel: "Já tens uma chave de licença?",
+      btnActivateLicense: "Ativar",
+      proActiveSuccess: "✅ Licença PRO Ativa para Sempre",
+      footerLink: "Abrir ChatGPT",
+      footerQuota: (rem) => `Exportações: ${rem}/2 hoje`,
+      footerPro: "👑 Modo PRO Ativo",
+      btnInsert: "⚡ Inserir no Chat",
+      btnCopy: "📋 Copiar",
+      copied: "✅ Copiado!",
+      inserted: "✅ Inserido!",
+      prompts: [
+        {
+          title: "⚡ Resumir em Bullet Points",
+          desc: "Transforma textos longos em tópicos diretos e objetivos.",
+          text: "Por favor, resume o texto anterior em tópicos claros, diretos e objetivos (bullet points), destacando apenas os pontos mais importantes."
+        },
+        {
+          title: "✍️ Melhorar e Corrigir Texto",
+          desc: "Aprimora a gramática, tom profissional e clareza.",
+          text: "Revê e melhora o seguinte texto, corrigindo erros gramaticais e tornando a linguagem mais fluida e profissional:\n\n"
+        },
+        {
+          title: "💻 Explicar Código Passo a Passo",
+          desc: "Comenta linha por linha e sugere otimizações.",
+          text: "Analisa o código abaixo e explica linha por linha como funciona, apontando possíveis melhorias ou bugs:\n\n"
+        }
+      ]
     },
-    {
-      title: "✍️ Melhorar e Corrigir Texto",
-      desc: "Aprimora a gramática, tom profissional e clareza.",
-      text: "Revê e melhora o seguinte texto, corrigindo erros gramaticais e tornando a linguagem mais fluida e profissional:\n\n"
+    en: {
+      statusProtected: "Protected",
+      statusDisabled: "Disabled",
+      tabShield: "SHIELD",
+      tabPrompts: "PROMPTS",
+      tabTools: "TOOLS",
+      tabPro: "PRO",
+      blockAdsTitle: "Block Ads",
+      blockAdsDesc: "Eliminate sponsored and ad content in real-time",
+      statTodayLabel: "BLOCKED TODAY",
+      statTotalLabel: "TOTAL ALL-TIME",
+      btnUpdateFilters: "Update Anti-Ad Filters",
+      updatingFilters: "Checking...",
+      updatedFilters: "✅ Filters Updated!",
+      shieldInfoDesc: "The shield monitors ChatGPT's DOM and removes ads before they are rendered.",
+      promptsTitle: "⚡ Productivity Prompts",
+      promptsCount: "3 Ready",
+      promptsHint: "Click to instantly insert into active chat:",
+      newPromptHeader: "✨ New Custom Prompt",
+      promptTitlePlaceholder: "Title (e.g. 🎯 Sales Copy)",
+      promptDescPlaceholder: "Short description (optional)",
+      promptTextPlaceholder: "Type your full prompt command here...",
+      btnSavePrompt: "Save Prompt",
+      btnCancelPrompt: "Cancel",
+      btnOpenPromptForm: "✨ + Create New PRO Prompt",
+      lockTitle: "Add Unlimited Prompts",
+      lockDesc: "Store your custom prompt library in PRO version.",
+      themeTitle: "🎨 Visual Theme",
+      themeDesc: "Customize extension aesthetics:",
+      exportMenuTitle: "📥 Export Menu",
+      exportMenuDesc: "Export to PDF, Word (.doc) and Markdown (.md)",
+      exportQuotaBadge: (rem) => `🎁 ${rem}/2 today`,
+      exportQuotaBadgePro: "👑 Lifetime PRO",
+      foldersTitle: "📁 Sidebar Folders",
+      badgeFoldersActive: "Active",
+      foldersDesc: "Organize and bookmark favorite chats in categories",
+      proHeroTitle: "ChatGPT Power PRO",
+      proHeroDesc: "Unlock the entire suite with a single lifetime license.",
+      proB1: "✨ <strong>100% Unlimited Exports</strong> (No 2/day daily limit)",
+      proB2: "✨ <strong>Unlimited Folders & Bookmarks</strong> in sidebar",
+      proB3: "✨ <strong>Personal Custom Prompt Library</strong>",
+      proB4: "✨ <strong>Priority Anti-Ad Filter Updates</strong>",
+      proSinglePay: "One-Time Payment",
+      btnBuyPro: "🚀 Unlock PRO Mode ($2.99)",
+      proLicenseLabel: "Already have a license key?",
+      btnActivateLicense: "Activate",
+      proActiveSuccess: "✅ Lifetime PRO License Active",
+      footerLink: "Open ChatGPT",
+      footerQuota: (rem) => `Exports: ${rem}/2 today`,
+      footerPro: "👑 PRO Mode Active",
+      btnInsert: "⚡ Insert in Chat",
+      btnCopy: "📋 Copy",
+      copied: "✅ Copied!",
+      inserted: "✅ Inserted!",
+      prompts: [
+        {
+          title: "⚡ Summarize in Bullet Points",
+          desc: "Transforms long texts into clear, direct key takeaways.",
+          text: "Please summarize the preceding text into clear, concise, and objective bullet points highlighting only the most important insights."
+        },
+        {
+          title: "✍️ Improve & Fix Grammar",
+          desc: "Enhances grammar, professional tone, and flow.",
+          text: "Please review and enhance the following text, correcting grammar mistakes and improving clarity and professionalism while preserving its core meaning:\n\n"
+        },
+        {
+          title: "💻 Explain Code Step-by-Step",
+          desc: "Explains line-by-line and suggests optimizations.",
+          text: "Analyze the code below. Explain step-by-step how it works, highlight potential edge cases or bugs, and propose clean code improvements:\n\n"
+        }
+      ]
     },
-    {
-      title: "💻 Explicar Código Passo a Passo",
-      desc: "Comenta linha por linha e sugere otimizações.",
-      text: "Analisa o código abaixo e explica linha por linha como funciona, apontando possíveis melhorias ou bugs:\n\n"
+    es: {
+      statusProtected: "Protegido",
+      statusDisabled: "Desactivado",
+      tabShield: "ESCUDO",
+      tabPrompts: "PROMPTS",
+      tabTools: "HERRAMIENTAS",
+      tabPro: "PRO",
+      blockAdsTitle: "Bloquear Anuncios",
+      blockAdsDesc: "Elimina contenido patrocinado en tiempo real",
+      statTodayLabel: "BLOQUEADOS HOY",
+      statTotalLabel: "TOTAL HISTÓRICO",
+      btnUpdateFilters: "Actualizar Filtros Anti-Ad",
+      updatingFilters: "Comprobando...",
+      updatedFilters: "✅ ¡Filtros Actualizados!",
+      shieldInfoDesc: "El escudo monitoriza el DOM de ChatGPT y elimina la publicidad al instante.",
+      promptsTitle: "⚡ Prompts de Productividad",
+      promptsCount: "3 Listos",
+      promptsHint: "Haz clic para insertar al instante en el chat:",
+      newPromptHeader: "✨ Nuevo Prompt Personalizado",
+      promptTitlePlaceholder: "Título (ej: 🎯 Copy de Ventas)",
+      promptDescPlaceholder: "Descripción corta (opcional)",
+      promptTextPlaceholder: "Escribe aquí la instrucción completa del prompt...",
+      btnSavePrompt: "Guardar Prompt",
+      btnCancelPrompt: "Cancelar",
+      btnOpenPromptForm: "✨ + Crear Nuevo Prompt PRO",
+      lockTitle: "Añadir Prompts Ilimitados",
+      lockDesc: "Guarda tu biblioteca de comandos en la versión PRO.",
+      themeTitle: "🎨 Tema Visual del Menú",
+      themeDesc: "Personaliza la estética de la extensión:",
+      exportMenuTitle: "📥 Menú de Exportación",
+      exportMenuDesc: "Exportación a PDF, Word (.doc) y Markdown (.md)",
+      exportQuotaBadge: (rem) => `🎁 ${rem}/2 hoy`,
+      exportQuotaBadgePro: "👑 PRO Vitalicio",
+      foldersTitle: "📁 Carpetas en la Barra Lateral",
+      badgeFoldersActive: "Activo",
+      foldersDesc: "Organiza y guarda chats favoritos en categorías",
+      proHeroTitle: "ChatGPT Power PRO",
+      proHeroDesc: "Desbloquea todo el ecosistema con licencia única de por vida.",
+      proB1: "✨ <strong>Exportaciones 100% Ilimitadas</strong> (Sin límite de 2 al día)",
+      proB2: "✨ <strong>Carpetas y Marcadores ilimitados</strong>",
+      proB3: "✨ <strong>Biblioteca personal</strong> de prompts",
+      proB4: "✨ <strong>Actualizaciones prioritarias</strong> de filtros",
+      proSinglePay: "Pago Único",
+      btnBuyPro: "🚀 Desbloquear Modo PRO (2,99€)",
+      proLicenseLabel: "¿Ya tienes una clave de licencia?",
+      btnActivateLicense: "Activar",
+      proActiveSuccess: "✅ Licencia PRO Activa de por Vida",
+      footerLink: "Abrir ChatGPT",
+      footerQuota: (rem) => `Exportaciones: ${rem}/2 hoy`,
+      footerPro: "👑 Modo PRO Activo",
+      btnInsert: "⚡ Insertar en Chat",
+      btnCopy: "📋 Copiar",
+      copied: "✅ ¡Copiado!",
+      inserted: "✅ ¡Insertado!",
+      prompts: [
+        {
+          title: "⚡ Resumir en Viñetas",
+          desc: "Transforma textos largos en puntos claros y directos.",
+          text: "Por favor, resume el texto anterior en viñetas claras, directas y objetivas con los puntos clave más importantes."
+        },
+        {
+          title: "✍️ Mejorar y Corregir Texto",
+          desc: "Perfecciona la gramática, tono profesional y fluidez.",
+          text: "Revisa y mejora el siguiente texto, corrigiendo errores gramaticales y haciendo el lenguaje más fluido y profesional:\n\n"
+        },
+        {
+          title: "💻 Explicar Código Paso a Paso",
+          desc: "Comenta línea por línea y sugiere optimizaciones.",
+          text: "Analiza el siguiente código y explica línea por línea cómo funciona, señalando posibles fallos o mejoras:\n\n"
+        }
+      ]
+    },
+    fr: {
+      statusProtected: "Protégé",
+      statusDisabled: "Désactivé",
+      tabShield: "BOUCLIER",
+      tabPrompts: "PROMPTS",
+      tabTools: "OUTILS",
+      tabPro: "PRO",
+      blockAdsTitle: "Bloquer les Pubs",
+      blockAdsDesc: "Supprime le contenu sponsorisé en temps réel",
+      statTodayLabel: "BLOQUÉS AUJOURD'HUI",
+      statTotalLabel: "TOTAL HISTORIQUE",
+      btnUpdateFilters: "Mettre à jour les Filtres",
+      updatingFilters: "Vérification...",
+      updatedFilters: "✅ Filtres Mis à Jour !",
+      shieldInfoDesc: "Le bouclier surveille le DOM de ChatGPT et neutralise les publicités.",
+      promptsTitle: "⚡ Prompts de Productivité",
+      promptsCount: "3 Prêts",
+      promptsHint: "Cliquez pour insérer directement dans la discussion :",
+      newPromptHeader: "✨ Nouveau Prompt Personnalisé",
+      promptTitlePlaceholder: "Titre (ex. 🎯 Copywriting Vente)",
+      promptDescPlaceholder: "Courte description (optionnelle)",
+      promptTextPlaceholder: "Écrivez la commande complète ici...",
+      btnSavePrompt: "Enregistrer le Prompt",
+      btnCancelPrompt: "Annuler",
+      btnOpenPromptForm: "✨ + Créer un Nouveau Prompt PRO",
+      lockTitle: "Ajouter des Prompts Illimités",
+      lockDesc: "Conservez votre bibliothèque de commandes dans la version PRO.",
+      themeTitle: "🎨 Thème Visuel",
+      themeDesc: "Personnalisez l'esthétique de l'extension :",
+      exportMenuTitle: "📥 Menu d'Exportation",
+      exportMenuDesc: "Export au format PDF, Word (.doc) et Markdown (.md)",
+      exportQuotaBadge: (rem) => `🎁 ${rem}/2 auj.`,
+      exportQuotaBadgePro: "👑 PRO À Vie",
+      foldersTitle: "📁 Dossiers dans la Barre Latérale",
+      badgeFoldersActive: "Actif",
+      foldersDesc: "Organisez et épinglez vos conversations préférées",
+      proHeroTitle: "ChatGPT Power PRO",
+      proHeroDesc: "Débloquez tout l'écosystème avec une licence unique à vie.",
+      proB1: "✨ <strong>Exports 100% Illimités</strong> (Sans limite quotidienne de 2/jour)",
+      proB2: "✨ <strong>Dossiers & Favoris illimités</strong> dans la barre latérale",
+      proB3: "✨ <strong>Bibliothèque personnelle</strong> de prompts",
+      proB4: "✨ <strong>Mises à jour prioritaires</strong> des filtres",
+      proSinglePay: "Paiement Unique",
+      btnBuyPro: "🚀 Débloquer le Mode PRO (2,99€)",
+      proLicenseLabel: "Vous avez déjà une clé de licence ?",
+      btnActivateLicense: "Activer",
+      proActiveSuccess: "✅ Licence PRO Active à Vie",
+      footerLink: "Ouvrir ChatGPT",
+      footerQuota: (rem) => `Exports : ${rem}/2 auj.`,
+      footerPro: "👑 Mode PRO Actif",
+      btnInsert: "⚡ Insérer au Chat",
+      btnCopy: "📋 Copier",
+      copied: "✅ Copié !",
+      inserted: "✅ Inséré !",
+      prompts: [
+        {
+          title: "⚡ Résumer en Puces",
+          desc: "Transforme les longs textes en points clairs et précis.",
+          text: "Veuillez résumer le texte précédent sous forme de puces claires, directes et concises avec les points essentiels."
+        },
+        {
+          title: "✍️ Améliorer et Corriger le Texte",
+          desc: "Perfectionne la grammaire, la clarté et le ton professionnel.",
+          text: "Veuillez relire et améliorer le texte suivant, en corrigeant les fautes et en renforçant le professionnalisme :\n\n"
+        },
+        {
+          title: "💻 Expliquer le Code Pas à Pas",
+          desc: "Explication détaillée ligne par ligne et optimisation.",
+          text: "Analysez le code ci-dessous et expliquez son fonctionnement étape par étape, en signalant les bogues potentiels :\n\n"
+        }
+      ]
+    },
+    de: {
+      statusProtected: "Geschützt",
+      statusDisabled: "Deaktiviert",
+      tabShield: "SCHUTZ",
+      tabPrompts: "PROMPTS",
+      tabTools: "WERKZEUGE",
+      tabPro: "PRO",
+      blockAdsTitle: "Werbung Blockieren",
+      blockAdsDesc: "Entfernt gesponserte Inhalte in Echtzeit",
+      statTodayLabel: "HEUTE BLOCKIERT",
+      statTotalLabel: "GESAMT BLOCKIERT",
+      btnUpdateFilters: "Anti-Ad Filter Aktualisieren",
+      updatingFilters: "Wird geprüft...",
+      updatedFilters: "✅ Filter Aktualisiert!",
+      shieldInfoDesc: "Das Schild überwacht das ChatGPT-DOM und entfernt Werbung sofort.",
+      promptsTitle: "⚡ Produktivitäts-Prompts",
+      promptsCount: "3 Bereit",
+      promptsHint: "Klicken zum direkten Einfügen in den Chat:",
+      newPromptHeader: "✨ Neuer Eigener Prompt",
+      promptTitlePlaceholder: "Titel (z.B. 🎯 Verkaufs-Copy)",
+      promptDescPlaceholder: "Kurzbeschreibung (optional)",
+      promptTextPlaceholder: "Geben Sie hier den vollständigen Befehl ein...",
+      btnSavePrompt: "Prompt Speichern",
+      btnCancelPrompt: "Abbrechen",
+      btnOpenPromptForm: "✨ + Neuen PRO-Prompt Erstellen",
+      lockTitle: "Unbegrenzte Prompts Hinzufügen",
+      lockDesc: "Speichern Sie Ihre persönliche Befehlsbibliothek im PRO-Modus.",
+      themeTitle: "🎨 Visuelles Design",
+      themeDesc: "Passen Sie die Ästhetik der Erweiterung an:",
+      exportMenuTitle: "📥 Export-Menü",
+      exportMenuDesc: "Export als PDF, Word (.doc) und Markdown (.md)",
+      exportQuotaBadge: (rem) => `🎁 ${rem}/2 heute`,
+      exportQuotaBadgePro: "👑 Lifetime PRO",
+      foldersTitle: "📁 Seitenleisten-Ordner",
+      badgeFoldersActive: "Aktiv",
+      foldersDesc: "Organisieren Sie Ihre Lieblingschats in Kategorien",
+      proHeroTitle: "ChatGPT Power PRO",
+      proHeroDesc: "Schalten Sie alle Funktionen mit einer lebenslangen Lizenz frei.",
+      proB1: "✨ <strong>100% Unbegrenzte Exporte</strong> (Kein 2/Tag Limit)",
+      proB2: "✨ <strong>Unbegrenzte Ordner & Lesezeichen</strong> in der Seitenleiste",
+      proB3: "✨ <strong>Eigene Prompt-Bibliothek</strong>",
+      proB4: "✨ <strong>Priorisierte Werbefilter-Updates</strong>",
+      proSinglePay: "Einmalzahlung",
+      btnBuyPro: "🚀 PRO-Modus Freischalten (2,99€)",
+      proLicenseLabel: "Haben Sie bereits einen Lizenzschlüssel?",
+      btnActivateLicense: "Aktivieren",
+      proActiveSuccess: "✅ Lifetime PRO-Lizenz Aktiv",
+      footerLink: "ChatGPT Öffnen",
+      footerQuota: (rem) => `Exporte: ${rem}/2 heute`,
+      footerPro: "👑 PRO-Modus Aktiv",
+      btnInsert: "⚡ In Chat Einfügen",
+      btnCopy: "📋 Kopieren",
+      copied: "✅ Kopiert!",
+      inserted: "✅ Eingefügt!",
+      prompts: [
+        {
+          title: "⚡ In Stichpunkten Zusammenfassen",
+          desc: "Wandelt lange Texte in prägnante Kernpunkte um.",
+          text: "Bitte fasse den vorherigen Text in klaren, prägnanten und objektiven Stichpunkten mit den wichtigsten Kernaussagen zusammen."
+        },
+        {
+          title: "✍️ Text Optimieren & Korrigieren",
+          desc: "Verbessert Grammatik, Ausdruck und professionellen Ton.",
+          text: "Bitte überprüfe und optimiere den folgenden Text, korrigiere Grammatikfehler und verbessere Klarheit und Ausdruck:\n\n"
+        },
+        {
+          title: "💻 Code Schritt für Schritt Erklären",
+          desc: "Erklärt Zeile für Zeile und schlägt Optimierungen vor.",
+          text: "Analysiere den folgenden Code und erkläre Schritt für Schritt die Funktionsweise, weise auf Fehler hin und schlage Optimierungen vor:\n\n"
+        }
+      ]
+    },
+    it: {
+      statusProtected: "Protetto",
+      statusDisabled: "Disattivato",
+      tabShield: "SCUDO",
+      tabPrompts: "PROMPTS",
+      tabTools: "STRUMENTI",
+      tabPro: "PRO",
+      blockAdsTitle: "Blocca Pubblicità",
+      blockAdsDesc: "Rimuove contenuti sponsorizzati in tempo reale",
+      statTodayLabel: "BLOCCATI OGGI",
+      statTotalLabel: "TOTALE STORICO",
+      btnUpdateFilters: "Aggiorna Filtri Anti-Ad",
+      updatingFilters: "Verifica...",
+      updatedFilters: "✅ Filtri Aggiornati!",
+      shieldInfoDesc: "Lo scudo monitora il DOM di ChatGPT e rimuove le pubblicità istantaneamente.",
+      promptsTitle: "⚡ Prompt di Produttività",
+      promptsCount: "3 Pronti",
+      promptsHint: "Clicca per inserire istantaneamente nella chat attiva:",
+      newPromptHeader: "✨ Nuovo Prompt Personalizzato",
+      promptTitlePlaceholder: "Titolo (es: 🎯 Copy di Vendita)",
+      promptDescPlaceholder: "Breve descrizione (opzionale)",
+      promptTextPlaceholder: "Scrivi qui il comando completo del prompt...",
+      btnSavePrompt: "Salva Prompt",
+      btnCancelPrompt: "Annulla",
+      btnOpenPromptForm: "✨ + Crea Nuovo Prompt PRO",
+      lockTitle: "Aggiungi Prompt Illimitati",
+      lockDesc: "Salva la tua libreria di comandi nella versione PRO.",
+      themeTitle: "🎨 Tema Visivo del Menu",
+      themeDesc: "Personalizza l'estetica dell'estensione:",
+      exportMenuTitle: "📥 Menu di Esportazione",
+      exportMenuDesc: "Esportazione in PDF, Word (.doc) e Markdown (.md)",
+      exportQuotaBadge: (rem) => `🎁 ${rem}/2 oggi`,
+      exportQuotaBadgePro: "👑 PRO a Vita",
+      foldersTitle: "📁 Cartelle nella Barra Laterale",
+      badgeFoldersActive: "Attivo",
+      foldersDesc: "Organizza e salva le tue chat preferite in categorie",
+      proHeroTitle: "ChatGPT Power PRO",
+      proHeroDesc: "Sblocca l'intero ecosistema con una licenza unica a vita.",
+      proB1: "✨ <strong>Esportazioni 100% Illimitate</strong> (Nessun limite di 2 al giorno)",
+      proB2: "✨ <strong>Cartelle e Segnalibri illimitati</strong> nella barra laterale",
+      proB3: "✨ <strong>Libreria personale</strong> di prompt personalizzati",
+      proB4: "✨ <strong>Aggiornamenti prioritari</strong> dei filtri anti-annunci",
+      proSinglePay: "Pagamento Singolo",
+      btnBuyPro: "🚀 Sblocca Modalità PRO (2,99€)",
+      proLicenseLabel: "Hai già una chiave di licenza?",
+      btnActivateLicense: "Attiva",
+      proActiveSuccess: "✅ Licenza PRO Attiva a Vita",
+      footerLink: "Apri ChatGPT",
+      footerQuota: (rem) => `Esportazioni: ${rem}/2 oggi`,
+      footerPro: "👑 Modalità PRO Attiva",
+      btnInsert: "⚡ Inserisci in Chat",
+      btnCopy: "📋 Copia",
+      copied: "✅ Copiato!",
+      inserted: "✅ Inserito!",
+      prompts: [
+        {
+          title: "⚡ Riassumi in Punti Elenco",
+          desc: "Trasforma testi lunghi in punti chiari ed essenziali.",
+          text: "Per favore, riassumi il testo precedente in punti elenco chiari, diretti e concisi con le informazioni più importanti."
+        },
+        {
+          title: "✍️ Migliora e Correggi Testo",
+          desc: "Perfeziona la grammatica, la chiarezza e il tono professionale.",
+          text: "Rivedi e migliora il seguente testo, correggendo errori grammaticali e rendendolo più chiaro e professionale:\n\n"
+        },
+        {
+          title: "💻 Spiega il Codice Passo dopo Passo",
+          desc: "Spiegazione riga per riga e ottimizzazione.",
+          text: "Analizza il codice seguente e spiega riga per riga il suo funzionamento, indicando possibili bug o miglioramenti:\n\n"
+        }
+      ]
+    },
+    zh: {
+      statusProtected: "已受保护",
+      statusDisabled: "已停用",
+      tabShield: "防护盾",
+      tabPrompts: "提示词",
+      tabTools: "工具箱",
+      tabPro: "专业版",
+      blockAdsTitle: "广告拦截",
+      blockAdsDesc: "实时清除ChatGPT所有赞助推广内容",
+      statTodayLabel: "今日已拦截",
+      statTotalLabel: "历史总计拦截",
+      btnUpdateFilters: "更新广告过滤规则",
+      updatingFilters: "检查中...",
+      updatedFilters: "✅ 规则已更新！",
+      shieldInfoDesc: "防护盾实时监控ChatGPT DOM结构并在广告渲染前直接消除。",
+      promptsTitle: "⚡ 高效生产力提示词",
+      promptsCount: "3个内置",
+      promptsHint: "点击即可一键插入当前聊天输入框：",
+      newPromptHeader: "✨ 新建自定义提示词",
+      promptTitlePlaceholder: "标题（例：🎯 爆款营销文案）",
+      promptDescPlaceholder: "简要说明（选填）",
+      promptTextPlaceholder: "在此输入完整的提示词指令...",
+      btnSavePrompt: "保存提示词",
+      btnCancelPrompt: "取消",
+      btnOpenPromptForm: "✨ + 创建PRO自定义提示词",
+      lockTitle: "解锁无限自定义提示词",
+      lockDesc: "升级PRO专业版，随时随地保存海量专属指令库。",
+      themeTitle: "🎨 界面视觉主题",
+      themeDesc: "自定义扩展面板设计风格：",
+      exportMenuTitle: "📥 对话导出菜单",
+      exportMenuDesc: "支持导出为 PDF、Word (.doc) 与 Markdown (.md)",
+      exportQuotaBadge: (rem) => `🎁 今日剩余: ${rem}/2`,
+      exportQuotaBadgePro: "👑 终身PRO",
+      foldersTitle: "📁 侧边栏分类文件夹",
+      badgeFoldersActive: "已启用",
+      foldersDesc: "轻松管理、归档并一键收藏常用聊天对话",
+      proHeroTitle: "ChatGPT Power PRO",
+      proHeroDesc: "一次购买，终身享受全部高级生态功能与无限制体验。",
+      proB1: "✨ <strong>100% 无限导出</strong>（无每日2次额度限制）",
+      proB2: "✨ <strong>无限侧边栏文件夹与书签</strong>",
+      proB3: "✨ <strong>专属自定义提示词库</strong>",
+      proB4: "✨ <strong>广告过滤规则优先极速更新</strong>",
+      proSinglePay: "一次性买断",
+      btnBuyPro: "🚀 解锁PRO专业版 (2.99€)",
+      proLicenseLabel: "已有授权激活密钥？",
+      btnActivateLicense: "立即激活",
+      proActiveSuccess: "✅ 终身PRO授权已永久激活",
+      footerLink: "打开 ChatGPT",
+      footerQuota: (rem) => `今日导出: ${rem}/2`,
+      footerPro: "👑 PRO专业版已激活",
+      btnInsert: "⚡ 插入聊天",
+      btnCopy: "📋 复制",
+      copied: "✅ 已复制！",
+      inserted: "✅ 已插入！",
+      prompts: [
+        {
+          title: "⚡ 要点提炼与摘要",
+          desc: "将长篇内容迅速提炼为清晰直观的核心要点。",
+          text: "请将上述内容提炼为清晰、精炼、条理分明的要点列表，仅保留最核心的信息与结论。"
+        },
+        {
+          title: "✍️ 润色与语法纠错",
+          desc: "提升语言表达、纠正语病并优化专业语气。",
+          text: "请审阅并优化以下文本，修正语法与拼写错误，提升清晰度与专业度，同时保留原意：\n\n"
+        },
+        {
+          title: "💻 逐步代码深度解析",
+          desc: "逐行深度解析逻辑、排查隐患并提供优化建议。",
+          text: "请分析以下代码，逐步解释其运行逻辑与核心机制，指出潜在隐患或性能瓶颈，并提供最佳实践重构方案：\n\n"
+        }
+      ]
+    },
+    ja: {
+      statusProtected: "保護中",
+      statusDisabled: "無効",
+      tabShield: "シールド",
+      tabPrompts: "プロンプト",
+      tabTools: "ツール",
+      tabPro: "PRO",
+      blockAdsTitle: "広告ブロック",
+      blockAdsDesc: "スポンサー広告をリアルタイムで完全除去",
+      statTodayLabel: "本日のブロック数",
+      statTotalLabel: "累計ブロック数",
+      btnUpdateFilters: "広告フィルター更新",
+      updatingFilters: "確認中...",
+      updatedFilters: "✅ フィルター更新完了！",
+      shieldInfoDesc: "シールドがChatGPTのDOMを監視し、広告が表示される前に自動消去します。",
+      promptsTitle: "⚡ 効率化プロンプト",
+      promptsCount: "3件利用可能",
+      promptsHint: "クリックでチャット入力欄に即座に挿入：",
+      newPromptHeader: "✨ 新規カスタムプロンプト",
+      promptTitlePlaceholder: "タイトル（例：🎯 セールスコピー作成）",
+      promptDescPlaceholder: "簡単な説明（任意）",
+      promptTextPlaceholder: "ここにプロンプトの全文を入力...",
+      btnSavePrompt: "プロンプト保存",
+      btnCancelPrompt: "キャンセル",
+      btnOpenPromptForm: "✨ + 新規PROプロンプト作成",
+      lockTitle: "無制限プロンプト保存を解放",
+      lockDesc: "PRO版であなた専用のプロンプト集を無制限に保存。",
+      themeTitle: "🎨 外観テーマ",
+      themeDesc: "拡張機能のデザインテーマを選択：",
+      exportMenuTitle: "📥 エクスポートメニュー",
+      exportMenuDesc: "PDF、Word (.doc)、Markdown (.md) への出力に対応",
+      exportQuotaBadge: (rem) => `🎁 本日残り: ${rem}/2`,
+      exportQuotaBadgePro: "👑 永久PRO",
+      foldersTitle: "📁 サイドバーフォルダ機能",
+      badgeFoldersActive: "有効",
+      foldersDesc: "お気に入りチャットをカテゴリ別に整理・保存",
+      proHeroTitle: "ChatGPT Power PRO",
+      proHeroDesc: "1回の購入で全機能を永久無制限でご利用いただけます。",
+      proB1: "✨ <strong>完全無制限エクスポート</strong>（1日2回制限なし）",
+      proB2: "✨ <strong>無制限フォルダ＆ブックマーク管理</strong>",
+      proB3: "✨ <strong>専用カスタムプロンプト集の保存</strong>",
+      proB4: "✨ <strong>広告フィルターの優先更新サポート</strong>",
+      proSinglePay: "買い切りプラン",
+      btnBuyPro: "🚀 PRO版を解放する (2.99€)",
+      proLicenseLabel: "ライセンスキーをお持ちですか？",
+      btnActivateLicense: "有効化",
+      proActiveSuccess: "✅ 永久PROライセンス有効化済み",
+      footerLink: "ChatGPTを開く",
+      footerQuota: (rem) => `本日利用: ${rem}/2`,
+      footerPro: "👑 PROモード有効中",
+      btnInsert: "⚡ チャットに挿入",
+      btnCopy: "📋 コピー",
+      copied: "✅ コピー完了！",
+      inserted: "✅ 挿入完了！",
+      prompts: [
+        {
+          title: "⚡ 箇条書きで要約",
+          desc: "長文を分かりやすく簡潔な箇条書きにまとめます。",
+          text: "前の文章を、重要なポイントのみを抽出して明確かつ簡潔な箇条書きで要約してください。"
+        },
+        {
+          title: "✍️ 文章の推敲・校正",
+          desc: "文法を修正し、より自然で洗練された表現に整えます。",
+          text: "以下の文章を推敲・校正し、誤字脱字や文法ミスを修正して、より洗練された自然な文章に整えてください：\n\n"
+        },
+        {
+          title: "💻 コードのステップ解説",
+          desc: "動作ロジック、バグ検出、最適化提案を詳しく解説。",
+          text: "以下のコードを分析してください。各ブロックの動作をステップごとに解説し、潜在的なバグや最適化の提案を教えてください：\n\n"
+        }
+      ]
     }
-  ];
+  };
+
+  let currentLang = 'pt';
+  let isCurrentPro = false;
 
   // --------------------------------------------------------------------------
   // 1. NAVEGAÇÃO ENTRE ABAS
@@ -78,7 +647,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------------------------
-  // 2. CARREGAR ESTADO & APLICAR TEMA DO POPUP
+  // 2. CARREGAR ESTADO & APLICAR TEMA E IDIOMA DO POPUP
   // --------------------------------------------------------------------------
   function applyPopupTheme(themeName) {
     document.body.classList.remove('theme-white', 'theme-cyber', 'theme-default');
@@ -91,23 +660,153 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function applyLanguage(lang) {
+    if (!I18N[lang]) lang = 'pt';
+    currentLang = lang;
+    if (langSelect) langSelect.value = lang;
+    const t = I18N[lang];
+
+    // Status
+    if (toggleAdBlock && toggleAdBlock.checked) {
+      statusText.innerText = t.statusProtected;
+    } else if (statusText) {
+      statusText.innerText = t.statusDisabled;
+    }
+
+    // Tabs
+    const tabShield = document.getElementById('i18n-tab-shield');
+    if (tabShield) tabShield.innerText = t.tabShield;
+    const tabPrompts = document.getElementById('i18n-tab-prompts');
+    if (tabPrompts) tabPrompts.innerText = t.tabPrompts;
+    const tabTools = document.getElementById('i18n-tab-tools');
+    if (tabTools) tabTools.innerText = t.tabTools;
+    const tabPro = document.getElementById('i18n-tab-pro');
+    if (tabPro) tabPro.innerText = t.tabPro;
+
+    // Shield Tab
+    const blockTitle = document.getElementById('i18n-block-ads-title');
+    if (blockTitle) blockTitle.innerText = t.blockAdsTitle;
+    const blockDesc = document.getElementById('i18n-block-ads-desc');
+    if (blockDesc) blockDesc.innerText = t.blockAdsDesc;
+    const statTodayLbl = document.getElementById('i18n-stat-today-label');
+    if (statTodayLbl) statTodayLbl.innerText = t.statTodayLabel;
+    const statTotalLbl = document.getElementById('i18n-stat-total-label');
+    if (statTotalLbl) statTotalLbl.innerText = t.statTotalLabel;
+    const updateBtn = document.getElementById('update-btn-text');
+    if (updateBtn) updateBtn.innerText = t.btnUpdateFilters;
+    const shieldInfo = document.getElementById('i18n-shield-info-desc');
+    if (shieldInfo) shieldInfo.innerText = t.shieldInfoDesc;
+
+    // Prompts Tab
+    const promptsTitle = document.getElementById('i18n-prompts-title');
+    if (promptsTitle) promptsTitle.innerText = t.promptsTitle;
+    const promptsCount = document.getElementById('i18n-prompts-count');
+    if (promptsCount) promptsCount.innerText = t.promptsCount;
+    const promptsHint = document.getElementById('i18n-prompts-hint');
+    if (promptsHint) promptsHint.innerText = t.promptsHint;
+    const newPromptHeader = document.getElementById('i18n-new-prompt-title-header');
+    if (newPromptHeader) newPromptHeader.innerText = t.newPromptHeader;
+    if (newPromptTitle) newPromptTitle.placeholder = t.promptTitlePlaceholder;
+    if (newPromptDesc) newPromptDesc.placeholder = t.promptDescPlaceholder;
+    if (newPromptText) newPromptText.placeholder = t.promptTextPlaceholder;
+    if (btnSaveNewPrompt) btnSaveNewPrompt.innerText = t.btnSavePrompt;
+    if (btnCancelNewPrompt) btnCancelNewPrompt.innerText = t.btnCancelPrompt;
+    const btnOpenPromptText = document.getElementById('btn-open-prompt-form-text');
+    if (btnOpenPromptText) btnOpenPromptText.innerText = t.btnOpenPromptForm;
+    const lockTitle = document.getElementById('i18n-lock-title');
+    if (lockTitle) lockTitle.innerText = t.lockTitle;
+    const lockDesc = document.getElementById('i18n-lock-desc');
+    if (lockDesc) lockDesc.innerText = t.lockDesc;
+
+    // Tools Tab
+    const themeTitle = document.getElementById('i18n-theme-title');
+    if (themeTitle) themeTitle.innerText = t.themeTitle;
+    const themeDesc = document.getElementById('i18n-theme-desc');
+    if (themeDesc) themeDesc.innerText = t.themeDesc;
+    const exportMenuTitle = document.getElementById('i18n-export-menu-title');
+    if (exportMenuTitle) exportMenuTitle.innerText = t.exportMenuTitle;
+    const exportMenuDesc = document.getElementById('i18n-export-menu-desc');
+    if (exportMenuDesc) exportMenuDesc.innerText = t.exportMenuDesc;
+    const foldersTitle = document.getElementById('i18n-folders-title');
+    if (foldersTitle) foldersTitle.innerText = t.foldersTitle;
+    const badgeFolders = document.getElementById('i18n-badge-folders-active');
+    if (badgeFolders) badgeFolders.innerText = t.badgeFoldersActive;
+    const foldersDesc = document.getElementById('i18n-folders-desc');
+    if (foldersDesc) foldersDesc.innerText = t.foldersDesc;
+
+    // PRO Tab
+    const proHeroTitle = document.getElementById('i18n-pro-hero-title');
+    if (proHeroTitle) proHeroTitle.innerText = t.proHeroTitle;
+    const proHeroDesc = document.getElementById('i18n-pro-hero-desc');
+    if (proHeroDesc) proHeroDesc.innerText = t.proHeroDesc;
+    const proB1 = document.getElementById('i18n-pro-b1');
+    if (proB1) proB1.innerHTML = t.proB1;
+    const proB2 = document.getElementById('i18n-pro-b2');
+    if (proB2) proB2.innerHTML = t.proB2;
+    const proB3 = document.getElementById('i18n-pro-b3');
+    if (proB3) proB3.innerHTML = t.proB3;
+    const proB4 = document.getElementById('i18n-pro-b4');
+    if (proB4) proB4.innerHTML = t.proB4;
+    const proSinglePay = document.getElementById('i18n-pro-single-pay');
+    if (proSinglePay) proSinglePay.innerText = t.proSinglePay;
+    const btnBuyPro = document.getElementById('btn-buy-pro');
+    if (btnBuyPro) btnBuyPro.innerText = t.btnBuyPro;
+    const proLicLabel = document.getElementById('i18n-pro-license-label');
+    if (proLicLabel) proLicLabel.innerText = t.proLicenseLabel;
+    if (btnActivateLicense) btnActivateLicense.innerText = t.btnActivateLicense;
+
+    // Footer
+    const footerLink = document.getElementById('i18n-footer-link');
+    if (footerLink) footerLink.innerText = t.footerLink;
+
+    renderPrompts(currentCustomPrompts);
+
+    // Guardar configuração
+    saveSetting('appLanguage', lang);
+
+    // Notificar tab ativa do ChatGPT se estiver aberta
+    if (typeof chrome !== 'undefined' && chrome.tabs) {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs && tabs[0] && tabs[0].id && tabs[0].url && tabs[0].url.includes('chatgpt.com')) {
+          chrome.tabs.sendMessage(tabs[0].id, { action: 'setLanguage', language: lang }, () => {
+            const _ = chrome.runtime.lastError;
+          });
+        }
+      });
+    }
+  }
+
+  if (langSelect) {
+    langSelect.addEventListener('change', () => {
+      applyLanguage(langSelect.value);
+    });
+  }
+
   function loadStorageState() {
     if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
       chrome.storage.local.get([
         'adBlockEnabled',
         'popupTheme',
+        'appLanguage',
         'exportBtnEnabled',
         'foldersEnabled',
         'blockedCount',
         'blockedToday',
         'lastDate',
         'exportTrialStartDate',
+        'customPrompts',
         'isPro'
       ], (data) => {
+        isCurrentPro = !!data.isPro;
+
         // Toggles
         toggleAdBlock.checked = data.adBlockEnabled !== false;
         toggleExport.checked = data.exportBtnEnabled !== false;
         toggleFolders.checked = data.foldersEnabled !== false;
+
+        // Idioma do Popup
+        const savedLang = data.appLanguage || 'pt';
+        applyLanguage(savedLang);
 
         // Tema do Popup
         const currentTheme = data.popupTheme || 'default';
@@ -134,12 +833,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Cota Diária de Exportações (2/dia Free ou Ilimitado PRO)
         const exportsCount = (data.exportsLastDate === today) ? (data.exportsToday || 0) : 0;
         const exportsRemaining = Math.max(0, 2 - exportsCount);
+        const t = I18N[currentLang] || I18N.pt;
 
         if (data.isPro) {
           applyProUI();
         } else {
-          exportTrialBadge.innerText = `🎁 ${exportsRemaining}/2 hoje`;
-          trialFooterStatus.innerText = `Exportações: ${exportsRemaining}/2 hoje`;
+          exportTrialBadge.innerText = t.exportQuotaBadge(exportsRemaining);
+          trialFooterStatus.innerText = t.footerQuota(exportsRemaining);
         }
       });
     }
@@ -172,16 +872,17 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function updateStatusBadge(active) {
+    const t = I18N[currentLang] || I18N.pt;
     if (active) {
       statusBadge.style.background = 'rgba(16, 185, 129, 0.15)';
       statusBadge.style.borderColor = 'rgba(16, 185, 129, 0.3)';
-      statusText.innerText = 'Protegido';
+      statusText.innerText = t.statusProtected;
       statusText.style.color = '#10b981';
       statusBadge.querySelector('.status-dot').style.backgroundColor = '#10b981';
     } else {
       statusBadge.style.background = 'rgba(239, 68, 68, 0.15)';
       statusBadge.style.borderColor = 'rgba(239, 68, 68, 0.3)';
-      statusText.innerText = 'Pausado';
+      statusText.innerText = t.statusDisabled;
       statusText.style.color = '#ef4444';
       statusBadge.querySelector('.status-dot').style.backgroundColor = '#ef4444';
     }
@@ -232,17 +933,19 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderPrompts(customList) {
     if (customList) currentCustomPrompts = customList;
     popupPromptsList.innerHTML = '';
+    const t = I18N[currentLang] || I18N.pt;
+    const defaultList = t.prompts || I18N.pt.prompts;
 
-    // 1. Prompts Padrão
-    DEFAULT_PROMPTS.forEach((p) => {
+    // 1. Prompts Padrão no Idioma Atual
+    defaultList.forEach((p) => {
       const card = document.createElement('div');
       card.className = 'prompt-card';
       card.innerHTML = `
         <div class="prompt-card-title">${p.title}</div>
         <div class="prompt-card-desc">${p.desc}</div>
         <div class="prompt-card-actions">
-          <button class="prompt-action-btn btn-insert" title="Colocar no ChatGPT agora">⚡ Inserir no Chat</button>
-          <button class="prompt-action-btn btn-copy" title="Copiar texto">📋 Copiar</button>
+          <button class="prompt-action-btn btn-insert" title="${t.btnInsert}">${t.btnInsert}</button>
+          <button class="prompt-action-btn btn-copy" title="${t.btnCopy}">${t.btnCopy}</button>
         </div>
       `;
 
@@ -256,8 +959,8 @@ document.addEventListener('DOMContentLoaded', () => {
       copyBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         navigator.clipboard.writeText(p.text);
-        copyBtn.innerText = '✅ Copiado!';
-        setTimeout(() => { copyBtn.innerText = '📋 Copiar'; }, 1500);
+        copyBtn.innerText = t.copied;
+        setTimeout(() => { copyBtn.innerText = t.btnCopy; }, 1500);
       });
 
       popupPromptsList.appendChild(card);
@@ -275,9 +978,9 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           ${cp.desc ? `<div class="prompt-card-desc">${escapeHtml(cp.desc)}</div>` : ''}
           <div class="prompt-card-actions">
-            <button class="prompt-action-btn btn-insert" title="Colocar no ChatGPT agora">⚡ Inserir no Chat</button>
-            <button class="prompt-action-btn btn-copy" title="Copiar texto">📋 Copiar</button>
-            <button class="prompt-action-btn btn-delete" title="Eliminar este prompt" data-index="${idx}">🗑️</button>
+            <button class="prompt-action-btn btn-insert" title="${t.btnInsert}">${t.btnInsert}</button>
+            <button class="prompt-action-btn btn-copy" title="${t.btnCopy}">${t.btnCopy}</button>
+            <button class="prompt-action-btn btn-delete" title="Eliminar" data-index="${idx}">🗑️</button>
           </div>
         `;
 
@@ -291,8 +994,8 @@ document.addEventListener('DOMContentLoaded', () => {
         copyBtn.addEventListener('click', (e) => {
           e.stopPropagation();
           navigator.clipboard.writeText(cp.text);
-          copyBtn.innerText = '✅ Copiado!';
-          setTimeout(() => { copyBtn.innerText = '📋 Copiar'; }, 1500);
+          copyBtn.innerText = t.copied;
+          setTimeout(() => { copyBtn.innerText = t.btnCopy; }, 1500);
         });
 
         const delBtn = card.querySelector('.btn-delete');
