@@ -906,6 +906,58 @@
           </div>
         </div>
       `;
+    });
+
+    const folderIconUrl = chrome.runtime.getURL('icons/icons8-folder-94.png');
+    container.innerHTML = `
+      <div class="chatgpt-clean-folders-header">
+        <div class="folders-header-left" style="display:flex;align-items:center;gap:6px;">
+          <img src="${folderIconUrl}" class="folders-3d-icon" alt="Folders">
+          <span>${t.foldersHeader}</span>
+        </div>
+        <button type="button" class="chatgpt-clean-add-folder-btn" id="chatgpt-clean-btn-new-folder">${t.btnAddFolder}</button>
+      </div>
+      <div class="chatgpt-clean-folder-list">
+        ${foldersHtml}
+      </div>
+    `;
+
+    sidebarNav.insertBefore(container, sidebarNav.firstChild);
+
+    // Criar nova pasta
+    const addBtn = container.querySelector('#chatgpt-clean-btn-new-folder');
+    if (addBtn) {
+      addBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const folderName = prompt(t.promptNewFolderName, '📁 Projetos');
+        if (folderName && folderName.trim()) {
+          const newFolder = {
+            id: 'f_' + Date.now(),
+            name: folderName.trim(),
+            chats: []
+          };
+          state.folders.push(newFolder);
+          saveFolders();
+          container.remove();
+          injectSidebarFolders();
+          showToast(t.toastFolderCreated);
+        }
+      });
+    }
+
+    // Expandir/colapsar pasta
+    container.querySelectorAll('.folder-name-toggle').forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wrapper = toggle.closest('.chatgpt-clean-folder-wrapper');
+        const chatsBox = wrapper.querySelector('.chatgpt-clean-folder-chats');
+        const isHidden = chatsBox.style.display === 'none';
+        chatsBox.style.display = isHidden ? 'block' : 'none';
+        toggle.innerText = isHidden ? toggle.innerText.replace('▶', '▼') : toggle.innerText.replace('▼', '▶');
+      });
+    });
+
     // Guardar conversa atual na pasta
     container.querySelectorAll('.btn-save-current-chat').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -1123,10 +1175,15 @@
     const oldTrigger = document.querySelector('.chatgpt-clean-prompt-trigger');
     if (oldTrigger) oldTrigger.remove();
 
-    const inputForm = document.querySelector('form') ||
-                      document.querySelector('#prompt-textarea')?.closest('form');
+    const inputContainer = document.querySelector('form') ||
+                           document.querySelector('#prompt-textarea')?.closest('form') ||
+                           document.querySelector('#prompt-textarea')?.closest('div[class*="composer"]') ||
+                           document.querySelector('#prompt-textarea')?.parentElement?.parentElement ||
+                           document.querySelector('div[class*="ProseMirror"]')?.closest('form') ||
+                           document.querySelector('div[class*="ProseMirror"]')?.parentElement?.parentElement ||
+                           document.querySelector('main form');
 
-    if (!inputForm) return;
+    if (!inputContainer) return;
 
     const lang = state.appLanguage || 'en';
     const t = CONTENT_I18N[lang] || CONTENT_I18N.pt;
@@ -1150,7 +1207,7 @@
     });
 
     bar.appendChild(trigger);
-    inputForm.insertAdjacentElement('beforebegin', bar);
+    inputContainer.insertAdjacentElement('beforebegin', bar);
   }
 
   function togglePromptsModal() {

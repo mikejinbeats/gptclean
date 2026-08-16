@@ -889,9 +889,6 @@ document.addEventListener('DOMContentLoaded', () => {
       applyProUI();
     }
 
-    const footerLink = document.getElementById('i18n-footer-link');
-    if (footerLink) footerLink.innerText = t.footerLink;
-
     if (isCurrentPro) {
       if (trialFooterStatus) trialFooterStatus.innerText = t.footerPro;
       if (exportTrialBadge) exportTrialBadge.innerText = t.exportQuotaBadgePro;
