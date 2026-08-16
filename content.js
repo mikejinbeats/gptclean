@@ -652,7 +652,7 @@
       const html = turn.querySelector('.markdown')?.innerHTML || textNode.innerHTML;
 
       fullMarkdown += `### ${speaker}:\n${text}\n\n---\n\n`;
-      fullHtml += `<div style="margin-bottom:18px;"><strong>${speaker}:</strong><div style="margin-top:4px;">${html}</div></div><hr style="border:0;border-top:1px solid #eee;"/>`;
+      fullHtml += `<div class="chat-turn-block" style="margin-bottom:18px;page-break-inside:avoid;break-inside:avoid;"><strong>${speaker}:</strong><div style="margin-top:4px;">${html}</div></div><hr style="border:0;border-top:1px solid #eee;"/>`;
     });
 
     openExportModal(fullMarkdown, fullHtml, t.exportFullBtn);
@@ -835,13 +835,14 @@
             <meta charset="utf-8">
             <title>ChatGPT Clean Export - ${timestamp}</title>
             <style>
-              @page { margin: 18mm; }
-              body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6; padding: 20px; }
-              h1 { font-size: 20px; color: #0f172a; border-bottom: 2px solid #6366f1; padding-bottom: 8px; margin-bottom: 20px; }
+              @page { margin: 15mm; size: A4; }
+              body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6; padding: 10px; font-size: 11pt; }
+              h1 { font-size: 18pt; color: #0f172a; border-bottom: 2px solid #6366f1; padding-bottom: 8px; margin-bottom: 20px; }
               h2, h3 { color: #1e293b; margin-top: 18px; margin-bottom: 8px; }
-              pre, code { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px 12px; font-family: Consolas, "Courier New", monospace; font-size: 12px; white-space: pre-wrap; word-break: break-word; }
-              p { margin-bottom: 12px; }
-              hr { border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0; }
+              pre, code { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px 12px; font-family: Consolas, "Courier New", monospace; font-size: 9.5pt; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; break-inside: avoid; }
+              .chat-turn-block { page-break-inside: avoid; break-inside: avoid; margin-bottom: 16px; }
+              p { margin-bottom: 10px; }
+              hr { border: 0; border-top: 1px solid #e2e8f0; margin: 16px 0; }
               strong { color: #0f172a; }
             </style>
           </head>
