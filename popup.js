@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --------------------------------------------------------------------------
   const I18N = {
     pt: {
+    footerProText: "Modo PRO Ativo",
       statusProtected: "Protegido",
       statusDisabled: "Desativado",
       tabShield: "ESCUDO",
@@ -152,6 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     en: {
+    footerProText: "PRO Mode Active",
       statusProtected: "Protected",
       statusDisabled: "Disabled",
       tabShield: "SHIELD",
@@ -233,6 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     es: {
+    footerProText: "Modo PRO Activo",
       statusProtected: "Protegido",
       statusDisabled: "Desactivado",
       tabShield: "ESCUDO",
@@ -314,6 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     fr: {
+    footerProText: "Mode PRO Actif",
       statusProtected: "Protégé",
       statusDisabled: "Désactivé",
       tabShield: "BOUCLIER",
@@ -395,6 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     de: {
+    footerProText: "PRO-Modus Aktiv",
       statusProtected: "Geschützt",
       statusDisabled: "Deaktiviert",
       tabShield: "SCHUTZ",
@@ -476,6 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     it: {
+    footerProText: "Modalità PRO Attiva",
       statusProtected: "Protetto",
       statusDisabled: "Disattivato",
       tabShield: "SCUDO",
@@ -557,6 +563,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     zh: {
+    footerProText: "PRO 专业版已激活",
       statusProtected: "已受保护",
       statusDisabled: "已停用",
       tabShield: "防护盾",
@@ -638,6 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     ja: {
+    footerProText: "PRO モード有効",
       statusProtected: "保護中",
       statusDisabled: "無効",
       tabShield: "シールド",
@@ -885,17 +893,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (footerLinkText) footerLinkText.innerText = t.footerLink;
 
     // Se o utilizador for PRO, atualiza o cartão registrado para o novo idioma
-    if (isCurrentPro) {
-      applyProUI();
-    }
-
-    if (isCurrentPro) {
-      if (trialFooterStatus) trialFooterStatus.innerText = t.footerPro;
-      if (exportTrialBadge) exportTrialBadge.innerText = t.exportQuotaBadgePro;
-    } else {
-      if (trialFooterStatus) trialFooterStatus.innerText = t.footerQuota(currentExportsRemaining);
-      if (exportTrialBadge) exportTrialBadge.innerText = t.exportQuotaBadge(currentExportsRemaining);
-    }
+          if (isCurrentPro) {
+        if (trialFooterStatus) {
+          trialFooterStatus.innerHTML = `<img src="icons/icons8-crown-100.png" class="footer-crown-icon" alt="PRO"><span>${t.footerProText || 'PRO Mode Active'}</span>`;
+          trialFooterStatus.style.color = '#f59e0b';
+        }
+        if (exportTrialBadge) exportTrialBadge.innerText = t.exportQuotaBadgePro;
+      } else {
+        if (trialFooterStatus) {
+          trialFooterStatus.innerText = t.footerQuota(currentExportsRemaining);
+          trialFooterStatus.style.color = '';
+        }
+        if (exportTrialBadge) exportTrialBadge.innerText = t.exportQuotaBadge(currentExportsRemaining);
+      }
 
     renderPrompts(currentCustomPrompts);
 
@@ -1430,10 +1440,10 @@ document.addEventListener('DOMContentLoaded', () => {
       exportTrialBadge.innerText = t.exportQuotaBadgePro;
       exportTrialBadge.className = 'badge-active';
     }
-    if (trialFooterStatus) {
-      trialFooterStatus.innerText = t.footerPro;
-      trialFooterStatus.style.color = '#f59e0b';
-    }
+          if (trialFooterStatus) {
+        trialFooterStatus.innerHTML = `<img src="icons/icons8-crown-100.png" class="footer-crown-icon" alt="PRO"><span>${t.footerProText || 'PRO Mode Active'}</span>`;
+        trialFooterStatus.style.color = '#f59e0b';
+      }
     if (promptsProLock) {
       promptsProLock.style.display = 'none';
     }
