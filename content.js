@@ -32,6 +32,11 @@
       exportToastMd: "Ficheiro Markdown (.md) descarregado!",
       exportToastWord: "Ficheiro Word (.doc) descarregado!",
       exportToastPdf: "A abrir visualização de impressão PDF...",
+      exportProgressTitle: "A preparar exportação...",
+      exportProgressScanning: "A analisar histórico da conversa...",
+      exportProgressFormatting: "A formatar mensagens e código...",
+      exportProgressGenerating: (fmt) => `A compilar documento ${fmt}...`,
+      exportProgressDone: "Concluído! A iniciar transferência...",
       promptInserted: "Prompt inserido no ChatGPT!",
       quickPromptsTooltip: "Prompts Rápidos",
       defaultFolders: { f1: '💼 Trabalho', f2: '💡 Ideias', f3: '📚 Estudos' },
@@ -46,9 +51,6 @@
       toastChatAlreadySaved: "Esta conversa já está guardada nesta pasta.",
       noMessagesToExport: "Nenhuma mensagem encontrada para exportar.",
       toastAllowPopups: "Permite popups no navegador para imprimir em PDF.",
-      compilingTitle: "A compilar histórico do chat...",
-      compilingStatus: (count) => `${count} mensagens processadas`,
-      compilingDone: "Pronto! A abrir opções...",
       limitModalTitle: "Limite Diário Atingido",
       limitModalHeading: "Atingiste as tuas 2 exportações gratuitas de hoje!",
       limitModalDesc: "O teu limite de 2 exportações diárias reseta automaticamente amanhã à meia-noite.",
@@ -74,6 +76,11 @@
       exportToastMd: "Markdown (.md) file downloaded!",
       exportToastWord: "Word (.doc) file downloaded!",
       exportToastPdf: "Opening PDF print preview...",
+      exportProgressTitle: "Preparing export...",
+      exportProgressScanning: "Scanning conversation history...",
+      exportProgressFormatting: "Formatting messages & code...",
+      exportProgressGenerating: (fmt) => `Compiling ${fmt} document...`,
+      exportProgressDone: "Done! Starting download / preview...",
       promptInserted: "Prompt inserted into ChatGPT!",
       quickPromptsTooltip: "Quick Prompts",
       defaultFolders: { f1: '💼 Work', f2: '💡 Ideas', f3: '📚 Studies' },
@@ -88,9 +95,6 @@
       toastChatAlreadySaved: "This chat is already saved in this folder.",
       noMessagesToExport: "No messages found to export.",
       toastAllowPopups: "Please allow popups in your browser to print PDF.",
-      compilingTitle: "Compiling conversation history...",
-      compilingStatus: (count) => `${count} messages processed`,
-      compilingDone: "Ready! Opening options...",
       limitModalTitle: "Daily Limit Reached",
       limitModalHeading: "You have reached your 2 free exports today!",
       limitModalDesc: "Your daily quota of 2 free exports will reset tomorrow at midnight.",
@@ -116,6 +120,11 @@
       exportToastMd: "¡Archivo Markdown (.md) descargado!",
       exportToastWord: "¡Archivo Word (.doc) descargado!",
       exportToastPdf: "Abriendo vista previa de impresión PDF...",
+      exportProgressTitle: "Preparando exportación...",
+      exportProgressScanning: "Analizando historial de la conversación...",
+      exportProgressFormatting: "Formateando mensajes y código...",
+      exportProgressGenerating: (fmt) => `Compilando documento ${fmt}...`,
+      exportProgressDone: "¡Listo! Iniciando descarga / vista previa...",
       promptInserted: "¡Prompt insertado en ChatGPT!",
       quickPromptsTooltip: "Prompts Rápidos",
       defaultFolders: { f1: '💼 Trabajo', f2: '💡 Ideas', f3: '📚 Estudios' },
@@ -130,9 +139,6 @@
       toastChatAlreadySaved: "Esta conversación ya está guardada en esta carpeta.",
       noMessagesToExport: "No se encontraron mensajes para exportar.",
       toastAllowPopups: "Por favor permite ventanas emergentes para imprimir en PDF.",
-      compilingTitle: "Compilando historial del chat...",
-      compilingStatus: (count) => `${count} mensajes procesados`,
-      compilingDone: "¡Listo! Abriendo opciones...",
       limitModalTitle: "Límite Diario Alcanzado",
       limitModalHeading: "¡Has alcanzado tus 2 exportaciones gratuitas de hoy!",
       limitModalDesc: "Tu cuota diaria de 2 exportaciones se restablecerá mañana a medianoche.",
@@ -158,6 +164,11 @@
       exportToastMd: "Fichier Markdown (.md) téléchargé !",
       exportToastWord: "Fichier Word (.doc) téléchargé !",
       exportToastPdf: "Ouverture de l'aperçu avant impression PDF...",
+      exportProgressTitle: "Préparation de l'export...",
+      exportProgressScanning: "Analyse de l'historique...",
+      exportProgressFormatting: "Formatage des messages et du code...",
+      exportProgressGenerating: (fmt) => `Compilation du document ${fmt}...`,
+      exportProgressDone: "Terminé ! Lancement du téléchargement...",
       promptInserted: "Prompt inséré dans ChatGPT !",
       quickPromptsTooltip: "Prompts Rapides",
       defaultFolders: { f1: '💼 Travail', f2: '💡 Idées', f3: '📚 Études' },
@@ -172,9 +183,6 @@
       toastChatAlreadySaved: "Cette discussion est déjà enregistrée dans ce dossier.",
       noMessagesToExport: "Aucun message trouvé à exporter.",
       toastAllowPopups: "Veuillez autoriser les fenêtres contextuelles pour imprimer en PDF.",
-      compilingTitle: "Compilation de la discussion...",
-      compilingStatus: (count) => `${count} messages traités`,
-      compilingDone: "Prêt ! Ouverture des options...",
       limitModalTitle: "Limite Quotidienne Atteinte",
       limitModalHeading: "Vous avez atteint vos 2 exports gratuits aujourd'hui !",
       limitModalDesc: "Votre quota de 2 exports quotidiens sera réinitialisé demain à minuit.",
@@ -200,6 +208,11 @@
       exportToastMd: "Markdown (.md) Datei heruntergeladen!",
       exportToastWord: "Word (.doc) Datei heruntergeladen!",
       exportToastPdf: "PDF-Druckvorschau wird geöffnet...",
+      exportProgressTitle: "Export wird vorbereitet...",
+      exportProgressScanning: "Chat-Verlauf wird analysiert...",
+      exportProgressFormatting: "Nachrichten & Code werden formatiert...",
+      exportProgressGenerating: (fmt) => `${fmt}-Dokument wird kompiliert...`,
+      exportProgressDone: "Fertig! Download / Vorschau gestartet...",
       promptInserted: "Prompt in ChatGPT eingefügt!",
       quickPromptsTooltip: "Schnelle Prompts",
       defaultFolders: { f1: '💼 Arbeit', f2: '💡 Ideen', f3: '📚 Studium' },
@@ -214,9 +227,6 @@
       toastChatAlreadySaved: "Dieser Chat ist bereits in diesem Ordner gespeichert.",
       noMessagesToExport: "Keine Nachrichten zum Exportieren gefunden.",
       toastAllowPopups: "Bitte Popups im Browser erlauben, um PDF zu drucken.",
-      compilingTitle: "Konversation wird zusammengestellt...",
-      compilingStatus: (count) => `${count} Nachrichten verarbeitet`,
-      compilingDone: "Bereit! Optionen werden geöffnet...",
       limitModalTitle: "Tageslimit Erreicht",
       limitModalHeading: "Sie haben Ihre 2 kostenlosen Exporte für heute erreicht!",
       limitModalDesc: "Ihr tägliches Kontingent wird morgen um Mitternacht zurückgesetzt.",
@@ -242,6 +252,11 @@
       exportToastMd: "File Markdown (.md) scaricato!",
       exportToastWord: "File Word (.doc) scaricato!",
       exportToastPdf: "Apertura anteprima di stampa PDF...",
+      exportProgressTitle: "Preparazione esportazione...",
+      exportProgressScanning: "Analisi della cronologia...",
+      exportProgressFormatting: "Formattazione messaggi e codice...",
+      exportProgressGenerating: (fmt) => `Compilazione documento ${fmt}...`,
+      exportProgressDone: "Fatto! Avvio download / anteprima...",
       promptInserted: "Prompt inserito in ChatGPT!",
       quickPromptsTooltip: "Prompt Rapidi",
       defaultFolders: { f1: '💼 Lavoro', f2: '💡 Idee', f3: '📚 Studio' },
@@ -256,9 +271,6 @@
       toastChatAlreadySaved: "Questa chat è già salvata in questa cartella.",
       noMessagesToExport: "Nessun messaggio trovato da esportare.",
       toastAllowPopups: "Consenti i popup nel browser per stampare in PDF.",
-      compilingTitle: "Compilazione della chat...",
-      compilingStatus: (count) => `${count} messaggi elaborati`,
-      compilingDone: "Pronto! Apertura opzioni...",
       limitModalTitle: "Limite Giornaliero Raggiunto",
       limitModalHeading: "Hai raggiunto le tue 2 esportazioni gratuite di oggi!",
       limitModalDesc: "La tua quota giornaliera di 2 esportazioni si resetterà domani a mezzanotte.",
@@ -284,6 +296,11 @@
       exportToastMd: "Markdown (.md) 文件已成功下载！",
       exportToastWord: "Word (.doc) 文档已成功下载！",
       exportToastPdf: "正在打开PDF打印预览...",
+      exportProgressTitle: "正在准备导出...",
+      exportProgressScanning: "正在解析会话历史内容...",
+      exportProgressFormatting: "正在排版消息与代码块结构...",
+      exportProgressGenerating: (fmt) => `正在生成 ${fmt} 高清文件...`,
+      exportProgressDone: "准备就绪！正在启动下载/预览...",
       promptInserted: "提示词已成功插入输入框！",
       quickPromptsTooltip: "快捷提示词",
       defaultFolders: { f1: '💼 工作', f2: '💡 灵感', f3: '📚 学习' },
@@ -298,9 +315,6 @@
       toastChatAlreadySaved: "此对话已保存在此文件夹中。",
       noMessagesToExport: "未找到可导出的对话内容。",
       toastAllowPopups: "请在浏览器中允许弹窗以打印PDF。",
-      compilingTitle: "正在整合完整聊天记录...",
-      compilingStatus: (count) => `已处理 ${count} 条消息`,
-      compilingDone: "处理完成！正在打开...",
       limitModalTitle: "今日免费导出额度已用尽",
       limitModalHeading: "您今日的2次免费导出额度已达上限！",
       limitModalDesc: "每日2次免费额度将于明日零点自动刷新重置。",
@@ -326,6 +340,11 @@
       exportToastMd: "Markdown (.md) ファイルをダウンロードしました！",
       exportToastWord: "Word (.doc) ファイルをダウンロードしました！",
       exportToastPdf: "PDF印刷プレビューを開いています...",
+      exportProgressTitle: "エクスポートを準備中...",
+      exportProgressScanning: "会話履歴を解析中...",
+      exportProgressFormatting: "メッセージとコードを整形中...",
+      exportProgressGenerating: (fmt) => `${fmt} ドキュメントを生成中...`,
+      exportProgressDone: "完了！ダウンロード・プレビューを開始...",
       promptInserted: "プロンプトを入力欄に挿入しました！",
       quickPromptsTooltip: "クイックプロンプト",
       defaultFolders: { f1: '💼 仕事', f2: '💡 アイデア', f3: '📚 学習' },
@@ -340,9 +359,6 @@
       toastChatAlreadySaved: "このチャットは既にこのフォルダに保存されています。",
       noMessagesToExport: "エクスポートするメッセージが見つかりません。",
       toastAllowPopups: "PDF印刷用にブラウザのポップアップを許可してください。",
-      compilingTitle: "チャット履歴を統合中...",
-      compilingStatus: (count) => `${count} 件のメッセージを処理完了`,
-      compilingDone: "準備完了！オプションを開いています...",
       limitModalTitle: "本日の無料枠上限に達しました",
       limitModalHeading: "本日の2回無料エクスポートを使い切りました！",
       limitModalDesc: "1日2回の無料利用枠は明日の午前0時に自動リセットされます。",
@@ -658,84 +674,28 @@
   }
 
   function runExportFullConversation() {
+    const turns = document.querySelectorAll('article, [data-testid^="conversation-turn-"]');
     const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
-    const rocketIconUrl = chrome.runtime.getURL('icons/icons8-rocket-94.png');
+    if (!turns || turns.length === 0) {
+      showToast(t.noMessagesToExport, 'warning');
+      return;
+    }
 
-    // Remover qualquer barra de progresso anterior
-    const oldProgress = document.querySelector('.chatgpt-clean-progress-overlay');
-    if (oldProgress) oldProgress.remove();
+    let fullMarkdown = `# Conversa ChatGPT - ${new Date().toLocaleDateString()}\n\n`;
+    let fullHtml = `<h2>Conversa ChatGPT (${new Date().toLocaleDateString()})</h2><hr/>`;
 
-    // Criar Card HUD de Progresso
-    const progressEl = document.createElement('div');
-    progressEl.className = 'chatgpt-clean-progress-overlay';
-    progressEl.innerHTML = `
-      <div class="chatgpt-clean-progress-header">
-        <img src="${rocketIconUrl}" class="progress-header-icon" alt="Processing" style="width:20px;height:20px;object-fit:contain;">
-        <strong id="chatgpt-clean-prog-title">${t.compilingTitle}</strong>
-      </div>
-      <div class="chatgpt-clean-progress-track">
-        <div class="chatgpt-clean-progress-fill" id="chatgpt-clean-prog-fill" style="width: 20%;"></div>
-      </div>
-      <div class="chatgpt-clean-progress-status">
-        <span id="chatgpt-clean-prog-status">${t.compilingStatus(0)}</span>
-        <span id="chatgpt-clean-prog-percent" style="font-family:'JetBrains Mono',monospace;color:#38bdf8;font-weight:700;">20%</span>
-      </div>
-    `;
-    document.body.appendChild(progressEl);
+    turns.forEach((turn, idx) => {
+      const isUser = turn.querySelector('[data-message-author-role="user"]') || (idx % 2 === 0);
+      const speaker = isUser ? '👤 User' : '🤖 ChatGPT';
+      const textNode = turn.querySelector('.markdown') || turn;
+      const text = (textNode.innerText || '').trim();
+      const html = turn.querySelector('.markdown')?.innerHTML || textNode.innerHTML;
 
-    const fillEl = progressEl.querySelector('#chatgpt-clean-prog-fill');
-    const statusEl = progressEl.querySelector('#chatgpt-clean-prog-status');
-    const percentEl = progressEl.querySelector('#chatgpt-clean-prog-percent');
-    const titleEl = progressEl.querySelector('#chatgpt-clean-prog-title');
+      fullMarkdown += `### ${speaker}:\n${text}\n\n---\n\n`;
+      fullHtml += `<div class="chat-turn-block" style="margin-bottom:18px;page-break-inside:avoid;break-inside:avoid;"><strong>${speaker}:</strong><div style="margin-top:4px;">${html}</div></div><hr style="border:0;border-top:1px solid #eee;"/>`;
+    });
 
-    // Etapa 1: Varrer o DOM (50%)
-    setTimeout(() => {
-      if (fillEl) fillEl.style.width = '55%';
-      if (percentEl) percentEl.innerText = '55%';
-
-      const turns = document.querySelectorAll('article, [data-testid^="conversation-turn-"]');
-      const count = turns ? turns.length : 0;
-      if (statusEl) statusEl.innerText = t.compilingStatus(count);
-
-      if (!turns || turns.length === 0) {
-        progressEl.remove();
-        showToast(t.noMessagesToExport, 'warning');
-        return;
-      }
-
-      // Etapa 2: Compilar conteúdo estruturado (85%)
-      setTimeout(() => {
-        if (fillEl) fillEl.style.width = '85%';
-        if (percentEl) percentEl.innerText = '85%';
-
-        let fullMarkdown = `# Conversa ChatGPT - ${new Date().toLocaleDateString()}\n\n`;
-        let fullHtml = `<h2>Conversa ChatGPT (${new Date().toLocaleDateString()})</h2><hr/>`;
-
-        turns.forEach((turn, idx) => {
-          const isUser = turn.querySelector('[data-message-author-role="user"]') || (idx % 2 === 0);
-          const speaker = isUser ? '👤 User' : '🤖 ChatGPT';
-          const textNode = turn.querySelector('.markdown') || turn;
-          const text = (textNode.innerText || '').trim();
-          const html = turn.querySelector('.markdown')?.innerHTML || textNode.innerHTML;
-
-          fullMarkdown += `### ${speaker}:\n${text}\n\n---\n\n`;
-          fullHtml += `<div class="chat-turn-block" style="margin-bottom:18px;page-break-inside:avoid;break-inside:avoid;"><strong>${speaker}:</strong><div style="margin-top:4px;">${html}</div></div><hr style="border:0;border-top:1px solid #eee;"/>`;
-        });
-
-        // Etapa 3: Concluir 100% com animação
-        setTimeout(() => {
-          if (fillEl) fillEl.style.width = '100%';
-          if (percentEl) percentEl.innerText = '100%';
-          if (titleEl) titleEl.innerText = t.compilingDone;
-          if (statusEl) statusEl.innerText = t.compilingStatus(count);
-
-          setTimeout(() => {
-            progressEl.remove();
-            openExportModal(fullMarkdown, fullHtml, t.exportFullBtn);
-          }, 400);
-        }, 250);
-      }, 300);
-    }, 200);
+    openExportModal(fullMarkdown, fullHtml, t.exportFullBtn);
   }
 
   // Abre o Modal com as 3 opções de exportação ou o Paywall de Limite Atingido
@@ -865,95 +825,157 @@
 
 
 
+  function showExportProgress(format, onComplete) {
+    const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
+    const existing = document.querySelector('.chatgpt-clean-progress-overlay');
+    if (existing) existing.remove();
+
+    const overlay = document.createElement('div');
+    overlay.className = 'chatgpt-clean-progress-overlay';
+
+    const rocketIconUrl = chrome.runtime.getURL('icons/icons8-rocket-94.png');
+    const tickIconUrl = chrome.runtime.getURL('icons/3dicons-tick-dynamic-color.png');
+
+    overlay.innerHTML = `
+      <div class="chatgpt-clean-progress-card">
+        <img src="${rocketIconUrl}" class="progress-card-3d-icon" id="progress-card-icon" alt="Processando">
+        <h3 class="progress-card-title">${t.exportProgressTitle}</h3>
+        <p class="progress-card-status" id="progress-step-text">${t.exportProgressScanning}</p>
+        
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progress-bar-fill" style="width: 15%;"></div>
+        </div>
+        <div class="progress-percentage-label" id="progress-pct-text">15%</div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    const stepText = overlay.querySelector('#progress-step-text');
+    const barFill = overlay.querySelector('#progress-bar-fill');
+    const pctText = overlay.querySelector('#progress-pct-text');
+    const cardIcon = overlay.querySelector('#progress-card-icon');
+
+    // Estágio 1: 15% -> 50%
+    setTimeout(() => {
+      if (barFill) barFill.style.width = '50%';
+      if (pctText) pctText.innerText = '50%';
+      if (stepText) stepText.innerText = t.exportProgressFormatting;
+    }, 280);
+
+    // Estágio 2: 50% -> 85%
+    setTimeout(() => {
+      if (barFill) barFill.style.width = '85%';
+      if (pctText) pctText.innerText = '85%';
+      if (stepText) stepText.innerText = t.exportProgressGenerating(format.toUpperCase());
+    }, 560);
+
+    // Estágio 3: 100% Concluído
+    setTimeout(() => {
+      if (barFill) barFill.style.width = '100%';
+      if (pctText) pctText.innerText = '100%';
+      if (stepText) stepText.innerText = t.exportProgressDone;
+      if (cardIcon) cardIcon.src = tickIconUrl;
+
+      setTimeout(() => {
+        overlay.classList.add('fade-out');
+        setTimeout(() => overlay.remove(), 250);
+        onComplete();
+      }, 400);
+    }, 900);
+  }
+
   function executeExport(text, htmlSnippet, format) {
     const timestamp = new Date().toISOString().slice(0, 10);
     const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
 
-    if (format === 'md') {
-      downloadFile(text, `chatgpt-export-${timestamp}.md`, 'text/markdown;charset=utf-8');
-      showToast(t.exportToastMd || 'Ficheiro Markdown (.md) descarregado!', 'success');
-    } else if (format === 'word') {
-      const htmlContent = `
-        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-        <head><meta charset='utf-8'><title>Exportação ChatGPT</title>
-        <style>
-          body { font-family: Calibri, Arial, sans-serif; font-size: 11pt; line-height: 1.5; color: #111; }
-          h1, h2, h3 { color: #1e293b; }
-          pre, code { background: #f1f5f9; font-family: Consolas, monospace; font-size: 10pt; padding: 4px; }
-          blockquote { border-left: 3px solid #6366f1; margin: 8px 0; padding-left: 10px; color: #475569; }
-        </style>
-        </head><body>
-        <h2>ChatGPT Export • ${timestamp}</h2>
-        <hr/>
-        <div>${htmlSnippet || escapeHtml(text).replace(/\n/g, '<br/>')}</div>
-        </body></html>
-      `;
-      downloadFile(htmlContent, `chatgpt-export-${timestamp}.doc`, 'application/msword;charset=utf-8');
-      showToast(t.exportToastWord || 'Ficheiro Word (.doc) descarregado!', 'success');
-    } else if (format === 'pdf') {
-      try {
-        let printFrame = document.getElementById('chatgpt-clean-print-frame');
-        if (printFrame) printFrame.remove();
+    showExportProgress(format, () => {
+      if (format === 'md') {
+        downloadFile(text, `chatgpt-export-${timestamp}.md`, 'text/markdown;charset=utf-8');
+        showToast(t.exportToastMd || 'Ficheiro Markdown (.md) descarregado!', 'success');
+      } else if (format === 'word') {
+        const htmlContent = `
+          <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+          <head><meta charset='utf-8'><title>Exportação ChatGPT</title>
+          <style>
+            body { font-family: Calibri, Arial, sans-serif; font-size: 11pt; line-height: 1.5; color: #111; }
+            h1, h2, h3 { color: #1e293b; }
+            pre, code { background: #f1f5f9; font-family: Consolas, monospace; font-size: 10pt; padding: 4px; }
+            blockquote { border-left: 3px solid #6366f1; margin: 8px 0; padding-left: 10px; color: #475569; }
+          </style>
+          </head><body>
+          <h2>ChatGPT Export • ${timestamp}</h2>
+          <hr/>
+          <div>${htmlSnippet || escapeHtml(text).replace(/\n/g, '<br/>')}</div>
+          </body></html>
+        `;
+        downloadFile(htmlContent, `chatgpt-export-${timestamp}.doc`, 'application/msword;charset=utf-8');
+        showToast(t.exportToastWord || 'Ficheiro Word (.doc) descarregado!', 'success');
+      } else if (format === 'pdf') {
+        try {
+          let printFrame = document.getElementById('chatgpt-clean-print-frame');
+          if (printFrame) printFrame.remove();
 
-        printFrame = document.createElement('iframe');
-        printFrame.id = 'chatgpt-clean-print-frame';
-        printFrame.style.position = 'fixed';
-        printFrame.style.right = '0';
-        printFrame.style.bottom = '0';
-        printFrame.style.width = '0';
-        printFrame.style.height = '0';
-        printFrame.style.border = '0';
-        printFrame.style.visibility = 'hidden';
-        document.body.appendChild(printFrame);
+          printFrame = document.createElement('iframe');
+          printFrame.id = 'chatgpt-clean-print-frame';
+          printFrame.style.position = 'fixed';
+          printFrame.style.right = '0';
+          printFrame.style.bottom = '0';
+          printFrame.style.width = '0';
+          printFrame.style.height = '0';
+          printFrame.style.border = '0';
+          printFrame.style.visibility = 'hidden';
+          document.body.appendChild(printFrame);
 
-        const frameDoc = printFrame.contentWindow.document;
-        frameDoc.open();
-        frameDoc.write(`
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <meta charset="utf-8">
-            <title>ChatGPT Clean Export - ${timestamp}</title>
-            <style>
-              @page { margin: 15mm; size: A4; }
-              body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6; padding: 10px; font-size: 11pt; }
-              h1 { font-size: 18pt; color: #0f172a; border-bottom: 2px solid #6366f1; padding-bottom: 8px; margin-bottom: 20px; }
-              h2, h3 { color: #1e293b; margin-top: 18px; margin-bottom: 8px; }
-              pre, code { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px 12px; font-family: Consolas, "Courier New", monospace; font-size: 9.5pt; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; break-inside: avoid; }
-              .chat-turn-block { page-break-inside: avoid; break-inside: avoid; margin-bottom: 16px; }
-              p { margin-bottom: 10px; }
-              hr { border: 0; border-top: 1px solid #e2e8f0; margin: 16px 0; }
-              strong { color: #0f172a; }
-            </style>
-          </head>
-          <body>
-            <h1>ChatGPT Export • ${timestamp}</h1>
-            <div>${htmlSnippet || `<pre>${escapeHtml(text)}</pre>`}</div>
-          </body>
-          </html>
-        `);
-        frameDoc.close();
-
-        setTimeout(() => {
-          printFrame.contentWindow.focus();
-          printFrame.contentWindow.print();
-          showToast(t.exportToastPdf || 'A gerar PDF...', 'success');
-        }, 350);
-      } catch (err) {
-        const printWindow = window.open('', '_blank');
-        if (printWindow) {
-          printWindow.document.write(`
+          const frameDoc = printFrame.contentWindow.document;
+          frameDoc.open();
+          frameDoc.write(`
             <!DOCTYPE html>
-            <html><head><meta charset="utf-8"><title>ChatGPT Export - ${timestamp}</title></head>
-            <body><div>${htmlSnippet || `<pre>${escapeHtml(text)}</pre>`}</div></body></html>
+            <html>
+            <head>
+              <meta charset="utf-8">
+              <title>ChatGPT Clean Export - ${timestamp}</title>
+              <style>
+                @page { margin: 15mm; size: A4; }
+                body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6; padding: 10px; font-size: 11pt; }
+                h1 { font-size: 18pt; color: #0f172a; border-bottom: 2px solid #6366f1; padding-bottom: 8px; margin-bottom: 20px; }
+                h2, h3 { color: #1e293b; margin-top: 18px; margin-bottom: 8px; }
+                pre, code { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px 12px; font-family: Consolas, "Courier New", monospace; font-size: 9.5pt; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; break-inside: avoid; }
+                .chat-turn-block { page-break-inside: avoid; break-inside: avoid; margin-bottom: 16px; }
+                p { margin-bottom: 10px; }
+                hr { border: 0; border-top: 1px solid #e2e8f0; margin: 16px 0; }
+                strong { color: #0f172a; }
+              </style>
+            </head>
+            <body>
+              <h1>ChatGPT Export • ${timestamp}</h1>
+              <div>${htmlSnippet || `<pre>${escapeHtml(text)}</pre>`}</div>
+            </body>
+            </html>
           `);
-          printWindow.document.close();
-          printWindow.print();
-        } else {
-          showToast(t.toastAllowPopups || 'Permite popups no navegador para imprimir em PDF.', 'warning');
+          frameDoc.close();
+
+          setTimeout(() => {
+            printFrame.contentWindow.focus();
+            printFrame.contentWindow.print();
+            showToast(t.exportToastPdf || 'A gerar PDF...', 'success');
+          }, 350);
+        } catch (err) {
+          const printWindow = window.open('', '_blank');
+          if (printWindow) {
+            printWindow.document.write(`
+              <!DOCTYPE html>
+              <html><head><meta charset="utf-8"><title>ChatGPT Export - ${timestamp}</title></head>
+              <body><div>${htmlSnippet || `<pre>${escapeHtml(text)}</pre>`}</div></body></html>
+            `);
+            printWindow.document.close();
+            printWindow.print();
+          } else {
+            showToast(t.toastAllowPopups || 'Permite popups no navegador para imprimir em PDF.', 'warning');
+          }
         }
       }
-    }
+    });
   }
 
   function downloadFile(content, fileName, mimeType) {
