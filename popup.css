@@ -492,6 +492,24 @@ body.theme-default .nav-tabs {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
+}
+
+.tool-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.title-with-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.title-with-badge .card-title {
+  display: inline;
+  margin-bottom: 0;
 }
 
 .card-title {
@@ -501,6 +519,35 @@ body.theme-default .nav-tabs {
   letter-spacing: -0.01em;
   color: var(--text-main);
   margin-bottom: 2px;
+}
+
+.badge-trial, .badge-active, .badge-free, .badge-single {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.badge-trial {
+  background: var(--accent-cyan-bg);
+  border: 1px solid var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+.badge-active {
+  background: var(--accent-green-bg);
+  border: 1px solid var(--accent-green);
+  color: var(--accent-green);
+}
+
+.badge-free {
+  background: var(--glass-surface-elevated);
+  border: 1px solid var(--border-glass);
+  color: var(--text-dim);
 }
 
 .card-desc {
