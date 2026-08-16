@@ -29,19 +29,23 @@
       exportBtnTitle: "Escolher formato para exportar (PDF, Word, Markdown)",
       exportFullBtn: "Exportar Chat Completo",
       exportFullBtnTitle: "Exportar todas as perguntas e respostas desta conversa",
-      exportToastMd: "✅ Ficheiro Markdown (.md) descarregado!",
-      exportToastWord: "✅ Ficheiro Word (.doc) descarregado!",
-      promptInserted: "⚡ Prompt inserido no ChatGPT!",
+      exportToastMd: "Ficheiro Markdown (.md) descarregado!",
+      exportToastWord: "Ficheiro Word (.doc) descarregado!",
+      exportToastPdf: "A abrir visualização de impressão PDF...",
+      promptInserted: "Prompt inserido no ChatGPT!",
       quickPromptsTooltip: "Prompts Rápidos",
       defaultFolders: { f1: '💼 Trabalho', f2: '💡 Ideias', f3: '📚 Estudos' },
       foldersHeader: "Pastas & Favoritos",
       btnAddFolder: "+ Nova Pasta",
       promptNewFolderName: "Nome da nova pasta:",
-      toastFolderCreated: "📁 Pasta criada!",
-      toastFolderDeleted: "🗑️ Pasta eliminada!",
+      toastFolderCreated: "Pasta criada com sucesso!",
+      toastFolderDeleted: "Pasta eliminada!",
       btnPinChat: "📌 +Chat",
       noChatSaved: "Nenhum chat guardado ainda.",
-      toastChatSaved: "📌 Conversa guardada nesta pasta!",
+      toastChatSaved: "Conversa guardada nesta pasta!",
+      toastChatAlreadySaved: "Esta conversa já está guardada nesta pasta.",
+      noMessagesToExport: "Nenhuma mensagem encontrada para exportar.",
+      toastAllowPopups: "Permite popups no navegador para imprimir em PDF.",
       limitModalTitle: "Limite Diário Atingido",
       limitModalHeading: "Atingiste as tuas 2 exportações gratuitas de hoje!",
       limitModalDesc: "O teu limite de 2 exportações diárias reseta automaticamente amanhã à meia-noite.",
@@ -64,19 +68,23 @@
       exportBtnTitle: "Choose format to export (PDF, Word, Markdown)",
       exportFullBtn: "Export Full Chat",
       exportFullBtnTitle: "Export all questions and answers in this conversation",
-      exportToastMd: "✅ Markdown (.md) file downloaded!",
-      exportToastWord: "✅ Word (.doc) file downloaded!",
-      promptInserted: "⚡ Prompt inserted into ChatGPT!",
+      exportToastMd: "Markdown (.md) file downloaded!",
+      exportToastWord: "Word (.doc) file downloaded!",
+      exportToastPdf: "Opening PDF print preview...",
+      promptInserted: "Prompt inserted into ChatGPT!",
       quickPromptsTooltip: "Quick Prompts",
       defaultFolders: { f1: '💼 Work', f2: '💡 Ideas', f3: '📚 Studies' },
       foldersHeader: "Folders & Bookmarks",
       btnAddFolder: "+ New Folder",
       promptNewFolderName: "New folder name:",
-      toastFolderCreated: "📁 Folder created!",
-      toastFolderDeleted: "🗑️ Folder deleted!",
+      toastFolderCreated: "Folder created successfully!",
+      toastFolderDeleted: "Folder deleted!",
       btnPinChat: "📌 +Chat",
       noChatSaved: "No chats saved yet.",
-      toastChatSaved: "📌 Conversation saved to this folder!",
+      toastChatSaved: "Conversation saved to this folder!",
+      toastChatAlreadySaved: "This chat is already saved in this folder.",
+      noMessagesToExport: "No messages found to export.",
+      toastAllowPopups: "Please allow popups in your browser to print PDF.",
       limitModalTitle: "Daily Limit Reached",
       limitModalHeading: "You have reached your 2 free exports today!",
       limitModalDesc: "Your daily quota of 2 free exports will reset tomorrow at midnight.",
@@ -99,19 +107,23 @@
       exportBtnTitle: "Elegir formato para exportar (PDF, Word, Markdown)",
       exportFullBtn: "Exportar Chat Completo",
       exportFullBtnTitle: "Exportar todas las preguntas y respuestas de esta conversación",
-      exportToastMd: "✅ ¡Archivo Markdown (.md) descargado!",
-      exportToastWord: "✅ ¡Archivo Word (.doc) descargado!",
-      promptInserted: "⚡ ¡Prompt insertado en ChatGPT!",
+      exportToastMd: "¡Archivo Markdown (.md) descargado!",
+      exportToastWord: "¡Archivo Word (.doc) descargado!",
+      exportToastPdf: "Abriendo vista previa de impresión PDF...",
+      promptInserted: "¡Prompt insertado en ChatGPT!",
       quickPromptsTooltip: "Prompts Rápidos",
       defaultFolders: { f1: '💼 Trabajo', f2: '💡 Ideas', f3: '📚 Estudios' },
       foldersHeader: "Carpetas y Favoritos",
       btnAddFolder: "+ Nueva Carpeta",
       promptNewFolderName: "Nombre de la nueva carpeta:",
-      toastFolderCreated: "📁 ¡Carpeta creada!",
-      toastFolderDeleted: "🗑️ ¡Carpeta eliminada!",
+      toastFolderCreated: "¡Carpeta creada con éxito!",
+      toastFolderDeleted: "¡Carpeta eliminada!",
       btnPinChat: "📌 +Chat",
       noChatSaved: "Sin chats guardados aún.",
-      toastChatSaved: "📌 ¡Conversación guardada en esta carpeta!",
+      toastChatSaved: "¡Conversación guardada en esta carpeta!",
+      toastChatAlreadySaved: "Esta conversación ya está guardada en esta carpeta.",
+      noMessagesToExport: "No se encontraron mensajes para exportar.",
+      toastAllowPopups: "Por favor permite ventanas emergentes para imprimir en PDF.",
       limitModalTitle: "Límite Diario Alcanzado",
       limitModalHeading: "¡Has alcanzado tus 2 exportaciones gratuitas de hoy!",
       limitModalDesc: "Tu cuota diaria de 2 exportaciones se restablecerá mañana a medianoche.",
@@ -134,19 +146,23 @@
       exportBtnTitle: "Choisir le format d'export (PDF, Word, Markdown)",
       exportFullBtn: "Exporter le Chat Complet",
       exportFullBtnTitle: "Exporter toutes les questions et réponses de cette discussion",
-      exportToastMd: "✅ Fichier Markdown (.md) téléchargé !",
-      exportToastWord: "✅ Fichier Word (.doc) téléchargé !",
-      promptInserted: "⚡ Prompt inséré dans ChatGPT !",
+      exportToastMd: "Fichier Markdown (.md) téléchargé !",
+      exportToastWord: "Fichier Word (.doc) téléchargé !",
+      exportToastPdf: "Ouverture de l'aperçu avant impression PDF...",
+      promptInserted: "Prompt inséré dans ChatGPT !",
       quickPromptsTooltip: "Prompts Rapides",
       defaultFolders: { f1: '💼 Travail', f2: '💡 Idées', f3: '📚 Études' },
       foldersHeader: "Dossiers & Favoris",
       btnAddFolder: "+ Nouveau Dossier",
       promptNewFolderName: "Nom du nouveau dossier :",
-      toastFolderCreated: "📁 Dossier créé !",
-      toastFolderDeleted: "🗑️ Dossier supprimé !",
+      toastFolderCreated: "Dossier créé avec succès !",
+      toastFolderDeleted: "Dossier supprimé !",
       btnPinChat: "📌 +Chat",
       noChatSaved: "Aucune discussion enregistrée.",
-      toastChatSaved: "📌 Discussion enregistrée dans ce dossier !",
+      toastChatSaved: "Discussion enregistrée dans ce dossier !",
+      toastChatAlreadySaved: "Cette discussion est déjà enregistrée dans ce dossier.",
+      noMessagesToExport: "Aucun message trouvé à exporter.",
+      toastAllowPopups: "Veuillez autoriser les fenêtres contextuelles pour imprimer en PDF.",
       limitModalTitle: "Limite Quotidienne Atteinte",
       limitModalHeading: "Vous avez atteint vos 2 exports gratuits aujourd'hui !",
       limitModalDesc: "Votre quota de 2 exports quotidiens sera réinitialisé demain à minuit.",
@@ -169,19 +185,23 @@
       exportBtnTitle: "Exportformat wählen (PDF, Word, Markdown)",
       exportFullBtn: "Kompletten Chat Exportieren",
       exportFullBtnTitle: "Alle Fragen und Antworten dieses Chats exportieren",
-      exportToastMd: "✅ Markdown (.md) Datei heruntergeladen!",
-      exportToastWord: "✅ Word (.doc) Datei heruntergeladen!",
-      promptInserted: "⚡ Prompt in ChatGPT eingefügt!",
+      exportToastMd: "Markdown (.md) Datei heruntergeladen!",
+      exportToastWord: "Word (.doc) Datei heruntergeladen!",
+      exportToastPdf: "PDF-Druckvorschau wird geöffnet...",
+      promptInserted: "Prompt in ChatGPT eingefügt!",
       quickPromptsTooltip: "Schnelle Prompts",
       defaultFolders: { f1: '💼 Arbeit', f2: '💡 Ideen', f3: '📚 Studium' },
       foldersHeader: "Ordner & Lesezeichen",
       btnAddFolder: "+ Neuer Ordner",
       promptNewFolderName: "Name des neuen Ordners:",
-      toastFolderCreated: "📁 Ordner erstellt!",
-      toastFolderDeleted: "🗑️ Ordner gelöscht!",
+      toastFolderCreated: "Ordner erfolgreich erstellt!",
+      toastFolderDeleted: "Ordner gelöscht!",
       btnPinChat: "📌 +Chat",
       noChatSaved: "Noch keine Chats gespeichert.",
-      toastChatSaved: "📌 Chat in diesem Ordner gespeichert!",
+      toastChatSaved: "Chat in diesem Ordner gespeichert!",
+      toastChatAlreadySaved: "Dieser Chat ist bereits in diesem Ordner gespeichert.",
+      noMessagesToExport: "Keine Nachrichten zum Exportieren gefunden.",
+      toastAllowPopups: "Bitte Popups im Browser erlauben, um PDF zu drucken.",
       limitModalTitle: "Tageslimit Erreicht",
       limitModalHeading: "Sie haben Ihre 2 kostenlosen Exporte für heute erreicht!",
       limitModalDesc: "Ihr tägliches Kontingent wird morgen um Mitternacht zurückgesetzt.",
@@ -204,19 +224,23 @@
       exportBtnTitle: "Scegli formato di esportazione (PDF, Word, Markdown)",
       exportFullBtn: "Esporta Chat Completa",
       exportFullBtnTitle: "Esporta tutte le domande e risposte di questa chat",
-      exportToastMd: "✅ File Markdown (.md) scaricato!",
-      exportToastWord: "✅ File Word (.doc) scaricato!",
-      promptInserted: "⚡ Prompt inserito in ChatGPT!",
+      exportToastMd: "File Markdown (.md) scaricato!",
+      exportToastWord: "File Word (.doc) scaricato!",
+      exportToastPdf: "Apertura anteprima di stampa PDF...",
+      promptInserted: "Prompt inserito in ChatGPT!",
       quickPromptsTooltip: "Prompt Rapidi",
       defaultFolders: { f1: '💼 Lavoro', f2: '💡 Idee', f3: '📚 Studio' },
       foldersHeader: "Cartelle e Segnalibri",
       btnAddFolder: "+ Nuova Cartella",
       promptNewFolderName: "Nome della nuova cartella:",
-      toastFolderCreated: "📁 Cartella creata!",
-      toastFolderDeleted: "🗑️ Cartella eliminata!",
+      toastFolderCreated: "Cartella creata con successo!",
+      toastFolderDeleted: "Cartella eliminata!",
       btnPinChat: "📌 +Chat",
       noChatSaved: "Nessuna chat salvata.",
-      toastChatSaved: "📌 Chat salvata in questa cartella!",
+      toastChatSaved: "Chat salvata in questa cartella!",
+      toastChatAlreadySaved: "Questa chat è già salvata in questa cartella.",
+      noMessagesToExport: "Nessun messaggio trovato da esportare.",
+      toastAllowPopups: "Consenti i popup nel browser per stampare in PDF.",
       limitModalTitle: "Limite Giornaliero Raggiunto",
       limitModalHeading: "Hai raggiunto le tue 2 esportazioni gratuite di oggi!",
       limitModalDesc: "La tua quota giornaliera di 2 esportazioni si resetterà domani a mezzanotte.",
@@ -239,19 +263,23 @@
       exportBtnTitle: "选择导出格式（PDF、Word、Markdown）",
       exportFullBtn: "导出完整对话",
       exportFullBtnTitle: "导出本会话中的所有提问与回答",
-      exportToastMd: "✅ Markdown (.md) 文件已成功下载！",
-      exportToastWord: "✅ Word (.doc) 文档已成功下载！",
-      promptInserted: "⚡ 提示词已成功插入输入框！",
+      exportToastMd: "Markdown (.md) 文件已成功下载！",
+      exportToastWord: "Word (.doc) 文档已成功下载！",
+      exportToastPdf: "正在打开PDF打印预览...",
+      promptInserted: "提示词已成功插入输入框！",
       quickPromptsTooltip: "快捷提示词",
       defaultFolders: { f1: '💼 工作', f2: '💡 灵感', f3: '📚 学习' },
       foldersHeader: "侧边栏分类文件夹",
       btnAddFolder: "+ 新建文件夹",
       promptNewFolderName: "请输入新文件夹名称：",
-      toastFolderCreated: "📁 文件夹创建成功！",
-      toastFolderDeleted: "🗑️ 文件夹已删除！",
+      toastFolderCreated: "文件夹创建成功！",
+      toastFolderDeleted: "文件夹已删除！",
       btnPinChat: "📌 +收藏",
       noChatSaved: "暂无收藏对话。",
-      toastChatSaved: "📌 当前对话已成功收藏至此文件夹！",
+      toastChatSaved: "当前对话已成功收藏至此文件夹！",
+      toastChatAlreadySaved: "此对话已保存在此文件夹中。",
+      noMessagesToExport: "未找到可导出的对话内容。",
+      toastAllowPopups: "请在浏览器中允许弹窗以打印PDF。",
       limitModalTitle: "今日免费导出额度已用尽",
       limitModalHeading: "您今日的2次免费导出额度已达上限！",
       limitModalDesc: "每日2次免费额度将于明日零点自动刷新重置。",
@@ -274,19 +302,23 @@
       exportBtnTitle: "出力形式を選択 (PDF, Word, Markdown)",
       exportFullBtn: "チャット全体を出力",
       exportFullBtnTitle: "この会話のすべての質問と回答を出力",
-      exportToastMd: "✅ Markdown (.md) ファイルをダウンロードしました！",
-      exportToastWord: "✅ Word (.doc) ファイルをダウンロードしました！",
-      promptInserted: "⚡ プロンプトを入力欄に挿入しました！",
+      exportToastMd: "Markdown (.md) ファイルをダウンロードしました！",
+      exportToastWord: "Word (.doc) ファイルをダウンロードしました！",
+      exportToastPdf: "PDF印刷プレビューを開いています...",
+      promptInserted: "プロンプトを入力欄に挿入しました！",
       quickPromptsTooltip: "クイックプロンプト",
       defaultFolders: { f1: '💼 仕事', f2: '💡 アイデア', f3: '📚 学習' },
       foldersHeader: "フォルダ＆お気に入り",
       btnAddFolder: "+ 新規フォルダ",
       promptNewFolderName: "新しいフォルダ名を入力：",
-      toastFolderCreated: "📁 フォルダを作成しました！",
-      toastFolderDeleted: "🗑️ フォルダを削除しました！",
+      toastFolderCreated: "フォルダを作成しました！",
+      toastFolderDeleted: "フォルダを削除しました！",
       btnPinChat: "📌 +保存",
       noChatSaved: "保存されたチャットはありません。",
-      toastChatSaved: "📌 このフォルダにチャットを保存しました！",
+      toastChatSaved: "このフォルダにチャットを保存しました！",
+      toastChatAlreadySaved: "このチャットは既にこのフォルダに保存されています。",
+      noMessagesToExport: "エクスポートするメッセージが見つかりません。",
+      toastAllowPopups: "PDF印刷用にブラウザのポップアップを許可してください。",
       limitModalTitle: "本日の無料枠上限に達しました",
       limitModalHeading: "本日の2回無料エクスポートを使い切りました！",
       limitModalDesc: "1日2回の無料利用枠は明日の午前0時に自動リセットされます。",
@@ -591,10 +623,21 @@
   }
 
   function exportFullConversation() {
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      chrome.storage.local.get(['appLanguage'], (items) => {
+        if (items && items.appLanguage) state.appLanguage = items.appLanguage;
+        runExportFullConversation();
+      });
+    } else {
+      runExportFullConversation();
+    }
+  }
+
+  function runExportFullConversation() {
     const turns = document.querySelectorAll('article, [data-testid^="conversation-turn-"]');
     const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
     if (!turns || turns.length === 0) {
-      showToast('⚠️ Nenhuma mensagem encontrada para exportar.');
+      showToast(t.noMessagesToExport, 'warning');
       return;
     }
 
@@ -748,7 +791,7 @@
 
     if (format === 'md') {
       downloadFile(text, `chatgpt-export-${timestamp}.md`, 'text/markdown;charset=utf-8');
-      showToast(t.exportToastMd || 'Ficheiro Markdown (.md) descarregado!');
+      showToast(t.exportToastMd || 'Ficheiro Markdown (.md) descarregado!', 'success');
     } else if (format === 'word') {
       const htmlContent = `
         <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
@@ -766,7 +809,7 @@
         </body></html>
       `;
       downloadFile(htmlContent, `chatgpt-export-${timestamp}.doc`, 'application/msword;charset=utf-8');
-      showToast(t.exportToastWord);
+      showToast(t.exportToastWord || 'Ficheiro Word (.doc) descarregado!', 'success');
     } else if (format === 'pdf') {
       const printWindow = window.open('', '_blank');
       if (printWindow) {
@@ -795,9 +838,9 @@
           </html>
         `);
         printWindow.document.close();
-        showToast(t.exportToastPdf || '🖨️ PDF');
+        showToast(t.exportToastPdf || 'A abrir PDF...', 'success');
       } else {
-        showToast('⚠️ Permite popups no browser para imprimir em PDF.');
+        showToast(t.toastAllowPopups || 'Permite popups no navegador para imprimir em PDF.', 'warning');
       }
     }
   }
@@ -931,7 +974,7 @@
         // Evitar duplicados
         const exists = folder.chats.some(c => c.url === currentUrl);
         if (exists) {
-          showToast('ℹ️ Esta conversa já está guardada nesta pasta.');
+          showToast(t.toastChatAlreadySaved || 'Esta conversa já está guardada nesta pasta.', 'warning');
           return;
         }
 
@@ -945,7 +988,7 @@
         saveFolders();
         container.remove();
         injectSidebarFolders();
-        showToast(t.toastChatSaved);
+        showToast(t.toastChatSaved, 'success');
       });
     });
 
@@ -1111,18 +1154,28 @@
     }
   }
 
-  function showToast(msg) {
+  function showToast(msg, iconType = 'success') {
     const existing = document.querySelector('.chatgpt-clean-toast');
     if (existing) existing.remove();
 
     const toast = document.createElement('div');
-    toast.className = 'chatgpt-clean-toast';
-    toast.innerText = msg;
+    toast.className = `chatgpt-clean-toast ${iconType === 'warning' ? 'toast-warning' : 'toast-success'}`;
+
+    let iconSrc = 'icons/3dicons-tick-dynamic-color.png';
+    if (iconType === 'warning') {
+      iconSrc = 'icons/warning.png';
+    }
+    const iconUrl = chrome.runtime.getURL(iconSrc);
+
+    toast.innerHTML = `
+      <img src="${iconUrl}" class="toast-3d-icon" alt="${iconType}">
+      <span>${escapeHtml(msg)}</span>
+    `;
     document.body.appendChild(toast);
 
     setTimeout(() => {
       toast.remove();
-    }, 3000);
+    }, 3200);
   }
 
   function escapeHtml(str) {
