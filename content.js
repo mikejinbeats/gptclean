@@ -25,6 +25,14 @@
 
   const CONTENT_I18N = {
     pt: {
+      createFolderTitle: "Criar Nova Pasta",
+      placeholderNewFolder: "Ex: 💼 Trabalho, 💡 Ideias, 📁 Projetos...",
+      btnCreateFolder: "Criar Pasta",
+      btnCancel: "Cancelar",
+      btnDeleteFolder: "Eliminar Pasta",
+      deleteFolderTitle: "Eliminar Pasta?",
+      deleteFolderConfirmText: (name) => `Tens a certeza de que desejas eliminar a pasta "${name}" e todos os seus chats guardados?`,
+      btnConfirmDelete: "Sim, Eliminar",
       exportBtn: "Exportar",
       exportBtnTitle: "Escolher formato para exportar (PDF, Word, Markdown)",
       exportFullBtn: "Exportar Chat Completo",
@@ -1120,8 +1128,123 @@
   }
 
   // --------------------------------------------------------------------------
-  // 4. GESTOR DE PASTAS FUNCIONAL NA BARRA LATERAL (BOOKMARKS DE CONVERSAS)
+    // 4. GESTOR DE PASTAS FUNCIONAL NA BARRA LATERAL (BOOKMARKS DE CONVERSAS)
   // --------------------------------------------------------------------------
+  function openCreateFolderModal() {
+    const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
+    const existing = document.querySelector('.chatgpt-clean-modal-overlay');
+    if (existing) existing.remove();
+
+    const overlay = document.createElement('div');
+    overlay.className = 'chatgpt-clean-modal-overlay';
+
+    const folderIconUrl = chrome.runtime.getURL('icons/icons8-folder-94.png');
+
+    overlay.innerHTML = `
+      <div class="chatgpt-clean-custom-modal">
+        <div class="chatgpt-clean-custom-modal-header">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <img src="${folderIconUrl}" style="width:22px;height:22px;object-fit:contain;" alt="Folder">
+            <h3>${t.createFolderTitle || 'Criar Nova Pasta'}</h3>
+          </div>
+          <button class="chatgpt-clean-modal-close" id="chatgpt-clean-close-folder-modal">✕</button>
+        </div>
+        <form id="chatgpt-clean-new-folder-form">
+          <input type="text" id="chatgpt-clean-folder-name-input" class="chatgpt-clean-folder-modal-input" placeholder="${t.placeholderNewFolder || 'Ex: 💼 Trabalho, 💡 Ideias...'}" value="📁 Projetos" required autofocus>
+          <div class="chatgpt-clean-modal-actions">
+            <button type="button" class="chatgpt-clean-btn-secondary" id="chatgpt-clean-btn-cancel-folder">${t.btnCancel || 'Cancelar'}</button>
+            <button type="submit" class="chatgpt-clean-btn-primary">${t.btnCreateFolder || 'Criar Pasta'}</button>
+          </div>
+        </form>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    const input = overlay.querySelector('#chatgpt-clean-folder-name-input');
+    if (input) {
+      setTimeout(() => {
+        input.focus();
+        input.select();
+      }, 50);
+    }
+
+    const closeModal = () => overlay.remove();
+    overlay.querySelector('#chatgpt-clean-close-folder-modal').addEventListener('click', closeModal);
+    overlay.querySelector('#chatgpt-clean-btn-cancel-folder').addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+
+    overlay.querySelector('#chatgpt-clean-new-folder-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = (input.value || '').trim();
+      if (!val) return;
+
+      const newFolder = {
+        id: 'f_' + Date.now(),
+        name: val,
+        chats: []
+      };
+      state.folders.push(newFolder);
+      saveFolders();
+      closeModal();
+      showToast(t.toastFolderCreated || 'Pasta criada com sucesso!', 'success');
+
+      const container = document.querySelector('.chatgpt-clean-folders-container');
+      if (container) container.remove();
+      injectSidebarFolders();
+    });
+  }
+
+  function openDeleteFolderConfirmModal(folderId, folderName) {
+    const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
+    const existing = document.querySelector('.chatgpt-clean-modal-overlay');
+    if (existing) existing.remove();
+
+    const overlay = document.createElement('div');
+    overlay.className = 'chatgpt-clean-modal-overlay';
+
+    const warnIconUrl = chrome.runtime.getURL('icons/icones ua/warning.png');
+
+    overlay.innerHTML = `
+      <div class="chatgpt-clean-custom-modal">
+        <div class="chatgpt-clean-custom-modal-header">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <img src="${warnIconUrl}" style="width:22px;height:22px;object-fit:contain;" alt="Warning">
+            <h3 style="color:#ef4444 !important;">${t.deleteFolderTitle || 'Eliminar Pasta?'}</h3>
+          </div>
+          <button class="chatgpt-clean-modal-close" id="chatgpt-clean-close-delete-modal">✕</button>
+        </div>
+        <p class="chatgpt-clean-modal-desc">${t.deleteFolderConfirmText ? t.deleteFolderConfirmText(folderName) : `Tens a certeza de que desejas eliminar a pasta "${folderName}" e todos os seus chats guardados?`}</p>
+        <div class="chatgpt-clean-modal-actions">
+          <button type="button" class="chatgpt-clean-btn-secondary" id="chatgpt-clean-btn-cancel-delete">${t.btnCancel || 'Cancelar'}</button>
+          <button type="button" class="chatgpt-clean-btn-danger" id="chatgpt-clean-btn-confirm-delete">${t.btnConfirmDelete || 'Sim, Eliminar'}</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    const closeModal = () => overlay.remove();
+    overlay.querySelector('#chatgpt-clean-close-delete-modal').addEventListener('click', closeModal);
+    overlay.querySelector('#chatgpt-clean-btn-cancel-delete').addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+
+    overlay.querySelector('#chatgpt-clean-btn-confirm-delete').addEventListener('click', () => {
+      state.folders = state.folders.filter(f => f.id !== folderId);
+      saveFolders();
+      closeModal();
+      showToast(t.toastFolderDeleted || 'Pasta eliminada!', 'success');
+
+      const container = document.querySelector('.chatgpt-clean-folders-container');
+      if (container) container.remove();
+      injectSidebarFolders();
+    });
+  }
+
   function injectSidebarFolders() {
     if (!state.foldersEnabled) return;
     if (document.querySelector('.chatgpt-clean-folders-container')) return;
@@ -1156,10 +1279,18 @@
         <div class="chatgpt-clean-folder-wrapper" data-folder-id="${f.id}">
           <div class="chatgpt-clean-folder-item">
             <div class="chatgpt-clean-folder-title">
-              <span class="folder-name-toggle">▶ ${escapeHtml(f.name)}</span>
-              <div class="folder-actions">
+              <span class="folder-name-toggle">📁 ${escapeHtml(f.name)}</span>
+              <div class="folder-actions" style="display:flex;align-items:center;gap:4px;">
                 <button class="btn-save-current-chat" data-folder-id="${f.id}" title="Guardar a conversa aberta nesta pasta">${t.btnPinChat}</button>
                 <span class="chatgpt-clean-folder-count">${chatsList.length}</span>
+                <button class="btn-delete-folder" data-folder-id="${f.id}" data-folder-name="${escapeHtml(f.name)}" title="${t.btnDeleteFolder || 'Eliminar Pasta'}">
+                  <svg viewBox="0 0 24 24" width="13" height="13" stroke="#ef4444" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
@@ -1186,37 +1317,24 @@
 
     sidebarNav.insertBefore(container, sidebarNav.firstChild);
 
-    // Criar nova pasta
+    // Criar nova pasta com Modal Customizado
     const addBtn = container.querySelector('#chatgpt-clean-btn-new-folder');
     if (addBtn) {
       addBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const folderName = prompt(t.promptNewFolderName, '📁 Projetos');
-        if (folderName && folderName.trim()) {
-          const newFolder = {
-            id: 'f_' + Date.now(),
-            name: folderName.trim(),
-            chats: []
-          };
-          state.folders.push(newFolder);
-          saveFolders();
-          container.remove();
-          injectSidebarFolders();
-          showToast(t.toastFolderCreated);
-        }
+        openCreateFolderModal();
       });
     }
 
-    // Expandir/colapsar pasta
-    container.querySelectorAll('.folder-name-toggle').forEach(toggle => {
-      toggle.addEventListener('click', (e) => {
+    // Toggle abrir/fechar chats da pasta
+    container.querySelectorAll('.folder-name-toggle').forEach(el => {
+      el.addEventListener('click', (e) => {
         e.stopPropagation();
-        const wrapper = toggle.closest('.chatgpt-clean-folder-wrapper');
-        const chatsBox = wrapper.querySelector('.chatgpt-clean-folder-chats');
-        const isHidden = chatsBox.style.display === 'none';
-        chatsBox.style.display = isHidden ? 'block' : 'none';
-        toggle.innerText = isHidden ? toggle.innerText.replace('▶', '▼') : toggle.innerText.replace('▼', '▶');
+        const wrapper = el.closest('.chatgpt-clean-folder-wrapper');
+        const chatsContainer = wrapper.querySelector('.chatgpt-clean-folder-chats');
+        const isHidden = chatsContainer.style.display === 'none';
+        chatsContainer.style.display = isHidden ? 'block' : 'none';
       });
     });
 
@@ -1225,66 +1343,67 @@
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const folderId = btn.getAttribute('data-folder-id');
-        const folder = state.folders.find(f => f.id === folderId);
-        if (!folder) return;
-
-        if (!folder.chats) folder.chats = [];
-        
         const currentUrl = window.location.href;
-        const currentTitle = document.title.replace('- ChatGPT', '').trim() || 'Conversa ChatGPT';
+        const chatTitle = document.title.replace('ChatGPT', '').replace(/^-|•/g, '').trim() || 'Conversa sem título';
 
-        // Evitar duplicados
-        const exists = folder.chats.some(c => c.url === currentUrl);
-        if (exists) {
-          showToast(t.toastChatAlreadySaved || 'Esta conversa já está guardada nesta pasta.', 'warning');
-          return;
+        const folder = state.folders.find(f => f.id === folderId);
+        if (folder) {
+          if (!folder.chats) folder.chats = [];
+          const exists = folder.chats.some(c => c.url === currentUrl);
+          if (!exists) {
+            folder.chats.push({
+              id: 'c_' + Date.now(),
+              title: chatTitle,
+              url: currentUrl
+            });
+            saveFolders();
+            showToast(t.toastChatSaved, 'success');
+            container.remove();
+            injectSidebarFolders();
+          } else {
+            showToast(t.toastChatAlreadySaved, 'warning');
+          }
         }
-
-        folder.chats.push({
-          id: 'c_' + Date.now(),
-          title: currentTitle.slice(0, 32),
-          url: currentUrl,
-          date: new Date().toLocaleDateString()
-        });
-
-        saveFolders();
-        container.remove();
-        injectSidebarFolders();
-        showToast(t.toastChatSaved, 'success');
       });
     });
 
-    // Abrir conversa guardada ao clicar
+    // Eliminar pasta inteira com Confirmação (Sim / Não)
+    container.querySelectorAll('.btn-delete-folder').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const folderId = btn.getAttribute('data-folder-id');
+        const folderName = btn.getAttribute('data-folder-name');
+        openDeleteFolderConfirmModal(folderId, folderName);
+      });
+    });
+
+    // Abrir chat guardado
     container.querySelectorAll('.chatgpt-clean-saved-chat').forEach(item => {
       item.addEventListener('click', (e) => {
         if (e.target.classList.contains('btn-delete-saved-chat')) return;
         const url = item.getAttribute('data-url');
-        if (url) window.location.href = url;
+        if (url && url.startsWith('http')) {
+          window.location.href = url;
+        }
       });
     });
 
-    // Remover conversa guardada
-    container.querySelectorAll('.btn-delete-saved-chat').forEach(delBtn => {
-      delBtn.addEventListener('click', (e) => {
+    // Eliminar chat guardado individual
+    container.querySelectorAll('.btn-delete-saved-chat').forEach(btn => {
+      btn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const folderId = delBtn.getAttribute('data-folder-id');
-        const chatId = delBtn.getAttribute('data-chat-id');
+        const folderId = btn.getAttribute('data-folder-id');
+        const chatId = btn.getAttribute('data-chat-id');
+
         const folder = state.folders.find(f => f.id === folderId);
         if (folder && folder.chats) {
           folder.chats = folder.chats.filter(c => c.id !== chatId);
           saveFolders();
           container.remove();
           injectSidebarFolders();
-          showToast(t.toastFolderDeleted, 'warning');
         }
       });
     });
-  }
-
-  function saveFolders() {
-    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
-      chrome.storage.local.set({ folders: state.folders });
-    }
   }
 
   // --------------------------------------------------------------------------
