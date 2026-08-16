@@ -558,6 +558,82 @@ body.theme-default .nav-tabs {
 }
 
 /* --------------------------------------------------------------------------
+   THEME SELECTOR (DARK, WHITE, PURPLE)
+   -------------------------------------------------------------------------- */
+.theme-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.theme-option {
+  cursor: pointer;
+  display: block;
+}
+
+.theme-option input {
+  display: none;
+}
+
+.theme-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 4px;
+  border-radius: var(--radius-sm);
+  background: var(--glass-surface-subtle);
+  border: 1px solid var(--border-glass);
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.theme-box .theme-icon {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.theme-box .theme-name {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.theme-option:hover .theme-box {
+  border-color: var(--accent-cyan);
+  background: var(--glass-surface-elevated);
+  transform: translateY(-1px);
+}
+
+.theme-option input:checked + .theme-box {
+  border-color: var(--accent-cyan);
+  background: var(--accent-cyan-bg);
+  box-shadow: 0 0 12px var(--accent-cyan-glow);
+}
+
+.theme-option input:checked + .theme-box .theme-name {
+  color: var(--accent-cyan);
+}
+
+body.theme-white .theme-option input:checked + .theme-box {
+  border-color: var(--accent-cyan);
+  background: #e0f2fe;
+}
+
+body.theme-cyber .theme-option input:checked + .theme-box,
+body.theme-purple .theme-option input:checked + .theme-box {
+  border-color: #a855f7;
+  background: rgba(168, 85, 247, 0.15);
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.25);
+}
+
+body.theme-cyber .theme-option input:checked + .theme-box .theme-name,
+body.theme-purple .theme-option input:checked + .theme-box .theme-name {
+  color: #c084fc;
+}
+
+/* --------------------------------------------------------------------------
    TACTILE SWITCH TOGGLE (PRECISION HUD)
    -------------------------------------------------------------------------- */
 .switch {

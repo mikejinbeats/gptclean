@@ -99,6 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
       lockDesc: "Guarda a tua biblioteca de comandos na versão PRO.",
       themeTitle: "🎨 Tema Visual do Menu",
       themeDesc: "Personaliza a estética da extensão:",
+      themeDark: "Escuro",
+      themeWhite: "Branco",
+      themePurple: "Roxo",
       exportMenuTitle: "📥 Menu de Exportação",
       exportMenuDesc: "Exportação em PDF, Word (.doc) e Markdown (.md)",
       exportQuotaBadge: (rem) => `🎁 ${rem}/2 hoje`,
@@ -171,6 +174,9 @@ document.addEventListener('DOMContentLoaded', () => {
       lockDesc: "Store your custom prompt library in PRO version.",
       themeTitle: "🎨 Visual Theme",
       themeDesc: "Customize extension aesthetics:",
+      themeDark: "Dark",
+      themeWhite: "White",
+      themePurple: "Purple",
       exportMenuTitle: "📥 Export Menu",
       exportMenuDesc: "Export to PDF, Word (.doc) and Markdown (.md)",
       exportQuotaBadge: (rem) => `🎁 ${rem}/2 today`,
@@ -243,6 +249,9 @@ document.addEventListener('DOMContentLoaded', () => {
       lockDesc: "Guarda tu biblioteca de comandos en la versión PRO.",
       themeTitle: "🎨 Tema Visual del Menú",
       themeDesc: "Personaliza la estética de la extensión:",
+      themeDark: "Oscuro",
+      themeWhite: "Blanco",
+      themePurple: "Morado",
       exportMenuTitle: "📥 Menú de Exportación",
       exportMenuDesc: "Exportación a PDF, Word (.doc) y Markdown (.md)",
       exportQuotaBadge: (rem) => `🎁 ${rem}/2 hoy`,
@@ -315,6 +324,9 @@ document.addEventListener('DOMContentLoaded', () => {
       lockDesc: "Conservez votre bibliothèque de commandes dans la version PRO.",
       themeTitle: "🎨 Thème Visuel",
       themeDesc: "Personnalisez l'esthétique de l'extension :",
+      themeDark: "Sombre",
+      themeWhite: "Blanc",
+      themePurple: "Violet",
       exportMenuTitle: "📥 Menu d'Exportation",
       exportMenuDesc: "Export au format PDF, Word (.doc) et Markdown (.md)",
       exportQuotaBadge: (rem) => `🎁 ${rem}/2 auj.`,
@@ -387,6 +399,9 @@ document.addEventListener('DOMContentLoaded', () => {
       lockDesc: "Speichern Sie Ihre persönliche Befehlsbibliothek im PRO-Modus.",
       themeTitle: "🎨 Visuelles Design",
       themeDesc: "Passen Sie die Ästhetik der Erweiterung an:",
+      themeDark: "Dunkel",
+      themeWhite: "Weiß",
+      themePurple: "Lila",
       exportMenuTitle: "📥 Export-Menü",
       exportMenuDesc: "Export als PDF, Word (.doc) und Markdown (.md)",
       exportQuotaBadge: (rem) => `🎁 ${rem}/2 heute`,
@@ -459,6 +474,9 @@ document.addEventListener('DOMContentLoaded', () => {
       lockDesc: "Salva la tua libreria di comandi nella versione PRO.",
       themeTitle: "🎨 Tema Visivo del Menu",
       themeDesc: "Personalizza l'estetica dell'estensione:",
+      themeDark: "Scuro",
+      themeWhite: "Bianco",
+      themePurple: "Viola",
       exportMenuTitle: "📥 Menu di Esportazione",
       exportMenuDesc: "Esportazione in PDF, Word (.doc) e Markdown (.md)",
       exportQuotaBadge: (rem) => `🎁 ${rem}/2 oggi`,
@@ -531,6 +549,9 @@ document.addEventListener('DOMContentLoaded', () => {
       lockDesc: "升级PRO专业版，随时随地保存海量专属指令库。",
       themeTitle: "🎨 界面视觉主题",
       themeDesc: "自定义扩展面板设计风格：",
+      themeDark: "深色",
+      themeWhite: "浅色",
+      themePurple: "紫色",
       exportMenuTitle: "📥 对话导出菜单",
       exportMenuDesc: "支持导出为 PDF、Word (.doc) 与 Markdown (.md)",
       exportQuotaBadge: (rem) => `🎁 今日剩余: ${rem}/2`,
@@ -603,6 +624,9 @@ document.addEventListener('DOMContentLoaded', () => {
       lockDesc: "PRO版であなた専用のプロンプト集を無制限に保存。",
       themeTitle: "🎨 外観テーマ",
       themeDesc: "拡張機能のデザインテーマを選択：",
+      themeDark: "ダーク",
+      themeWhite: "ホワイト",
+      themePurple: "パープル",
       exportMenuTitle: "📥 エクスポートメニュー",
       exportMenuDesc: "PDF、Word (.doc)、Markdown (.md) への出力に対応",
       exportQuotaBadge: (rem) => `🎁 本日残り: ${rem}/2`,
@@ -766,6 +790,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (themeTitle) themeTitle.innerText = t.themeTitle;
     const themeDesc = document.getElementById('i18n-theme-desc');
     if (themeDesc) themeDesc.innerText = t.themeDesc;
+    const themeDark = document.getElementById('i18n-theme-name-dark');
+    if (themeDark) themeDark.innerText = t.themeDark;
+    const themeWhite = document.getElementById('i18n-theme-name-white');
+    if (themeWhite) themeWhite.innerText = t.themeWhite;
+    const themePurple = document.getElementById('i18n-theme-name-purple');
+    if (themePurple) themePurple.innerText = t.themePurple;
     const exportMenuTitle = document.getElementById('i18n-export-menu-title');
     if (exportMenuTitle) exportMenuTitle.innerText = t.exportMenuTitle;
     const exportMenuDesc = document.getElementById('i18n-export-menu-desc');
