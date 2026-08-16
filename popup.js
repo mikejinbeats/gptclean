@@ -125,21 +125,15 @@ document.addEventListener('DOMContentLoaded', () => {
         statToday.innerText = todayCount;
         statTotal.innerText = data.blockedCount || 0;
 
-        // Trial de 30 Dias
-        let trialStart = data.exportTrialStartDate;
-        if (!trialStart) {
-          trialStart = Date.now();
-          chrome.storage.local.set({ exportTrialStartDate: trialStart });
-        }
-        
-        const daysPassed = Math.floor((Date.now() - trialStart) / (1000 * 60 * 60 * 24));
-        const daysLeft = Math.max(0, 30 - daysPassed);
+        // Cota Diária de Exportações (5/dia Free ou Ilimitado PRO)
+        const exportsCount = (data.exportsLastDate === today) ? (data.exportsToday || 0) : 0;
+        const exportsRemaining = Math.max(0, 5 - exportsCount);
 
         if (data.isPro) {
           applyProUI();
         } else {
-          exportTrialBadge.innerText = `🎁 Trial: ${daysLeft} dias`;
-          trialFooterStatus.innerText = `Trial: ${daysLeft} dias restantes`;
+          exportTrialBadge.innerText = `🎁 ${exportsRemaining}/5 hoje`;
+          trialFooterStatus.innerText = `Exportações: ${exportsRemaining}/5 hoje`;
         }
       });
     }

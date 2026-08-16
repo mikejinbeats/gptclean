@@ -168,13 +168,40 @@
   }
 
   // --------------------------------------------------------------------------
-  // 3. INJEÇÃO DO BOTÃO DE EXPORTAÇÃO & MODAL MULTI-FORMATO
+  // 3. INJEÇÃO DO BOTÃO DE EXPORTAÇÃO & MODAL COM COTA DIÁRIA (5/DIA FREE)
   // --------------------------------------------------------------------------
-  function checkTrialActive() {
-    if (state.isPro) return true;
-    if (!state.exportTrialStartDate) return true;
-    const daysPassed = (Date.now() - state.exportTrialStartDate) / (1000 * 60 * 60 * 24);
-    return daysPassed <= 30;
+  const MAX_FREE_DAILY_EXPORTS = 5;
+
+  function getDailyExportQuota(callback) {
+    if (state.isPro) {
+      callback({ isPro: true, count: 0, remaining: Infinity });
+      return;
+    }
+
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      chrome.storage.local.get(['exportsToday', 'exportsLastDate'], (data) => {
+        const today = new Date().toDateString();
+        const count = (data.exportsLastDate === today) ? (data.exportsToday || 0) : 0;
+        const remaining = Math.max(0, MAX_FREE_DAILY_EXPORTS - count);
+        callback({ isPro: false, count: count, remaining: remaining });
+      });
+    } else {
+      callback({ isPro: false, count: 0, remaining: MAX_FREE_DAILY_EXPORTS });
+    }
+  }
+
+  function incrementDailyExport() {
+    if (state.isPro) return;
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      chrome.storage.local.get(['exportsToday', 'exportsLastDate'], (data) => {
+        const today = new Date().toDateString();
+        const current = (data.exportsLastDate === today) ? (data.exportsToday || 0) : 0;
+        chrome.storage.local.set({
+          exportsToday: current + 1,
+          exportsLastDate: today
+        });
+      });
+    }
   }
 
   function injectExportButtons() {
@@ -252,65 +279,104 @@
     openExportModal(fullMarkdown, fullHtml, 'Conversa Completa');
   }
 
-  // Abre o Modal com as 3 opções de exportação
+  // Abre o Modal com as 3 opções de exportação ou o Paywall de Limite Atingido
   function openExportModal(cleanText, formattedHtml, titleSuffix) {
-    if (!checkTrialActive()) {
-      showToast('⚠️ O teu trial de 30 dias terminou. Desbloqueia o plano PRO no menu da extensão!');
-      return;
-    }
+    getDailyExportQuota((quota) => {
+      const existing = document.querySelector('.chatgpt-clean-modal-overlay');
+      if (existing) existing.remove();
 
-    const existing = document.querySelector('.chatgpt-clean-modal-overlay');
-    if (existing) existing.remove();
+      const overlay = document.createElement('div');
+      overlay.className = 'chatgpt-clean-modal-overlay';
 
-    const overlay = document.createElement('div');
-    overlay.className = 'chatgpt-clean-modal-overlay';
-    overlay.innerHTML = `
-      <div class="chatgpt-clean-export-modal">
-        <div class="chatgpt-clean-export-modal-header">
-          <h3>📥 Exportar ${titleSuffix || 'Conversa'}</h3>
-          <button class="chatgpt-clean-modal-close" id="chatgpt-clean-close-export">✕</button>
-        </div>
-        <div class="chatgpt-clean-export-grid">
-          <div class="chatgpt-clean-export-card" data-format="pdf">
-            <span class="icon">📄</span>
-            <div class="info">
-              <strong>Documento PDF (.pdf)</strong>
-              <span>Layout formatado pronto para guardar ou imprimir</span>
+      // Se atingiu o limite de 5 por dia no modo Free -> Mostrar Paywall PRO
+      if (!quota.isPro && quota.remaining <= 0) {
+        overlay.innerHTML = `
+          <div class="chatgpt-clean-export-modal chatgpt-clean-pro-limit-modal">
+            <div class="chatgpt-clean-export-modal-header">
+              <h3>🔒 Limite Diário Atingido</h3>
+              <button class="chatgpt-clean-modal-close" id="chatgpt-clean-close-export">✕</button>
+            </div>
+            <div class="chatgpt-clean-limit-content">
+              <div class="limit-crown-icon">👑</div>
+              <h4>Atingiste as tuas 5 exportações gratuitas de hoje!</h4>
+              <p>O teu limite de 5 exportações diárias reseta automaticamente amanhã à meia-noite.</p>
+              
+              <div class="limit-offer-card">
+                <span class="offer-title">🚀 Queres exportações infinitas?</span>
+                <p class="offer-desc">Com o plano PRO tens exportações ilimitadas para sempre sem restrições de cota.</p>
+                <div class="offer-pricing">
+                  <span class="old-price">9,99€</span>
+                  <span class="current-price">2,99€</span>
+                  <span class="badge-single">Pagamento Único</span>
+                </div>
+                <a href="https://buy.stripe.com/exemplo_link_checkout" target="_blank" class="limit-upgrade-btn">
+                  👑 Desbloquear Exportações Ilimitadas
+                </a>
+              </div>
             </div>
           </div>
-          <div class="chatgpt-clean-export-card" data-format="word">
-            <span class="icon">📝</span>
-            <div class="info">
-              <strong>Microsoft Word (.doc)</strong>
-              <span>Com títulos, tabelas e formatação intactos</span>
+        `;
+      } else {
+        // Modal Normal de Exportação com indicador de cota
+        const quotaBadge = quota.isPro 
+          ? '<span class="export-quota-tag tag-pro">👑 Ilimitado PRO</span>'
+          : `<span class="export-quota-tag">🎁 Grátis: ${quota.remaining}/${MAX_FREE_DAILY_EXPORTS} hoje</span>`;
+
+        overlay.innerHTML = `
+          <div class="chatgpt-clean-export-modal">
+            <div class="chatgpt-clean-export-modal-header">
+              <div class="header-left-group">
+                <h3>📥 Exportar ${titleSuffix || 'Conversa'}</h3>
+                ${quotaBadge}
+              </div>
+              <button class="chatgpt-clean-modal-close" id="chatgpt-clean-close-export">✕</button>
+            </div>
+            <div class="chatgpt-clean-export-grid">
+              <div class="chatgpt-clean-export-card" data-format="pdf">
+                <span class="icon">📄</span>
+                <div class="info">
+                  <strong>Documento PDF (.pdf)</strong>
+                  <span>Layout formatado pronto para guardar ou imprimir</span>
+                </div>
+              </div>
+              <div class="chatgpt-clean-export-card" data-format="word">
+                <span class="icon">📝</span>
+                <div class="info">
+                  <strong>Microsoft Word (.doc)</strong>
+                  <span>Com títulos, tabelas e formatação intactos</span>
+                </div>
+              </div>
+              <div class="chatgpt-clean-export-card" data-format="md">
+                <span class="icon">📑</span>
+                <div class="info">
+                  <strong>Ficheiro Markdown (.md)</strong>
+                  <span>Ideal para Notion, Obsidian e desenvolvedores</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="chatgpt-clean-export-card" data-format="md">
-            <span class="icon">📑</span>
-            <div class="info">
-              <strong>Ficheiro Markdown (.md)</strong>
-              <span>Ideal para Notion, Obsidian e desenvolvedores</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
+        `;
+      }
 
-    document.body.appendChild(overlay);
+      document.body.appendChild(overlay);
 
-    overlay.querySelector('#chatgpt-clean-close-export').addEventListener('click', () => overlay.remove());
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) overlay.remove();
-    });
+      overlay.querySelector('#chatgpt-clean-close-export').addEventListener('click', () => overlay.remove());
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) overlay.remove();
+      });
 
-    overlay.querySelectorAll('.chatgpt-clean-export-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const format = card.getAttribute('data-format');
-        overlay.remove();
-        executeExport(cleanText, formattedHtml, format);
+      overlay.querySelectorAll('.chatgpt-clean-export-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const format = card.getAttribute('data-format');
+          overlay.remove();
+          incrementDailyExport();
+          executeExport(cleanText, formattedHtml, format);
+        });
       });
     });
   }
+
+
 
   function executeExport(text, htmlSnippet, format) {
     const timestamp = new Date().toISOString().slice(0, 10);

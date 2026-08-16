@@ -132,6 +132,12 @@ div:has(> a[href*="ads.openai.com"]) {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.header-left-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .chatgpt-clean-export-modal-header h3 {
   font-size: 14.5px;
   font-weight: 700;
@@ -140,6 +146,22 @@ div:has(> a[href*="ads.openai.com"]) {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.export-quota-tag {
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+
+.export-quota-tag.tag-pro {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #f59e0b;
 }
 
 .chatgpt-clean-modal-close {
@@ -160,6 +182,99 @@ div:has(> a[href*="ads.openai.com"]) {
 .chatgpt-clean-modal-close:hover {
   background: rgba(255, 255, 255, 0.15);
   color: #ffffff;
+}
+
+/* Paywall de Limite Atingido (5/dia) */
+.chatgpt-clean-limit-content {
+  text-align: center;
+  padding: 10px 4px 6px;
+}
+
+.limit-crown-icon {
+  font-size: 36px;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.5));
+}
+
+.chatgpt-clean-limit-content h4 {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 6px;
+}
+
+.chatgpt-clean-limit-content p {
+  font-size: 11.5px;
+  color: #94a3b8;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.limit-offer-card {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(56, 189, 248, 0.08));
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
+}
+
+.offer-title {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #f59e0b;
+  margin-bottom: 4px;
+}
+
+.offer-desc {
+  font-size: 10.5px !important;
+  color: #cbd5e1 !important;
+  margin-bottom: 12px !important;
+}
+
+.offer-pricing {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.offer-pricing .old-price {
+  font-size: 12px;
+  text-decoration: line-through;
+  color: #64748b;
+}
+
+.offer-pricing .current-price {
+  font-size: 24px;
+  font-weight: 800;
+  color: #f59e0b;
+}
+
+.offer-pricing .badge-single {
+  font-size: 10px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.limit-upgrade-btn {
+  display: block;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #000000;
+  text-decoration: none;
+  font-size: 12.5px;
+  font-weight: 800;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+  transition: all 0.2s ease;
+}
+
+.limit-upgrade-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+  color: #000000;
 }
 
 .chatgpt-clean-export-grid {
