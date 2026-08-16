@@ -1639,3 +1639,19 @@ body.theme-white .footer-version-tag {
   filter: drop-shadow(0 1px 2px rgba(245, 158, 11, 0.4));
   flex-shrink: 0;
 }
+
+.badge-gift-icon {
+  width: 13px;
+  height: 13px;
+  object-fit: contain;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 3px;
+  flex-shrink: 0;
+}
+
+.badge-trial {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}

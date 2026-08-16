@@ -58,8 +58,8 @@
       limitOfferDesc: "Com o plano PRO tens exportações ilimitadas para sempre sem restrições de cota.",
       limitSinglePay: "Pagamento Único",
       limitUpgradeBtn: "Desbloquear Exportações Ilimitadas (2,99€)",
-      exportModalHeading: (suffix) => `Exportar ${suffix || 'Conversa'}`,
-      exportQuotaBadge: (rem) => `🎁 Grátis: ${rem}/2 hoje`,
+      exportModalHeading: (suffix) => suffix || "Exportar Conversa",
+      exportQuotaBadge: (rem) => `Grátis: ${rem}/2 hoje`,
       exportQuotaBadgePro: "Ilimitado PRO",
       cardPdfTitle: "Documento PDF (.pdf)",
       cardPdfDesc: "Layout formatado pronto para guardar ou imprimir",
@@ -102,8 +102,8 @@
       limitOfferDesc: "With PRO plan you get lifetime unlimited exports without quota restrictions.",
       limitSinglePay: "One-Time Payment",
       limitUpgradeBtn: "Unlock Unlimited Exports ($2.99)",
-      exportModalHeading: (suffix) => `Export ${suffix || 'Conversation'}`,
-      exportQuotaBadge: (rem) => `🎁 Free: ${rem}/2 today`,
+      exportModalHeading: (suffix) => suffix || "Exportar Conversa",
+      exportQuotaBadge: (rem) => `Free: ${rem}/2 today`,
       exportQuotaBadgePro: "PRO Unlimited",
       cardPdfTitle: "PDF Document (.pdf)",
       cardPdfDesc: "Formatted layout ready for saving or printing",
@@ -146,8 +146,8 @@
       limitOfferDesc: "Con el plan PRO tienes exportaciones infinitas de por vida sin restricciones.",
       limitSinglePay: "Pago Único",
       limitUpgradeBtn: "Desbloquear Exportaciones Ilimitadas (2,99€)",
-      exportModalHeading: (suffix) => `Exportar ${suffix || 'Conversación'}`,
-      exportQuotaBadge: (rem) => `🎁 Gratis: ${rem}/2 hoy`,
+      exportModalHeading: (suffix) => suffix || "Exportar Conversa",
+      exportQuotaBadge: (rem) => `Gratis: ${rem}/2 hoy`,
       exportQuotaBadgePro: "Ilimitado PRO",
       cardPdfTitle: "Documento PDF (.pdf)",
       cardPdfDesc: "Diseño formateado listo para guardar o imprimir",
@@ -190,8 +190,8 @@
       limitOfferDesc: "Avec le forfait PRO, profitez d'exports illimités à vie sans aucune restriction.",
       limitSinglePay: "Paiement Unique",
       limitUpgradeBtn: "Débloquer les Exports Illimités (2,99€)",
-      exportModalHeading: (suffix) => `Exporter ${suffix || 'Discussion'}`,
-      exportQuotaBadge: (rem) => `🎁 Gratuit : ${rem}/2 auj.`,
+      exportModalHeading: (suffix) => suffix || "Exportar Conversa",
+      exportQuotaBadge: (rem) => `Gratuit : ${rem}/2 auj.`,
       exportQuotaBadgePro: "Illimité PRO",
       cardPdfTitle: "Document PDF (.pdf)",
       cardPdfDesc: "Mise en page prête pour impression ou archivage",
@@ -234,8 +234,8 @@
       limitOfferDesc: "Mit dem PRO-Plan erhalten Sie lebenslang unbegrenzte Exporte ohne Limit.",
       limitSinglePay: "Einmalzahlung",
       limitUpgradeBtn: "Unbegrenzte Exporte Freischalten (2,99€)",
-      exportModalHeading: (suffix) => `${suffix || 'Chat'} Exportieren`,
-      exportQuotaBadge: (rem) => `🎁 Gratis: ${rem}/2 heute`,
+      exportModalHeading: (suffix) => suffix || "Exportar Conversa",
+      exportQuotaBadge: (rem) => `Gratis: ${rem}/2 heute`,
       exportQuotaBadgePro: "Unbegrenzt PRO",
       cardPdfTitle: "PDF-Dokument (.pdf)",
       cardPdfDesc: "Formatiertes Layout bereit zum Speichern oder Drucken",
@@ -278,8 +278,8 @@
       limitOfferDesc: "Con il piano PRO hai esportazioni illimitate a vita senza restrizioni.",
       limitSinglePay: "Pagamento Singolo",
       limitUpgradeBtn: "Sblocca Esportazioni Illimitate (2,99€)",
-      exportModalHeading: (suffix) => `Esporta ${suffix || 'Conversazione'}`,
-      exportQuotaBadge: (rem) => `🎁 Gratis: ${rem}/2 oggi`,
+      exportModalHeading: (suffix) => suffix || "Exportar Conversa",
+      exportQuotaBadge: (rem) => `Gratis: ${rem}/2 oggi`,
       exportQuotaBadgePro: "Illimitato PRO",
       cardPdfTitle: "Documento PDF (.pdf)",
       cardPdfDesc: "Layout formattato pronto per il salvataggio o la stampa",
@@ -322,8 +322,8 @@
       limitOfferDesc: "升级PRO专业版，即可永久解锁终身无限次全格式导出特权。",
       limitSinglePay: "一次性买断",
       limitUpgradeBtn: "立即解锁无限导出 (2.99€)",
-      exportModalHeading: (suffix) => `导出${suffix || '当前对话'}`,
-      exportQuotaBadge: (rem) => `🎁 今日剩余: ${rem}/2`,
+      exportModalHeading: (suffix) => suffix || "Exportar Conversa",
+      exportQuotaBadge: (rem) => `今日剩余: ${rem}/2`,
       exportQuotaBadgePro: "终身PRO无限",
       cardPdfTitle: "PDF 高清文档 (.pdf)",
       cardPdfDesc: "精美排版，支持直接打印或归档保存",
@@ -366,8 +366,8 @@
       limitOfferDesc: "PROプランなら回数制限なしで永久に無制限エクスポートが可能です。",
       limitSinglePay: "買い切りプラン",
       limitUpgradeBtn: "無制限エクスポートを解放 (2.99€)",
-      exportModalHeading: (suffix) => `${suffix || '会話'}をエクスポート`,
-      exportQuotaBadge: (rem) => `🎁 本日残り: ${rem}/2`,
+      exportModalHeading: (suffix) => suffix || "Exportar Conversa",
+      exportQuotaBadge: (rem) => `本日残り: ${rem}/2`,
       exportQuotaBadgePro: "永久PRO無制限",
       cardPdfTitle: "PDF ドキュメント (.pdf)",
       cardPdfDesc: "印刷や保存に最適なフォーマット済みレイアウト",
@@ -682,7 +682,7 @@
             const textNode = turnArticle.querySelector('.markdown') || turnArticle;
             const text = (textNode.innerText || '').trim();
             const html = (turnArticle.querySelector('.markdown')?.innerHTML || textNode.innerHTML || '');
-            openExportModal(text, html, t.exportBtn);
+            openExportModal(text, html, false);
           }
         });
 
@@ -744,24 +744,26 @@
       fullHtml += `<div class="chat-turn-block" style="margin-bottom:18px;page-break-inside:avoid;break-inside:avoid;"><strong>${speaker}:</strong><div style="margin-top:4px;">${html}</div></div><hr style="border:0;border-top:1px solid #eee;"/>`;
     });
 
-    openExportModal(fullMarkdown, fullHtml, t.exportFullBtn);
+    openExportModal(fullMarkdown, fullHtml, true);
   }
 
   // Abre o Modal com as 3 opções de exportação ou o Paywall de Limite Atingido
-  function openExportModal(cleanText, formattedHtml, titleSuffix) {
+  function openExportModal(cleanText, formattedHtml, isFullChat) {
     if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
       chrome.storage.local.get(['appLanguage', 'isPro'], (items) => {
         if (items && items.appLanguage) state.appLanguage = items.appLanguage;
         if (items && items.isPro !== undefined) state.isPro = items.isPro;
-        renderModalWithQuota(cleanText, formattedHtml, titleSuffix);
+        renderModalWithQuota(cleanText, formattedHtml, isFullChat);
       });
     } else {
-      renderModalWithQuota(cleanText, formattedHtml, titleSuffix);
+      renderModalWithQuota(cleanText, formattedHtml, isFullChat);
     }
   }
 
-  function renderModalWithQuota(cleanText, formattedHtml, titleSuffix) {
-    const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.en;
+  function renderModalWithQuota(cleanText, formattedHtml, isFullChat) {
+    const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
+    const modalTitle = isFullChat ? t.exportFullBtn : t.exportBtn;
+
     getDailyExportQuota((quota) => {
       const existing = document.querySelector('.chatgpt-clean-modal-overlay');
       if (existing) existing.remove();
@@ -773,8 +775,10 @@
       const crownIconUrl = chrome.runtime.getURL('icons/icons8-crown-100.png');
       const rocketIconUrl = chrome.runtime.getURL('icons/icons8-rocket-94.png');
       const downloadIconUrl = chrome.runtime.getURL('icons/icons8-downloads-folder-94.png');
-      const writeIconUrl = chrome.runtime.getURL('icons/icons8-write-94.png');
-      const notebookIconUrl = chrome.runtime.getURL('icons/3dicons-notebook-dynamic-color.png');
+      const giftIconUrl = chrome.runtime.getURL('icons/icones ua/icons8-gift-94.png');
+      const pdfIconUrl = chrome.runtime.getURL('icons/icones ua/pdf.png');
+      const docIconUrl = chrome.runtime.getURL('icons/icones ua/doc.png');
+      const mdIconUrl = chrome.runtime.getURL('icons/icones ua/markdown.png');
 
       // Se atingiu o limite de 2 por dia no modo Free -> Mostrar Paywall PRO
       if (!quota.isPro && quota.remaining <= 0) {
@@ -812,38 +816,38 @@
           </div>
         `;
       } else {
-        // Modal Normal de Exportação com indicador de cota (2/dia)
+        // Modal Normal de Exportação com indicador de cota (2/dia) e ícone de presente
         const quotaBadge = quota.isPro 
-          ? `<span class="export-quota-tag tag-pro">${t.exportQuotaBadgePro}</span>`
-          : `<span class="export-quota-tag">${t.exportQuotaBadge(quota.remaining)}</span>`;
+          ? `<span class="export-quota-tag tag-pro"><img src="${crownIconUrl}" class="badge-gift-icon" alt="PRO"> <span>${t.exportQuotaBadgePro}</span></span>`
+          : `<span class="export-quota-tag"><img src="${giftIconUrl}" class="badge-gift-icon" alt="Gift"> <span>${t.exportQuotaBadge(quota.remaining)}</span></span>`;
 
         overlay.innerHTML = `
           <div class="chatgpt-clean-export-modal">
             <div class="chatgpt-clean-export-modal-header">
               <div class="header-left-group" style="display:flex;align-items:center;gap:8px;">
                 <img src="${downloadIconUrl}" class="chatgpt-clean-modal-header-icon" alt="Export">
-                <h3>${t.exportModalHeading(titleSuffix)}</h3>
+                <h3>${modalTitle}</h3>
                 ${quotaBadge}
               </div>
               <button class="chatgpt-clean-modal-close" id="chatgpt-clean-close-export">✕</button>
             </div>
             <div class="chatgpt-clean-export-grid">
               <div class="chatgpt-clean-export-card" data-format="pdf">
-                <img src="${downloadIconUrl}" class="export-card-3d-icon" alt="PDF">
+                <img src="${pdfIconUrl}" class="export-card-3d-icon" alt="PDF">
                 <div class="info">
                   <strong>${t.cardPdfTitle}</strong>
                   <span>${t.cardPdfDesc}</span>
                 </div>
               </div>
               <div class="chatgpt-clean-export-card" data-format="word">
-                <img src="${writeIconUrl}" class="export-card-3d-icon" alt="Word">
+                <img src="${docIconUrl}" class="export-card-3d-icon" alt="Word">
                 <div class="info">
                   <strong>${t.cardWordTitle}</strong>
                   <span>${t.cardWordDesc}</span>
                 </div>
               </div>
               <div class="chatgpt-clean-export-card" data-format="md">
-                <img src="${notebookIconUrl}" class="export-card-3d-icon" alt="Markdown">
+                <img src="${mdIconUrl}" class="export-card-3d-icon" alt="Markdown">
                 <div class="info">
                   <strong>${t.cardMdTitle}</strong>
                   <span>${t.cardMdDesc}</span>

@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
       themePurple: "Roxo",
       exportMenuTitle: "Menu de Exportação",
       exportMenuDesc: "Exportação em PDF, Word (.doc) e Markdown (.md)",
-      exportQuotaBadge: (rem) => `🎁 ${rem}/2 hoje`,
+      exportQuotaBadge: (rem) => `${rem}/2 hoje`,
       exportQuotaBadgePro: "👑 PRO Vitalício",
       foldersTitle: "Pastas na Barra Lateral",
       badgeFoldersActive: "Ativo",
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
       themePurple: "Purple",
       exportMenuTitle: "Export Menu",
       exportMenuDesc: "Export to PDF, Word (.doc) and Markdown (.md)",
-      exportQuotaBadge: (rem) => `🎁 ${rem}/2 today`,
+      exportQuotaBadge: (rem) => `${rem}/2 today`,
       exportQuotaBadgePro: "👑 Lifetime PRO",
       foldersTitle: "Sidebar Folders",
       badgeFoldersActive: "Active",
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
       themePurple: "Morado",
       exportMenuTitle: "Menú de Exportación",
       exportMenuDesc: "Exportación a PDF, Word (.doc) y Markdown (.md)",
-      exportQuotaBadge: (rem) => `🎁 ${rem}/2 hoy`,
+      exportQuotaBadge: (rem) => `${rem}/2 hoy`,
       exportQuotaBadgePro: "👑 PRO Vitalicio",
       foldersTitle: "Carpetas en la Barra Lateral",
       badgeFoldersActive: "Activo",
@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
       themePurple: "Violet",
       exportMenuTitle: "Menu d'Exportation",
       exportMenuDesc: "Export au format PDF, Word (.doc) et Markdown (.md)",
-      exportQuotaBadge: (rem) => `🎁 ${rem}/2 auj.`,
+      exportQuotaBadge: (rem) => `${rem}/2 auj.`,
       exportQuotaBadgePro: "👑 PRO À Vie",
       foldersTitle: "Dossiers dans la Barre Latérale",
       badgeFoldersActive: "Actif",
@@ -436,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
       themePurple: "Lila",
       exportMenuTitle: "Export-Menü",
       exportMenuDesc: "Export als PDF, Word (.doc) und Markdown (.md)",
-      exportQuotaBadge: (rem) => `🎁 ${rem}/2 heute`,
+      exportQuotaBadge: (rem) => `${rem}/2 heute`,
       exportQuotaBadgePro: "👑 Lifetime PRO",
       foldersTitle: "Seitenleisten-Ordner",
       badgeFoldersActive: "Aktiv",
@@ -518,7 +518,7 @@ document.addEventListener('DOMContentLoaded', () => {
       themePurple: "Viola",
       exportMenuTitle: "Menu di Esportazione",
       exportMenuDesc: "Esportazione in PDF, Word (.doc) e Markdown (.md)",
-      exportQuotaBadge: (rem) => `🎁 ${rem}/2 oggi`,
+      exportQuotaBadge: (rem) => `${rem}/2 oggi`,
       exportQuotaBadgePro: "👑 PRO a Vita",
       foldersTitle: "Cartelle nella Barra Laterale",
       badgeFoldersActive: "Attivo",
@@ -600,7 +600,7 @@ document.addEventListener('DOMContentLoaded', () => {
       themePurple: "紫色",
       exportMenuTitle: "对话导出菜单",
       exportMenuDesc: "支持导出为 PDF、Word (.doc) 与 Markdown (.md)",
-      exportQuotaBadge: (rem) => `🎁 今日剩余: ${rem}/2`,
+      exportQuotaBadge: (rem) => `今日: ${rem}/2`,
       exportQuotaBadgePro: "👑 终身PRO",
       foldersTitle: "侧边栏分类文件夹",
       badgeFoldersActive: "已启用",
@@ -682,7 +682,7 @@ document.addEventListener('DOMContentLoaded', () => {
       themePurple: "パープル",
       exportMenuTitle: "エクスポートメニュー",
       exportMenuDesc: "PDF、Word (.doc)、Markdown (.md) への出力に対応",
-      exportQuotaBadge: (rem) => `🎁 本日残り: ${rem}/2`,
+      exportQuotaBadge: (rem) => `本日: ${rem}/2`,
       exportQuotaBadgePro: "👑 永久PRO",
       foldersTitle: "サイドバーフォルダ機能",
       badgeFoldersActive: "有効",
@@ -898,13 +898,13 @@ document.addEventListener('DOMContentLoaded', () => {
           trialFooterStatus.innerHTML = `<img src="icons/icons8-crown-100.png" class="footer-crown-icon" alt="PRO"><span>${t.footerProText || 'PRO Mode Active'}</span>`;
           trialFooterStatus.style.color = '#f59e0b';
         }
-        if (exportTrialBadge) exportTrialBadge.innerText = t.exportQuotaBadgePro;
+        if (exportTrialBadge) exportTrialBadge.innerHTML = `<img src="icons/icons8-crown-100.png" class="badge-gift-icon" alt="PRO"> <span>${t.exportQuotaBadgePro}</span>`;
       } else {
         if (trialFooterStatus) {
           trialFooterStatus.innerText = t.footerQuota(currentExportsRemaining);
           trialFooterStatus.style.color = '';
         }
-        if (exportTrialBadge) exportTrialBadge.innerText = t.exportQuotaBadge(currentExportsRemaining);
+        if (exportTrialBadge) exportTrialBadge.innerHTML = `<img src="icons/icones ua/icons8-gift-94.png" class="badge-gift-icon" alt="Gift"> <span>${t.exportQuotaBadge(currentExportsRemaining)}</span>`;
       }
 
     renderPrompts(currentCustomPrompts);
@@ -1437,7 +1437,7 @@ document.addEventListener('DOMContentLoaded', () => {
     isCurrentPro = true;
     const t = I18N[currentLang] || I18N.pt;
     if (exportTrialBadge) {
-      exportTrialBadge.innerText = t.exportQuotaBadgePro;
+      exportTrialBadge.innerHTML = `<img src="icons/icons8-crown-100.png" class="badge-gift-icon" alt="PRO"> <span>${t.exportQuotaBadgePro}</span>`;
       exportTrialBadge.className = 'badge-active';
     }
           if (trialFooterStatus) {
