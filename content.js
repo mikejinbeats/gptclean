@@ -682,7 +682,7 @@
       } else {
         // Modal Normal de Exportação com indicador de cota (2/dia)
         const quotaBadge = quota.isPro 
-          ? `<span class="export-quota-tag tag-pro">👑 ${t.exportQuotaBadgePro}</span>`
+          ? `<span class="export-quota-tag tag-pro">${t.exportQuotaBadgePro}</span>`
           : `<span class="export-quota-tag">${t.exportQuotaBadge(quota.remaining)}</span>`;
 
         overlay.innerHTML = `
