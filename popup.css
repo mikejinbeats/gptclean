@@ -1371,9 +1371,22 @@ body.theme-white .prompt-action-btn.btn-copy:hover {
   transform: translate(1px, -1px);
 }
 
-.footer-divider {
-  font-size: 10px;
-  color: var(--border-glass);
+.footer-version-tag {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--text-dim);
+  background: var(--glass-surface-subtle);
+  border: 1px solid var(--border-hairline);
+  padding: 1px 7px;
+  border-radius: 10px;
+  letter-spacing: 0.03em;
+  user-select: none;
+}
+
+body.theme-white .footer-version-tag {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #64748b;
 }
 
 .footer-status {
