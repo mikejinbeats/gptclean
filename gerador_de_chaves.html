@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Chaves PRO - ChatGPT Clean</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #090d16;
+      color: #f8fafc;
+      font-family: 'Inter', -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+    .generator-card {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 40px rgba(245, 158, 11, 0.15);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 580px;
+      padding: 32px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .header .icon {
+      font-size: 42px;
+      margin-bottom: 8px;
+      display: inline-block;
+      filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.5));
+    }
+    .header h1 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+    .header p {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .select-count {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+    }
+    .btn-generate {
+      flex: 1;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000;
+      font-size: 13px;
+      font-weight: 800;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+      transition: all 0.2s ease;
+    }
+    .btn-generate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+    }
+    .output-area {
+      position: relative;
+      margin-bottom: 18px;
+    }
+    textarea {
+      width: 100%;
+      height: 220px;
+      background: #0b1120;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 14px;
+      color: #38bdf8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      resize: vertical;
+      outline: none;
+    }
+    .actions-row {
+      display: flex;
+      gap: 10px;
+    }
+    .btn-secondary {
+      flex: 1;
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e2e8f0;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+    .btn-secondary:hover {
+      background: #334155;
+      color: #fff;
+    }
+    .status-msg {
+      text-align: center;
+      font-size: 12px;
+      color: #4ade80;
+      margin-top: 12px;
+      min-height: 18px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="generator-card">
+    <div class="header">
+      <div class="icon">👑</div>
+      <h1>Gerador Oficial de Chaves PRO</h1>
+      <p>Gera chaves de ativação 100% autênticas e compatíveis com a extensão</p>
+    </div>
+
+    <div class="controls">
+      <select id="keys-count" class="select-count">
+        <option value="1">1 Chave</option>
+        <option value="10">10 Chaves</option>
+        <option value="50" selected>50 Chaves</option>
+        <option value="100">100 Chaves</option>
+        <option value="500">500 Chaves</option>
+      </select>
+      <button class="btn-generate" id="btn-gen">⚡ Gerar Chaves PRO</button>
+    </div>
+
+    <div class="output-area">
+      <textarea id="keys-output" readonly placeholder="Clica no botão acima para gerar chaves..."></textarea>
+    </div>
+
+    <div class="actions-row">
+      <button class="btn-secondary" id="btn-copy">📋 Copiar Todas</button>
+      <button class="btn-secondary" id="btn-download-txt">💾 Baixar .TXT (Gumroad/Stripe)</button>
+      <button class="btn-secondary" id="btn-download-csv">📊 Baixar .CSV</button>
+    </div>
+
+    <div class="status-msg" id="status-msg"></div>
+  </div>
+
+  <script>
+    const CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+
+    function randomString(length) {
+      let result = '';
+      for (let i = 0; i < length; i++) {
+        result += CHARS.charAt(Math.floor(Math.random() * CHARS.length));
+      }
+      return result;
+    }
+
+    function generateSingleValidKey() {
+      while (true) {
+        const part1 = randomString(4);
+        const part2 = randomString(4);
+        
+        let sum1 = 0;
+        for (let i = 0; i < part1.length; i++) sum1 += part1.charCodeAt(i);
+        let sum2 = 0;
+        for (let i = 0; i < part2.length; i++) sum2 += part2.charCodeAt(i);
+
+        // Mesma regra de validação do popup.js:
+        if ((sum1 + sum2) % 7 === 0 || sum1 % 3 === 0) {
+          return `PRO-${part1}-${part2}`;
+        }
+      }
+    }
+
+    const btnGen = document.getElementById('btn-gen');
+    const keysCountSelect = document.getElementById('keys-count');
+    const keysOutput = document.getElementById('keys-output');
+    const btnCopy = document.getElementById('btn-copy');
+    const btnDownloadTxt = document.getElementById('btn-download-txt');
+    const btnDownloadCsv = document.getElementById('btn-download-csv');
+    const statusMsg = document.getElementById('status-msg');
+
+    btnGen.addEventListener('click', () => {
+      const count = parseInt(keysCountSelect.value, 10);
+      const generated = new Set();
+
+      while (generated.size < count) {
+        generated.add(generateSingleValidKey());
+      }
+
+      keysOutput.value = Array.from(generated).join('\n');
+      showStatus(`✅ ${count} chaves PRO válidas geradas com sucesso!`);
+    });
+
+    btnCopy.addEventListener('click', () => {
+      if (!keysOutput.value) return;
+      navigator.clipboard.writeText(keysOutput.value);
+      showStatus('📋 Chaves copiadas para a área de transferência!');
+    });
+
+    btnDownloadTxt.addEventListener('click', () => {
+      if (!keysOutput.value) return;
+      downloadFile(keysOutput.value, 'chaves_pro_chatgpt.txt', 'text/plain');
+      showStatus('💾 Ficheiro .TXT descarregado!');
+    });
+
+    btnDownloadCsv.addEventListener('click', () => {
+      if (!keysOutput.value) return;
+      const csvContent = "LicenseKey\n" + keysOutput.value.split('\n').join('\n');
+      downloadFile(csvContent, 'chaves_pro_chatgpt.csv', 'text/csv');
+      showStatus('📊 Ficheiro .CSV descarregado!');
+    });
+
+    function downloadFile(content, filename, type) {
+      const blob = new Blob([content], { type: type });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function showStatus(msg) {
+      statusMsg.innerText = msg;
+      setTimeout(() => { statusMsg.innerText = ''; }, 3000);
+    }
+
+    // Gerar 50 por defeito ao abrir
+    btnGen.click();
+  </script>
+</body>
+</html>
