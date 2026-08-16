@@ -88,11 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
       updatingFilters: "A verificar...",
       updatedFilters: "✅ Filtros Atualizados!",
       shieldInfoDesc: "O escudo monitoriza o DOM do ChatGPT e destrói anúncios antes de serem renderizados.",
-      promptsTitle: "⚡ Prompts de Produtividade",
+      promptsTitle: "Prompts de Produtividade",
       promptsCount: "3 Prontos",
       promptsHint: "Clica para injetar instantaneamente no chat ativo:",
       newPromptHeader: "✨ Novo Prompt Personalizado",
-      promptTitlePlaceholder: "Título (ex: 🎯 Copy de Vendas)",
+      promptTitlePlaceholder: "Título (ex: Copy de Vendas)",
       promptDescPlaceholder: "Descrição curta (opcional)",
       promptTextPlaceholder: "Escreve aqui o comando completo do prompt...",
       btnSavePrompt: "Guardar Prompt",
@@ -126,23 +126,23 @@ document.addEventListener('DOMContentLoaded', () => {
       footerLink: "Abrir ChatGPT",
       footerQuota: (rem) => `Exportações: ${rem}/2 hoje`,
       footerPro: "👑 Modo PRO Ativo",
-      btnInsert: "⚡ Inserir no Chat",
-      btnCopy: "📋 Copiar",
+      btnInsert: "Inserir no Chat",
+      btnCopy: "Copiar",
       copied: "✅ Copiado!",
       inserted: "✅ Inserido!",
       prompts: [
         {
-          title: "⚡ Resumir em Bullet Points",
+          title: "Resumir em Bullet Points",
           desc: "Transforma textos longos em tópicos diretos e objetivos.",
           text: "Por favor, resume o texto anterior em tópicos claros, diretos e objetivos (bullet points), destacando apenas os pontos mais importantes."
         },
         {
-          title: "✍️ Melhorar e Corrigir Texto",
+          title: "Melhorar e Corrigir Texto",
           desc: "Aprimora a gramática, tom profissional e clareza.",
           text: "Revê e melhora o seguinte texto, corrigindo erros gramaticais e tornando a linguagem mais fluida e profissional:\n\n"
         },
         {
-          title: "💻 Explicar Código Passo a Passo",
+          title: "Explicar Código Passo a Passo",
           desc: "Comenta linha por linha e sugere otimizações.",
           text: "Analisa o código abaixo e explica linha por linha como funciona, apontando possíveis melhorias ou bugs:\n\n"
         }
@@ -166,11 +166,11 @@ document.addEventListener('DOMContentLoaded', () => {
       updatingFilters: "Checking...",
       updatedFilters: "✅ Filters Updated!",
       shieldInfoDesc: "The shield monitors ChatGPT's DOM and removes ads before they are rendered.",
-      promptsTitle: "⚡ Productivity Prompts",
+      promptsTitle: "Productivity Prompts",
       promptsCount: "3 Ready",
       promptsHint: "Click to instantly insert into active chat:",
       newPromptHeader: "✨ New Custom Prompt",
-      promptTitlePlaceholder: "Title (e.g. 🎯 Sales Copy)",
+      promptTitlePlaceholder: "Title (e.g. Sales Copy)",
       promptDescPlaceholder: "Short description (optional)",
       promptTextPlaceholder: "Type your full prompt command here...",
       btnSavePrompt: "Save Prompt",
@@ -204,23 +204,23 @@ document.addEventListener('DOMContentLoaded', () => {
       footerLink: "Open ChatGPT",
       footerQuota: (rem) => `Exports: ${rem}/2 today`,
       footerPro: "👑 PRO Mode Active",
-      btnInsert: "⚡ Insert in Chat",
-      btnCopy: "📋 Copy",
+      btnInsert: "Insert in Chat",
+      btnCopy: "Copy",
       copied: "✅ Copied!",
       inserted: "✅ Inserted!",
       prompts: [
         {
-          title: "⚡ Summarize in Bullet Points",
+          title: "Summarize in Bullet Points",
           desc: "Transforms long texts into clear, direct key takeaways.",
           text: "Please summarize the preceding text into clear, concise, and objective bullet points highlighting only the most important insights."
         },
         {
-          title: "✍️ Improve & Fix Grammar",
+          title: "Improve & Fix Grammar",
           desc: "Enhances grammar, professional tone, and flow.",
           text: "Please review and enhance the following text, correcting grammar mistakes and improving clarity and professionalism while preserving its core meaning:\n\n"
         },
         {
-          title: "💻 Explain Code Step-by-Step",
+          title: "Explain Code Step-by-Step",
           desc: "Explains line-by-line and suggests optimizations.",
           text: "Analyze the code below. Explain step-by-step how it works, highlight potential edge cases or bugs, and propose clean code improvements:\n\n"
         }
@@ -244,11 +244,11 @@ document.addEventListener('DOMContentLoaded', () => {
       updatingFilters: "Comprobando...",
       updatedFilters: "✅ ¡Filtros Actualizados!",
       shieldInfoDesc: "El escudo monitoriza el DOM de ChatGPT y elimina la publicidad al instante.",
-      promptsTitle: "⚡ Prompts de Productividad",
+      promptsTitle: "Prompts de Productividad",
       promptsCount: "3 Listos",
       promptsHint: "Haz clic para insertar al instante en el chat:",
       newPromptHeader: "✨ Nuevo Prompt Personalizado",
-      promptTitlePlaceholder: "Título (ej: 🎯 Copy de Ventas)",
+      promptTitlePlaceholder: "Título (ej: Copy de Ventas)",
       promptDescPlaceholder: "Descripción corta (opcional)",
       promptTextPlaceholder: "Escribe aquí la instrucción completa del prompt...",
       btnSavePrompt: "Guardar Prompt",
@@ -282,23 +282,23 @@ document.addEventListener('DOMContentLoaded', () => {
       footerLink: "Abrir ChatGPT",
       footerQuota: (rem) => `Exportaciones: ${rem}/2 hoy`,
       footerPro: "👑 Modo PRO Activo",
-      btnInsert: "⚡ Insertar en Chat",
-      btnCopy: "📋 Copiar",
+      btnInsert: "Insertar en Chat",
+      btnCopy: "Copiar",
       copied: "✅ ¡Copiado!",
       inserted: "✅ ¡Insertado!",
       prompts: [
         {
-          title: "⚡ Resumir en Viñetas",
+          title: "Resumir en Viñetas",
           desc: "Transforma textos largos en puntos claros y directos.",
           text: "Por favor, resume el texto anterior en viñetas claras, directas y objetivas con los puntos clave más importantes."
         },
         {
-          title: "✍️ Mejorar y Corregir Texto",
+          title: "Mejorar y Corregir Texto",
           desc: "Perfecciona la gramática, tono profesional y fluidez.",
           text: "Revisa y mejora el siguiente texto, corrigiendo errores gramaticales y haciendo el lenguaje más fluido y profesional:\n\n"
         },
         {
-          title: "💻 Explicar Código Paso a Paso",
+          title: "Explicar Código Paso a Paso",
           desc: "Comenta línea por línea y sugiere optimizaciones.",
           text: "Analiza el siguiente código y explica línea por línea cómo funciona, señalando posibles fallos o mejoras:\n\n"
         }
@@ -322,11 +322,11 @@ document.addEventListener('DOMContentLoaded', () => {
       updatingFilters: "Vérification...",
       updatedFilters: "✅ Filtres Mis à Jour !",
       shieldInfoDesc: "Le bouclier surveille le DOM de ChatGPT et neutralise les publicités.",
-      promptsTitle: "⚡ Prompts de Productivité",
+      promptsTitle: "Prompts de Productivité",
       promptsCount: "3 Prêts",
       promptsHint: "Cliquez pour insérer directement dans la discussion :",
       newPromptHeader: "✨ Nouveau Prompt Personnalisé",
-      promptTitlePlaceholder: "Titre (ex. 🎯 Copywriting Vente)",
+      promptTitlePlaceholder: "Titre (ex. Copywriting Vente)",
       promptDescPlaceholder: "Courte description (optionnelle)",
       promptTextPlaceholder: "Écrivez la commande complète ici...",
       btnSavePrompt: "Enregistrer le Prompt",
@@ -360,23 +360,23 @@ document.addEventListener('DOMContentLoaded', () => {
       footerLink: "Ouvrir ChatGPT",
       footerQuota: (rem) => `Exports : ${rem}/2 auj.`,
       footerPro: "👑 Mode PRO Actif",
-      btnInsert: "⚡ Insérer au Chat",
-      btnCopy: "📋 Copier",
+      btnInsert: "Insérer au Chat",
+      btnCopy: "Copier",
       copied: "✅ Copié !",
       inserted: "✅ Inséré !",
       prompts: [
         {
-          title: "⚡ Résumer en Puces",
+          title: "Résumer en Puces",
           desc: "Transforme les longs textes en points clairs et précis.",
           text: "Veuillez résumer le texte précédent sous forme de puces claires, directes et concises avec les points essentiels."
         },
         {
-          title: "✍️ Améliorer et Corriger le Texte",
+          title: "Améliorer et Corriger le Texte",
           desc: "Perfectionne la grammaire, la clarté et le ton professionnel.",
           text: "Veuillez relire et améliorer le texte suivant, en corrigeant les fautes et en renforçant le professionnalisme :\n\n"
         },
         {
-          title: "💻 Expliquer le Code Pas à Pas",
+          title: "Expliquer le Code Pas à Pas",
           desc: "Explication détaillée ligne par ligne et optimisation.",
           text: "Analysez le code ci-dessous et expliquez son fonctionnement étape par étape, en signalant les bogues potentiels :\n\n"
         }
@@ -400,11 +400,11 @@ document.addEventListener('DOMContentLoaded', () => {
       updatingFilters: "Wird geprüft...",
       updatedFilters: "✅ Filter Aktualisiert!",
       shieldInfoDesc: "Das Schild überwacht das ChatGPT-DOM und entfernt Werbung sofort.",
-      promptsTitle: "⚡ Produktivitäts-Prompts",
+      promptsTitle: "Produktivitäts-Prompts",
       promptsCount: "3 Bereit",
       promptsHint: "Klicken zum direkten Einfügen in den Chat:",
       newPromptHeader: "✨ Neuer Eigener Prompt",
-      promptTitlePlaceholder: "Titel (z.B. 🎯 Verkaufs-Copy)",
+      promptTitlePlaceholder: "Titel (z.B. Verkaufs-Copy)",
       promptDescPlaceholder: "Kurzbeschreibung (optional)",
       promptTextPlaceholder: "Geben Sie hier den vollständigen Befehl ein...",
       btnSavePrompt: "Prompt Speichern",
@@ -438,23 +438,23 @@ document.addEventListener('DOMContentLoaded', () => {
       footerLink: "ChatGPT Öffnen",
       footerQuota: (rem) => `Exporte: ${rem}/2 heute`,
       footerPro: "👑 PRO-Modus Aktiv",
-      btnInsert: "⚡ In Chat Einfügen",
-      btnCopy: "📋 Kopieren",
+      btnInsert: "In Chat Einfügen",
+      btnCopy: "Kopieren",
       copied: "✅ Kopiert!",
       inserted: "✅ Eingefügt!",
       prompts: [
         {
-          title: "⚡ In Stichpunkten Zusammenfassen",
+          title: "In Stichpunkten Zusammenfassen",
           desc: "Wandelt lange Texte in prägnante Kernpunkte um.",
           text: "Bitte fasse den vorherigen Text in klaren, prägnanten und objektiven Stichpunkten mit den wichtigsten Kernaussagen zusammen."
         },
         {
-          title: "✍️ Text Optimieren & Korrigieren",
+          title: "Text Optimieren & Korrigieren",
           desc: "Verbessert Grammatik, Ausdruck und professionellen Ton.",
           text: "Bitte überprüfe und optimiere den folgenden Text, korrigiere Grammatikfehler und verbessere Klarheit und Ausdruck:\n\n"
         },
         {
-          title: "💻 Code Schritt für Schritt Erklären",
+          title: "Code Schritt für Schritt Erklären",
           desc: "Erklärt Zeile für Zeile und schlägt Optimierungen vor.",
           text: "Analysiere den folgenden Code und erkläre Schritt für Schritt die Funktionsweise, weise auf Fehler hin und schlage Optimierungen vor:\n\n"
         }
@@ -478,11 +478,11 @@ document.addEventListener('DOMContentLoaded', () => {
       updatingFilters: "Verifica...",
       updatedFilters: "✅ Filtri Aggiornati!",
       shieldInfoDesc: "Lo scudo monitora il DOM di ChatGPT e rimuove le pubblicità istantaneamente.",
-      promptsTitle: "⚡ Prompt di Produttività",
+      promptsTitle: "Prompt di Produttività",
       promptsCount: "3 Pronti",
       promptsHint: "Clicca per inserire istantaneamente nella chat attiva:",
       newPromptHeader: "✨ Nuovo Prompt Personalizzato",
-      promptTitlePlaceholder: "Titolo (es: 🎯 Copy di Vendita)",
+      promptTitlePlaceholder: "Titolo (es: Copy di Vendita)",
       promptDescPlaceholder: "Breve descrizione (opzionale)",
       promptTextPlaceholder: "Scrivi qui il comando completo del prompt...",
       btnSavePrompt: "Salva Prompt",
@@ -514,25 +514,25 @@ document.addEventListener('DOMContentLoaded', () => {
       btnActivateLicense: "Attiva",
       proActiveSuccess: "✅ Licenza PRO Attiva a Vita",
       footerLink: "Apri ChatGPT",
-      footerQuota: (rem) => `Esportazioni: ${rem}/2 oggi`,
+      footerQuota: (rem) => `Esportazioni: ${rem}/2 hoje`,
       footerPro: "👑 Modalità PRO Attiva",
-      btnInsert: "⚡ Inserisci in Chat",
-      btnCopy: "📋 Copia",
+      btnInsert: "Inserisci in Chat",
+      btnCopy: "Copia",
       copied: "✅ Copiato!",
       inserted: "✅ Inserito!",
       prompts: [
         {
-          title: "⚡ Riassumi in Punti Elenco",
+          title: "Riassumi in Punti Elenco",
           desc: "Trasforma testi lunghi in punti chiari ed essenziali.",
           text: "Per favore, riassumi il testo precedente in punti elenco chiari, diretti e concisi con le informazioni più importanti."
         },
         {
-          title: "✍️ Migliora e Correggi Testo",
+          title: "Migliora e Correggi Testo",
           desc: "Perfeziona la grammatica, la chiarezza e il tono professionale.",
           text: "Rivedi e migliora il seguente testo, correggendo errori grammaticali e rendendolo più chiaro e professionale:\n\n"
         },
         {
-          title: "💻 Spiega il Codice Passo dopo Passo",
+          title: "Spiega il Codice Passo dopo Passo",
           desc: "Spiegazione riga per riga e ottimizzazione.",
           text: "Analizza il codice seguente e spiega riga per riga il suo funzionamento, indicando possibili bug o miglioramenti:\n\n"
         }
@@ -556,11 +556,11 @@ document.addEventListener('DOMContentLoaded', () => {
       updatingFilters: "检查中...",
       updatedFilters: "✅ 规则已更新！",
       shieldInfoDesc: "防护盾实时监控ChatGPT DOM结构并在广告渲染前直接消除。",
-      promptsTitle: "⚡ 高效生产力提示词",
+      promptsTitle: "高效生产力提示词",
       promptsCount: "3个内置",
       promptsHint: "点击即可一键插入当前聊天输入框：",
       newPromptHeader: "✨ 新建自定义提示词",
-      promptTitlePlaceholder: "标题（例：🎯 爆款营销文案）",
+      promptTitlePlaceholder: "标题（例：爆款营销文案）",
       promptDescPlaceholder: "简要说明（选填）",
       promptTextPlaceholder: "在此输入完整的提示词指令...",
       btnSavePrompt: "保存提示词",
@@ -594,23 +594,23 @@ document.addEventListener('DOMContentLoaded', () => {
       footerLink: "打开 ChatGPT",
       footerQuota: (rem) => `今日导出: ${rem}/2`,
       footerPro: "👑 PRO专业版已激活",
-      btnInsert: "⚡ 插入聊天",
-      btnCopy: "📋 复制",
+      btnInsert: "插入聊天",
+      btnCopy: "复制",
       copied: "✅ 已复制！",
       inserted: "✅ 已插入！",
       prompts: [
         {
-          title: "⚡ 要点提炼与摘要",
+          title: "要点提炼与摘要",
           desc: "将长篇内容迅速提炼为清晰直观的核心要点。",
           text: "请将上述内容提炼为清晰、精炼、条理分明的要点列表，仅保留最核心的信息与结论。"
         },
         {
-          title: "✍️ 润色与语法纠错",
+          title: "润色与语法纠错",
           desc: "提升语言表达、纠正语病并优化专业语气。",
           text: "请审阅并优化以下文本，修正语法与拼写错误，提升清晰度与专业度，同时保留原意：\n\n"
         },
         {
-          title: "💻 逐步代码深度解析",
+          title: "逐步代码深度解析",
           desc: "逐行深度解析逻辑、排查隐患并提供优化建议。",
           text: "请分析以下代码，逐步解释其运行逻辑与核心机制，指出潜在隐患或性能瓶颈，并提供最佳实践重构方案：\n\n"
         }
@@ -634,11 +634,11 @@ document.addEventListener('DOMContentLoaded', () => {
       updatingFilters: "確認中...",
       updatedFilters: "✅ フィルター更新完了！",
       shieldInfoDesc: "シールドがChatGPTのDOMを監視し、広告が表示される前に自動消去します。",
-      promptsTitle: "⚡ 効率化プロンプト",
+      promptsTitle: "効率化プロンプト",
       promptsCount: "3件利用可能",
       promptsHint: "クリックでチャット入力欄に即座に挿入：",
       newPromptHeader: "✨ 新規カスタムプロンプト",
-      promptTitlePlaceholder: "タイトル（例：🎯 セールスコピー作成）",
+      promptTitlePlaceholder: "タイトル（例：セールスコピー作成）",
       promptDescPlaceholder: "簡単な説明（任意）",
       promptTextPlaceholder: "ここにプロンプトの全文を入力...",
       btnSavePrompt: "プロンプト保存",
@@ -672,23 +672,23 @@ document.addEventListener('DOMContentLoaded', () => {
       footerLink: "ChatGPTを開く",
       footerQuota: (rem) => `本日利用: ${rem}/2`,
       footerPro: "👑 PROモード有効中",
-      btnInsert: "⚡ チャットに挿入",
-      btnCopy: "📋 コピー",
+      btnInsert: "チャットに挿入",
+      btnCopy: "コピー",
       copied: "✅ コピー完了！",
       inserted: "✅ 挿入完了！",
       prompts: [
         {
-          title: "⚡ 箇条書きで要約",
+          title: "箇条書きで要約",
           desc: "長文を分かりやすく簡潔な箇条書きにまとめます。",
           text: "前の文章を、重要なポイントのみを抽出して明確かつ簡潔な箇条書きで要約してください。"
         },
         {
-          title: "✍️ 文章の推敲・校正",
+          title: "文章の推敲・校正",
           desc: "文法を修正し、より自然で洗練された表現に整えます。",
           text: "以下の文章を推敲・校正し、誤字脱字や文法ミスを修正して、より洗練された自然な文章に整えてください：\n\n"
         },
         {
-          title: "💻 コードのステップ解説",
+          title: "コードのステップ解説",
           desc: "動作ロジック、バグ検出、最適化提案を詳しく解説。",
           text: "以下のコードを分析してください。各ブロックの動作をステップごとに解説し、潜在的なバグや最適化の提案を教えてください：\n\n"
         }
@@ -1092,15 +1092,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const defaultList = t.prompts || I18N.en.prompts;
 
     // 1. Prompts Padrão no Idioma Atual
-    defaultList.forEach((p) => {
+    defaultList.forEach((p, idx) => {
+      let iconSrc = 'icons/icones ua/icons8-lightning-94.png';
+      if (idx === 1) iconSrc = 'icons/icones ua/icons8-write-94.png';
+      if (idx === 2) iconSrc = 'icons/icones ua/icons8-computer-94.png';
+
       const card = document.createElement('div');
       card.className = 'prompt-card';
       card.innerHTML = `
-        <div class="prompt-card-title">${p.title}</div>
+        <div class="prompt-card-title">
+          <img src="${iconSrc}" class="prompt-title-3d-icon" alt="icon">
+          <span>${p.title}</span>
+        </div>
         <div class="prompt-card-desc">${p.desc}</div>
         <div class="prompt-card-actions">
-          <button class="prompt-action-btn btn-insert" title="${t.btnInsert}">${t.btnInsert}</button>
-          <button class="prompt-action-btn btn-copy" title="${t.btnCopy}">${t.btnCopy}</button>
+          <button class="prompt-action-btn btn-insert" title="${t.btnInsert}">
+            <img src="icons/icones ua/icons8-lightning-94.png" class="btn-action-3d-icon" alt="insert">
+            <span class="btn-action-label">${t.btnInsert}</span>
+          </button>
+          <button class="prompt-action-btn btn-copy" title="${t.btnCopy}">
+            <span class="btn-action-label">${t.btnCopy}</span>
+          </button>
         </div>
       `;
 
@@ -1111,13 +1123,14 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       const copyBtn = card.querySelector('.btn-copy');
+      const copyLabel = copyBtn.querySelector('.btn-action-label');
       copyBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         navigator.clipboard.writeText(p.text);
-        copyBtn.innerText = t.copied;
+        if (copyLabel) copyLabel.innerText = t.copied;
         setTimeout(() => { 
           const curT = I18N[currentLang] || I18N.en;
-          copyBtn.innerText = curT.btnCopy; 
+          if (copyLabel) copyLabel.innerText = curT.btnCopy; 
         }, 1500);
       });
 
@@ -1131,13 +1144,21 @@ document.addEventListener('DOMContentLoaded', () => {
         card.className = 'prompt-card pro-custom-card';
         card.innerHTML = `
           <div class="prompt-card-header-row">
-            <div class="prompt-card-title">${escapeHtml(cp.title)}</div>
+            <div class="prompt-card-title">
+              <img src="icons/icones ua/icons8-lightning-94.png" class="prompt-title-3d-icon" alt="icon">
+              <span>${escapeHtml(cp.title)}</span>
+            </div>
             <span class="custom-pro-tag">👑 PRO</span>
           </div>
           ${cp.desc ? `<div class="prompt-card-desc">${escapeHtml(cp.desc)}</div>` : ''}
           <div class="prompt-card-actions">
-            <button class="prompt-action-btn btn-insert" title="${t.btnInsert}">${t.btnInsert}</button>
-            <button class="prompt-action-btn btn-copy" title="${t.btnCopy}">${t.btnCopy}</button>
+            <button class="prompt-action-btn btn-insert" title="${t.btnInsert}">
+              <img src="icons/icones ua/icons8-lightning-94.png" class="btn-action-3d-icon" alt="insert">
+              <span class="btn-action-label">${t.btnInsert}</span>
+            </button>
+            <button class="prompt-action-btn btn-copy" title="${t.btnCopy}">
+              <span class="btn-action-label">${t.btnCopy}</span>
+            </button>
             <button class="prompt-action-btn btn-delete" title="Delete" data-index="${idx}">🗑️</button>
           </div>
         `;
@@ -1149,13 +1170,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const copyBtn = card.querySelector('.btn-copy');
+        const copyLabel = copyBtn.querySelector('.btn-action-label');
         copyBtn.addEventListener('click', (e) => {
           e.stopPropagation();
           navigator.clipboard.writeText(cp.text);
-          copyBtn.innerText = t.copied;
+          if (copyLabel) copyLabel.innerText = t.copied;
           setTimeout(() => { 
             const curT = I18N[currentLang] || I18N.en;
-            copyBtn.innerText = curT.btnCopy; 
+            if (copyLabel) copyLabel.innerText = curT.btnCopy; 
           }, 1500);
         });
 
@@ -1235,6 +1257,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function sendPromptToActiveTab(text, btnElement) {
     const t = I18N[currentLang] || I18N.en;
+    const labelSpan = btnElement.querySelector('.btn-action-label');
+    const updateLabel = (msg) => {
+      if (labelSpan) labelSpan.innerText = msg;
+      else btnElement.innerText = msg;
+    };
+
     if (typeof chrome !== 'undefined' && chrome.tabs) {
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const activeTab = tabs && tabs[0];
@@ -1242,36 +1270,36 @@ document.addEventListener('DOMContentLoaded', () => {
           chrome.tabs.sendMessage(activeTab.id, { action: 'insertPrompt', text: text }, (response) => {
             const lastErr = chrome.runtime.lastError;
             if (!lastErr && response && response.success) {
-              btnElement.innerText = t.inserted;
+              updateLabel(t.inserted);
               setTimeout(() => { 
                 const curT = I18N[currentLang] || I18N.en;
-                btnElement.innerText = curT.btnInsert; 
+                updateLabel(curT.btnInsert); 
               }, 1500);
             } else {
               navigator.clipboard.writeText(text);
-              btnElement.innerText = t.copied;
+              updateLabel(t.copied);
               setTimeout(() => { 
                 const curT = I18N[currentLang] || I18N.en;
-                btnElement.innerText = curT.btnInsert; 
+                updateLabel(curT.btnInsert); 
               }, 2000);
             }
           });
         } else {
           // Se não estiver na aba do ChatGPT, copia para o clipboard
           navigator.clipboard.writeText(text);
-          btnElement.innerText = t.copied;
+          updateLabel(t.copied);
           setTimeout(() => { 
             const curT = I18N[currentLang] || I18N.en;
-            btnElement.innerText = curT.btnInsert; 
+            updateLabel(curT.btnInsert); 
           }, 2000);
         }
       });
     } else {
       navigator.clipboard.writeText(text);
-      btnElement.innerText = t.copied;
+      updateLabel(t.copied);
       setTimeout(() => { 
         const curT = I18N[currentLang] || I18N.en;
-        btnElement.innerText = curT.btnInsert; 
+        updateLabel(curT.btnInsert); 
       }, 1500);
     }
   }

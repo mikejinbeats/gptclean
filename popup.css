@@ -985,6 +985,31 @@ body.theme-default .stat-number {
   transform: translateX(2px);
 }
 
+.prompt-card-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.prompt-title-3d-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
+  flex-shrink: 0;
+}
+
+.btn-action-3d-icon {
+  width: 13px;
+  height: 13px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  flex-shrink: 0;
+}
+
 .prompt-card-desc {
   font-size: 11px;
   color: var(--text-muted);
@@ -1177,6 +1202,14 @@ body.theme-white .prompt-action-btn.btn-copy:hover {
   border-radius: var(--radius-md);
   padding: 10px 12px;
   margin-top: 10px;
+}
+
+.pro-lock-3d-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 6px rgba(245, 158, 11, 0.4));
 }
 
 .lock-info strong {
