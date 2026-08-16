@@ -4,22 +4,27 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. OCULTAÇÃO INSTANTÂNEA DE ANÚNCIOS (0ms)
+   1. OCULTAÇÃO INSTANTÂNEA DE ANÚNCIOS (0ms - CIRÚRGICO & SEGURO)
    -------------------------------------------------------------------------- */
-div[data-testid*="ad"],
-div[data-testid*="sponsored"],
-div[data-testid*="advertisement"],
-div[data-testid*="partner-result"],
+div[data-testid="search-ad"],
+div[data-testid="sponsored-result"],
+div[data-testid="sponsored-search-item"],
+div[data-testid="web-search-sponsored"],
+div[data-testid="sponsored-card"],
+div[data-testid="partner-sponsored-item"],
 div[class*="sponsored-card"],
 div[class*="sponsored-message"],
 div[class*="ad-container"],
 div[class*="ad-unit"],
 div[class*="ad-banner"],
-div[aria-label*="sponsored" i],
-div[aria-label*="patrocinado" i],
-div[aria-label*="advertisement" i],
-section[aria-label*="sponsored" i],
-section[aria-label*="patrocinado" i] {
+div[data-is-sponsored="true"],
+div[aria-label="Sponsored" i],
+div[aria-label="Patrocinado" i],
+div[aria-label="Advertisement" i],
+div[aria-label="Publicidade" i],
+section[aria-label="Sponsored" i],
+section[aria-label="Patrocinado" i],
+section[aria-label="Advertisement" i] {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -32,14 +37,33 @@ section[aria-label*="patrocinado" i] {
   overflow: hidden !important;
 }
 
-div:has(> a[href*="msn.com/"]),
+/* Links Patrocinados & Afiliados / Redirecionamentos Comerciais */
+a[href*="bing.com/aclick"],
+a[href*="bat.bing.com"],
+a[href*="ads.openai.com"],
+a[href*="googleadservices.com"],
+a[href*="doubleclick.net"],
+a[href*="adnxs.com"],
 div:has(> a[href*="bing.com/aclick"]),
-div:has(> a[href*="ads.openai.com"]) {
+div:has(> a[href*="ads.openai.com"]),
+div:has(> a[href*="googleadservices.com"]),
+div:has(> a[href*="doubleclick.net"]) {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Iframes de Redes Publicitárias */
+iframe[src*="googlesyndication.com"],
+iframe[src*="doubleclick.net"],
+iframe[src*="amazon-adsystem.com"],
+iframe[src*="adnxs.com"] {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
   pointer-events: none !important;
 }
 

@@ -392,49 +392,92 @@
   }
 
   // --------------------------------------------------------------------------
-  // 2. MOTOR REAL DE REMOÇÃO DE ANÚNCIOS
+  // 2. MOTOR REAL DE REMOÇÃO DE ANÚNCIOS (4 CAMADAS DE PRECISÃO CIRÚRGICA)
   // --------------------------------------------------------------------------
   function cleanAds() {
     if (!state.adBlockEnabled) return;
 
     let removed = 0;
-    const directSelectors = [
-      '[data-testid*="ad"]',
-      '[data-testid*="sponsored"]',
-      '[data-testid*="advertisement"]',
-      '[data-testid*="partner-result"]',
-      '[class*="sponsored-card"]',
-      '[class*="sponsored-message"]',
-      '[class*="ad-container"]',
-      '[class*="ad-unit"]',
-      '[aria-label*="sponsored" i]',
-      '[aria-label*="patrocinado" i]'
+
+    // Camada 1: Seletores Explícitos de Publicidade e Parceiros
+    const explicitAdSelectors = [
+      '[data-testid="search-ad"]',
+      '[data-testid="sponsored-result"]',
+      '[data-testid="sponsored-search-item"]',
+      '[data-testid="web-search-sponsored"]',
+      '[data-testid="sponsored-card"]',
+      '[data-testid="partner-sponsored-item"]',
+      '[data-is-sponsored="true"]',
+      'div[class*="sponsored-card"]',
+      'div[class*="sponsored-message"]',
+      'div[class*="ad-container"]',
+      'div[class*="ad-unit"]',
+      'div[class*="ad-banner"]',
+      'div[aria-label="Sponsored" i]',
+      'div[aria-label="Patrocinado" i]',
+      'div[aria-label="Advertisement" i]',
+      'div[aria-label="Publicidade" i]',
+      'section[aria-label="Sponsored" i]',
+      'section[aria-label="Patrocinado" i]'
     ];
 
     try {
-      const candidates = document.querySelectorAll(directSelectors.join(','));
+      const candidates = document.querySelectorAll(explicitAdSelectors.join(','));
       candidates.forEach((el) => {
-        if (!el.closest('article') || el.tagName.toLowerCase() !== 'article') {
+        if (!el.matches('article[data-testid^="conversation-turn-"]') && !el.closest('pre') && !el.closest('code')) {
           el.remove();
           removed++;
         }
       });
     } catch (e) {}
 
-    const containers = document.querySelectorAll('div, section');
-    containers.forEach((box) => {
-      if (box.children.length > 0 && box.children.length <= 6) {
-        const text = (box.innerText || '').trim();
-        const isSponsored = /^(patrocinado|sponsored|ad|publicidade)\b/i.test(text) ||
-                            (text.length < 80 && /(patrocinado|sponsored)/i.test(text));
-        const hasExternalAdLink = box.querySelector('a[href*="bing.com/aclick"], a[href*="ads.openai.com"], a[href*="msn.com"]');
-
-        if ((isSponsored || hasExternalAdLink) && !box.closest('article[data-testid^="conversation-turn-"]') && box.tagName.toLowerCase() !== 'article') {
-          box.remove();
+    // Camada 2: Detecção e Remoção de Links Comerciais & Afiliados (Bing/Aclick/Ads)
+    try {
+      const adLinks = document.querySelectorAll(
+        'a[href*="bing.com/aclick"], a[href*="bat.bing.com"], a[href*="ads.openai.com"], a[href*="googleadservices.com"], a[href*="doubleclick.net"], a[href*="adnxs.com"]'
+      );
+      adLinks.forEach((link) => {
+        const adCard = link.closest('[data-testid*="citation"], [class*="citation"], div[class*="card"], li, div');
+        if (adCard && !adCard.matches('article[data-testid^="conversation-turn-"]') && !adCard.closest('pre') && !adCard.closest('code')) {
+          adCard.remove();
+          removed++;
+        } else {
+          link.remove();
           removed++;
         }
-      }
-    });
+      });
+    } catch (e) {}
+
+    // Camada 3: Remoção de Iframes e Redes Publicitárias
+    try {
+      const adIframes = document.querySelectorAll(
+        'iframe[src*="googlesyndication.com"], iframe[src*="doubleclick.net"], iframe[src*="amazon-adsystem.com"], iframe[src*="adnxs.com"]'
+      );
+      adIframes.forEach((iframe) => {
+        iframe.remove();
+        removed++;
+      });
+    } catch (e) {}
+
+    // Camada 4: Análise Heurística de Blocos com Selo "Sponsored / Patrocinado"
+    try {
+      const sponsorBadges = document.querySelectorAll('span, div, p');
+      sponsorBadges.forEach((badge) => {
+        if (badge.children.length === 0) {
+          const text = (badge.innerText || '').trim().toLowerCase();
+          if (text === 'sponsored' || text === 'patrocinado' || text === 'advertisement' || text === 'publicidade') {
+            const parentBlock = badge.closest('div[class*="border"], div[class*="card"], div[class*="rounded"], div[class*="bg-"]');
+            if (parentBlock && !parentBlock.matches('article[data-testid^="conversation-turn-"]') && !parentBlock.closest('pre') && !parentBlock.closest('code')) {
+              const hasLink = parentBlock.querySelector('a[href^="http"]');
+              if (hasLink) {
+                parentBlock.remove();
+                removed++;
+              }
+            }
+          }
+        }
+      });
+    } catch (e) {}
 
     if (removed > 0) {
       incrementBlockedCount(removed);
