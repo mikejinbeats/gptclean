@@ -621,6 +621,18 @@ body.theme-default .nav-tabs {
   line-height: 1;
 }
 
+.theme-3d-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.25));
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.theme-option:hover .theme-3d-icon {
+  transform: translateY(-2px) scale(1.1);
+}
+
 .theme-box .theme-name {
   font-size: 10.5px;
   font-weight: 700;
