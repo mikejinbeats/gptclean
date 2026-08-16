@@ -1,4 +1,4 @@
-# ⚡ ChatGPT Clean & Power (v1.2.0)
+# ⚡ ChatGPT Clean (v1.2.0)
 
 > Extensão Manifest V3 para Google Chrome que bloqueia anúncios e elementos patrocinados no ChatGPT em tempo real, com ferramentas avançadas de produtividade (Exportação PDF/Word/MD, Prompts Rápidos e Gestor de Pastas).
 

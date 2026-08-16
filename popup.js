@@ -1,6 +1,6 @@
 /**
- * ChatGPT Clean & Power - Popup Logic (v1.2.0)
- * Gestão de abas, temas do popup, estatísticas, trial de 30 dias e envio de prompts.
+ * ChatGPT Clean - Popup Logic (v1.2.0)
+ * Gestão de abas, temas do popup, estatísticas e envio de prompts.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
       foldersTitle: "📁 Pastas na Barra Lateral",
       badgeFoldersActive: "Ativo",
       foldersDesc: "Organiza e guarda chats favoritos em categorias",
-      proHeroTitle: "ChatGPT Power PRO",
+      proHeroTitle: "ChatGPT Clean PRO",
       proHeroDesc: "Desbloqueia todo o ecossistema com licença única vitalícia.",
       proB1: "✨ <strong>Exportações 100% Ilimitadas</strong> (Sem limite de 2 por dia)",
       proB2: "✨ <strong>Pastas & Marcadores ilimitados</strong> na barra lateral",
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
       foldersTitle: "📁 Sidebar Folders",
       badgeFoldersActive: "Active",
       foldersDesc: "Organize and bookmark favorite chats in categories",
-      proHeroTitle: "ChatGPT Power PRO",
+      proHeroTitle: "ChatGPT Clean PRO",
       proHeroDesc: "Unlock the entire suite with a single lifetime license.",
       proB1: "✨ <strong>100% Unlimited Exports</strong> (No 2/day daily limit)",
       proB2: "✨ <strong>Unlimited Folders & Bookmarks</strong> in sidebar",
@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
       foldersTitle: "📁 Carpetas en la Barra Lateral",
       badgeFoldersActive: "Activo",
       foldersDesc: "Organiza y guarda chats favoritos en categorías",
-      proHeroTitle: "ChatGPT Power PRO",
+      proHeroTitle: "ChatGPT Clean PRO",
       proHeroDesc: "Desbloquea todo el ecosistema con licencia única de por vida.",
       proB1: "✨ <strong>Exportaciones 100% Ilimitadas</strong> (Sin límite de 2 al día)",
       proB2: "✨ <strong>Carpetas y Marcadores ilimitados</strong>",
@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
       foldersTitle: "📁 Dossiers dans la Barre Latérale",
       badgeFoldersActive: "Actif",
       foldersDesc: "Organisez et épinglez vos conversations préférées",
-      proHeroTitle: "ChatGPT Power PRO",
+      proHeroTitle: "ChatGPT Clean PRO",
       proHeroDesc: "Débloquez tout l'écosystème avec une licence unique à vie.",
       proB1: "✨ <strong>Exports 100% Illimités</strong> (Sans limite quotidienne de 2/jour)",
       proB2: "✨ <strong>Dossiers & Favoris illimités</strong> dans la barre latérale",
@@ -409,7 +409,7 @@ document.addEventListener('DOMContentLoaded', () => {
       foldersTitle: "📁 Seitenleisten-Ordner",
       badgeFoldersActive: "Aktiv",
       foldersDesc: "Organisieren Sie Ihre Lieblingschats in Kategorien",
-      proHeroTitle: "ChatGPT Power PRO",
+      proHeroTitle: "ChatGPT Clean PRO",
       proHeroDesc: "Schalten Sie alle Funktionen mit einer lebenslangen Lizenz frei.",
       proB1: "✨ <strong>100% Unbegrenzte Exporte</strong> (Kein 2/Tag Limit)",
       proB2: "✨ <strong>Unbegrenzte Ordner & Lesezeichen</strong> in der Seitenleiste",
@@ -484,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
       foldersTitle: "📁 Cartelle nella Barra Laterale",
       badgeFoldersActive: "Attivo",
       foldersDesc: "Organizza e salva le tue chat preferite in categorie",
-      proHeroTitle: "ChatGPT Power PRO",
+      proHeroTitle: "ChatGPT Clean PRO",
       proHeroDesc: "Sblocca l'intero ecosistema con una licenza unica a vita.",
       proB1: "✨ <strong>Esportazioni 100% Illimitate</strong> (Nessun limite di 2 al giorno)",
       proB2: "✨ <strong>Cartelle e Segnalibri illimitati</strong> nella barra laterale",
@@ -559,7 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
       foldersTitle: "📁 侧边栏分类文件夹",
       badgeFoldersActive: "已启用",
       foldersDesc: "轻松管理、归档并一键收藏常用聊天对话",
-      proHeroTitle: "ChatGPT Power PRO",
+      proHeroTitle: "ChatGPT Clean PRO",
       proHeroDesc: "一次购买，终身享受全部高级生态功能与无限制体验。",
       proB1: "✨ <strong>100% 无限导出</strong>（无每日2次额度限制）",
       proB2: "✨ <strong>无限侧边栏文件夹与书签</strong>",
@@ -634,7 +634,7 @@ document.addEventListener('DOMContentLoaded', () => {
       foldersTitle: "📁 サイドバーフォルダ機能",
       badgeFoldersActive: "有効",
       foldersDesc: "お気に入りチャットをカテゴリ別に整理・保存",
-      proHeroTitle: "ChatGPT Power PRO",
+      proHeroTitle: "ChatGPT Clean PRO",
       proHeroDesc: "1回の購入で全機能を永久無制限でご利用いただけます。",
       proB1: "✨ <strong>完全無制限エクスポート</strong>（1日2回制限なし）",
       proB2: "✨ <strong>無制限フォルダ＆ブックマーク管理</strong>",

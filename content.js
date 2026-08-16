@@ -1,5 +1,5 @@
 /**
- * ChatGPT Clean & Power - Content Script Completo
+ * ChatGPT Clean - Content Script Completo
  * Bloqueio de anúncios, Modal de Exportação com 3 opções (PDF/Word/MD),
  * pastas na barra lateral e injeção de prompts.
  */
