@@ -849,6 +849,27 @@ body.theme-default .stat-number {
   transform: translateY(-1px);
 }
 
+.btn-3d-icon {
+  width: 17px;
+  height: 17px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.action-btn:hover .btn-3d-icon {
+  transform: rotate(45deg) scale(1.1);
+}
+
+.btn-3d-icon.spinning {
+  animation: spinIcon 0.8s linear infinite;
+}
+
+@keyframes spinIcon {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .action-btn:active {
   transform: scale(0.98);
 }

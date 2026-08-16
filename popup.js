@@ -1050,21 +1050,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const updateBtnIcon = document.getElementById('update-btn-icon');
   btnUpdateFilters.addEventListener('click', () => {
     const t = I18N[currentLang] || I18N.en;
     btnUpdateFilters.style.pointerEvents = 'none';
     updateBtnText.innerText = t.updatingFilters;
-    btnUpdateFilters.querySelector('.btn-icon').innerText = '⏳';
+    if (updateBtnIcon) updateBtnIcon.classList.add('spinning');
 
     setTimeout(() => {
       updateBtnText.innerText = t.updatedFilters;
-      btnUpdateFilters.querySelector('.btn-icon').innerText = '✅';
+      if (updateBtnIcon) updateBtnIcon.classList.remove('spinning');
       btnUpdateFilters.style.borderColor = '#10b981';
 
       setTimeout(() => {
         const curT = I18N[currentLang] || I18N.en;
         updateBtnText.innerText = curT.btnUpdateFilters;
-        btnUpdateFilters.querySelector('.btn-icon').innerText = '🔄';
         btnUpdateFilters.style.borderColor = '';
         btnUpdateFilters.style.pointerEvents = 'auto';
       }, 2500);
