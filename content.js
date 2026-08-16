@@ -435,6 +435,117 @@
   };
 
   // --------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
+  // 2. MOTOR DE BLOQUEIO DE ANÚNCIOS (4 CAMADAS)
+  // --------------------------------------------------------------------------
+  function cleanAds() {
+    if (!state.adBlockEnabled) return;
+
+    let removed = 0;
+
+    // Camada 1: Seletores Explícitos de Publicidade e Parceiros
+    const explicitAdSelectors = [
+      '[data-testid="search-ad"]',
+      '[data-testid="sponsored-result"]',
+      '[data-testid="sponsored-search-item"]',
+      '[data-testid="web-search-sponsored"]',
+      '[data-testid="sponsored-card"]',
+      '[data-testid="partner-sponsored-item"]',
+      '[data-is-sponsored="true"]',
+      'div[class*="sponsored-card"]',
+      'div[class*="sponsored-message"]',
+      'div[class*="ad-container"]',
+      'div[class*="ad-unit"]',
+      'div[class*="ad-banner"]',
+      'div[aria-label="Sponsored" i]',
+      'div[aria-label="Patrocinado" i]',
+      'div[aria-label="Advertisement" i]',
+      'div[aria-label="Publicidade" i]',
+      'section[aria-label="Sponsored" i]',
+      'section[aria-label="Patrocinado" i]'
+    ];
+
+    try {
+      const candidates = document.querySelectorAll(explicitAdSelectors.join(','));
+      candidates.forEach((el) => {
+        if (!el.matches('article[data-testid^="conversation-turn-"]') && !el.closest('pre') && !el.closest('code')) {
+          el.remove();
+          removed++;
+        }
+      });
+    } catch (e) {}
+
+    // Camada 2: Detecção e Remoção de Links Comerciais & Afiliados (Bing/Aclick/Ads)
+    try {
+      const adLinks = document.querySelectorAll(
+        'a[href*="bing.com/aclick"], a[href*="bat.bing.com"], a[href*="ads.openai.com"], a[href*="googleadservices.com"], a[href*="doubleclick.net"], a[href*="adnxs.com"]'
+      );
+      adLinks.forEach((link) => {
+        const adCard = link.closest('[data-testid*="citation"], [class*="citation"], div[class*="card"], li, div');
+        if (adCard && !adCard.matches('article[data-testid^="conversation-turn-"]') && !adCard.closest('pre') && !adCard.closest('code')) {
+          adCard.remove();
+          removed++;
+        } else {
+          link.remove();
+          removed++;
+        }
+      });
+    } catch (e) {}
+
+    // Camada 3: Remoção de Iframes e Redes Publicitárias
+    try {
+      const adIframes = document.querySelectorAll(
+        'iframe[src*="googlesyndication.com"], iframe[src*="doubleclick.net"], iframe[src*="amazon-adsystem.com"], iframe[src*="adnxs.com"]'
+      );
+      adIframes.forEach((iframe) => {
+        iframe.remove();
+        removed++;
+      });
+    } catch (e) {}
+
+    // Camada 4: Análise Heurística de Blocos com Selo "Sponsored / Patrocinado"
+    try {
+      const sponsorBadges = document.querySelectorAll('span, div, p');
+      sponsorBadges.forEach((badge) => {
+        if (badge.children.length === 0) {
+          const text = (badge.innerText || '').trim().toLowerCase();
+          if (text === 'sponsored' || text === 'patrocinado' || text === 'advertisement' || text === 'publicidade') {
+            const parentBlock = badge.closest('div[class*="border"], div[class*="card"], div[class*="rounded"], div[class*="bg-"]');
+            if (parentBlock && !parentBlock.matches('article[data-testid^="conversation-turn-"]') && !parentBlock.closest('pre') && !parentBlock.closest('code')) {
+              const hasLink = parentBlock.querySelector('a[href^="http"]');
+              if (hasLink) {
+                parentBlock.remove();
+                removed++;
+              }
+            }
+          }
+        }
+      });
+    } catch (e) {}
+
+    if (removed > 0) {
+      incrementBlockedCount(removed);
+    }
+  }
+
+  function incrementBlockedCount(count) {
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      chrome.storage.local.get(['blockedCount', 'blockedToday', 'lastDate'], (data) => {
+        const today = new Date().toDateString();
+        const total = (data.blockedCount || 0) + count;
+        const todayCount = (data.lastDate === today ? (data.blockedToday || 0) : 0) + count;
+        chrome.storage.local.set({
+          blockedCount: total,
+          blockedToday: todayCount,
+          lastDate: today
+        });
+      });
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // 3. INJEÇÃO DO BOTÃO DE EXPORTAÇÃO
+  // --------------------------------------------------------------------------
   const MAX_FREE_DAILY_EXPORTS = 2;
   const DOMAIN_QUOTA_KEY = '__cgpt_clean_export_q__';
 
