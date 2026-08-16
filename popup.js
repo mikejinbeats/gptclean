@@ -79,6 +79,9 @@ document.addEventListener('DOMContentLoaded', () => {
       tabPro: "PRO",
       blockAdsTitle: "Bloquear Anúncios",
       blockAdsDesc: "Elimina conteúdo patrocinado em tempo real",
+      statsTitle: "TELEMETRIA",
+      btnResetStats: "Zerar",
+      statsResetSuccess: "✅ Zerado!",
       statTodayLabel: "BLOQUEADOS HOJE",
       statTotalLabel: "TOTAL ACUMULADO",
       btnUpdateFilters: "Atualizar Filtros Anti-Ad",
@@ -154,6 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
       tabPro: "PRO",
       blockAdsTitle: "Block Ads",
       blockAdsDesc: "Eliminate sponsored and ad content in real-time",
+      statsTitle: "TELEMETRY",
+      btnResetStats: "Reset",
+      statsResetSuccess: "✅ Reset!",
       statTodayLabel: "BLOCKED TODAY",
       statTotalLabel: "TOTAL ALL-TIME",
       btnUpdateFilters: "Update Anti-Ad Filters",
@@ -229,6 +235,9 @@ document.addEventListener('DOMContentLoaded', () => {
       tabPro: "PRO",
       blockAdsTitle: "Bloquear Anuncios",
       blockAdsDesc: "Elimina contenido patrocinado en tiempo real",
+      statsTitle: "TELEMETRÍA",
+      btnResetStats: "Reiniciar",
+      statsResetSuccess: "✅ ¡Reiniciado!",
       statTodayLabel: "BLOQUEADOS HOY",
       statTotalLabel: "TOTAL HISTÓRICO",
       btnUpdateFilters: "Actualizar Filtros Anti-Ad",
@@ -304,6 +313,9 @@ document.addEventListener('DOMContentLoaded', () => {
       tabPro: "PRO",
       blockAdsTitle: "Bloquer les Pubs",
       blockAdsDesc: "Supprime le contenu sponsorisé en temps réel",
+      statsTitle: "TÉLÉMÉTRIE",
+      btnResetStats: "Reset",
+      statsResetSuccess: "✅ Réinitialisé !",
       statTodayLabel: "BLOQUÉS AUJOURD'HUI",
       statTotalLabel: "TOTAL HISTORIQUE",
       btnUpdateFilters: "Mettre à jour les Filtres",
@@ -379,6 +391,9 @@ document.addEventListener('DOMContentLoaded', () => {
       tabPro: "PRO",
       blockAdsTitle: "Werbung Blockieren",
       blockAdsDesc: "Entfernt gesponserte Inhalte in Echtzeit",
+      statsTitle: "TELEMETRIE",
+      btnResetStats: "Reset",
+      statsResetSuccess: "✅ Zurückgesetzt!",
       statTodayLabel: "HEUTE BLOCKIERT",
       statTotalLabel: "GESAMT BLOCKIERT",
       btnUpdateFilters: "Anti-Ad Filter Aktualisieren",
@@ -454,6 +469,9 @@ document.addEventListener('DOMContentLoaded', () => {
       tabPro: "PRO",
       blockAdsTitle: "Blocca Pubblicità",
       blockAdsDesc: "Rimuove contenuti sponsorizzati in tempo reale",
+      statsTitle: "TELEMETRIA",
+      btnResetStats: "Azzera",
+      statsResetSuccess: "✅ Azzerato!",
       statTodayLabel: "BLOCCATI OGGI",
       statTotalLabel: "TOTALE STORICO",
       btnUpdateFilters: "Aggiorna Filtri Anti-Ad",
@@ -529,6 +547,9 @@ document.addEventListener('DOMContentLoaded', () => {
       tabPro: "专业版",
       blockAdsTitle: "广告拦截",
       blockAdsDesc: "实时清除ChatGPT所有赞助推广内容",
+      statsTitle: "实时统计",
+      btnResetStats: "重置",
+      statsResetSuccess: "✅ 已重置！",
       statTodayLabel: "今日已拦截",
       statTotalLabel: "历史总计拦截",
       btnUpdateFilters: "更新广告过滤规则",
@@ -604,6 +625,9 @@ document.addEventListener('DOMContentLoaded', () => {
       tabPro: "PRO",
       blockAdsTitle: "広告ブロック",
       blockAdsDesc: "スポンサー広告をリアルタイムで完全除去",
+      statsTitle: "リアルタイム統計",
+      btnResetStats: "リセット",
+      statsResetSuccess: "✅ リセット完了！",
       statTodayLabel: "本日のブロック数",
       statTotalLabel: "累計ブロック数",
       btnUpdateFilters: "広告フィルター更新",
@@ -755,6 +779,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (blockTitle) blockTitle.innerText = t.blockAdsTitle;
     const blockDesc = document.getElementById('i18n-block-ads-desc');
     if (blockDesc) blockDesc.innerText = t.blockAdsDesc;
+    const statsTitleEl = document.getElementById('i18n-stats-title');
+    if (statsTitleEl) statsTitleEl.innerText = t.statsTitle;
+    const resetBtnTextEl = document.getElementById('btn-reset-stats-text');
+    if (resetBtnTextEl) resetBtnTextEl.innerText = t.btnResetStats;
     const statTodayLbl = document.getElementById('i18n-stat-today-label');
     if (statTodayLbl) statTodayLbl.innerText = t.statTodayLabel;
     const statTotalLbl = document.getElementById('i18n-stat-total-label');
@@ -996,8 +1024,32 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------------------------
-  // 4. ATUALIZAR FILTROS DE ANÚNCIOS
+  // 4. ATUALIZAR FILTROS DE ANÚNCIOS & RESET DE ESTATÍSTICAS
   // --------------------------------------------------------------------------
+  const btnResetStats = document.getElementById('btn-reset-stats');
+  const resetBtnText = document.getElementById('btn-reset-stats-text');
+  if (btnResetStats) {
+    btnResetStats.addEventListener('click', () => {
+      if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+        chrome.storage.local.set({ blockedCount: 0, blockedToday: 0 }, () => {
+          statToday.innerText = '0';
+          statTotal.innerText = '0';
+          const t = I18N[currentLang] || I18N.en;
+          if (resetBtnText) {
+            resetBtnText.innerText = t.statsResetSuccess || '✅ Done';
+            setTimeout(() => {
+              const curT = I18N[currentLang] || I18N.en;
+              resetBtnText.innerText = curT.btnResetStats;
+            }, 1500);
+          }
+        });
+      } else {
+        statToday.innerText = '0';
+        statTotal.innerText = '0';
+      }
+    });
+  }
+
   btnUpdateFilters.addEventListener('click', () => {
     const t = I18N[currentLang] || I18N.en;
     btnUpdateFilters.style.pointerEvents = 'none';

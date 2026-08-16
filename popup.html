@@ -118,14 +118,23 @@
           </label>
         </div>
 
-        <div class="stats-grid">
-          <div class="stat-box glass-panel">
-            <span class="stat-number mono-telemetry" id="stat-today">0</span>
-            <span class="stat-label" id="i18n-stat-today-label">BLOQUEADOS HOJE</span>
+        <div class="stats-container">
+          <div class="stats-header-row">
+            <span class="stats-subheading" id="i18n-stats-title">TELEMETRY</span>
+            <button type="button" class="btn-reset-stats" id="btn-reset-stats" title="Zerar / Reset Stats">
+              <span class="reset-icon">↺</span>
+              <span id="btn-reset-stats-text">Reset</span>
+            </button>
           </div>
-          <div class="stat-box glass-panel">
-            <span class="stat-number mono-telemetry" id="stat-total">0</span>
-            <span class="stat-label" id="i18n-stat-total-label">TOTAL ACUMULADO</span>
+          <div class="stats-grid">
+            <div class="stat-box glass-panel">
+              <span class="stat-number mono-telemetry" id="stat-today">0</span>
+              <span class="stat-label" id="i18n-stat-today-label">BLOQUEADOS HOJE</span>
+            </div>
+            <div class="stat-box glass-panel">
+              <span class="stat-number mono-telemetry" id="stat-total">0</span>
+              <span class="stat-label" id="i18n-stat-total-label">TOTAL ACUMULADO</span>
+            </div>
           </div>
         </div>
 
