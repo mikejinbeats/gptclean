@@ -1128,8 +1128,23 @@
   }
 
   // --------------------------------------------------------------------------
-    // 4. GESTOR DE PASTAS FUNCIONAL NA BARRA LATERAL (BOOKMARKS DE CONVERSAS)
+    // --------------------------------------------------------------------------
+  // 4. GESTOR DE PASTAS FUNCIONAL NA BARRA LATERAL (BOOKMARKS DE CONVERSAS)
   // --------------------------------------------------------------------------
+  function saveFolders() {
+    if (typeof chrome !== 'undefined' && chrome.storage) {
+      if (chrome.storage.local) {
+        chrome.storage.local.set({ folders: state.folders });
+      }
+      if (chrome.storage.sync) {
+        chrome.storage.sync.set({ folders: state.folders });
+      }
+    }
+    try {
+      localStorage.setItem('__cgpt_clean_folders_data__', JSON.stringify(state.folders));
+    } catch (e) {}
+  }
+
   function openCreateFolderModal() {
     const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
     const existing = document.querySelector('.chatgpt-clean-modal-overlay');
@@ -1181,12 +1196,16 @@
       const val = (input.value || '').trim();
       if (!val) return;
 
+      const newFolderId = 'f_' + Date.now();
       const newFolder = {
-        id: 'f_' + Date.now(),
+        id: newFolderId,
         name: val,
         chats: []
       };
       state.folders.push(newFolder);
+      if (!state.expandedFolderIds) state.expandedFolderIds = new Set();
+      state.expandedFolderIds.add(newFolderId);
+
       saveFolders();
       closeModal();
       showToast(t.toastFolderCreated || 'Pasta criada com sucesso!', 'success');
@@ -1235,6 +1254,7 @@
 
     overlay.querySelector('#chatgpt-clean-btn-confirm-delete').addEventListener('click', () => {
       state.folders = state.folders.filter(f => f.id !== folderId);
+      if (state.expandedFolderIds) state.expandedFolderIds.delete(folderId);
       saveFolders();
       closeModal();
       showToast(t.toastFolderDeleted || 'Pasta eliminada!', 'success');
@@ -1265,6 +1285,9 @@
     let foldersHtml = '';
     state.folders.forEach(f => {
       const chatsList = f.chats || [];
+      const isExpanded = state.expandedFolderIds && state.expandedFolderIds.has(f.id);
+      const displayStyle = isExpanded ? 'block' : 'none';
+
       let chatsHtml = '';
       chatsList.forEach(chat => {
         chatsHtml += `
@@ -1279,7 +1302,10 @@
         <div class="chatgpt-clean-folder-wrapper" data-folder-id="${f.id}">
           <div class="chatgpt-clean-folder-item">
             <div class="chatgpt-clean-folder-title">
-              <span class="folder-name-toggle">📁 ${escapeHtml(f.name)}</span>
+              <span class="folder-name-toggle" style="cursor:pointer;flex:1;display:flex;align-items:center;gap:4px;">
+                <span class="folder-arrow-icon" style="font-size:10px;transition:transform 0.2s;${isExpanded ? 'transform:rotate(90deg);' : ''}">▶</span>
+                <span>📁 ${escapeHtml(f.name)}</span>
+              </span>
               <div class="folder-actions" style="display:flex;align-items:center;gap:4px;">
                 <button class="btn-save-current-chat" data-folder-id="${f.id}" title="Guardar a conversa aberta nesta pasta">${t.btnPinChat}</button>
                 <span class="chatgpt-clean-folder-count">${chatsList.length}</span>
@@ -1294,7 +1320,7 @@
               </div>
             </div>
           </div>
-          <div class="chatgpt-clean-folder-chats" style="display: none;">
+          <div class="chatgpt-clean-folder-chats" style="display: ${displayStyle};">
             ${chatsHtml || `<div class="no-chats-hint">${t.noChatSaved}</div>`}
           </div>
         </div>
@@ -1332,9 +1358,20 @@
       el.addEventListener('click', (e) => {
         e.stopPropagation();
         const wrapper = el.closest('.chatgpt-clean-folder-wrapper');
+        const folderId = wrapper.getAttribute('data-folder-id');
         const chatsContainer = wrapper.querySelector('.chatgpt-clean-folder-chats');
+        const arrow = el.querySelector('.folder-arrow-icon');
         const isHidden = chatsContainer.style.display === 'none';
+
         chatsContainer.style.display = isHidden ? 'block' : 'none';
+        if (arrow) arrow.style.transform = isHidden ? 'rotate(90deg)' : 'none';
+
+        if (!state.expandedFolderIds) state.expandedFolderIds = new Set();
+        if (isHidden) {
+          state.expandedFolderIds.add(folderId);
+        } else {
+          state.expandedFolderIds.delete(folderId);
+        }
       });
     });
 
@@ -1343,19 +1380,45 @@
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const folderId = btn.getAttribute('data-folder-id');
-        const currentUrl = window.location.href;
-        const chatTitle = document.title.replace('ChatGPT', '').replace(/^-|•/g, '').trim() || 'Conversa sem título';
+        
+        let currentUrl = window.location.href;
+        let chatTitle = document.title.replace(/ChatGPT/i, '').replace(/^[-•s]+/, '').trim();
+
+        // Tentar capturar URL e título mais preciso do link ativo na sidebar
+        const activeLink = document.querySelector('nav a[href^="/c/"][aria-current="page"]') || 
+                           document.querySelector('nav a[class*="bg-token-sidebar"]') ||
+                           document.querySelector('nav a[href*="/c/"]');
+        if (activeLink) {
+          const href = activeLink.getAttribute('href');
+          if (href && href.startsWith('/c/')) {
+            currentUrl = window.location.origin + href;
+          }
+          const linkTitle = activeLink.querySelector('div, span')?.innerText;
+          if (linkTitle && linkTitle.trim()) {
+            chatTitle = linkTitle.trim();
+          }
+        }
+
+        if (!chatTitle || chatTitle.toLowerCase() === 'chatgpt' || chatTitle.toLowerCase() === 'new chat') {
+          chatTitle = 'Conversa ' + new Date().toLocaleDateString();
+        }
 
         const folder = state.folders.find(f => f.id === folderId);
         if (folder) {
           if (!folder.chats) folder.chats = [];
-          const exists = folder.chats.some(c => c.url === currentUrl);
+          const exists = folder.chats.some(c => c.url === currentUrl && c.url !== 'https://chatgpt.com/');
           if (!exists) {
             folder.chats.push({
               id: 'c_' + Date.now(),
               title: chatTitle,
-              url: currentUrl
+              url: currentUrl,
+              savedAt: new Date().toISOString()
             });
+
+            // Expandir a pasta automaticamente para que a conversa guardada apareça visível!
+            if (!state.expandedFolderIds) state.expandedFolderIds = new Set();
+            state.expandedFolderIds.add(folderId);
+
             saveFolders();
             showToast(t.toastChatSaved, 'success');
             container.remove();
@@ -1406,7 +1469,6 @@
     });
   }
 
-  // --------------------------------------------------------------------------
   // 5. INJEÇÃO DE PROMPTS RÁPIDOS (BARRA POSICIONADA ACIMA DA CAIXA DE INPUT)
   // --------------------------------------------------------------------------
   const DEFAULT_PROMPTS_BY_LANG = {
