@@ -1356,10 +1356,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!key) return { valid: false, message: 'Por favor insere uma chave de licença.' };
 
     const officialMasterKeys = [
+      'PRO-CLEAN-LIFETIME',
+      'ADMIN-MASTER-PRO',
+      'PRO-MASTER-ADMIN',
       'PRO-VIP-2026',
       'PRO-8492-CHAT',
-      'PRO-POWER-2026',
-      'PRO-CLEAN-LIFETIME'
+      'PRO-POWER-2026'
     ];
 
     if (officialMasterKeys.includes(key)) {
