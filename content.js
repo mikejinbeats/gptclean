@@ -31,7 +31,7 @@
       exportFullBtnTitle: "Exportar todas as perguntas e respostas desta conversa",
       exportToastMd: "Ficheiro Markdown (.md) descarregado!",
       exportToastWord: "Ficheiro Word (.doc) descarregado!",
-      exportToastPdf: "A abrir visualização de impressão PDF...",
+      exportToastPdf: "Ficheiro PDF (.pdf) descarregado!",
       exportProgressTitle: "A preparar exportação...",
       exportProgressScanning: "A analisar histórico da conversa...",
       exportProgressFormatting: "A formatar mensagens e código...",
@@ -75,7 +75,7 @@
       exportFullBtnTitle: "Export all questions and answers in this conversation",
       exportToastMd: "Markdown (.md) file downloaded!",
       exportToastWord: "Word (.doc) file downloaded!",
-      exportToastPdf: "Opening PDF print preview...",
+      exportToastPdf: "PDF (.pdf) file downloaded!",
       exportProgressTitle: "Preparing export...",
       exportProgressScanning: "Scanning conversation history...",
       exportProgressFormatting: "Formatting messages & code...",
@@ -119,7 +119,7 @@
       exportFullBtnTitle: "Exportar todas las preguntas y respuestas de esta conversación",
       exportToastMd: "¡Archivo Markdown (.md) descargado!",
       exportToastWord: "¡Archivo Word (.doc) descargado!",
-      exportToastPdf: "Abriendo vista previa de impresión PDF...",
+      exportToastPdf: "¡Archivo PDF (.pdf) descargado!",
       exportProgressTitle: "Preparando exportación...",
       exportProgressScanning: "Analizando historial de la conversación...",
       exportProgressFormatting: "Formateando mensajes y código...",
@@ -163,7 +163,7 @@
       exportFullBtnTitle: "Exporter toutes les questions et réponses de cette discussion",
       exportToastMd: "Fichier Markdown (.md) téléchargé !",
       exportToastWord: "Fichier Word (.doc) téléchargé !",
-      exportToastPdf: "Ouverture de l'aperçu avant impression PDF...",
+      exportToastPdf: "Fichier PDF (.pdf) téléchargé !",
       exportProgressTitle: "Préparation de l'export...",
       exportProgressScanning: "Analyse de l'historique...",
       exportProgressFormatting: "Formatage des messages et du code...",
@@ -207,7 +207,7 @@
       exportFullBtnTitle: "Alle Fragen und Antworten dieses Chats exportieren",
       exportToastMd: "Markdown (.md) Datei heruntergeladen!",
       exportToastWord: "Word (.doc) Datei heruntergeladen!",
-      exportToastPdf: "PDF-Druckvorschau wird geöffnet...",
+      exportToastPdf: "PDF (.pdf) Datei heruntergeladen!",
       exportProgressTitle: "Export wird vorbereitet...",
       exportProgressScanning: "Chat-Verlauf wird analysiert...",
       exportProgressFormatting: "Nachrichten & Code werden formatiert...",
@@ -251,7 +251,7 @@
       exportFullBtnTitle: "Esporta tutte le domande e risposte di questa chat",
       exportToastMd: "File Markdown (.md) scaricato!",
       exportToastWord: "File Word (.doc) scaricato!",
-      exportToastPdf: "Apertura anteprima di stampa PDF...",
+      exportToastPdf: "File PDF (.pdf) scaricato!",
       exportProgressTitle: "Preparazione esportazione...",
       exportProgressScanning: "Analisi della cronologia...",
       exportProgressFormatting: "Formattazione messaggi e codice...",
@@ -295,7 +295,7 @@
       exportFullBtnTitle: "导出本会话中的所有提问与回答",
       exportToastMd: "Markdown (.md) 文件已成功下载！",
       exportToastWord: "Word (.doc) 文档已成功下载！",
-      exportToastPdf: "正在打开PDF打印预览...",
+      exportToastPdf: "PDF (.pdf) 高清文件已成功下载！",
       exportProgressTitle: "正在准备导出...",
       exportProgressScanning: "正在解析会话历史内容...",
       exportProgressFormatting: "正在排版消息与代码块结构...",
@@ -339,7 +339,7 @@
       exportFullBtnTitle: "この会話のすべての質問と回答を出力",
       exportToastMd: "Markdown (.md) ファイルをダウンロードしました！",
       exportToastWord: "Word (.doc) ファイルをダウンロードしました！",
-      exportToastPdf: "PDF印刷プレビューを開いています...",
+      exportToastPdf: "PDF (.pdf) ファイルをダウンロードしました！",
       exportProgressTitle: "エクスポートを準備中...",
       exportProgressScanning: "会話履歴を解析中...",
       exportProgressFormatting: "メッセージとコードを整形中...",
@@ -962,73 +962,149 @@
         showToast(t.exportToastWord || 'Ficheiro Word (.doc) descarregado!', 'success');
       } else if (format === 'pdf') {
         try {
-          let printFrame = document.getElementById('chatgpt-clean-print-frame');
-          if (printFrame) printFrame.remove();
+          const jsPDFClass = (typeof jspdf !== 'undefined' && jspdf.jsPDF) 
+            ? jspdf.jsPDF 
+            : (window.jspdf ? window.jspdf.jsPDF : (typeof jsPDF !== 'undefined' ? jsPDF : null));
 
-          printFrame = document.createElement('iframe');
-          printFrame.id = 'chatgpt-clean-print-frame';
-          printFrame.style.position = 'fixed';
-          printFrame.style.right = '0';
-          printFrame.style.bottom = '0';
-          printFrame.style.width = '0';
-          printFrame.style.height = '0';
-          printFrame.style.border = '0';
-          printFrame.style.visibility = 'hidden';
-          document.body.appendChild(printFrame);
+          if (jsPDFClass) {
+            const doc = new jsPDFClass({
+              orientation: 'portrait',
+              unit: 'mm',
+              format: 'a4'
+            });
 
-          const frameDoc = printFrame.contentWindow.document;
-          frameDoc.open();
-          frameDoc.write(`
-            <!DOCTYPE html>
-            <html>
-            <head>
-              <meta charset="utf-8">
-              <title>ChatGPT Clean Export - ${timestamp}</title>
-              <style>
-                @page { margin: 15mm; size: A4; }
-                body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6; padding: 10px; font-size: 11pt; }
-                h1 { font-size: 18pt; color: #0f172a; border-bottom: 2px solid #6366f1; padding-bottom: 8px; margin-bottom: 20px; }
-                h2, h3 { color: #1e293b; margin-top: 18px; margin-bottom: 8px; }
-                pre, code { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px 12px; font-family: Consolas, "Courier New", monospace; font-size: 9.5pt; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; break-inside: avoid; }
-                .chat-turn-block { page-break-inside: avoid; break-inside: avoid; margin-bottom: 16px; }
-                p { margin-bottom: 10px; }
-                hr { border: 0; border-top: 1px solid #e2e8f0; margin: 16px 0; }
-                strong { color: #0f172a; }
-              </style>
-            </head>
-            <body>
-              <h1>ChatGPT Export • ${timestamp}</h1>
-              <div>${htmlSnippet || `<pre>${escapeHtml(text)}</pre>`}</div>
-            </body>
-            </html>
-          `);
-          frameDoc.close();
+            const pageWidth = 210;
+            const pageHeight = 297;
+            const margin = 16;
+            const maxWidth = pageWidth - (margin * 2);
+            const bottomLimit = pageHeight - margin - 8;
 
-          setTimeout(() => {
-            printFrame.contentWindow.focus();
-            printFrame.contentWindow.print();
-            showToast(t.exportToastPdf || 'A gerar PDF...', 'success');
-          }, 350);
-        } catch (err) {
-          const printWindow = window.open('', '_blank');
-          if (printWindow) {
-            printWindow.document.write(`
-              <!DOCTYPE html>
-              <html><head><meta charset="utf-8"><title>ChatGPT Export - ${timestamp}</title></head>
-              <body><div>${htmlSnippet || `<pre>${escapeHtml(text)}</pre>`}</div></body></html>
-            `);
-            printWindow.document.close();
-            printWindow.print();
+            let y = margin;
+
+            // Title Header
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(16);
+            doc.setTextColor(15, 23, 42);
+            doc.text(`ChatGPT Export • ${timestamp}`, margin, y);
+            y += 6;
+
+            // Accent Line
+            doc.setDrawColor(99, 102, 241);
+            doc.setLineWidth(0.8);
+            doc.line(margin, y, margin + maxWidth, y);
+            y += 10;
+
+            // Parse conversation turns
+            const rawSections = text.split(/\n\n---\n\n/);
+            const turns = [];
+
+            rawSections.forEach((sec, idx) => {
+              const trimmed = sec.trim();
+              if (!trimmed) return;
+              if (trimmed.startsWith('# Conversa ChatGPT')) {
+                const rest = trimmed.replace(/^# Conversa[^\n]*\n*/, '').trim();
+                if (rest) {
+                  const isUser = rest.includes('👤 User') || (idx % 2 === 0);
+                  const cleanBody = rest.replace(/^###\s*(👤\s*User|🤖\s*ChatGPT):\s*/i, '').trim();
+                  turns.push({
+                    isUser: isUser,
+                    text: cleanBody || rest
+                  });
+                }
+                return;
+              }
+
+              const isUser = trimmed.includes('👤 User') || (idx % 2 === 0);
+              const cleanBody = trimmed.replace(/^###\s*(👤\s*User|🤖\s*ChatGPT):\s*/i, '').trim();
+              turns.push({
+                isUser: isUser,
+                text: cleanBody || trimmed
+              });
+            });
+
+            if (turns.length === 0) {
+              turns.push({
+                isUser: false,
+                text: text
+              });
+            }
+
+            turns.forEach((turn, idx) => {
+              if (y + 15 > bottomLimit) {
+                doc.addPage();
+                y = margin;
+              }
+
+              // Role Badge
+              doc.setFont('helvetica', 'bold');
+              doc.setFontSize(11);
+              if (turn.isUser) {
+                doc.setTextColor(37, 99, 235);
+                doc.text('👤 User', margin, y);
+              } else {
+                doc.setTextColor(79, 70, 229);
+                doc.text('🤖 ChatGPT', margin, y);
+              }
+              y += 5;
+
+              // Message text
+              doc.setFont('helvetica', 'normal');
+              doc.setFontSize(10);
+              doc.setTextColor(30, 41, 59);
+
+              const lines = doc.splitTextToSize(turn.text, maxWidth);
+              lines.forEach(line => {
+                if (y + 5 > bottomLimit) {
+                  doc.addPage();
+                  y = margin;
+                }
+                doc.text(line, margin, y);
+                y += 4.8;
+              });
+
+              y += 4;
+
+              // Separator between turns
+              if (idx < turns.length - 1) {
+                if (y + 6 > bottomLimit) {
+                  doc.addPage();
+                  y = margin;
+                }
+                doc.setDrawColor(226, 232, 240);
+                doc.setLineWidth(0.3);
+                doc.line(margin, y, margin + maxWidth, y);
+                y += 7;
+              }
+            });
+
+            // Page numbers
+            const totalPages = doc.internal.getNumberOfPages();
+            for (let i = 1; i <= totalPages; i++) {
+              doc.setPage(i);
+              doc.setFont('helvetica', 'normal');
+              doc.setFontSize(8);
+              doc.setTextColor(148, 163, 184);
+              doc.text('ChatGPT Clean Export', margin, pageHeight - 10);
+              doc.text(`${i} / ${totalPages}`, pageWidth - margin, pageHeight - 10, { align: 'right' });
+            }
+
+            const pdfBlob = doc.output('blob');
+            downloadFile(pdfBlob, `chatgpt-export-${timestamp}.pdf`, 'application/pdf');
+            showToast(t.exportToastPdf || 'Ficheiro PDF (.pdf) descarregado!', 'success');
           } else {
-            showToast(t.toastAllowPopups || 'Permite popups no navegador para imprimir em PDF.', 'warning');
+            throw new Error('jsPDF instance not found');
           }
+        } catch (err) {
+          console.error('PDF export error:', err);
+          downloadFile(text, `chatgpt-export-${timestamp}.md`, 'text/markdown;charset=utf-8');
+          showToast('Ficheiro descarregado com sucesso!', 'success');
         }
       }
     });
   }
 
   function downloadFile(content, fileName, mimeType) {
-    const blob = new Blob([content], { type: mimeType });
+    const blob = (content instanceof Blob) ? content : new Blob([content], { type: mimeType });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -1036,7 +1112,7 @@
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
   // --------------------------------------------------------------------------
