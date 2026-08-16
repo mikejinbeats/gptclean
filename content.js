@@ -168,9 +168,9 @@
   }
 
   // --------------------------------------------------------------------------
-  // 3. INJEÇÃO DO BOTÃO DE EXPORTAÇÃO & MODAL COM COTA DIÁRIA (5/DIA FREE)
+  // 3. INJEÇÃO DO BOTÃO DE EXPORTAÇÃO & MODAL COM COTA DIÁRIA (2/DIA FREE)
   // --------------------------------------------------------------------------
-  const MAX_FREE_DAILY_EXPORTS = 5;
+  const MAX_FREE_DAILY_EXPORTS = 2;
 
   function getDailyExportQuota(callback) {
     if (state.isPro) {
@@ -288,7 +288,7 @@
       const overlay = document.createElement('div');
       overlay.className = 'chatgpt-clean-modal-overlay';
 
-      // Se atingiu o limite de 5 por dia no modo Free -> Mostrar Paywall PRO
+      // Se atingiu o limite de 2 por dia no modo Free -> Mostrar Paywall PRO
       if (!quota.isPro && quota.remaining <= 0) {
         overlay.innerHTML = `
           <div class="chatgpt-clean-export-modal chatgpt-clean-pro-limit-modal">
@@ -298,8 +298,8 @@
             </div>
             <div class="chatgpt-clean-limit-content">
               <div class="limit-crown-icon">👑</div>
-              <h4>Atingiste as tuas 5 exportações gratuitas de hoje!</h4>
-              <p>O teu limite de 5 exportações diárias reseta automaticamente amanhã à meia-noite.</p>
+              <h4>Atingiste as tuas 2 exportações gratuitas de hoje!</h4>
+              <p>O teu limite de 2 exportações diárias reseta automaticamente amanhã à meia-noite.</p>
               
               <div class="limit-offer-card">
                 <span class="offer-title">🚀 Queres exportações infinitas?</span>
@@ -317,7 +317,7 @@
           </div>
         `;
       } else {
-        // Modal Normal de Exportação com indicador de cota
+        // Modal Normal de Exportação com indicador de cota (2/dia)
         const quotaBadge = quota.isPro 
           ? '<span class="export-quota-tag tag-pro">👑 Ilimitado PRO</span>'
           : `<span class="export-quota-tag">🎁 Grátis: ${quota.remaining}/${MAX_FREE_DAILY_EXPORTS} hoje</span>`;
