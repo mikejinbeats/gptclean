@@ -170,6 +170,8 @@ body.theme-white ::-webkit-scrollbar-thumb:hover {
    HUD HEADER
    -------------------------------------------------------------------------- */
 .app-header {
+  position: relative;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;

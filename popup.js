@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // BANDEIRAS VIVAS EM SVG PARA OS 8 PAÍSES (RENDERIZAÇÃO NATIVA PERFEITA)
   // --------------------------------------------------------------------------
   const FLAGS_SVG = {
+    en: `<svg viewBox="0 0 20 14" width="16" height="11" style="border-radius:2px;display:inline-block;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,0.25);"><rect width="20" height="14" fill="#012169"/><path d="M0,0 L20,14 M20,0 L0,14" stroke="#ffffff" stroke-width="2.6"/><path d="M0,0 L20,14 M20,0 L0,14" stroke="#c8102e" stroke-width="1.2"/><path d="M10,0 V14 M0,7 H20" stroke="#ffffff" stroke-width="4.4"/><path d="M10,0 V14 M0,7 H20" stroke="#c8102e" stroke-width="2.4"/></svg>`,
     pt: `<svg viewBox="0 0 20 14" width="16" height="11" style="border-radius:2px;display:inline-block;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,0.25);"><rect width="8" height="14" fill="#006600"/><rect x="8" width="12" height="14" fill="#ff0000"/><circle cx="8" cy="7" r="3" fill="#ffcc00"/><circle cx="8" cy="7" r="2" fill="#ffffff"/><rect x="7" y="5" width="2" height="4" fill="#003399"/></svg>`,
-    en: `<svg viewBox="0 0 20 14" width="16" height="11" style="border-radius:2px;display:inline-block;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,0.25);"><rect width="20" height="14" fill="#b22234"/><rect y="2" width="20" height="2" fill="#fff"/><rect y="6" width="20" height="2" fill="#fff"/><rect y="10" width="20" height="2" fill="#fff"/><rect width="9" height="8" fill="#3c3b6e"/><circle cx="4.5" cy="4" r="1.5" fill="#fff"/></svg>`,
     es: `<svg viewBox="0 0 20 14" width="16" height="11" style="border-radius:2px;display:inline-block;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,0.25);"><rect width="20" height="3.5" fill="#aa151b"/><rect y="3.5" width="20" height="7" fill="#f1bf00"/><rect y="10.5" width="20" height="3.5" fill="#aa151b"/><rect x="3.5" y="5.5" width="2" height="3" fill="#aa151b"/></svg>`,
     fr: `<svg viewBox="0 0 20 14" width="16" height="11" style="border-radius:2px;display:inline-block;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,0.25);"><rect width="6.6" height="14" fill="#002395"/><rect x="6.6" width="6.8" height="14" fill="#ffffff"/><rect x="13.4" width="6.6" height="14" fill="#ed2939"/></svg>`,
     de: `<svg viewBox="0 0 20 14" width="16" height="11" style="border-radius:2px;display:inline-block;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,0.25);"><rect width="20" height="4.6" fill="#000000"/><rect y="4.6" width="20" height="4.8" fill="#dd0000"/><rect y="9.4" width="20" height="4.6" fill="#ffce00"/></svg>`,
@@ -648,7 +648,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  let currentLang = 'pt';
+  let currentLang = 'en';
 
   // --------------------------------------------------------------------------
   // 1. NAVEGAÇÃO ENTRE ABAS
@@ -688,7 +688,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function applyLanguage(lang) {
-    if (!I18N[lang]) lang = 'pt';
+    if (!I18N[lang]) lang = 'en';
     currentLang = lang;
     const t = I18N[lang];
 
@@ -885,7 +885,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleFolders.checked = data.foldersEnabled !== false;
 
         // Idioma do Popup
-        const savedLang = data.appLanguage || 'pt';
+        const savedLang = data.appLanguage || 'en';
         applyLanguage(savedLang);
 
         // Tema do Popup
