@@ -1204,6 +1204,74 @@
     });
   }
 
+  // --------------------------------------------------------------------------
+  // EXTRAÇÃO PRECISA DA CONVERSA ATIVA ATUALMENTE ABERTA
+  // --------------------------------------------------------------------------
+  function getActiveChatInfo() {
+    const currentUrl = window.location.href;
+    const currentPath = window.location.pathname;
+    let chatTitle = '';
+
+    // 1. Se estivermos num chat com ID (/c/UUID ou /g/.../c/UUID), procurar o item ativo correspondente na sidebar
+    if (currentPath.includes('/c/')) {
+      const uuid = currentPath.split('/c/')[1]?.split('?')[0]?.split('/')[0];
+      if (uuid) {
+        const matchingLink = document.querySelector(`nav a[href*="/c/${uuid}"]`);
+        if (matchingLink) {
+          const textEl = matchingLink.querySelector('.truncate, span, div');
+          const txt = (textEl ? textEl.innerText : matchingLink.innerText).trim();
+          if (txt && txt.length > 0 && txt.toLowerCase() !== 'chatgpt') {
+            chatTitle = txt;
+          }
+        }
+      }
+    }
+
+    // 2. Procurar no título do cabeçalho superior do ChatGPT (Top Header Bar)
+    if (!chatTitle) {
+      const headerTitleEl = document.querySelector('button[data-testid*="title" i]') ||
+                            document.querySelector('header h1') ||
+                            document.querySelector('main h1') ||
+                            document.querySelector('header button[aria-haspopup="menu"] span') ||
+                            document.querySelector('div[class*="text-token-text-primary"][class*="font-semibold"]');
+      if (headerTitleEl) {
+        const hText = headerTitleEl.innerText.trim();
+        if (hText && !hText.toLowerCase().includes('chatgpt') && !hText.toLowerCase().includes('gpt-')) {
+          chatTitle = hText;
+        }
+      }
+    }
+
+    // 3. Procurar a primeira mensagem enviada pelo utilizador nesta conversa
+    if (!chatTitle) {
+      const userMsgEl = document.querySelector('[data-message-author-role="user"]') ||
+                        document.querySelector('article[data-testid*="conversation-turn"] [class*="whitespace-pre-wrap"]') ||
+                        document.querySelector('div[data-testid*="user"]');
+      if (userMsgEl) {
+        const rawText = userMsgEl.innerText.trim().replace(/\n+/g, ' ');
+        if (rawText && rawText.length > 0) {
+          chatTitle = rawText.length > 40 ? rawText.slice(0, 38) + '...' : rawText;
+        }
+      }
+    }
+
+    // 4. Fallback para document.title
+    if (!chatTitle) {
+      const docTitle = document.title.replace(/ChatGPT/gi, '').replace(/^[-•\s:|]+/, '').trim();
+      if (docTitle && docTitle.toLowerCase() !== 'chatgpt' && docTitle.toLowerCase() !== 'new chat') {
+        chatTitle = docTitle;
+      }
+    }
+
+    // 5. Fallback com data e hora se for uma conversa nova
+    if (!chatTitle) {
+      const now = new Date();
+      chatTitle = 'Conversa ' + now.toLocaleDateString() + ' ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    return { url: currentUrl, title: chatTitle };
+  }
+
   function injectSidebarFolders() {
     if (!state.foldersEnabled) return;
     if (document.querySelector('.chatgpt-clean-folders-container')) return;
@@ -1314,43 +1382,34 @@
       });
     });
 
-    // Guardar conversa atual na pasta
+        // Guardar conversa atual na pasta
     container.querySelectorAll('.btn-save-current-chat').forEach(btn => {
       btn.addEventListener('click', (e) => {
+        e.preventDefault();
         e.stopPropagation();
         const folderId = btn.getAttribute('data-folder-id');
         
-        let currentUrl = window.location.href;
-        let chatTitle = document.title.replace(/ChatGPT/i, '').replace(/^[-•s]+/, '').trim();
-
-        // Tentar capturar URL e título mais preciso do link ativo na sidebar
-        const activeLink = document.querySelector('nav a[href^="/c/"][aria-current="page"]') || 
-                           document.querySelector('nav a[class*="bg-token-sidebar"]') ||
-                           document.querySelector('nav a[href*="/c/"]');
-        if (activeLink) {
-          const href = activeLink.getAttribute('href');
-          if (href && href.startsWith('/c/')) {
-            currentUrl = window.location.origin + href;
-          }
-          const linkTitle = activeLink.querySelector('div, span')?.innerText;
-          if (linkTitle && linkTitle.trim()) {
-            chatTitle = linkTitle.trim();
-          }
-        }
-
-        if (!chatTitle || chatTitle.toLowerCase() === 'chatgpt' || chatTitle.toLowerCase() === 'new chat') {
-          chatTitle = 'Conversa ' + new Date().toLocaleDateString();
-        }
+        const chatInfo = getActiveChatInfo();
 
         const folder = state.folders.find(f => f.id === folderId);
         if (folder) {
           if (!folder.chats) folder.chats = [];
-          const exists = folder.chats.some(c => c.url === currentUrl && c.url !== 'https://chatgpt.com/');
+          
+          // Verificar se este chat exato já está guardado nesta pasta
+          const exists = folder.chats.some(c => {
+            if (chatInfo.url.includes('/c/') && c.url.includes('/c/')) {
+              const u1 = chatInfo.url.split('/c/')[1]?.split('?')[0];
+              const u2 = c.url.split('/c/')[1]?.split('?')[0];
+              return u1 && u2 && u1 === u2;
+            }
+            return c.url === chatInfo.url && c.title === chatInfo.title;
+          });
+
           if (!exists) {
             folder.chats.push({
               id: 'c_' + Date.now(),
-              title: chatTitle,
-              url: currentUrl,
+              title: chatInfo.title,
+              url: chatInfo.url,
               savedAt: new Date().toISOString()
             });
 
