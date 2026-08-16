@@ -744,10 +744,11 @@
 
   function executeExport(text, htmlSnippet, format) {
     const timestamp = new Date().toISOString().slice(0, 10);
+    const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
 
     if (format === 'md') {
       downloadFile(text, `chatgpt-export-${timestamp}.md`, 'text/markdown;charset=utf-8');
-      showToast('✅ Ficheiro Markdown (.md) descarregado!');
+      showToast(t.exportToastMd || 'Ficheiro Markdown (.md) descarregado!');
     } else if (format === 'word') {
       const htmlContent = `
         <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>

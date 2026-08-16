@@ -134,17 +134,15 @@ iframe[src*="adnxs.com"] {
 }
 
 .chatgpt-clean-export-modal {
-  background: rgba(11, 15, 25, 0.9);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 16px;
+  background: #ffffff !important;
+  border: none !important;
+  border-radius: 0px !important;
   width: 90%;
   max-width: 440px;
-  padding: 20px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.1);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  color: #f8fafc;
+  padding: 22px 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 1px rgba(0, 0, 0, 0.2) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  color: #0f172a !important;
 }
 
 .chatgpt-clean-export-modal-header {
@@ -153,7 +151,7 @@ iframe[src*="adnxs.com"] {
   align-items: center;
   margin-bottom: 16px;
   padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid #e2e8f0 !important;
 }
 
 .header-left-group {
@@ -166,7 +164,7 @@ iframe[src*="adnxs.com"] {
   font-size: 14.5px;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: #f8fafc;
+  color: #0f172a !important;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -176,33 +174,34 @@ iframe[src*="adnxs.com"] {
   width: 18px;
   height: 18px;
   object-fit: contain;
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
   flex-shrink: 0;
 }
 
 .export-quota-tag {
   font-size: 10px;
   font-weight: 700;
-  background: rgba(56, 189, 248, 0.12);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  color: #38bdf8;
+  background: #e0f2fe !important;
+  border: 1px solid #7dd3fc !important;
+  color: #0284c7 !important;
   padding: 2px 7px;
-  border-radius: 6px;
+  border-radius: 0px !important;
 }
 
 .export-quota-tag.tag-pro {
-  background: rgba(245, 158, 11, 0.15);
-  border-color: rgba(245, 158, 11, 0.4);
-  color: #f59e0b;
+  background: #fef3c7 !important;
+  border-color: #fcd34d !important;
+  color: #b45309 !important;
+  border-radius: 0px !important;
 }
 
 .chatgpt-clean-modal-close {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #94a3b8;
+  background: #f1f5f9 !important;
+  border: none !important;
+  color: #64748b !important;
   width: 26px;
   height: 26px;
-  border-radius: 50%;
+  border-radius: 0px !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -212,8 +211,8 @@ iframe[src*="adnxs.com"] {
 }
 
 .chatgpt-clean-modal-close:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
 }
 
 /* Paywall de Limite Atingido */
@@ -223,12 +222,12 @@ iframe[src*="adnxs.com"] {
 }
 
 .chatgpt-clean-modal-3d-crown {
-  width: 52px;
-  height: 52px;
+  width: 54px;
+  height: 54px;
   object-fit: contain;
-  margin: 0 auto 10px;
+  margin: 0 auto 12px;
   display: block;
-  filter: drop-shadow(0 4px 14px rgba(245, 158, 11, 0.45));
+  filter: drop-shadow(0 4px 14px rgba(245, 158, 11, 0.35));
   animation: floatCrownModal 3.2s ease-in-out infinite;
 }
 
@@ -238,25 +237,25 @@ iframe[src*="adnxs.com"] {
 }
 
 .chatgpt-clean-limit-content h4 {
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 700;
-  color: #f8fafc;
+  color: #0f172a !important;
   margin-bottom: 6px;
 }
 
 .chatgpt-clean-limit-content p {
-  font-size: 11.5px;
-  color: #94a3b8;
-  line-height: 1.4;
+  font-size: 12px;
+  color: #475569 !important;
+  line-height: 1.45;
   margin-bottom: 16px;
 }
 
 .limit-offer-card {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(56, 189, 248, 0.08));
-  border: 1px solid rgba(245, 158, 11, 0.4);
-  border-radius: 12px;
-  padding: 14px;
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
+  background: #fffbeb !important;
+  border: 1px solid #fde68a !important;
+  border-radius: 0px !important;
+  padding: 16px;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.1) !important;
 }
 
 .limit-offer-header {
@@ -268,21 +267,21 @@ iframe[src*="adnxs.com"] {
 }
 
 .limit-offer-3d-rocket {
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
   object-fit: contain;
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
 }
 
 .offer-title {
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 700;
-  color: #f59e0b;
+  color: #b45309 !important;
 }
 
 .offer-desc {
-  font-size: 10.5px !important;
-  color: #cbd5e1 !important;
+  font-size: 11px !important;
+  color: #475569 !important;
   margin-bottom: 12px !important;
 }
 
@@ -297,19 +296,19 @@ iframe[src*="adnxs.com"] {
 .offer-pricing .old-price {
   font-size: 12px;
   text-decoration: line-through;
-  color: #64748b;
+  color: #94a3b8 !important;
 }
 
 .offer-pricing .current-price {
   font-size: 24px;
   font-weight: 800;
-  color: #f59e0b;
+  color: #d97706 !important;
 }
 
 .offer-pricing .badge-single {
   font-size: 10px;
   font-weight: 700;
-  color: #94a3b8;
+  color: #64748b !important;
 }
 
 .limit-upgrade-btn {
@@ -318,14 +317,15 @@ iframe[src*="adnxs.com"] {
   justify-content: center;
   gap: 8px;
   width: 100%;
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: #000000;
+  background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+  color: #ffffff !important;
   text-decoration: none;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 800;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+  padding: 11px;
+  border: none !important;
+  border-radius: 0px !important;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35) !important;
   transition: all 0.2s ease;
 }
 
@@ -333,14 +333,14 @@ iframe[src*="adnxs.com"] {
   width: 18px;
   height: 18px;
   object-fit: contain;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
   flex-shrink: 0;
 }
 
 .limit-upgrade-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
-  color: #000000;
+  box-shadow: 0 6px 20px rgba(217, 119, 6, 0.5) !important;
+  color: #ffffff !important;
 }
 
 .chatgpt-clean-export-grid {
@@ -353,10 +353,9 @@ iframe[src*="adnxs.com"] {
   display: flex;
   align-items: center;
   gap: 14px;
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 0px !important;
   padding: 12px 14px;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
@@ -365,9 +364,9 @@ iframe[src*="adnxs.com"] {
 }
 
 .chatgpt-clean-export-card:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(56, 189, 248, 0.4);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 16px rgba(56, 189, 248, 0.15);
+  background: #f1f5f9 !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.15) !important;
   transform: translateX(3px);
 }
 
@@ -375,7 +374,7 @@ iframe[src*="adnxs.com"] {
   width: 26px;
   height: 26px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.15));
   flex-shrink: 0;
   transition: transform 0.2s ease;
 }
@@ -408,13 +407,13 @@ iframe[src*="adnxs.com"] {
   display: block;
   font-size: 12.5px;
   font-weight: 600;
-  color: #f8fafc;
+  color: #0f172a !important;
   margin-bottom: 2px;
 }
 
 .chatgpt-clean-export-card .info span {
   font-size: 10.5px;
-  color: #94a3b8;
+  color: #64748b !important;
 }
 
 /* --------------------------------------------------------------------------
