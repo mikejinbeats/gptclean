@@ -391,42 +391,61 @@
   // --------------------------------------------------------------------------
   function loadSettings() {
     if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
-      chrome.storage.local.get([
-        'adBlockEnabled',
-        'exportBtnEnabled',
-        'foldersEnabled',
-        'promptsEnabled',
-        'appLanguage',
-        'isPro',
-        'exportTrialStartDate',
-        'customPrompts',
-        'folders'
-      ], (items) => {
-        if (items.adBlockEnabled !== undefined) state.adBlockEnabled = items.adBlockEnabled;
-        if (items.exportBtnEnabled !== undefined) state.exportBtnEnabled = items.exportBtnEnabled;
-        if (items.foldersEnabled !== undefined) state.foldersEnabled = items.foldersEnabled;
-        if (items.promptsEnabled !== undefined) state.promptsEnabled = items.promptsEnabled;
-        if (items.appLanguage !== undefined) state.appLanguage = items.appLanguage;
-        if (items.isPro !== undefined) state.isPro = items.isPro;
-        if (items.customPrompts) state.customPrompts = items.customPrompts;
+              chrome.storage.local.get([
+          'adBlockEnabled',
+          'exportBtnEnabled',
+          'foldersEnabled',
+          'promptsEnabled',
+          'appLanguage',
+          'isPro',
+          'exportTrialStartDate',
+          'customPrompts',
+          'folders',
+          'foldersByAccount'
+        ], (items) => {
+          if (items.adBlockEnabled !== undefined) state.adBlockEnabled = items.adBlockEnabled;
+          if (items.exportBtnEnabled !== undefined) state.exportBtnEnabled = items.exportBtnEnabled;
+          if (items.foldersEnabled !== undefined) state.foldersEnabled = items.foldersEnabled;
+          if (items.promptsEnabled !== undefined) state.promptsEnabled = items.promptsEnabled;
+          if (items.appLanguage !== undefined) state.appLanguage = items.appLanguage;
+          if (items.isPro !== undefined) state.isPro = items.isPro;
+          if (items.customPrompts) state.customPrompts = items.customPrompts;
 
-        // Atualizar nomes padrão das pastas para o idioma ativo se forem as originais
-        if (items.folders) {
-          state.folders = items.folders;
-        } else {
-          const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
-          state.folders = [
-            { id: 'f1', name: t.defaultFolders.f1, chats: [] },
-            { id: 'f2', name: t.defaultFolders.f2, chats: [] },
-            { id: 'f3', name: t.defaultFolders.f3, chats: [] }
-          ];
-        }
+          const currentAcc = getCurrentAccountId();
+          state.currentAccountId = currentAcc;
 
-        if (state.adBlockEnabled) {
-          cleanAds();
-        }
-        injectTools();
-      });
+          if (items.foldersByAccount) {
+            state.foldersByAccount = items.foldersByAccount;
+          } else {
+            try {
+              const rawAcc = localStorage.getItem('__cgpt_clean_folders_by_account__');
+              if (rawAcc) state.foldersByAccount = JSON.parse(rawAcc) || {};
+            } catch (e) {}
+          }
+
+          // Se a conta já tem pastas salvas
+          if (state.foldersByAccount && state.foldersByAccount[currentAcc]) {
+            state.folders = state.foldersByAccount[currentAcc];
+          } else if (items.folders && Array.isArray(items.folders) && items.folders.length > 0) {
+            state.folders = items.folders;
+            if (!state.foldersByAccount) state.foldersByAccount = {};
+            state.foldersByAccount[currentAcc] = items.folders;
+          } else {
+            const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
+            state.folders = [
+              { id: 'f1', name: t.defaultFolders.f1, chats: [] },
+              { id: 'f2', name: t.defaultFolders.f2, chats: [] },
+              { id: 'f3', name: t.defaultFolders.f3, chats: [] }
+            ];
+            if (!state.foldersByAccount) state.foldersByAccount = {};
+            state.foldersByAccount[currentAcc] = state.folders;
+          }
+
+          if (state.adBlockEnabled) {
+            cleanAds();
+          }
+          injectTools();
+        });
     }
   }
 
@@ -1129,19 +1148,105 @@
 
   // --------------------------------------------------------------------------
     // --------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
+  // IDENTIFICAÇÃO E ISOLAMENTO MULTI-CONTAS (PLANO A)
+  // --------------------------------------------------------------------------
+  function getCurrentAccountId() {
+    try {
+      // 1. Procurar email ou identificador no botão de perfil
+      const profileBtn = document.querySelector('[data-testid="profile-button"]') ||
+                         document.querySelector('button[aria-haspopup="menu"][class*="w-full"]') ||
+                         document.querySelector('nav div[class*="sticky"] button');
+      if (profileBtn) {
+        const textElements = profileBtn.querySelectorAll('div, span');
+        for (let el of textElements) {
+          const text = (el.innerText || '').trim();
+          if (text && text.includes('@') && text.includes('.')) {
+            return text.toLowerCase();
+          }
+        }
+        const nameEl = profileBtn.querySelector('.truncate') || profileBtn.querySelector('div');
+        if (nameEl && nameEl.innerText && nameEl.innerText.trim()) {
+          const cleanName = nameEl.innerText.trim().toLowerCase();
+          if (cleanName && cleanName !== 'perfil' && cleanName !== 'profile' && cleanName !== 'user') {
+            return 'user_' + cleanName.replace(/[^a-z0-9]/g, '_');
+          }
+        }
+      }
+
+      // 2. Procurar em avatares com alt de utilizador ou email
+      const avatarImg = document.querySelector('img[alt*="@"], img[alt*="avatar" i], img[alt*="User" i]');
+      if (avatarImg && avatarImg.alt && avatarImg.alt.includes('@')) {
+        return avatarImg.alt.trim().toLowerCase();
+      }
+
+      // 3. Fallback: procurar nos scripts de estado da página
+      const scripts = document.querySelectorAll('script');
+      for (let s of scripts) {
+        if (s.textContent && s.textContent.includes('"email":"')) {
+          const match = s.textContent.match(/"email":"([^"]+)"/);
+          if (match && match[1]) return match[1].toLowerCase();
+        }
+        if (s.textContent && s.textContent.includes('"user_id":"')) {
+          const match = s.textContent.match(/"user_id":"([^"]+)"/);
+          if (match && match[1]) return match[1].toLowerCase();
+        }
+      }
+    } catch (e) {}
+
+    return state.currentAccountId || 'default_account';
+  }
+
+  function checkAccountSwitch() {
+    const detected = getCurrentAccountId();
+    if (detected && detected !== 'default_account' && detected !== state.currentAccountId) {
+      console.log('ChatGPT Clean: Conta trocada detectada:', detected);
+      state.currentAccountId = detected;
+      const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
+      
+      if (!state.foldersByAccount) state.foldersByAccount = {};
+      if (state.foldersByAccount[detected]) {
+        state.folders = state.foldersByAccount[detected];
+      } else {
+        state.folders = [
+          { id: 'f1', name: t.defaultFolders.f1, chats: [] },
+          { id: 'f2', name: t.defaultFolders.f2, chats: [] },
+          { id: 'f3', name: t.defaultFolders.f3, chats: [] }
+        ];
+        state.foldersByAccount[detected] = state.folders;
+      }
+      
+      const container = document.querySelector('.chatgpt-clean-folders-container');
+      if (container) container.remove();
+      injectSidebarFolders();
+    }
+  }
+
   // 4. GESTOR DE PASTAS FUNCIONAL NA BARRA LATERAL (BOOKMARKS DE CONVERSAS)
   // --------------------------------------------------------------------------
   function saveFolders() {
+    const accountId = getCurrentAccountId();
+    state.currentAccountId = accountId;
+    if (!state.foldersByAccount) state.foldersByAccount = {};
+    state.foldersByAccount[accountId] = state.folders;
+
     if (typeof chrome !== 'undefined' && chrome.storage) {
       if (chrome.storage.local) {
-        chrome.storage.local.set({ folders: state.folders });
+        chrome.storage.local.set({ 
+          folders: state.folders,
+          foldersByAccount: state.foldersByAccount 
+        });
       }
       if (chrome.storage.sync) {
-        chrome.storage.sync.set({ folders: state.folders });
+        chrome.storage.sync.set({ 
+          folders: state.folders,
+          foldersByAccount: state.foldersByAccount 
+        });
       }
     }
     try {
       localStorage.setItem('__cgpt_clean_folders_data__', JSON.stringify(state.folders));
+      localStorage.setItem('__cgpt_clean_folders_by_account__', JSON.stringify(state.foldersByAccount));
     } catch (e) {}
   }
 
