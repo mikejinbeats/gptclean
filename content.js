@@ -811,36 +811,66 @@
       downloadFile(htmlContent, `chatgpt-export-${timestamp}.doc`, 'application/msword;charset=utf-8');
       showToast(t.exportToastWord || 'Ficheiro Word (.doc) descarregado!', 'success');
     } else if (format === 'pdf') {
-      const printWindow = window.open('', '_blank');
-      if (printWindow) {
-        printWindow.document.write(`
+      try {
+        let printFrame = document.getElementById('chatgpt-clean-print-frame');
+        if (printFrame) printFrame.remove();
+
+        printFrame = document.createElement('iframe');
+        printFrame.id = 'chatgpt-clean-print-frame';
+        printFrame.style.position = 'fixed';
+        printFrame.style.right = '0';
+        printFrame.style.bottom = '0';
+        printFrame.style.width = '0';
+        printFrame.style.height = '0';
+        printFrame.style.border = '0';
+        printFrame.style.visibility = 'hidden';
+        document.body.appendChild(printFrame);
+
+        const frameDoc = printFrame.contentWindow.document;
+        frameDoc.open();
+        frameDoc.write(`
           <!DOCTYPE html>
           <html>
           <head>
-            <title>ChatGPT Export - ${timestamp}</title>
+            <meta charset="utf-8">
+            <title>ChatGPT Clean Export - ${timestamp}</title>
             <style>
-              body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 40px; color: #1e293b; line-height: 1.6; max-width: 800px; margin: auto; }
+              @page { margin: 18mm; }
+              body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6; padding: 20px; }
               h1 { font-size: 20px; color: #0f172a; border-bottom: 2px solid #6366f1; padding-bottom: 8px; margin-bottom: 20px; }
-              pre, code { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; font-family: monospace; font-size: 13px; white-space: pre-wrap; word-break: break-word; }
+              h2, h3 { color: #1e293b; margin-top: 18px; margin-bottom: 8px; }
+              pre, code { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px 12px; font-family: Consolas, "Courier New", monospace; font-size: 12px; white-space: pre-wrap; word-break: break-word; }
               p { margin-bottom: 12px; }
-              @media print { body { padding: 15px; } }
+              hr { border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0; }
+              strong { color: #0f172a; }
             </style>
           </head>
           <body>
             <h1>ChatGPT Export • ${timestamp}</h1>
             <div>${htmlSnippet || `<pre>${escapeHtml(text)}</pre>`}</div>
-            <script>
-              window.onload = function() {
-                setTimeout(function() { window.print(); }, 200);
-              };
-            </script>
           </body>
           </html>
         `);
-        printWindow.document.close();
-        showToast(t.exportToastPdf || 'A abrir PDF...', 'success');
-      } else {
-        showToast(t.toastAllowPopups || 'Permite popups no navegador para imprimir em PDF.', 'warning');
+        frameDoc.close();
+
+        setTimeout(() => {
+          printFrame.contentWindow.focus();
+          printFrame.contentWindow.print();
+          showToast(t.exportToastPdf || 'A gerar PDF...', 'success');
+        }, 350);
+      } catch (err) {
+        const printWindow = window.open('', '_blank');
+        if (printWindow) {
+          printWindow.document.write(`
+            <!DOCTYPE html>
+            <html><head><meta charset="utf-8"><title>ChatGPT Export - ${timestamp}</title></head>
+            <body><div>${htmlSnippet || `<pre>${escapeHtml(text)}</pre>`}</div></body></html>
+          `);
+          printWindow.document.close();
+          printWindow.print();
+        } else {
+          showToast(t.toastAllowPopups || 'Permite popups no navegador para imprimir em PDF.', 'warning');
+        }
       }
     }
   }
