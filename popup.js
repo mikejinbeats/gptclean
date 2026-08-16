@@ -123,6 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
       proLicenseLabel: "Já tens uma chave de licença?",
       btnActivateLicense: "Ativar",
       proActiveSuccess: "Licença PRO Ativa para Sempre",
+      proRegisteredTitle: "Licença Vitalícia Registada",
+      proRegisteredSubtitle: "A tua conta ChatGPT Clean PRO está ativa para sempre. Exportações 100% ilimitadas, pastas infinitas e atualizações prioritárias desbloqueadas.",
+      proRegisteredBadge: "Ativo • Vitalício",
       footerLink: "Abrir ChatGPT",
       footerQuota: (rem) => `Exportações: ${rem}/2 hoje`,
       footerPro: "👑 Modo PRO Ativo",
@@ -201,6 +204,9 @@ document.addEventListener('DOMContentLoaded', () => {
       proLicenseLabel: "Already have a license key?",
       btnActivateLicense: "Activate",
       proActiveSuccess: "Lifetime PRO License Active",
+      proRegisteredTitle: "Lifetime License Registered",
+      proRegisteredSubtitle: "Your ChatGPT Clean PRO account is permanently active for life. 100% unlimited exports, infinite sidebar folders, and priority filter updates are unlocked.",
+      proRegisteredBadge: "Active • Lifetime",
       footerLink: "Open ChatGPT",
       footerQuota: (rem) => `Exports: ${rem}/2 today`,
       footerPro: "👑 PRO Mode Active",
@@ -278,7 +284,10 @@ document.addEventListener('DOMContentLoaded', () => {
       btnBuyPro: "Desbloquear Modo PRO (2,99€)",
       proLicenseLabel: "¿Ya tienes una clave de licencia?",
       btnActivateLicense: "Activar",
-      proActiveSuccess: "✅ Licencia PRO Activa de por Vida",
+      proActiveSuccess: "Licencia PRO Activa de por Vida",
+      proRegisteredTitle: "Licencia de por Vida Registrada",
+      proRegisteredSubtitle: "Tu cuenta ChatGPT Clean PRO está activa para siempre. Exportaciones 100% ilimitadas, carpetas infinitas y actualizaciones prioritarias desbloqueadas.",
+      proRegisteredBadge: "Activo • Vitalicio",
       footerLink: "Abrir ChatGPT",
       footerQuota: (rem) => `Exportaciones: ${rem}/2 hoy`,
       footerPro: "👑 Modo PRO Activo",
@@ -357,6 +366,9 @@ document.addEventListener('DOMContentLoaded', () => {
       proLicenseLabel: "Vous avez déjà une clé de licence ?",
       btnActivateLicense: "Activer",
       proActiveSuccess: "Licence PRO Active à Vie",
+      proRegisteredTitle: "Licence à Vie Enregistrée",
+      proRegisteredSubtitle: "Votre compte ChatGPT Clean PRO est actif pour toujours. Exports 100% illimités, dossiers infinis et mises à jour prioritaires débloqués.",
+      proRegisteredBadge: "Actif • À Vie",
       footerLink: "Ouvrir ChatGPT",
       footerQuota: (rem) => `Exports : ${rem}/2 auj.`,
       footerPro: "👑 Mode PRO Actif",
@@ -435,6 +447,9 @@ document.addEventListener('DOMContentLoaded', () => {
       proLicenseLabel: "Haben Sie bereits einen Lizenzschlüssel?",
       btnActivateLicense: "Aktivieren",
       proActiveSuccess: "Lifetime PRO-Lizenz Aktiv",
+      proRegisteredTitle: "Lebenslange Lizenz Registriert",
+      proRegisteredSubtitle: "Ihr ChatGPT Clean PRO-Konto ist dauerhaft aktiv. 100% unbegrenzte Exporte, unendliche Seitenleisten-Ordner und priorisierte Filter-Updates freigeschaltet.",
+      proRegisteredBadge: "Aktiv • Lebenslang",
       footerLink: "ChatGPT Öffnen",
       footerQuota: (rem) => `Exporte: ${rem}/2 heute`,
       footerPro: "👑 PRO-Modus Aktiv",
@@ -512,7 +527,10 @@ document.addEventListener('DOMContentLoaded', () => {
       btnBuyPro: "Sblocca Modalità PRO (2,99€)",
       proLicenseLabel: "Hai già una chiave di licenza?",
       btnActivateLicense: "Attiva",
-      proActiveSuccess: "✅ Licenza PRO Attiva a Vita",
+      proActiveSuccess: "Licenza PRO Attiva a Vita",
+      proRegisteredTitle: "Licenza a Vita Registrata",
+      proRegisteredSubtitle: "Il tuo account ChatGPT Clean PRO è attivo per sempre. Esportazioni 100% illimitate, cartelle infinite e aggiornamenti prioritari sbloccati.",
+      proRegisteredBadge: "Attivo • A Vita",
       footerLink: "Apri ChatGPT",
       footerQuota: (rem) => `Esportazioni: ${rem}/2 hoje`,
       footerPro: "👑 Modalità PRO Attiva",
@@ -591,6 +609,9 @@ document.addEventListener('DOMContentLoaded', () => {
       proLicenseLabel: "已有授权激活密钥？",
       btnActivateLicense: "立即激活",
       proActiveSuccess: "终身PRO授权已永久激活",
+      proRegisteredTitle: "终身PRO授权已永久激活",
+      proRegisteredSubtitle: "您的 ChatGPT Clean PRO 账户已永久生效。享受100%无限次全格式导出、无限侧边栏文件夹管理及广告过滤规则极速更新特权。",
+      proRegisteredBadge: "已激活 • 永久生效",
       footerLink: "打开 ChatGPT",
       footerQuota: (rem) => `今日导出: ${rem}/2`,
       footerPro: "👑 PRO专业版已激活",
@@ -669,6 +690,9 @@ document.addEventListener('DOMContentLoaded', () => {
       proLicenseLabel: "ライセンスキーをお持ちですか？",
       btnActivateLicense: "有効化",
       proActiveSuccess: "永久PROライセンス有効化済み",
+      proRegisteredTitle: "永久PROライセンス登録完了",
+      proRegisteredSubtitle: "お客様の ChatGPT Clean PRO アカウントは永久に有効です。完全無制限エクスポート、サイドバーフォルダ無制限管理、フィルター優先更新を常時ご利用いただけます。",
+      proRegisteredBadge: "有効 • 永久ライセンス",
       footerLink: "ChatGPTを開く",
       footerQuota: (rem) => `本日利用: ${rem}/2`,
       footerPro: "👑 PROモード有効中",
@@ -858,12 +882,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Footer
     const footerLinkText = document.getElementById('footer-link-text');
-    if (footerLinkText) {
-      footerLinkText.innerText = t.footerLink;
-    } else {
-      const footerLink = document.getElementById('i18n-footer-link');
-      if (footerLink) footerLink.innerText = t.footerLink;
+    if (footerLinkText) footerLinkText.innerText = t.footerLink;
+
+    // Se o utilizador for PRO, atualiza o cartão registrado para o novo idioma
+    if (isCurrentPro) {
+      applyProUI();
     }
+
+    const footerLink = document.getElementById('i18n-footer-link');
+    if (footerLink) footerLink.innerText = t.footerLink;
 
     if (isCurrentPro) {
       if (trialFooterStatus) trialFooterStatus.innerText = t.footerPro;
@@ -1407,10 +1434,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnOpenPromptForm) {
       btnOpenPromptForm.style.display = 'flex';
     }
+
+    const licenseBox = document.querySelector('.license-box');
+    if (licenseBox) {
+      licenseBox.style.display = 'none';
+    }
+
     if (pricingBox) {
+      pricingBox.className = 'pro-registered-card glass-panel';
       pricingBox.innerHTML = `
-        <div style="padding: 12px; color: #4ade80; font-weight: bold; font-size: 13px;">
-          ${t.proActiveSuccess}
+        <img src="icons/healthy.png" alt="Registered Lifetime" class="pro-healthy-3d-icon">
+        <div class="pro-registered-title">${t.proRegisteredTitle}</div>
+        <p class="pro-registered-desc">${t.proRegisteredSubtitle}</p>
+        <div class="pro-registered-pill">
+          <span>✓</span>
+          <span>${t.proRegisteredBadge}</span>
         </div>
       `;
     }
