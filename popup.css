@@ -521,16 +521,23 @@ body.theme-default .nav-tabs {
   min-width: 0;
 }
 
-.title-with-badge {
+.title-with-badge, .title-with-icon {
   display: flex;
   align-items: center;
   gap: 6px;
   margin-bottom: 2px;
 }
 
-.title-with-badge .card-title {
+.title-with-badge .card-title, .title-with-icon .card-title {
   display: inline;
   margin-bottom: 0;
+}
+
+.section-title-icon {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
 }
 
 .card-title {
@@ -848,12 +855,20 @@ body.theme-default .stat-number {
 
 .info-banner {
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
+  align-items: center;
+  gap: 9px;
   background: var(--accent-cyan-bg);
   border: 1px solid var(--accent-cyan);
   border-radius: var(--radius-md);
   padding: 10px 12px;
+}
+
+.info-banner-3d-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 6px rgba(234, 179, 8, 0.4));
 }
 
 .info-banner p {
