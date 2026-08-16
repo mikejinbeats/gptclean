@@ -25,6 +25,7 @@
 
   const CONTENT_I18N = {
     pt: {
+      defaultNewFolderName: "📁 Projetos",
       createFolderTitle: "Criar Nova Pasta",
       placeholderNewFolder: "Ex: 💼 Trabalho, 💡 Ideias, 📁 Projetos...",
       btnCreateFolder: "Criar Pasta",
@@ -76,6 +77,7 @@
       limitUpgradeBtn: "Desbloquear Exportações Ilimitadas"
     },
     en: {
+      defaultNewFolderName: "📁 Projects",
       createFolderTitle: "Create New Folder",
       placeholderNewFolder: "e.g. 💼 Work, 💡 Ideas, 📁 Projects...",
       btnCreateFolder: "Create Folder",
@@ -127,6 +129,7 @@
       limitUpgradeBtn: "Unlock Unlimited Exports"
     },
     es: {
+      defaultNewFolderName: "📁 Proyectos",
       createFolderTitle: "Crear Nueva Carpeta",
       placeholderNewFolder: "Ej: 💼 Trabajo, 💡 Ideas, 📁 Proyectos...",
       btnCreateFolder: "Crear Carpeta",
@@ -178,6 +181,7 @@
       limitUpgradeBtn: "Desbloquear Exportaciones Ilimitadas"
     },
     fr: {
+      defaultNewFolderName: "📁 Projets",
       createFolderTitle: "Créer un Nouveau Dossier",
       placeholderNewFolder: "Ex : 💼 Travail, 💡 Idées, 📁 Projets...",
       btnCreateFolder: "Créer le Dossier",
@@ -229,6 +233,7 @@
       limitUpgradeBtn: "Débloquer les Exports Illimités"
     },
     de: {
+      defaultNewFolderName: "📁 Projekte",
       createFolderTitle: "Neuen Ordner Erstellen",
       placeholderNewFolder: "z.B. 💼 Arbeit, 💡 Ideen, 📁 Projekte...",
       btnCreateFolder: "Ordner Erstellen",
@@ -280,6 +285,7 @@
       limitUpgradeBtn: "Unbegrenzte Exporte Freischalten"
     },
     it: {
+      defaultNewFolderName: "📁 Progetti",
       createFolderTitle: "Crea Nuova Cartella",
       placeholderNewFolder: "Es: 💼 Lavoro, 💡 Idee, 📁 Progetti...",
       btnCreateFolder: "Crea Cartella",
@@ -331,6 +337,7 @@
       limitUpgradeBtn: "Sblocca Esportazioni Illimitate"
     },
     zh: {
+      defaultNewFolderName: "📁 我的项目",
       createFolderTitle: "新建侧边栏文件夹",
       placeholderNewFolder: "例如: 💼 工作, 💡 灵感, 📁 项目...",
       btnCreateFolder: "立即创建",
@@ -382,6 +389,7 @@
       limitUpgradeBtn: "解锁无限导出权限"
     },
     ja: {
+      defaultNewFolderName: "📁 プロジェクト",
       createFolderTitle: "新規フォルダを作成",
       placeholderNewFolder: "例: 💼 仕事, 💡 アイデア, 📁 プロジェクト...",
       btnCreateFolder: "フォルダを作成",
@@ -1226,7 +1234,7 @@
           <button class="chatgpt-clean-modal-close" id="chatgpt-clean-close-folder-modal">✕</button>
         </div>
         <form id="chatgpt-clean-new-folder-form">
-          <input type="text" id="chatgpt-clean-folder-name-input" class="chatgpt-clean-folder-modal-input" placeholder="${t.placeholderNewFolder || 'Ex: 💼 Trabalho, 💡 Ideias...'}" value="📁 Projetos" required autofocus>
+          <input type="text" id="chatgpt-clean-folder-name-input" class="chatgpt-clean-folder-modal-input" placeholder="${t.placeholderNewFolder || 'Ex: 💼 Trabalho, 💡 Ideias...'}" value="${t.defaultNewFolderName || '📁 Projects'}" required autofocus>
           <div class="chatgpt-clean-modal-actions">
             <button type="button" class="chatgpt-clean-btn-secondary" id="chatgpt-clean-btn-cancel-folder">${t.btnCancel || 'Cancelar'}</button>
             <button type="submit" class="chatgpt-clean-btn-primary">${t.btnCreateFolder || 'Criar Pasta'}</button>
