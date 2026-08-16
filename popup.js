@@ -999,17 +999,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. ATUALIZAR FILTROS DE ANÚNCIOS
   // --------------------------------------------------------------------------
   btnUpdateFilters.addEventListener('click', () => {
+    const t = I18N[currentLang] || I18N.en;
     btnUpdateFilters.style.pointerEvents = 'none';
-    updateBtnText.innerText = 'A sincronizar regras...';
+    updateBtnText.innerText = t.updatingFilters;
     btnUpdateFilters.querySelector('.btn-icon').innerText = '⏳';
 
     setTimeout(() => {
-      updateBtnText.innerText = 'Filtros Atualizados! (v2026.08)';
+      updateBtnText.innerText = t.updatedFilters;
       btnUpdateFilters.querySelector('.btn-icon').innerText = '✅';
       btnUpdateFilters.style.borderColor = '#10b981';
 
       setTimeout(() => {
-        updateBtnText.innerText = 'Atualizar Filtros de Anúncios';
+        const curT = I18N[currentLang] || I18N.en;
+        updateBtnText.innerText = curT.btnUpdateFilters;
         btnUpdateFilters.querySelector('.btn-icon').innerText = '🔄';
         btnUpdateFilters.style.borderColor = '';
         btnUpdateFilters.style.pointerEvents = 'auto';
@@ -1034,8 +1036,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderPrompts(customList) {
     if (customList) currentCustomPrompts = customList;
     popupPromptsList.innerHTML = '';
-    const t = I18N[currentLang] || I18N.pt;
-    const defaultList = t.prompts || I18N.pt.prompts;
+    const t = I18N[currentLang] || I18N.en;
+    const defaultList = t.prompts || I18N.en.prompts;
 
     // 1. Prompts Padrão no Idioma Atual
     defaultList.forEach((p) => {
@@ -1061,7 +1063,10 @@ document.addEventListener('DOMContentLoaded', () => {
         e.stopPropagation();
         navigator.clipboard.writeText(p.text);
         copyBtn.innerText = t.copied;
-        setTimeout(() => { copyBtn.innerText = t.btnCopy; }, 1500);
+        setTimeout(() => { 
+          const curT = I18N[currentLang] || I18N.en;
+          copyBtn.innerText = curT.btnCopy; 
+        }, 1500);
       });
 
       popupPromptsList.appendChild(card);
@@ -1081,7 +1086,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="prompt-card-actions">
             <button class="prompt-action-btn btn-insert" title="${t.btnInsert}">${t.btnInsert}</button>
             <button class="prompt-action-btn btn-copy" title="${t.btnCopy}">${t.btnCopy}</button>
-            <button class="prompt-action-btn btn-delete" title="Eliminar" data-index="${idx}">🗑️</button>
+            <button class="prompt-action-btn btn-delete" title="Delete" data-index="${idx}">🗑️</button>
           </div>
         `;
 
@@ -1096,7 +1101,10 @@ document.addEventListener('DOMContentLoaded', () => {
           e.stopPropagation();
           navigator.clipboard.writeText(cp.text);
           copyBtn.innerText = t.copied;
-          setTimeout(() => { copyBtn.innerText = t.btnCopy; }, 1500);
+          setTimeout(() => { 
+            const curT = I18N[currentLang] || I18N.en;
+            copyBtn.innerText = curT.btnCopy; 
+          }, 1500);
         });
 
         const delBtn = card.querySelector('.btn-delete');
@@ -1147,7 +1155,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const text = (newPromptText.value || '').trim();
 
       if (!title || !text) {
-        alert('Por favor preenche pelo menos o Título e o Texto do Prompt.');
+        alert('Please fill in at least Title and Prompt text.');
         return;
       }
 
@@ -1174,33 +1182,45 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function sendPromptToActiveTab(text, btnElement) {
+    const t = I18N[currentLang] || I18N.en;
     if (typeof chrome !== 'undefined' && chrome.tabs) {
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const activeTab = tabs && tabs[0];
         if (activeTab && activeTab.id && activeTab.url && activeTab.url.includes('chatgpt.com')) {
           chrome.tabs.sendMessage(activeTab.id, { action: 'insertPrompt', text: text }, (response) => {
-            // Consumir lastError para não poluir o painel de erros do Chrome
             const lastErr = chrome.runtime.lastError;
             if (!lastErr && response && response.success) {
-              btnElement.innerText = '✅ Inserido!';
-              setTimeout(() => { btnElement.innerText = '⚡ Inserir no Chat'; }, 1500);
+              btnElement.innerText = t.inserted;
+              setTimeout(() => { 
+                const curT = I18N[currentLang] || I18N.en;
+                btnElement.innerText = curT.btnInsert; 
+              }, 1500);
             } else {
               navigator.clipboard.writeText(text);
-              btnElement.innerText = '📋 Copiado! (Cola no chat)';
-              setTimeout(() => { btnElement.innerText = '⚡ Inserir no Chat'; }, 2000);
+              btnElement.innerText = t.copied;
+              setTimeout(() => { 
+                const curT = I18N[currentLang] || I18N.en;
+                btnElement.innerText = curT.btnInsert; 
+              }, 2000);
             }
           });
         } else {
           // Se não estiver na aba do ChatGPT, copia para o clipboard
           navigator.clipboard.writeText(text);
-          btnElement.innerText = '📋 Copiado para a Área de Transferência!';
-          setTimeout(() => { btnElement.innerText = '⚡ Inserir no Chat'; }, 2000);
+          btnElement.innerText = t.copied;
+          setTimeout(() => { 
+            const curT = I18N[currentLang] || I18N.en;
+            btnElement.innerText = curT.btnInsert; 
+          }, 2000);
         }
       });
     } else {
       navigator.clipboard.writeText(text);
-      btnElement.innerText = '📋 Copiado!';
-      setTimeout(() => { btnElement.innerText = '⚡ Inserir no Chat'; }, 1500);
+      btnElement.innerText = t.copied;
+      setTimeout(() => { 
+        const curT = I18N[currentLang] || I18N.en;
+        btnElement.innerText = curT.btnInsert; 
+      }, 1500);
     }
   }
 
