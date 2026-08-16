@@ -81,12 +81,12 @@ document.addEventListener('DOMContentLoaded', () => {
       blockAdsDesc: "Elimina conteúdo patrocinado em tempo real",
       statsTitle: "TELEMETRIA",
       btnResetStats: "Zerar",
-      statsResetSuccess: "✅ Zerado!",
+      statsResetSuccess: "Zerado!",
       statTodayLabel: "BLOQUEADOS HOJE",
       statTotalLabel: "TOTAL ACUMULADO",
       btnUpdateFilters: "Atualizar Filtros Anti-Ad",
       updatingFilters: "A verificar...",
-      updatedFilters: "✅ Filtros Atualizados!",
+      updatedFilters: "Filtros Atualizados!",
       shieldInfoDesc: "O escudo monitoriza o DOM do ChatGPT e destrói anúncios antes de serem renderizados.",
       promptsTitle: "Prompts de Produtividade",
       promptsCount: "3 Prontos",
@@ -122,14 +122,14 @@ document.addEventListener('DOMContentLoaded', () => {
       btnBuyPro: "Desbloquear Modo PRO (2,99€)",
       proLicenseLabel: "Já tens uma chave de licença?",
       btnActivateLicense: "Ativar",
-      proActiveSuccess: "✅ Licença PRO Ativa para Sempre",
+      proActiveSuccess: "Licença PRO Ativa para Sempre",
       footerLink: "Abrir ChatGPT",
       footerQuota: (rem) => `Exportações: ${rem}/2 hoje`,
       footerPro: "👑 Modo PRO Ativo",
       btnInsert: "Inserir no Chat",
       btnCopy: "Copiar",
-      copied: "✅ Copiado!",
-      inserted: "✅ Inserido!",
+      copied: "Copiado!",
+      inserted: "Inserido!",
       prompts: [
         {
           title: "Resumir em Bullet Points",
@@ -159,12 +159,12 @@ document.addEventListener('DOMContentLoaded', () => {
       blockAdsDesc: "Eliminate sponsored and ad content in real-time",
       statsTitle: "TELEMETRY",
       btnResetStats: "Reset",
-      statsResetSuccess: "✅ Reset!",
+      statsResetSuccess: "Reset!",
       statTodayLabel: "BLOCKED TODAY",
       statTotalLabel: "TOTAL ALL-TIME",
       btnUpdateFilters: "Update Anti-Ad Filters",
       updatingFilters: "Checking...",
-      updatedFilters: "✅ Filters Updated!",
+      updatedFilters: "Filters Updated!",
       shieldInfoDesc: "The shield monitors ChatGPT's DOM and removes ads before they are rendered.",
       promptsTitle: "Productivity Prompts",
       promptsCount: "3 Ready",
@@ -200,14 +200,14 @@ document.addEventListener('DOMContentLoaded', () => {
       btnBuyPro: "Unlock PRO Mode ($2.99)",
       proLicenseLabel: "Already have a license key?",
       btnActivateLicense: "Activate",
-      proActiveSuccess: "✅ Lifetime PRO License Active",
+      proActiveSuccess: "Lifetime PRO License Active",
       footerLink: "Open ChatGPT",
       footerQuota: (rem) => `Exports: ${rem}/2 today`,
       footerPro: "👑 PRO Mode Active",
       btnInsert: "Insert in Chat",
       btnCopy: "Copy",
-      copied: "✅ Copied!",
-      inserted: "✅ Inserted!",
+      copied: "Copied!",
+      inserted: "Inserted!",
       prompts: [
         {
           title: "Summarize in Bullet Points",
@@ -315,12 +315,12 @@ document.addEventListener('DOMContentLoaded', () => {
       blockAdsDesc: "Supprime le contenu sponsorisé en temps réel",
       statsTitle: "TÉLÉMÉTRIE",
       btnResetStats: "Reset",
-      statsResetSuccess: "✅ Réinitialisé !",
+      statsResetSuccess: "Réinitialisé !",
       statTodayLabel: "BLOQUÉS AUJOURD'HUI",
       statTotalLabel: "TOTAL HISTORIQUE",
       btnUpdateFilters: "Mettre à jour les Filtres",
       updatingFilters: "Vérification...",
-      updatedFilters: "✅ Filtres Mis à Jour !",
+      updatedFilters: "Filtres Mis à Jour !",
       shieldInfoDesc: "Le bouclier surveille le DOM de ChatGPT et neutralise les publicités.",
       promptsTitle: "Prompts de Productivité",
       promptsCount: "3 Prêts",
@@ -356,14 +356,14 @@ document.addEventListener('DOMContentLoaded', () => {
       btnBuyPro: "Débloquer le Mode PRO (2,99€)",
       proLicenseLabel: "Vous avez déjà une clé de licence ?",
       btnActivateLicense: "Activer",
-      proActiveSuccess: "✅ Licence PRO Active à Vie",
+      proActiveSuccess: "Licence PRO Active à Vie",
       footerLink: "Ouvrir ChatGPT",
       footerQuota: (rem) => `Exports : ${rem}/2 auj.`,
       footerPro: "👑 Mode PRO Actif",
       btnInsert: "Insérer au Chat",
       btnCopy: "Copier",
-      copied: "✅ Copié !",
-      inserted: "✅ Inséré !",
+      copied: "Copié !",
+      inserted: "Inséré !",
       prompts: [
         {
           title: "Résumer en Puces",
@@ -393,12 +393,12 @@ document.addEventListener('DOMContentLoaded', () => {
       blockAdsDesc: "Entfernt gesponserte Inhalte in Echtzeit",
       statsTitle: "TELEMETRIE",
       btnResetStats: "Reset",
-      statsResetSuccess: "✅ Zurückgesetzt!",
+      statsResetSuccess: "Zurückgesetzt!",
       statTodayLabel: "HEUTE BLOCKIERT",
       statTotalLabel: "GESAMT BLOCKIERT",
       btnUpdateFilters: "Anti-Ad Filter Aktualisieren",
       updatingFilters: "Wird geprüft...",
-      updatedFilters: "✅ Filter Aktualisiert!",
+      updatedFilters: "Filter Aktualisiert!",
       shieldInfoDesc: "Das Schild überwacht das ChatGPT-DOM und entfernt Werbung sofort.",
       promptsTitle: "Produktivitäts-Prompts",
       promptsCount: "3 Bereit",
@@ -434,14 +434,14 @@ document.addEventListener('DOMContentLoaded', () => {
       btnBuyPro: "PRO-Modus Freischalten (2,99€)",
       proLicenseLabel: "Haben Sie bereits einen Lizenzschlüssel?",
       btnActivateLicense: "Aktivieren",
-      proActiveSuccess: "✅ Lifetime PRO-Lizenz Aktiv",
+      proActiveSuccess: "Lifetime PRO-Lizenz Aktiv",
       footerLink: "ChatGPT Öffnen",
       footerQuota: (rem) => `Exporte: ${rem}/2 heute`,
       footerPro: "👑 PRO-Modus Aktiv",
       btnInsert: "In Chat Einfügen",
       btnCopy: "Kopieren",
-      copied: "✅ Kopiert!",
-      inserted: "✅ Eingefügt!",
+      copied: "Kopiert!",
+      inserted: "Eingefügt!",
       prompts: [
         {
           title: "In Stichpunkten Zusammenfassen",
@@ -549,12 +549,12 @@ document.addEventListener('DOMContentLoaded', () => {
       blockAdsDesc: "实时清除ChatGPT所有赞助推广内容",
       statsTitle: "实时统计",
       btnResetStats: "重置",
-      statsResetSuccess: "✅ 已重置！",
+      statsResetSuccess: "已重置！",
       statTodayLabel: "今日已拦截",
       statTotalLabel: "历史总计拦截",
       btnUpdateFilters: "更新广告过滤规则",
       updatingFilters: "检查中...",
-      updatedFilters: "✅ 规则已更新！",
+      updatedFilters: "规则已更新！",
       shieldInfoDesc: "防护盾实时监控ChatGPT DOM结构并在广告渲染前直接消除。",
       promptsTitle: "高效生产力提示词",
       promptsCount: "3个内置",
@@ -590,14 +590,14 @@ document.addEventListener('DOMContentLoaded', () => {
       btnBuyPro: "解锁PRO专业版 (2.99€)",
       proLicenseLabel: "已有授权激活密钥？",
       btnActivateLicense: "立即激活",
-      proActiveSuccess: "✅ 终身PRO授权已永久激活",
+      proActiveSuccess: "终身PRO授权已永久激活",
       footerLink: "打开 ChatGPT",
       footerQuota: (rem) => `今日导出: ${rem}/2`,
       footerPro: "👑 PRO专业版已激活",
       btnInsert: "插入聊天",
       btnCopy: "复制",
-      copied: "✅ 已复制！",
-      inserted: "✅ 已插入！",
+      copied: "已复制！",
+      inserted: "已插入！",
       prompts: [
         {
           title: "要点提炼与摘要",
@@ -627,12 +627,12 @@ document.addEventListener('DOMContentLoaded', () => {
       blockAdsDesc: "スポンサー広告をリアルタイムで完全除去",
       statsTitle: "リアルタイム統計",
       btnResetStats: "リセット",
-      statsResetSuccess: "✅ リセット完了！",
+      statsResetSuccess: "リセット完了！",
       statTodayLabel: "本日のブロック数",
       statTotalLabel: "累計ブロック数",
       btnUpdateFilters: "広告フィルター更新",
       updatingFilters: "確認中...",
-      updatedFilters: "✅ フィルター更新完了！",
+      updatedFilters: "フィルター更新完了！",
       shieldInfoDesc: "シールドがChatGPTのDOMを監視し、広告が表示される前に自動消去します。",
       promptsTitle: "効率化プロンプト",
       promptsCount: "3件利用可能",
@@ -668,14 +668,14 @@ document.addEventListener('DOMContentLoaded', () => {
       btnBuyPro: "PRO版を解放する (2.99€)",
       proLicenseLabel: "ライセンスキーをお持ちですか？",
       btnActivateLicense: "有効化",
-      proActiveSuccess: "✅ 永久PROライセンス有効化済み",
+      proActiveSuccess: "永久PROライセンス有効化済み",
       footerLink: "ChatGPTを開く",
       footerQuota: (rem) => `本日利用: ${rem}/2`,
       footerPro: "👑 PROモード有効中",
       btnInsert: "チャットに挿入",
       btnCopy: "コピー",
-      copied: "✅ コピー完了！",
-      inserted: "✅ 挿入完了！",
+      copied: "コピー完了！",
+      inserted: "挿入完了！",
       prompts: [
         {
           title: "箇条書きで要約",
@@ -1055,16 +1055,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const t = I18N[currentLang] || I18N.en;
     btnUpdateFilters.style.pointerEvents = 'none';
     updateBtnText.innerText = t.updatingFilters;
-    if (updateBtnIcon) updateBtnIcon.classList.add('spinning');
+    if (updateBtnIcon) {
+      updateBtnIcon.src = 'icons/icons8-update-94.png';
+      updateBtnIcon.classList.remove('tick-icon');
+      updateBtnIcon.classList.add('spinning');
+    }
 
     setTimeout(() => {
       updateBtnText.innerText = t.updatedFilters;
-      if (updateBtnIcon) updateBtnIcon.classList.remove('spinning');
+      if (updateBtnIcon) {
+        updateBtnIcon.classList.remove('spinning');
+        updateBtnIcon.src = 'icons/3dicons-tick-dynamic-color.png';
+        updateBtnIcon.classList.add('tick-icon');
+      }
       btnUpdateFilters.style.borderColor = '#10b981';
 
       setTimeout(() => {
         const curT = I18N[currentLang] || I18N.en;
         updateBtnText.innerText = curT.btnUpdateFilters;
+        if (updateBtnIcon) {
+          updateBtnIcon.src = 'icons/icons8-update-94.png';
+          updateBtnIcon.classList.remove('tick-icon');
+        }
         btnUpdateFilters.style.borderColor = '';
         btnUpdateFilters.style.pointerEvents = 'auto';
       }, 2500);
