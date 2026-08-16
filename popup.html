@@ -24,16 +24,57 @@
         </div>
       </div>
       <div class="header-controls">
-        <select id="lang-select" class="lang-select" title="Idioma / Language">
-          <option value="pt">🇵🇹 PT</option>
-          <option value="en">🇺🇸 EN</option>
-          <option value="es">🇪🇸 ES</option>
-          <option value="fr">🇫🇷 FR</option>
-          <option value="de">🇩🇪 DE</option>
-          <option value="it">🇮🇹 IT</option>
-          <option value="zh">🇨🇳 中文</option>
-          <option value="ja">🇯🇵 日本語</option>
-        </select>
+        <!-- Custom Language Dropdown com Bandeiras SVG Coloridas -->
+        <div class="custom-lang-dropdown" id="custom-lang-dropdown">
+          <button type="button" class="lang-dropdown-btn" id="lang-dropdown-btn" title="Selecionar Idioma / Select Language">
+            <span class="lang-btn-flag" id="lang-btn-flag"></span>
+            <span class="lang-btn-code" id="lang-btn-code">PT</span>
+            <span class="lang-dropdown-arrow">▾</span>
+          </button>
+          <div class="lang-dropdown-menu glass-panel" id="lang-dropdown-menu">
+            <div class="lang-option" data-lang="pt">
+              <span class="flag-svg-icon" data-flag="pt"></span>
+              <span class="lang-name">Português</span>
+              <span class="lang-code-pill">PT</span>
+            </div>
+            <div class="lang-option" data-lang="en">
+              <span class="flag-svg-icon" data-flag="en"></span>
+              <span class="lang-name">English</span>
+              <span class="lang-code-pill">EN</span>
+            </div>
+            <div class="lang-option" data-lang="es">
+              <span class="flag-svg-icon" data-flag="es"></span>
+              <span class="lang-name">Español</span>
+              <span class="lang-code-pill">ES</span>
+            </div>
+            <div class="lang-option" data-lang="fr">
+              <span class="flag-svg-icon" data-flag="fr"></span>
+              <span class="lang-name">Français</span>
+              <span class="lang-code-pill">FR</span>
+            </div>
+            <div class="lang-option" data-lang="de">
+              <span class="flag-svg-icon" data-flag="de"></span>
+              <span class="lang-name">Deutsch</span>
+              <span class="lang-code-pill">DE</span>
+            </div>
+            <div class="lang-option" data-lang="it">
+              <span class="flag-svg-icon" data-flag="it"></span>
+              <span class="lang-name">Italiano</span>
+              <span class="lang-code-pill">IT</span>
+            </div>
+            <div class="lang-option" data-lang="zh">
+              <span class="flag-svg-icon" data-flag="zh"></span>
+              <span class="lang-name">中文</span>
+              <span class="lang-code-pill">ZH</span>
+            </div>
+            <div class="lang-option" data-lang="ja">
+              <span class="flag-svg-icon" data-flag="ja"></span>
+              <span class="lang-name">日本語</span>
+              <span class="lang-code-pill">JA</span>
+            </div>
+          </div>
+        </div>
+
         <div class="status-indicator" id="status-badge">
           <span class="status-dot"></span>
           <span class="status-text" id="status-text">Protegido</span>
@@ -244,7 +285,14 @@
 
     <!-- Glass Footer -->
     <footer class="app-footer">
-      <a href="https://chatgpt.com" target="_blank" class="footer-link" id="i18n-footer-link">Abrir ChatGPT</a>
+      <a href="https://chatgpt.com" target="_blank" class="footer-link" id="i18n-footer-link" title="Abrir ChatGPT">
+        <span id="footer-link-text">Abrir ChatGPT</span>
+        <svg class="footer-external-icon" viewBox="0 0 24 24" width="11" height="11" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
       <span class="footer-divider">•</span>
       <span class="footer-status mono-telemetry" id="trial-footer-status">Exportações: 2/2 hoje</span>
     </footer>

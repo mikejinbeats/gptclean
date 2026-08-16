@@ -36,7 +36,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const licenseMsg = document.getElementById('license-msg');
   const pricingBox = document.getElementById('pricing-box');
 
-  const langSelect = document.getElementById('lang-select');
+  const langDropdown = document.getElementById('custom-lang-dropdown');
+  const langDropdownBtn = document.getElementById('lang-dropdown-btn');
+  const langBtnFlag = document.getElementById('lang-btn-flag');
+  const langBtnCode = document.getElementById('lang-btn-code');
+
+  let currentExportsRemaining = 2;
+  let isCurrentPro = false;
+
+  // --------------------------------------------------------------------------
+  // BANDEIRAS VIVAS EM SVG PARA OS 8 PAÍSES (RENDERIZAÇÃO NATIVA PERFEITA)
+  // --------------------------------------------------------------------------
+  const FLAGS_SVG = {
+    pt: `<svg viewBox="0 0 20 14" width="16" height="11" style="border-radius:2px;display:inline-block;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,0.25);"><rect width="8" height="14" fill="#006600"/><rect x="8" width="12" height="14" fill="#ff0000"/><circle cx="8" cy="7" r="3" fill="#ffcc00"/><circle cx="8" cy="7" r="2" fill="#ffffff"/><rect x="7" y="5" width="2" height="4" fill="#003399"/></svg>`,
+    en: `<svg viewBox="0 0 20 14" width="16" height="11" style="border-radius:2px;display:inline-block;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,0.25);"><rect width="20" height="14" fill="#b22234"/><rect y="2" width="20" height="2" fill="#fff"/><rect y="6" width="20" height="2" fill="#fff"/><rect y="10" width="20" height="2" fill="#fff"/><rect width="9" height="8" fill="#3c3b6e"/><circle cx="4.5" cy="4" r="1.5" fill="#fff"/></svg>`,
+    es: `<svg viewBox="0 0 20 14" width="16" height="11" style="border-radius:2px;display:inline-block;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,0.25);"><rect width="20" height="3.5" fill="#aa151b"/><rect y="3.5" width="20" height="7" fill="#f1bf00"/><rect y="10.5" width="20" height="3.5" fill="#aa151b"/><rect x="3.5" y="5.5" width="2" height="3" fill="#aa151b"/></svg>`,
+    fr: `<svg viewBox="0 0 20 14" width="16" height="11" style="border-radius:2px;display:inline-block;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,0.25);"><rect width="6.6" height="14" fill="#002395"/><rect x="6.6" width="6.8" height="14" fill="#ffffff"/><rect x="13.4" width="6.6" height="14" fill="#ed2939"/></svg>`,
+    de: `<svg viewBox="0 0 20 14" width="16" height="11" style="border-radius:2px;display:inline-block;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,0.25);"><rect width="20" height="4.6" fill="#000000"/><rect y="4.6" width="20" height="4.8" fill="#dd0000"/><rect y="9.4" width="20" height="4.6" fill="#ffce00"/></svg>`,
+    it: `<svg viewBox="0 0 20 14" width="16" height="11" style="border-radius:2px;display:inline-block;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,0.25);"><rect width="6.6" height="14" fill="#009246"/><rect x="6.6" width="6.8" height="14" fill="#ffffff"/><rect x="13.4" width="6.6" height="14" fill="#ce2b37"/></svg>`,
+    zh: `<svg viewBox="0 0 20 14" width="16" height="11" style="border-radius:2px;display:inline-block;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,0.25);"><rect width="20" height="14" fill="#de2910"/><polygon points="4.5,2 5.5,4.5 3,3 6,3 3.5,4.5" fill="#ffde00"/><circle cx="8" cy="2" r="0.6" fill="#ffde00"/><circle cx="9.2" cy="3.5" r="0.6" fill="#ffde00"/><circle cx="9.2" cy="5.5" r="0.6" fill="#ffde00"/><circle cx="8" cy="7" r="0.6" fill="#ffde00"/></svg>`,
+    ja: `<svg viewBox="0 0 20 14" width="16" height="11" style="border-radius:2px;display:inline-block;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,0.25);"><rect width="20" height="14" fill="#ffffff"/><circle cx="10" cy="7" r="4" fill="#bc002d"/></svg>`
+  };
+
+  // Inicializar ícones de bandeiras no menu
+  document.querySelectorAll('.flag-svg-icon[data-flag]').forEach(el => {
+    const flagKey = el.getAttribute('data-flag');
+    if (FLAGS_SVG[flagKey]) {
+      el.innerHTML = FLAGS_SVG[flagKey];
+    }
+  });
 
   // --------------------------------------------------------------------------
   // DICIONÁRIO DE INTERNACIONALIZAÇÃO (8 IDIOMAS MAIS FALADOS)
@@ -621,7 +649,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   let currentLang = 'pt';
-  let isCurrentPro = false;
 
   // --------------------------------------------------------------------------
   // 1. NAVEGAÇÃO ENTRE ABAS
@@ -663,8 +690,24 @@ document.addEventListener('DOMContentLoaded', () => {
   function applyLanguage(lang) {
     if (!I18N[lang]) lang = 'pt';
     currentLang = lang;
-    if (langSelect) langSelect.value = lang;
     const t = I18N[lang];
+
+    // Atualizar Botão do Dropdown no Header com Bandeira SVG e Sigla
+    if (langBtnFlag && FLAGS_SVG[lang]) {
+      langBtnFlag.innerHTML = FLAGS_SVG[lang];
+    }
+    if (langBtnCode) {
+      langBtnCode.innerText = lang.toUpperCase();
+    }
+
+    // Marcar opção ativa no menu
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      if (opt.getAttribute('data-lang') === lang) {
+        opt.classList.add('active');
+      } else {
+        opt.classList.remove('active');
+      }
+    });
 
     // Status
     if (toggleAdBlock && toggleAdBlock.checked) {
@@ -756,8 +799,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnActivateLicense) btnActivateLicense.innerText = t.btnActivateLicense;
 
     // Footer
-    const footerLink = document.getElementById('i18n-footer-link');
-    if (footerLink) footerLink.innerText = t.footerLink;
+    const footerLinkText = document.getElementById('footer-link-text');
+    if (footerLinkText) {
+      footerLinkText.innerText = t.footerLink;
+    } else {
+      const footerLink = document.getElementById('i18n-footer-link');
+      if (footerLink) footerLink.innerText = t.footerLink;
+    }
+
+    if (isCurrentPro) {
+      if (trialFooterStatus) trialFooterStatus.innerText = t.footerPro;
+      if (exportTrialBadge) exportTrialBadge.innerText = t.exportQuotaBadgePro;
+    } else {
+      if (trialFooterStatus) trialFooterStatus.innerText = t.footerQuota(currentExportsRemaining);
+      if (exportTrialBadge) exportTrialBadge.innerText = t.exportQuotaBadge(currentExportsRemaining);
+    }
 
     renderPrompts(currentCustomPrompts);
 
@@ -776,9 +832,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  if (langSelect) {
-    langSelect.addEventListener('change', () => {
-      applyLanguage(langSelect.value);
+  // Interação do Custom Dropdown de Idiomas
+  if (langDropdownBtn && langDropdown) {
+    langDropdownBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      langDropdown.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const selectedLang = opt.getAttribute('data-lang');
+        applyLanguage(selectedLang);
+        langDropdown.classList.remove('open');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!langDropdown.contains(e.target)) {
+        langDropdown.classList.remove('open');
+      }
     });
   }
 
@@ -793,11 +866,18 @@ document.addEventListener('DOMContentLoaded', () => {
         'blockedCount',
         'blockedToday',
         'lastDate',
+        'exportsToday',
+        'exportsLastDate',
         'exportTrialStartDate',
         'customPrompts',
         'isPro'
       ], (data) => {
         isCurrentPro = !!data.isPro;
+
+        // Cota Diária de Exportações (2/dia Free ou Ilimitado PRO)
+        const today = new Date().toDateString();
+        const exportsCount = (data.exportsLastDate === today) ? (data.exportsToday || 0) : 0;
+        currentExportsRemaining = Math.max(0, 2 - exportsCount);
 
         // Toggles
         toggleAdBlock.checked = data.adBlockEnabled !== false;
@@ -819,7 +899,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateStatusBadge(toggleAdBlock.checked);
 
         // Estatísticas
-        const today = new Date().toDateString();
         const todayCount = (data.lastDate === today) ? (data.blockedToday || 0) : 0;
         statToday.innerText = todayCount;
         statTotal.innerText = data.blockedCount || 0;
@@ -830,16 +909,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         renderPrompts(currentCustomPrompts);
 
-        // Cota Diária de Exportações (2/dia Free ou Ilimitado PRO)
-        const exportsCount = (data.exportsLastDate === today) ? (data.exportsToday || 0) : 0;
-        const exportsRemaining = Math.max(0, 2 - exportsCount);
-        const t = I18N[currentLang] || I18N.pt;
-
         if (data.isPro) {
           applyProUI();
-        } else {
-          exportTrialBadge.innerText = t.exportQuotaBadge(exportsRemaining);
-          trialFooterStatus.innerText = t.footerQuota(exportsRemaining);
         }
       });
     }
@@ -1178,12 +1249,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function applyProUI() {
+    isCurrentPro = true;
+    const t = I18N[currentLang] || I18N.pt;
     if (exportTrialBadge) {
-      exportTrialBadge.innerText = '👑 PRO Vitalício';
+      exportTrialBadge.innerText = t.exportQuotaBadgePro;
       exportTrialBadge.className = 'badge-active';
     }
     if (trialFooterStatus) {
-      trialFooterStatus.innerText = '👑 Modo PRO Ativo';
+      trialFooterStatus.innerText = t.footerPro;
       trialFooterStatus.style.color = '#f59e0b';
     }
     if (promptsProLock) {
@@ -1195,7 +1268,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (pricingBox) {
       pricingBox.innerHTML = `
         <div style="padding: 12px; color: #4ade80; font-weight: bold; font-size: 13px;">
-          ✅ Licença PRO Ativa para Sempre
+          ${t.proActiveSuccess}
         </div>
       `;
     }
