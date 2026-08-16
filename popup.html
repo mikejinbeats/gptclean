@@ -101,6 +101,26 @@
           <!-- Renderizado via JS com Glass Cards -->
         </div>
 
+        <!-- Formulário de Criar Prompt PRO (Visível no modo PRO) -->
+        <div class="add-prompt-box glass-panel" id="add-prompt-box" style="display: none;">
+          <div class="add-prompt-header">
+            <h4>✨ Novo Prompt Personalizado</h4>
+          </div>
+          <input type="text" id="new-prompt-title" placeholder="Título (ex: 🎯 Copy de Vendas)" class="prompt-input">
+          <input type="text" id="new-prompt-desc" placeholder="Descrição curta (opcional)" class="prompt-input">
+          <textarea id="new-prompt-text" placeholder="Escreve aqui o comando completo do prompt..." class="prompt-textarea" rows="3"></textarea>
+          <div class="prompt-form-actions">
+            <button class="btn-save-prompt" id="btn-save-new-prompt">Guardar Prompt</button>
+            <button class="btn-cancel-prompt" id="btn-cancel-new-prompt">Cancelar</button>
+          </div>
+        </div>
+
+        <!-- Botão para abrir o form (Modo PRO) -->
+        <button class="action-btn glass-btn" id="btn-open-prompt-form" style="display: none;">
+          <span>✨ + Criar Novo Prompt PRO</span>
+        </button>
+
+        <!-- Banner de Bloqueio PRO (Modo Free) -->
         <div class="pro-lock-banner glass-panel" id="prompts-pro-lock">
           <div class="lock-icon">🔒</div>
           <div class="lock-info">

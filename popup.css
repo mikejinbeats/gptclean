@@ -566,34 +566,102 @@ body.theme-default .stat-number {
   color: var(--accent-cyan);
 }
 
-.prompt-card-desc {
-  font-size: 11px;
-  color: var(--text-muted);
-  line-height: 1.35;
+.prompt-card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.prompt-card-actions {
+.custom-pro-tag {
+  font-size: 9px;
+  font-weight: 800;
+  background: var(--accent-gold-bg);
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.prompt-action-btn.btn-delete:hover {
+  background: #ef4444;
+  border-color: #ef4444;
+  color: #fff;
+}
+
+/* Formulário de Criação de Prompt PRO */
+.add-prompt-box {
+  background: var(--glass-surface-elevated);
+  border: 1px solid var(--border-glass);
+  padding: 12px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.add-prompt-header h4 {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-gold);
+  margin-bottom: 8px;
+}
+
+.prompt-input, .prompt-textarea {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-xs);
+  color: var(--text-main);
+  padding: 7px 10px;
+  font-size: 11px;
+  font-family: var(--font-ui);
+  margin-bottom: 6px;
+}
+
+.prompt-input:focus, .prompt-textarea:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+}
+
+.prompt-textarea {
+  resize: vertical;
+  min-height: 55px;
+}
+
+.prompt-form-actions {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   margin-top: 4px;
 }
 
-.prompt-action-btn {
-  background: var(--btn-secondary-bg);
-  border: 1px solid var(--border-glass);
-  color: var(--text-main);
-  font-size: 10px;
-  font-weight: 700;
-  padding: 4px 9px;
+.btn-save-prompt {
+  flex: 1;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border: none;
+  color: #000;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 7px;
   border-radius: var(--radius-xs);
   cursor: pointer;
-  transition: all 0.15s;
+  transition: all 0.2s;
 }
 
-.prompt-action-btn:hover {
-  background: var(--accent-cyan);
-  color: #ffffff;
-  border-color: var(--accent-cyan);
+.btn-save-prompt:hover {
+  transform: translateY(-1px);
+}
+
+.btn-cancel-prompt {
+  background: var(--glass-surface-subtle);
+  border: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+}
+
+.btn-cancel-prompt:hover {
+  color: var(--text-main);
 }
 
 .pro-lock-banner {

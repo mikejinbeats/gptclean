@@ -125,6 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
         statToday.innerText = todayCount;
         statTotal.innerText = data.blockedCount || 0;
 
+        // Carregar Prompts Personalizados
+        if (data.customPrompts) {
+          currentCustomPrompts = data.customPrompts;
+        }
+        renderPrompts(currentCustomPrompts);
+
         // Cota Diária de Exportações (2/dia Free ou Ilimitado PRO)
         const exportsCount = (data.exportsLastDate === today) ? (data.exportsToday || 0) : 0;
         const exportsRemaining = Math.max(0, 2 - exportsCount);
@@ -209,11 +215,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 800);
   });
 
+  // Elementos do Criador de Prompts PRO
+  const btnOpenPromptForm = document.getElementById('btn-open-prompt-form');
+  const addPromptBox = document.getElementById('add-prompt-box');
+  const newPromptTitle = document.getElementById('new-prompt-title');
+  const newPromptDesc = document.getElementById('new-prompt-desc');
+  const newPromptText = document.getElementById('new-prompt-text');
+  const btnSaveNewPrompt = document.getElementById('btn-save-new-prompt');
+  const btnCancelNewPrompt = document.getElementById('btn-cancel-new-prompt');
+
+  let currentCustomPrompts = [];
+
   // --------------------------------------------------------------------------
-  // 5. RENDERIZAR E EXECUTAR PROMPTS
+  // 5. RENDERIZAR E EXECUTAR PROMPTS (DEFAULT + PRO PERSONALIZADOS)
   // --------------------------------------------------------------------------
-  function renderPrompts() {
+  function renderPrompts(customList) {
+    if (customList) currentCustomPrompts = customList;
     popupPromptsList.innerHTML = '';
+
+    // 1. Prompts Padrão
     DEFAULT_PROMPTS.forEach((p) => {
       const card = document.createElement('div');
       card.className = 'prompt-card';
@@ -241,6 +261,111 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       popupPromptsList.appendChild(card);
+    });
+
+    // 2. Prompts Personalizados PRO
+    if (currentCustomPrompts && currentCustomPrompts.length > 0) {
+      currentCustomPrompts.forEach((cp, idx) => {
+        const card = document.createElement('div');
+        card.className = 'prompt-card pro-custom-card';
+        card.innerHTML = `
+          <div class="prompt-card-header-row">
+            <div class="prompt-card-title">${escapeHtml(cp.title)}</div>
+            <span class="custom-pro-tag">👑 PRO</span>
+          </div>
+          ${cp.desc ? `<div class="prompt-card-desc">${escapeHtml(cp.desc)}</div>` : ''}
+          <div class="prompt-card-actions">
+            <button class="prompt-action-btn btn-insert" title="Colocar no ChatGPT agora">⚡ Inserir no Chat</button>
+            <button class="prompt-action-btn btn-copy" title="Copiar texto">📋 Copiar</button>
+            <button class="prompt-action-btn btn-delete" title="Eliminar este prompt" data-index="${idx}">🗑️</button>
+          </div>
+        `;
+
+        const insertBtn = card.querySelector('.btn-insert');
+        insertBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          sendPromptToActiveTab(cp.text, insertBtn);
+        });
+
+        const copyBtn = card.querySelector('.btn-copy');
+        copyBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          navigator.clipboard.writeText(cp.text);
+          copyBtn.innerText = '✅ Copiado!';
+          setTimeout(() => { copyBtn.innerText = '📋 Copiar'; }, 1500);
+        });
+
+        const delBtn = card.querySelector('.btn-delete');
+        delBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          deleteCustomPrompt(idx);
+        });
+
+        popupPromptsList.appendChild(card);
+      });
+    }
+  }
+
+  function deleteCustomPrompt(index) {
+    currentCustomPrompts.splice(index, 1);
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      chrome.storage.local.set({ customPrompts: currentCustomPrompts }, () => {
+        renderPrompts(currentCustomPrompts);
+      });
+    } else {
+      renderPrompts(currentCustomPrompts);
+    }
+  }
+
+  // Ações do formulário PRO
+  if (btnOpenPromptForm) {
+    btnOpenPromptForm.addEventListener('click', () => {
+      addPromptBox.style.display = 'block';
+      btnOpenPromptForm.style.display = 'none';
+      newPromptTitle.focus();
+    });
+  }
+
+  if (btnCancelNewPrompt) {
+    btnCancelNewPrompt.addEventListener('click', () => {
+      addPromptBox.style.display = 'none';
+      btnOpenPromptForm.style.display = 'flex';
+      newPromptTitle.value = '';
+      newPromptDesc.value = '';
+      newPromptText.value = '';
+    });
+  }
+
+  if (btnSaveNewPrompt) {
+    btnSaveNewPrompt.addEventListener('click', () => {
+      const title = (newPromptTitle.value || '').trim();
+      const desc = (newPromptDesc.value || '').trim();
+      const text = (newPromptText.value || '').trim();
+
+      if (!title || !text) {
+        alert('Por favor preenche pelo menos o Título e o Texto do Prompt.');
+        return;
+      }
+
+      const newPrompt = { title, desc, text };
+      currentCustomPrompts.push(newPrompt);
+
+      if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+        chrome.storage.local.set({ customPrompts: currentCustomPrompts }, () => {
+          renderPrompts(currentCustomPrompts);
+          addPromptBox.style.display = 'none';
+          btnOpenPromptForm.style.display = 'flex';
+          newPromptTitle.value = '';
+          newPromptDesc.value = '';
+          newPromptText.value = '';
+        });
+      }
+    });
+  }
+
+  function escapeHtml(str) {
+    return (str || '').replace(/[&<>"']/g, function(m) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
     });
   }
 
@@ -359,13 +484,10 @@ document.addEventListener('DOMContentLoaded', () => {
       trialFooterStatus.style.color = '#f59e0b';
     }
     if (promptsProLock) {
-      promptsProLock.innerHTML = `
-        <div class="lock-icon" style="color:#4ade80;">👑</div>
-        <div class="lock-info">
-          <strong style="color:#4ade80;">Modo PRO Vitalício Ativo</strong>
-          <p>Acesso total e ilimitado a todas as ferramentas.</p>
-        </div>
-      `;
+      promptsProLock.style.display = 'none';
+    }
+    if (btnOpenPromptForm) {
+      btnOpenPromptForm.style.display = 'flex';
     }
     if (pricingBox) {
       pricingBox.innerHTML = `
@@ -378,5 +500,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Inicializar
   loadStorageState();
-  renderPrompts();
 });
