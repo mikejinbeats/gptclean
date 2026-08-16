@@ -58,37 +58,44 @@
       toastChatSaved: "Conversa guardada nesta pasta!",
       toastChatAlreadySaved: "Esta conversa já está guardada nesta pasta.",
       noMessagesToExport: "Nenhuma mensagem encontrada para exportar.",
-      toastAllowPopups: "Permite popups no navegador para imprimir em PDF.",
-      limitModalTitle: "Limite Diário Atingido",
-      limitModalHeading: "Atingiste as tuas 2 exportações gratuitas de hoje!",
-      limitModalDesc: "O teu limite de 2 exportações diárias reseta automaticamente amanhã à meia-noite.",
-      limitOfferTitle: "Queres exportações infinitas?",
-      limitOfferDesc: "Com o plano PRO tens exportações ilimitadas para sempre sem restrições de cota.",
-      limitSinglePay: "Pagamento Único",
-      limitUpgradeBtn: "Desbloquear Exportações Ilimitadas (2,99€)",
       exportModalHeading: (suffix) => suffix || "Exportar Conversa",
       exportQuotaBadge: (rem) => `Grátis: ${rem}/2 hoje`,
       exportQuotaBadgePro: "Ilimitado PRO",
       cardPdfTitle: "Documento PDF (.pdf)",
       cardPdfDesc: "Layout formatado pronto para guardar ou imprimir",
       cardWordTitle: "Microsoft Word (.doc)",
-      cardWordDesc: "Com títulos, tabelas e formatação intactos",
-      cardMdTitle: "Ficheiro Markdown (.md)",
-      cardMdDesc: "Ideal para Notion, Obsidian e desenvolvedores"
+      cardWordDesc: "Ideal para editar e partilhar relatórios",
+      cardMdTitle: "Markdown (.md)",
+      cardMdDesc: "Texto puro com blocos de código e formatação",
+      limitModalTitle: "Limite Diário Atingido",
+      limitModalHeading: "Atingiste as tuas 2 exportações gratuitas de hoje!",
+      limitModalDesc: "Faz upgrade para o plano PRO Vitalício para exportar conversas completas em PDF, Word e Markdown sem limites.",
+      limitOfferTitle: "Acesso PRO Vitalício (Oferta de Lançamento)",
+      limitOfferDesc: "Pagamento único. Sem mensalidades nem renovações.",
+      limitSinglePay: "PAGAMENTO ÚNICO",
+      limitUpgradeBtn: "Desbloquear Exportações Ilimitadas"
     },
     en: {
+      createFolderTitle: "Create New Folder",
+      placeholderNewFolder: "e.g. 💼 Work, 💡 Ideas, 📁 Projects...",
+      btnCreateFolder: "Create Folder",
+      btnCancel: "Cancel",
+      btnDeleteFolder: "Delete Folder",
+      deleteFolderTitle: "Delete Folder?",
+      deleteFolderConfirmText: (name) => `Are you sure you want to delete the folder "${name}" and all its saved chats?`,
+      btnConfirmDelete: "Yes, Delete",
       exportBtn: "Export",
       exportBtnTitle: "Choose format to export (PDF, Word, Markdown)",
       exportFullBtn: "Export Full Chat",
-      exportFullBtnTitle: "Export all questions and answers in this conversation",
+      exportFullBtnTitle: "Export all questions and answers from this conversation",
       exportToastMd: "Markdown (.md) file downloaded!",
       exportToastWord: "Word (.doc) file downloaded!",
       exportToastPdf: "PDF (.pdf) file downloaded!",
       exportProgressTitle: "Preparing export...",
       exportProgressScanning: "Scanning conversation history...",
-      exportProgressFormatting: "Formatting messages & code...",
-      exportProgressGenerating: (fmt) => `Compiling ${fmt} document...`,
-      exportProgressDone: "Done! Starting download / preview...",
+      exportProgressFormatting: "Formatting messages and code blocks...",
+      exportProgressGenerating: (fmt) => `Generating ${fmt} document...`,
+      exportProgressDone: "Done! Starting download...",
       promptInserted: "Prompt inserted into ChatGPT!",
       quickPromptsTooltip: "Quick Prompts",
       defaultFolders: { f1: '💼 Work', f2: '💡 Ideas', f3: '📚 Studies' },
@@ -102,25 +109,32 @@
       toastChatSaved: "Conversation saved to this folder!",
       toastChatAlreadySaved: "This chat is already saved in this folder.",
       noMessagesToExport: "No messages found to export.",
-      toastAllowPopups: "Please allow popups in your browser to print PDF.",
-      limitModalTitle: "Daily Limit Reached",
-      limitModalHeading: "You have reached your 2 free exports today!",
-      limitModalDesc: "Your daily quota of 2 free exports will reset tomorrow at midnight.",
-      limitOfferTitle: "Want unlimited exports?",
-      limitOfferDesc: "With PRO plan you get lifetime unlimited exports without quota restrictions.",
-      limitSinglePay: "One-Time Payment",
-      limitUpgradeBtn: "Unlock Unlimited Exports ($2.99)",
-      exportModalHeading: (suffix) => suffix || "Exportar Conversa",
+      exportModalHeading: (suffix) => suffix || "Export Chat",
       exportQuotaBadge: (rem) => `Free: ${rem}/2 today`,
       exportQuotaBadgePro: "PRO Unlimited",
       cardPdfTitle: "PDF Document (.pdf)",
       cardPdfDesc: "Formatted layout ready for saving or printing",
       cardWordTitle: "Microsoft Word (.doc)",
-      cardWordDesc: "Formatted with headings, tables, and clean layout",
-      cardMdTitle: "Markdown File (.md)",
-      cardMdDesc: "Best for Notion, Obsidian, and developers"
+      cardWordDesc: "Ideal for editing and sharing reports",
+      cardMdTitle: "Markdown (.md)",
+      cardMdDesc: "Clean text with code blocks and headers",
+      limitModalTitle: "Daily Limit Reached",
+      limitModalHeading: "You reached your 2 free daily exports!",
+      limitModalDesc: "Upgrade to Lifetime PRO to export unlimited chats in PDF, Word and Markdown without limits.",
+      limitOfferTitle: "Lifetime PRO Access (Launch Deal)",
+      limitOfferDesc: "One-time payment. No subscriptions or renewals.",
+      limitSinglePay: "ONE-TIME PAYMENT",
+      limitUpgradeBtn: "Unlock Unlimited Exports"
     },
     es: {
+      createFolderTitle: "Crear Nueva Carpeta",
+      placeholderNewFolder: "Ej: 💼 Trabajo, 💡 Ideas, 📁 Proyectos...",
+      btnCreateFolder: "Crear Carpeta",
+      btnCancel: "Cancelar",
+      btnDeleteFolder: "Eliminar Carpeta",
+      deleteFolderTitle: "¿Eliminar Carpeta?",
+      deleteFolderConfirmText: (name) => `¿Estás seguro de que deseas eliminar la carpeta "${name}" y todos sus chats guardados?`,
+      btnConfirmDelete: "Sí, Eliminar",
       exportBtn: "Exportar",
       exportBtnTitle: "Elegir formato para exportar (PDF, Word, Markdown)",
       exportFullBtn: "Exportar Chat Completo",
@@ -129,14 +143,14 @@
       exportToastWord: "¡Archivo Word (.doc) descargado!",
       exportToastPdf: "¡Archivo PDF (.pdf) descargado!",
       exportProgressTitle: "Preparando exportación...",
-      exportProgressScanning: "Analizando historial de la conversación...",
+      exportProgressScanning: "Escaneando historial de la conversación...",
       exportProgressFormatting: "Formateando mensajes y código...",
-      exportProgressGenerating: (fmt) => `Compilando documento ${fmt}...`,
-      exportProgressDone: "¡Listo! Iniciando descarga / vista previa...",
+      exportProgressGenerating: (fmt) => `Generando documento ${fmt}...`,
+      exportProgressDone: "¡Listo! Iniciando descarga...",
       promptInserted: "¡Prompt insertado en ChatGPT!",
       quickPromptsTooltip: "Prompts Rápidos",
       defaultFolders: { f1: '💼 Trabajo', f2: '💡 Ideas', f3: '📚 Estudios' },
-      foldersHeader: "Carpetas & Favoritos",
+      foldersHeader: "Carpetas y Favoritos",
       btnAddFolder: "+ Nueva",
       promptNewFolderName: "Nombre de la nueva carpeta:",
       toastFolderCreated: "¡Carpeta creada con éxito!",
@@ -146,37 +160,44 @@
       toastChatSaved: "¡Conversación guardada en esta carpeta!",
       toastChatAlreadySaved: "Esta conversación ya está guardada en esta carpeta.",
       noMessagesToExport: "No se encontraron mensajes para exportar.",
-      toastAllowPopups: "Por favor permite ventanas emergentes para imprimir en PDF.",
-      limitModalTitle: "Límite Diario Alcanzado",
-      limitModalHeading: "¡Has alcanzado tus 2 exportaciones gratuitas de hoy!",
-      limitModalDesc: "Tu cuota diaria de 2 exportaciones se restablecerá mañana a medianoche.",
-      limitOfferTitle: "¿Quieres exportaciones ilimitadas?",
-      limitOfferDesc: "Con el plan PRO tienes exportaciones infinitas de por vida sin restricciones.",
-      limitSinglePay: "Pago Único",
-      limitUpgradeBtn: "Desbloquear Exportaciones Ilimitadas (2,99€)",
-      exportModalHeading: (suffix) => suffix || "Exportar Conversa",
+      exportModalHeading: (suffix) => suffix || "Exportar Conversación",
       exportQuotaBadge: (rem) => `Gratis: ${rem}/2 hoy`,
       exportQuotaBadgePro: "Ilimitado PRO",
       cardPdfTitle: "Documento PDF (.pdf)",
       cardPdfDesc: "Diseño formateado listo para guardar o imprimir",
       cardWordTitle: "Microsoft Word (.doc)",
-      cardWordDesc: "Con títulos, tablas y formato intacto",
-      cardMdTitle: "Archivo Markdown (.md)",
-      cardMdDesc: "Ideal para Notion, Obsidian y programadores"
+      cardWordDesc: "Ideal para editar y compartir informes",
+      cardMdTitle: "Markdown (.md)",
+      cardMdDesc: "Texto limpio con bloques de código y formato",
+      limitModalTitle: "Límite Diario Alcanzado",
+      limitModalHeading: "¡Has alcanzado tus 2 exportaciones gratuitas de hoy!",
+      limitModalDesc: "Actualiza a Lifetime PRO para exportar chats completos en PDF, Word y Markdown sin límites.",
+      limitOfferTitle: "Acceso Lifetime PRO (Oferta Especial)",
+      limitOfferDesc: "Pago único. Sin suscripciones ni renovaciones.",
+      limitSinglePay: "PAGO ÚNICO",
+      limitUpgradeBtn: "Desbloquear Exportaciones Ilimitadas"
     },
     fr: {
+      createFolderTitle: "Créer un Nouveau Dossier",
+      placeholderNewFolder: "Ex : 💼 Travail, 💡 Idées, 📁 Projets...",
+      btnCreateFolder: "Créer le Dossier",
+      btnCancel: "Annuler",
+      btnDeleteFolder: "Supprimer le Dossier",
+      deleteFolderTitle: "Supprimer le Dossier ?",
+      deleteFolderConfirmText: (name) => `Êtes-vous sûr de vouloir supprimer le dossier "${name}" et toutes ses discussions enregistrées ?`,
+      btnConfirmDelete: "Oui, Supprimer",
       exportBtn: "Exporter",
-      exportBtnTitle: "Choisir le format d'export (PDF, Word, Markdown)",
-      exportFullBtn: "Exporter le Chat Complet",
+      exportBtnTitle: "Choisir le format d'exportation (PDF, Word, Markdown)",
+      exportFullBtn: "Exporter Tout le Chat",
       exportFullBtnTitle: "Exporter toutes les questions et réponses de cette discussion",
       exportToastMd: "Fichier Markdown (.md) téléchargé !",
       exportToastWord: "Fichier Word (.doc) téléchargé !",
       exportToastPdf: "Fichier PDF (.pdf) téléchargé !",
-      exportProgressTitle: "Préparation de l'export...",
-      exportProgressScanning: "Analyse de l'historique...",
-      exportProgressFormatting: "Formatage des messages et du code...",
-      exportProgressGenerating: (fmt) => `Compilation du document ${fmt}...`,
-      exportProgressDone: "Terminé ! Lancement du téléchargement...",
+      exportProgressTitle: "Préparation de l'exportation...",
+      exportProgressScanning: "Analyse de l'historique du chat...",
+      exportProgressFormatting: "Mise en page des messages et du code...",
+      exportProgressGenerating: (fmt) => `Génération du document ${fmt}...`,
+      exportProgressDone: "Terminé ! Téléchargement en cours...",
       promptInserted: "Prompt inséré dans ChatGPT !",
       quickPromptsTooltip: "Prompts Rapides",
       defaultFolders: { f1: '💼 Travail', f2: '💡 Idées', f3: '📚 Études' },
@@ -190,37 +211,44 @@
       toastChatSaved: "Discussion enregistrée dans ce dossier !",
       toastChatAlreadySaved: "Cette discussion est déjà enregistrée dans ce dossier.",
       noMessagesToExport: "Aucun message trouvé à exporter.",
-      toastAllowPopups: "Veuillez autoriser les fenêtres contextuelles pour imprimer en PDF.",
-      limitModalTitle: "Limite Quotidienne Atteinte",
-      limitModalHeading: "Vous avez atteint vos 2 exports gratuits aujourd'hui !",
-      limitModalDesc: "Votre quota de 2 exports quotidiens sera réinitialisé demain à minuit.",
-      limitOfferTitle: "Vous voulez des exports illimités ?",
-      limitOfferDesc: "Avec le forfait PRO, profitez d'exports illimités à vie sans aucune restriction.",
-      limitSinglePay: "Paiement Unique",
-      limitUpgradeBtn: "Débloquer les Exports Illimités (2,99€)",
-      exportModalHeading: (suffix) => suffix || "Exportar Conversa",
+      exportModalHeading: (suffix) => suffix || "Exporter la Discussion",
       exportQuotaBadge: (rem) => `Gratuit : ${rem}/2 auj.`,
       exportQuotaBadgePro: "Illimité PRO",
       cardPdfTitle: "Document PDF (.pdf)",
       cardPdfDesc: "Mise en page prête pour impression ou archivage",
       cardWordTitle: "Microsoft Word (.doc)",
-      cardWordDesc: "Avec titres, tableaux et structure propre",
-      cardMdTitle: "Fichier Markdown (.md)",
-      cardMdDesc: "Idéal pour Notion, Obsidian et développeurs"
+      cardWordDesc: "Idéal pour modifier et partager des rapports",
+      cardMdTitle: "Markdown (.md)",
+      cardMdDesc: "Texte pur avec blocs de code et titres",
+      limitModalTitle: "Limite Quotidienne Atteinte",
+      limitModalHeading: "Vous avez utilisé vos 2 exports gratuits aujourd'hui !",
+      limitModalDesc: "Passez à la version PRO à Vie pour exporter des conversations illimitées en PDF, Word et Markdown.",
+      limitOfferTitle: "Accès PRO à Vie (Offre de Lancement)",
+      limitOfferDesc: "Paiement unique. Sans abonnement ni renouvellement.",
+      limitSinglePay: "PAIEMENT UNIQUE",
+      limitUpgradeBtn: "Débloquer les Exports Illimités"
     },
     de: {
+      createFolderTitle: "Neuen Ordner Erstellen",
+      placeholderNewFolder: "z.B. 💼 Arbeit, 💡 Ideen, 📁 Projekte...",
+      btnCreateFolder: "Ordner Erstellen",
+      btnCancel: "Abbrechen",
+      btnDeleteFolder: "Ordner Löschen",
+      deleteFolderTitle: "Ordner Löschen?",
+      deleteFolderConfirmText: (name) => `Möchten Sie den Ordner "${name}" und alle darin gespeicherten Chats wirklich löschen?`,
+      btnConfirmDelete: "Ja, Löschen",
       exportBtn: "Exportieren",
-      exportBtnTitle: "Exportformat wählen (PDF, Word, Markdown)",
-      exportFullBtn: "Kompletten Chat Exportieren",
+      exportBtnTitle: "Format zum Exportieren wählen (PDF, Word, Markdown)",
+      exportFullBtn: "Gesamten Chat Exportieren",
       exportFullBtnTitle: "Alle Fragen und Antworten dieses Chats exportieren",
-      exportToastMd: "Markdown (.md) Datei heruntergeladen!",
-      exportToastWord: "Word (.doc) Datei heruntergeladen!",
-      exportToastPdf: "PDF (.pdf) Datei heruntergeladen!",
+      exportToastMd: "Markdown-Datei (.md) heruntergeladen!",
+      exportToastWord: "Word-Datei (.doc) heruntergeladen!",
+      exportToastPdf: "PDF-Datei (.pdf) heruntergeladen!",
       exportProgressTitle: "Export wird vorbereitet...",
       exportProgressScanning: "Chat-Verlauf wird analysiert...",
-      exportProgressFormatting: "Nachrichten & Code werden formatiert...",
-      exportProgressGenerating: (fmt) => `${fmt}-Dokument wird kompiliert...`,
-      exportProgressDone: "Fertig! Download / Vorschau gestartet...",
+      exportProgressFormatting: "Nachrichten und Code werden formatiert...",
+      exportProgressGenerating: (fmt) => `Dokument ${fmt} wird erstellt...`,
+      exportProgressDone: "Fertig! Download startet...",
       promptInserted: "Prompt in ChatGPT eingefügt!",
       quickPromptsTooltip: "Schnelle Prompts",
       defaultFolders: { f1: '💼 Arbeit', f2: '💡 Ideen', f3: '📚 Studium' },
@@ -234,37 +262,44 @@
       toastChatSaved: "Chat in diesem Ordner gespeichert!",
       toastChatAlreadySaved: "Dieser Chat ist bereits in diesem Ordner gespeichert.",
       noMessagesToExport: "Keine Nachrichten zum Exportieren gefunden.",
-      toastAllowPopups: "Bitte Popups im Browser erlauben, um PDF zu drucken.",
-      limitModalTitle: "Tageslimit Erreicht",
-      limitModalHeading: "Sie haben Ihre 2 kostenlosen Exporte für heute erreicht!",
-      limitModalDesc: "Ihr tägliches Kontingent wird morgen um Mitternacht zurückgesetzt.",
-      limitOfferTitle: "Möchten Sie unbegrenzte Exporte?",
-      limitOfferDesc: "Mit dem PRO-Plan erhalten Sie lebenslang unbegrenzte Exporte ohne Limit.",
-      limitSinglePay: "Einmalzahlung",
-      limitUpgradeBtn: "Unbegrenzte Exporte Freischalten (2,99€)",
-      exportModalHeading: (suffix) => suffix || "Exportar Conversa",
+      exportModalHeading: (suffix) => suffix || "Chat Exportieren",
       exportQuotaBadge: (rem) => `Gratis: ${rem}/2 heute`,
       exportQuotaBadgePro: "Unbegrenzt PRO",
       cardPdfTitle: "PDF-Dokument (.pdf)",
       cardPdfDesc: "Formatiertes Layout bereit zum Speichern oder Drucken",
       cardWordTitle: "Microsoft Word (.doc)",
-      cardWordDesc: "Mit Überschriften, Tabellen und Struktur",
-      cardMdTitle: "Markdown-Datei (.md)",
-      cardMdDesc: "Ideal für Notion, Obsidian und Entwickler"
+      cardWordDesc: "Ideal zum Bearbeiten und Weitergeben von Berichten",
+      cardMdTitle: "Markdown (.md)",
+      cardMdDesc: "Reiner Text mit Codeblöcken und Überschriften",
+      limitModalTitle: "Tageslimit Erreicht",
+      limitModalHeading: "Sie haben Ihre 2 kostenlosen täglichen Exporte aufgebraucht!",
+      limitModalDesc: "Upgraden Sie auf Lifetime PRO für unbegrenzte Exporte in PDF, Word und Markdown.",
+      limitOfferTitle: "Lifetime PRO Zugang (Einführungsangebot)",
+      limitOfferDesc: "Einmalige Zahlung. Keine Abonnements oder Verlängerungen.",
+      limitSinglePay: "EINMALIGE ZAHLUNG",
+      limitUpgradeBtn: "Unbegrenzte Exporte Freischalten"
     },
     it: {
+      createFolderTitle: "Crea Nuova Cartella",
+      placeholderNewFolder: "Es: 💼 Lavoro, 💡 Idee, 📁 Progetti...",
+      btnCreateFolder: "Crea Cartella",
+      btnCancel: "Annulla",
+      btnDeleteFolder: "Elimina Cartella",
+      deleteFolderTitle: "Eliminare la Cartella?",
+      deleteFolderConfirmText: (name) => `Sei sicuro di voler eliminare la cartella "${name}" e tutte le chat salvate?`,
+      btnConfirmDelete: "Sì, Elimina",
       exportBtn: "Esporta",
-      exportBtnTitle: "Scegli formato di esportazione (PDF, Word, Markdown)",
+      exportBtnTitle: "Scegli il formato da esportare (PDF, Word, Markdown)",
       exportFullBtn: "Esporta Chat Completa",
       exportFullBtnTitle: "Esporta tutte le domande e risposte di questa chat",
       exportToastMd: "File Markdown (.md) scaricato!",
       exportToastWord: "File Word (.doc) scaricato!",
       exportToastPdf: "File PDF (.pdf) scaricato!",
       exportProgressTitle: "Preparazione esportazione...",
-      exportProgressScanning: "Analisi della cronologia...",
+      exportProgressScanning: "Scansione della cronologia chat...",
       exportProgressFormatting: "Formattazione messaggi e codice...",
-      exportProgressGenerating: (fmt) => `Compilazione documento ${fmt}...`,
-      exportProgressDone: "Fatto! Avvio download / anteprima...",
+      exportProgressGenerating: (fmt) => `Generazione documento ${fmt}...`,
+      exportProgressDone: "Completato! Download in corso...",
       promptInserted: "Prompt inserito in ChatGPT!",
       quickPromptsTooltip: "Prompt Rapidi",
       defaultFolders: { f1: '💼 Lavoro', f2: '💡 Idee', f3: '📚 Studio' },
@@ -278,328 +313,127 @@
       toastChatSaved: "Chat salvata in questa cartella!",
       toastChatAlreadySaved: "Questa chat è già salvata in questa cartella.",
       noMessagesToExport: "Nessun messaggio trovato da esportare.",
-      toastAllowPopups: "Consenti i popup nel browser per stampare in PDF.",
-      limitModalTitle: "Limite Giornaliero Raggiunto",
-      limitModalHeading: "Hai raggiunto le tue 2 esportazioni gratuite di oggi!",
-      limitModalDesc: "La tua quota giornaliera di 2 esportazioni si resetterà domani a mezzanotte.",
-      limitOfferTitle: "Vuoi esportazioni infinite?",
-      limitOfferDesc: "Con il piano PRO hai esportazioni illimitate a vita senza restrizioni.",
-      limitSinglePay: "Pagamento Singolo",
-      limitUpgradeBtn: "Sblocca Esportazioni Illimitate (2,99€)",
-      exportModalHeading: (suffix) => suffix || "Exportar Conversa",
+      exportModalHeading: (suffix) => suffix || "Esporta Conversazione",
       exportQuotaBadge: (rem) => `Gratis: ${rem}/2 oggi`,
       exportQuotaBadgePro: "Illimitato PRO",
       cardPdfTitle: "Documento PDF (.pdf)",
       cardPdfDesc: "Layout formattato pronto per il salvataggio o la stampa",
       cardWordTitle: "Microsoft Word (.doc)",
-      cardWordDesc: "Con titoli, tabelle e formattazione intatta",
-      cardMdTitle: "File Markdown (.md)",
-      cardMdDesc: "Ideale per Notion, Obsidian e sviluppatori"
+      cardWordDesc: "Ideale per modificare e condividere report",
+      cardMdTitle: "Markdown (.md)",
+      cardMdDesc: "Testo pulito con blocchi di codice e titoli",
+      limitModalTitle: "Limite Giornaliero Raggiunto",
+      limitModalHeading: "Hai raggiunto le tue 2 esportazioni gratuite giornaliere!",
+      limitModalDesc: "Passa a PRO a Vita per esportare chat illimitate in PDF, Word e Markdown senza limiti.",
+      limitOfferTitle: "Accesso PRO a Vita (Offerta di Lancio)",
+      limitOfferDesc: "Pagamento una tantum. Nessun abbonamento né rinnovo.",
+      limitSinglePay: "PAGAMENTO UNICO",
+      limitUpgradeBtn: "Sblocca Esportazioni Illimitate"
     },
     zh: {
+      createFolderTitle: "新建侧边栏文件夹",
+      placeholderNewFolder: "例如: 💼 工作, 💡 灵感, 📁 项目...",
+      btnCreateFolder: "立即创建",
+      btnCancel: "取消",
+      btnDeleteFolder: "删除文件夹",
+      deleteFolderTitle: "确认删除此文件夹？",
+      deleteFolderConfirmText: (name) => `您确定要删除文件夹 "${name}" 及其所有收藏的对话吗？`,
+      btnConfirmDelete: "确认删除",
       exportBtn: "导出",
-      exportBtnTitle: "选择导出格式（PDF、Word、Markdown）",
+      exportBtnTitle: "选择导出格式 (PDF, Word, Markdown)",
       exportFullBtn: "导出完整对话",
-      exportFullBtnTitle: "导出本会话中的所有提问与回答",
-      exportToastMd: "Markdown (.md) 文件已成功下载！",
-      exportToastWord: "Word (.doc) 文档已成功下载！",
-      exportToastPdf: "PDF (.pdf) 高清文件已成功下载！",
+      exportFullBtnTitle: "导出当前对话的所有问答记录",
+      exportToastMd: "Markdown (.md) 文件已下载！",
+      exportToastWord: "Word (.doc) 文件已下载！",
+      exportToastPdf: "PDF (.pdf) 文件已下载！",
       exportProgressTitle: "正在准备导出...",
-      exportProgressScanning: "正在解析会话历史内容...",
-      exportProgressFormatting: "正在排版消息与代码块结构...",
-      exportProgressGenerating: (fmt) => `正在生成 ${fmt} 高清文件...`,
-      exportProgressDone: "准备就绪！正在启动下载/预览...",
-      promptInserted: "提示词已成功插入输入框！",
+      exportProgressScanning: "正在分析对话历史记录...",
+      exportProgressFormatting: "正在排版消息与代码块...",
+      exportProgressGenerating: (fmt) => `正在生成 ${fmt} 文档...`,
+      exportProgressDone: "完成！正在开始下载...",
+      promptInserted: "快捷指令已填入 ChatGPT！",
       quickPromptsTooltip: "快捷提示词",
       defaultFolders: { f1: '💼 工作', f2: '💡 灵感', f3: '📚 学习' },
       foldersHeader: "收藏与分类文件夹",
       btnAddFolder: "+ 新建",
-      promptNewFolderName: "请输入新文件夹名称：",
+      promptNewFolderName: "新文件夹名称:",
       toastFolderCreated: "文件夹创建成功！",
       toastFolderDeleted: "文件夹已删除！",
-      btnPinChat: "📌 +收藏",
-      noChatSaved: "暂无收藏对话。",
-      toastChatSaved: "当前对话已成功收藏至此文件夹！",
-      toastChatAlreadySaved: "此对话已保存在此文件夹中。",
+      btnPinChat: "📌 +对话",
+      noChatSaved: "暂无保存的对话。",
+      toastChatSaved: "对话已保存至此文件夹！",
+      toastChatAlreadySaved: "此对话已保存在该文件夹中。",
       noMessagesToExport: "未找到可导出的对话内容。",
-      toastAllowPopups: "请在浏览器中允许弹窗以打印PDF。",
-      limitModalTitle: "今日免费导出额度已用尽",
-      limitModalHeading: "您今日的2次免费导出额度已达上限！",
-      limitModalDesc: "每日2次免费额度将于明日零点自动刷新重置。",
-      limitOfferTitle: "想要无限制极速导出？",
-      limitOfferDesc: "升级PRO专业版，即可永久解锁终身无限次全格式导出特权。",
-      limitSinglePay: "一次性买断",
-      limitUpgradeBtn: "立即解锁无限导出 (2.99€)",
-      exportModalHeading: (suffix) => suffix || "Exportar Conversa",
+      exportModalHeading: (suffix) => suffix || "导出当前对话",
       exportQuotaBadge: (rem) => `今日剩余: ${rem}/2`,
       exportQuotaBadgePro: "终身PRO无限",
-      cardPdfTitle: "PDF 高清文档 (.pdf)",
-      cardPdfDesc: "精美排版，支持直接打印或归档保存",
+      cardPdfTitle: "PDF 文档 (.pdf)",
+      cardPdfDesc: "格式精美，适合排版阅读或打印",
       cardWordTitle: "Microsoft Word 文档 (.doc)",
-      cardWordDesc: "完整保留标题、代码块与表格结构",
-      cardMdTitle: "Markdown 纯文本 (.md)",
-      cardMdDesc: "完美兼容 Notion、Obsidian 及开发者笔记"
+      cardWordDesc: "适合进一步编辑与团队汇报",
+      cardMdTitle: "Markdown 文件 (.md)",
+      cardMdDesc: "包含代码块与标题的原生格式",
+      limitModalTitle: "已达到每日免费限额",
+      limitModalHeading: "您今天 2 次免费导出额度已用完！",
+      limitModalDesc: "升级至终身 PRO 版，即可无限制导出 PDF、Word 和 Markdown 文档。",
+      limitOfferTitle: "终身 PRO 访问权限（首发特惠）",
+      limitOfferDesc: "一次性购买，终身可用，无需月费续订。",
+      limitSinglePay: "一次性买断",
+      limitUpgradeBtn: "解锁无限导出权限"
     },
     ja: {
+      createFolderTitle: "新規フォルダを作成",
+      placeholderNewFolder: "例: 💼 仕事, 💡 アイデア, 📁 プロジェクト...",
+      btnCreateFolder: "フォルダを作成",
+      btnCancel: "キャンセル",
+      btnDeleteFolder: "フォルダを削除",
+      deleteFolderTitle: "フォルダを削除しますか？",
+      deleteFolderConfirmText: (name) => `フォルダ「${name}」と保存されたチャットをすべて削除してもよろしいですか？`,
+      btnConfirmDelete: "削除する",
       exportBtn: "エクスポート",
-      exportBtnTitle: "出力形式を選択 (PDF, Word, Markdown)",
-      exportFullBtn: "チャット全体を出力",
-      exportFullBtnTitle: "この会話のすべての質問と回答を出力",
+      exportBtnTitle: "形式を選択してエクスポート (PDF, Word, Markdown)",
+      exportFullBtn: "チャット全体をエクスポート",
+      exportFullBtnTitle: "この会話のすべての質疑応答を保存",
       exportToastMd: "Markdown (.md) ファイルをダウンロードしました！",
       exportToastWord: "Word (.doc) ファイルをダウンロードしました！",
       exportToastPdf: "PDF (.pdf) ファイルをダウンロードしました！",
       exportProgressTitle: "エクスポートを準備中...",
-      exportProgressScanning: "会話履歴を解析中...",
-      exportProgressFormatting: "メッセージとコードを整形中...",
+      exportProgressScanning: "チャット履歴をスキャンしています...",
+      exportProgressFormatting: "メッセージとコードブロックを整形中...",
       exportProgressGenerating: (fmt) => `${fmt} ドキュメントを生成中...`,
-      exportProgressDone: "完了！ダウンロード・プレビューを開始...",
-      promptInserted: "プロンプトを入力欄に挿入しました！",
+      exportProgressDone: "完了！ダウンロードを開始します...",
+      promptInserted: "プロンプトを ChatGPT に挿入しました！",
       quickPromptsTooltip: "クイックプロンプト",
       defaultFolders: { f1: '💼 仕事', f2: '💡 アイデア', f3: '📚 学習' },
       foldersHeader: "フォルダ＆ブックマーク",
       btnAddFolder: "+ 新規",
-      promptNewFolderName: "新しいフォルダ名を入力：",
+      promptNewFolderName: "新規フォルダ名:",
       toastFolderCreated: "フォルダを作成しました！",
       toastFolderDeleted: "フォルダを削除しました！",
-      btnPinChat: "📌 +保存",
+      btnPinChat: "📌 +チャット",
       noChatSaved: "保存されたチャットはありません。",
-      toastChatSaved: "このフォルダにチャットを保存しました！",
-      toastChatAlreadySaved: "このチャットは既にこのフォルダに保存されています。",
-      noMessagesToExport: "エクスポートするメッセージが見つかりません。",
-      toastAllowPopups: "PDF印刷用にブラウザのポップアップを許可してください。",
-      limitModalTitle: "本日の無料枠上限に達しました",
-      limitModalHeading: "本日の2回無料エクスポートを使い切りました！",
-      limitModalDesc: "1日2回の無料利用枠は明日の午前0時に自動リセットされます。",
-      limitOfferTitle: "無制限で利用したいですか？",
-      limitOfferDesc: "PROプランなら回数制限なしで永久に無制限エクスポートが可能です。",
-      limitSinglePay: "買い切りプラン",
-      limitUpgradeBtn: "無制限エクスポートを解放 (2.99€)",
-      exportModalHeading: (suffix) => suffix || "Exportar Conversa",
+      toastChatSaved: "チャットをフォルダに保存しました！",
+      toastChatAlreadySaved: "このチャットは既に保存されています。",
+      noMessagesToExport: "エクスポートするメッセージがありません。",
+      exportModalHeading: (suffix) => suffix || "チャットをエクスポート",
       exportQuotaBadge: (rem) => `本日残り: ${rem}/2`,
       exportQuotaBadgePro: "永久PRO無制限",
       cardPdfTitle: "PDF ドキュメント (.pdf)",
       cardPdfDesc: "印刷や保存に最適なフォーマット済みレイアウト",
       cardWordTitle: "Microsoft Word (.doc)",
-      cardWordDesc: "見出しや表のレイアウトをそのまま保持",
-      cardMdTitle: "Markdown ファイル (.md)",
-      cardMdDesc: "NotionやObsidian、開発者に最適"
+      cardWordDesc: "レポートの編集や共有に最適",
+      cardMdTitle: "Markdown (.md)",
+      cardMdDesc: "コードブロックと書式付きのプレーンテキスト",
+      limitModalTitle: "本日の無料上限に達しました",
+      limitModalHeading: "本日の無料エクスポート（2回）をすべて使用しました！",
+      limitModalDesc: "永久 PRO 版にアップグレードすると、PDF、Word、Markdown で無制限にエクスポートできます。",
+      limitOfferTitle: "永久 PRO アクセス（特別ローンチ価格）",
+      limitOfferDesc: "買い切りプラン。月額料金や自動更新はありません。",
+      limitSinglePay: "買い切り",
+      limitUpgradeBtn: "無制限エクスポートをアンロック"
     }
   };
 
-  // --------------------------------------------------------------------------
-  // 1. CARREGAR DEFINIÇÕES & OUVIR MUDANÇAS
-  // --------------------------------------------------------------------------
-  function loadSettings() {
-    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
-              chrome.storage.local.get([
-          'adBlockEnabled',
-          'exportBtnEnabled',
-          'foldersEnabled',
-          'promptsEnabled',
-          'appLanguage',
-          'isPro',
-          'exportTrialStartDate',
-          'customPrompts',
-          'folders',
-          'foldersByAccount'
-        ], (items) => {
-          if (items.adBlockEnabled !== undefined) state.adBlockEnabled = items.adBlockEnabled;
-          if (items.exportBtnEnabled !== undefined) state.exportBtnEnabled = items.exportBtnEnabled;
-          if (items.foldersEnabled !== undefined) state.foldersEnabled = items.foldersEnabled;
-          if (items.promptsEnabled !== undefined) state.promptsEnabled = items.promptsEnabled;
-          if (items.appLanguage !== undefined) state.appLanguage = items.appLanguage;
-          if (items.isPro !== undefined) state.isPro = items.isPro;
-          if (items.customPrompts) state.customPrompts = items.customPrompts;
-
-          const currentAcc = getCurrentAccountId();
-          state.currentAccountId = currentAcc;
-
-          if (items.foldersByAccount) {
-            state.foldersByAccount = items.foldersByAccount;
-          } else {
-            try {
-              const rawAcc = localStorage.getItem('__cgpt_clean_folders_by_account__');
-              if (rawAcc) state.foldersByAccount = JSON.parse(rawAcc) || {};
-            } catch (e) {}
-          }
-
-          // Se a conta já tem pastas salvas
-          if (state.foldersByAccount && state.foldersByAccount[currentAcc]) {
-            state.folders = state.foldersByAccount[currentAcc];
-          } else if (items.folders && Array.isArray(items.folders) && items.folders.length > 0) {
-            state.folders = items.folders;
-            if (!state.foldersByAccount) state.foldersByAccount = {};
-            state.foldersByAccount[currentAcc] = items.folders;
-          } else {
-            const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
-            state.folders = [
-              { id: 'f1', name: t.defaultFolders.f1, chats: [] },
-              { id: 'f2', name: t.defaultFolders.f2, chats: [] },
-              { id: 'f3', name: t.defaultFolders.f3, chats: [] }
-            ];
-            if (!state.foldersByAccount) state.foldersByAccount = {};
-            state.foldersByAccount[currentAcc] = state.folders;
-          }
-
-          if (state.adBlockEnabled) {
-            cleanAds();
-          }
-          injectTools();
-        });
-    }
-  }
-
-  if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.onChanged) {
-    chrome.storage.onChanged.addListener((changes, area) => {
-      if (area === 'local') {
-        for (let key in changes) {
-          state[key] = changes[key].newValue;
-        }
-        if (state.adBlockEnabled) {
-          cleanAds();
-        }
-        injectTools();
-      }
-    });
-  }
-
-  // Ouvir mensagens do Popup (Inserir Prompt / Mudar Idioma)
-  if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.onMessage) {
-    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-      if (request.action === 'insertPrompt') {
-        insertPromptIntoInput(request.text);
-        const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
-        showToast(t.promptInserted);
-        sendResponse({ success: true });
-        return true;
-      }
-      if (request.action === 'setLanguage') {
-        state.appLanguage = request.language;
-        // Re-traduzir pastas padrão se não tiverem sido customizadas
-        const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
-        state.folders.forEach(f => {
-          if (t.defaultFolders[f.id]) {
-            f.name = t.defaultFolders[f.id];
-          }
-        });
-        document.querySelectorAll('.chatgpt-clean-export-btn, .chatgpt-clean-global-export-btn, .chatgpt-clean-folders-container, .chatgpt-clean-prompt-bar, .chatgpt-clean-prompt-trigger').forEach(el => el.remove());
-        injectTools();
-        sendResponse({ success: true });
-        return true;
-      }
-    });
-  }
-
-  // --------------------------------------------------------------------------
-  // 2. MOTOR REAL DE REMOÇÃO DE ANÚNCIOS (4 CAMADAS DE PRECISÃO CIRÚRGICA)
-  // --------------------------------------------------------------------------
-  function cleanAds() {
-    if (!state.adBlockEnabled) return;
-
-    let removed = 0;
-
-    // Camada 1: Seletores Explícitos de Publicidade e Parceiros
-    const explicitAdSelectors = [
-      '[data-testid="search-ad"]',
-      '[data-testid="sponsored-result"]',
-      '[data-testid="sponsored-search-item"]',
-      '[data-testid="web-search-sponsored"]',
-      '[data-testid="sponsored-card"]',
-      '[data-testid="partner-sponsored-item"]',
-      '[data-is-sponsored="true"]',
-      'div[class*="sponsored-card"]',
-      'div[class*="sponsored-message"]',
-      'div[class*="ad-container"]',
-      'div[class*="ad-unit"]',
-      'div[class*="ad-banner"]',
-      'div[aria-label="Sponsored" i]',
-      'div[aria-label="Patrocinado" i]',
-      'div[aria-label="Advertisement" i]',
-      'div[aria-label="Publicidade" i]',
-      'section[aria-label="Sponsored" i]',
-      'section[aria-label="Patrocinado" i]'
-    ];
-
-    try {
-      const candidates = document.querySelectorAll(explicitAdSelectors.join(','));
-      candidates.forEach((el) => {
-        if (!el.matches('article[data-testid^="conversation-turn-"]') && !el.closest('pre') && !el.closest('code')) {
-          el.remove();
-          removed++;
-        }
-      });
-    } catch (e) {}
-
-    // Camada 2: Detecção e Remoção de Links Comerciais & Afiliados (Bing/Aclick/Ads)
-    try {
-      const adLinks = document.querySelectorAll(
-        'a[href*="bing.com/aclick"], a[href*="bat.bing.com"], a[href*="ads.openai.com"], a[href*="googleadservices.com"], a[href*="doubleclick.net"], a[href*="adnxs.com"]'
-      );
-      adLinks.forEach((link) => {
-        const adCard = link.closest('[data-testid*="citation"], [class*="citation"], div[class*="card"], li, div');
-        if (adCard && !adCard.matches('article[data-testid^="conversation-turn-"]') && !adCard.closest('pre') && !adCard.closest('code')) {
-          adCard.remove();
-          removed++;
-        } else {
-          link.remove();
-          removed++;
-        }
-      });
-    } catch (e) {}
-
-    // Camada 3: Remoção de Iframes e Redes Publicitárias
-    try {
-      const adIframes = document.querySelectorAll(
-        'iframe[src*="googlesyndication.com"], iframe[src*="doubleclick.net"], iframe[src*="amazon-adsystem.com"], iframe[src*="adnxs.com"]'
-      );
-      adIframes.forEach((iframe) => {
-        iframe.remove();
-        removed++;
-      });
-    } catch (e) {}
-
-    // Camada 4: Análise Heurística de Blocos com Selo "Sponsored / Patrocinado"
-    try {
-      const sponsorBadges = document.querySelectorAll('span, div, p');
-      sponsorBadges.forEach((badge) => {
-        if (badge.children.length === 0) {
-          const text = (badge.innerText || '').trim().toLowerCase();
-          if (text === 'sponsored' || text === 'patrocinado' || text === 'advertisement' || text === 'publicidade') {
-            const parentBlock = badge.closest('div[class*="border"], div[class*="card"], div[class*="rounded"], div[class*="bg-"]');
-            if (parentBlock && !parentBlock.matches('article[data-testid^="conversation-turn-"]') && !parentBlock.closest('pre') && !parentBlock.closest('code')) {
-              const hasLink = parentBlock.querySelector('a[href^="http"]');
-              if (hasLink) {
-                parentBlock.remove();
-                removed++;
-              }
-            }
-          }
-        }
-      });
-    } catch (e) {}
-
-    if (removed > 0) {
-      incrementBlockedCount(removed);
-    }
-  }
-
-  function incrementBlockedCount(count) {
-    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
-      chrome.storage.local.get(['blockedCount', 'blockedToday', 'lastDate'], (data) => {
-        const today = new Date().toDateString();
-        const total = (data.blockedCount || 0) + count;
-        const todayCount = (data.lastDate === today ? (data.blockedToday || 0) : 0) + count;
-        chrome.storage.local.set({
-          blockedCount: total,
-          blockedToday: todayCount,
-          lastDate: today
-        });
-      });
-    }
-  }
-
-  // --------------------------------------------------------------------------
-  // 3. INJEÇÃO DO BOTÃO DE EXPORTAÇÃO & MODAL COM COTA DIÁRIA (2/DIA FREE)
   // --------------------------------------------------------------------------
   const MAX_FREE_DAILY_EXPORTS = 2;
   const DOMAIN_QUOTA_KEY = '__cgpt_clean_export_q__';
