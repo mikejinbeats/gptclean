@@ -575,37 +575,86 @@
   // 3. INJEÇÃO DO BOTÃO DE EXPORTAÇÃO & MODAL COM COTA DIÁRIA (2/DIA FREE)
   // --------------------------------------------------------------------------
   const MAX_FREE_DAILY_EXPORTS = 2;
+  const DOMAIN_QUOTA_KEY = '__cgpt_clean_export_q__';
+
+  function readDomainQuota() {
+    try {
+      const raw = localStorage.getItem(DOMAIN_QUOTA_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    return null;
+  }
+
+  function writeDomainQuota(dateStr, count) {
+    try {
+      localStorage.setItem(DOMAIN_QUOTA_KEY, JSON.stringify({ date: dateStr, count: count }));
+    } catch (e) {}
+  }
 
   function getDailyExportQuota(callback) {
-    if (state.isPro) {
-      callback({ isPro: true, count: 0, remaining: Infinity });
-      return;
-    }
+    const today = new Date().toDateString();
+
+    // 1. Verificar localStorage no domínio chatgpt.com (persiste mesmo ao reinstalar extensão)
+    const domainQuota = readDomainQuota();
+    let domainCount = (domainQuota && domainQuota.date === today) ? (domainQuota.count || 0) : 0;
 
     if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
-      chrome.storage.local.get(['exportsToday', 'exportsLastDate'], (data) => {
-        const today = new Date().toDateString();
-        const count = (data.exportsLastDate === today) ? (data.exportsToday || 0) : 0;
-        const remaining = Math.max(0, MAX_FREE_DAILY_EXPORTS - count);
-        callback({ isPro: false, count: count, remaining: remaining });
+      chrome.storage.local.get(['exportsToday', 'exportsLastDate', 'isPro'], (localData) => {
+        const syncStorage = chrome.storage.sync || chrome.storage.local;
+        syncStorage.get(['exportsToday', 'exportsLastDate', 'isPro'], (syncData) => {
+          const isPro = !!(localData?.isPro || syncData?.isPro || state.isPro);
+          state.isPro = isPro;
+
+          if (isPro) {
+            callback({ isPro: true, count: 0, remaining: Infinity });
+            return;
+          }
+
+          const localCount = (localData && localData.exportsLastDate === today) ? (localData.exportsToday || 0) : 0;
+          const syncCount = (syncData && syncData.exportsLastDate === today) ? (syncData.exportsToday || 0) : 0;
+
+          // Selecionar a contagem mais alta registrada entre as 3 camadas para impedir burla
+          const effectiveCount = Math.max(domainCount, localCount, syncCount);
+          const remaining = Math.max(0, MAX_FREE_DAILY_EXPORTS - effectiveCount);
+
+          // Sincronizar todas as camadas
+          if (localCount !== effectiveCount || syncCount !== effectiveCount || domainCount !== effectiveCount) {
+            writeDomainQuota(today, effectiveCount);
+            chrome.storage.local.set({ exportsToday: effectiveCount, exportsLastDate: today });
+            if (chrome.storage.sync) {
+              chrome.storage.sync.set({ exportsToday: effectiveCount, exportsLastDate: today });
+            }
+          }
+
+          callback({ isPro: false, count: effectiveCount, remaining: remaining });
+        });
       });
     } else {
-      callback({ isPro: false, count: 0, remaining: MAX_FREE_DAILY_EXPORTS });
+      const remaining = Math.max(0, MAX_FREE_DAILY_EXPORTS - domainCount);
+      callback({ isPro: state.isPro, count: domainCount, remaining: remaining });
     }
   }
 
   function incrementDailyExport() {
     if (state.isPro) return;
-    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
-      chrome.storage.local.get(['exportsToday', 'exportsLastDate'], (data) => {
-        const today = new Date().toDateString();
-        const current = (data.exportsLastDate === today) ? (data.exportsToday || 0) : 0;
-        chrome.storage.local.set({
-          exportsToday: current + 1,
-          exportsLastDate: today
-        });
-      });
-    }
+    const today = new Date().toDateString();
+
+    getDailyExportQuota((quota) => {
+      if (quota.isPro) return;
+      const newCount = quota.count + 1;
+
+      // Gravar simultaneamente nas 3 camadas
+      writeDomainQuota(today, newCount);
+
+      if (typeof chrome !== 'undefined' && chrome.storage) {
+        if (chrome.storage.local) {
+          chrome.storage.local.set({ exportsToday: newCount, exportsLastDate: today });
+        }
+        if (chrome.storage.sync) {
+          chrome.storage.sync.set({ exportsToday: newCount, exportsLastDate: today });
+        }
+      }
+    });
   }
 
   function injectExportButtons() {

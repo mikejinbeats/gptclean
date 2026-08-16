@@ -954,46 +954,52 @@ document.addEventListener('DOMContentLoaded', () => {
         'customPrompts',
         'isPro'
       ], (data) => {
-        isCurrentPro = !!data.isPro;
+        const syncStorage = chrome.storage.sync || chrome.storage.local;
+        syncStorage.get(['exportsToday', 'exportsLastDate', 'isPro', 'customPrompts'], (syncData) => {
+          isCurrentPro = !!(data.isPro || syncData?.isPro);
+          if (isCurrentPro) data.isPro = true;
 
-        // Cota Diária de Exportações (2/dia Free ou Ilimitado PRO)
-        const today = new Date().toDateString();
-        const exportsCount = (data.exportsLastDate === today) ? (data.exportsToday || 0) : 0;
-        currentExportsRemaining = Math.max(0, 2 - exportsCount);
+          // Cota Diária de Exportações (2/dia Free ou Ilimitado PRO)
+          const today = new Date().toDateString();
+          const localCount = (data.exportsLastDate === today) ? (data.exportsToday || 0) : 0;
+          const syncCount = (syncData && syncData.exportsLastDate === today) ? (syncData.exportsToday || 0) : 0;
+          const exportsCount = Math.max(localCount, syncCount);
+          currentExportsRemaining = isCurrentPro ? Infinity : Math.max(0, 2 - exportsCount);
 
-        // Toggles
-        toggleAdBlock.checked = data.adBlockEnabled !== false;
-        toggleExport.checked = data.exportBtnEnabled !== false;
-        toggleFolders.checked = data.foldersEnabled !== false;
+          // Toggles
+          toggleAdBlock.checked = data.adBlockEnabled !== false;
+          toggleExport.checked = data.exportBtnEnabled !== false;
+          toggleFolders.checked = data.foldersEnabled !== false;
 
-        // Idioma do Popup
-        const savedLang = data.appLanguage || 'en';
-        applyLanguage(savedLang);
+          // Idioma do Popup
+          const savedLang = data.appLanguage || 'en';
+          applyLanguage(savedLang);
 
-        // Tema do Popup
-        const currentTheme = data.popupTheme || 'white';
-        applyPopupTheme(currentTheme);
-        themeRadios.forEach(r => {
-          r.checked = (r.value === currentTheme);
+          // Tema do Popup
+          const currentTheme = data.popupTheme || 'white';
+          applyPopupTheme(currentTheme);
+          themeRadios.forEach(r => {
+            r.checked = (r.value === currentTheme);
+          });
+
+          // Status Badge
+          updateStatusBadge(toggleAdBlock.checked);
+
+          // Estatísticas
+          const todayCount = (data.lastDate === today) ? (data.blockedToday || 0) : 0;
+          statToday.innerText = todayCount;
+          statTotal.innerText = data.blockedCount || 0;
+
+          // Carregar Prompts Personalizados
+          if (data.customPrompts || syncData?.customPrompts) {
+            currentCustomPrompts = data.customPrompts || syncData.customPrompts;
+          }
+          renderPrompts(currentCustomPrompts);
+
+          if (isCurrentPro) {
+            applyProUI();
+          }
         });
-
-        // Status Badge
-        updateStatusBadge(toggleAdBlock.checked);
-
-        // Estatísticas
-        const todayCount = (data.lastDate === today) ? (data.blockedToday || 0) : 0;
-        statToday.innerText = todayCount;
-        statTotal.innerText = data.blockedCount || 0;
-
-        // Carregar Prompts Personalizados
-        if (data.customPrompts) {
-          currentCustomPrompts = data.customPrompts;
-        }
-        renderPrompts(currentCustomPrompts);
-
-        if (data.isPro) {
-          applyProUI();
-        }
       });
     }
   }
@@ -1042,8 +1048,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function saveSetting(key, val) {
-    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
-      chrome.storage.local.set({ [key]: val });
+    if (typeof chrome !== 'undefined' && chrome.storage) {
+      if (chrome.storage.local) chrome.storage.local.set({ [key]: val });
+      if (chrome.storage.sync) chrome.storage.sync.set({ [key]: val });
     }
   }
 
