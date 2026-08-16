@@ -576,39 +576,56 @@ iframe[src*="adnxs.com"] {
 }
 
 /* --------------------------------------------------------------------------
-   5. BOTÃO DE PROMPTS ⚡ JUNTO AO INPUT DO CHATGPT
+   PROMPT TRIGGER BAR (ABOVE CHATGPT INPUT BOX)
    -------------------------------------------------------------------------- */
-.chatgpt-clean-prompt-trigger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  margin: 0 3px;
-  flex-shrink: 0;
-  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
-  padding: 0;
+.chatgpt-clean-prompt-bar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  width: 100% !important;
+  max-width: 48rem !important;
+  margin: 0 auto 10px auto !important;
+  padding: 0 4px !important;
+  z-index: 50 !important;
+  box-sizing: border-box !important;
 }
 
-.chatgpt-clean-prompt-trigger:hover {
-  background: rgba(255, 255, 255, 0.12);
-  transform: scale(1.08);
+.chatgpt-clean-prompt-trigger-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 20px !important;
+  padding: 5px 13px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.06) !important;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  line-height: 1.2 !important;
+}
+
+.chatgpt-clean-prompt-trigger-pill:hover {
+  background: #f8fafc !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25) !important;
+  transform: translateY(-1px) !important;
+  color: #0284c7 !important;
+}
+
+.chatgpt-clean-prompt-trigger-pill:active {
+  transform: translateY(0px) scale(0.98) !important;
 }
 
 .chat-prompt-trigger-icon {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
-  transition: transform 0.2s ease;
-}
-
-.chatgpt-clean-prompt-trigger:hover .chat-prompt-trigger-icon {
-  transform: scale(1.15);
+  width: 16px !important;
+  height: 16px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2)) !important;
+  flex-shrink: 0 !important;
 }
 
 .chatgpt-clean-prompts-modal {
