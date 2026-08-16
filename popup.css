@@ -1332,9 +1332,21 @@ body.theme-white .prompt-action-btn.btn-copy:hover {
 }
 
 .pro-benefits li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   font-size: 11px;
   color: var(--text-main);
-  margin-bottom: 6px;
+  margin-bottom: 7px;
+  line-height: 1.35;
+}
+
+.pro-benefit-star {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 3px rgba(245, 158, 11, 0.4));
+  flex-shrink: 0;
 }
 
 .pro-benefits li:last-child {
@@ -1376,7 +1388,10 @@ body.theme-white .prompt-action-btn.btn-copy:hover {
 }
 
 .buy-pro-btn {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
   width: 100%;
   background: linear-gradient(135deg, #f59e0b, #d97706);
   color: #ffffff;
@@ -1389,9 +1404,22 @@ body.theme-white .prompt-action-btn.btn-copy:hover {
   transition: all 0.2s ease;
 }
 
+.btn-rocket-3d-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
 .buy-pro-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 6px 18px var(--accent-gold-glow);
+}
+
+.buy-pro-btn:hover .btn-rocket-3d-icon {
+  transform: translateY(-2px) translateX(1px) scale(1.15);
 }
 
 .license-box label {
