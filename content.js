@@ -13,7 +13,7 @@
     foldersEnabled: true,
     promptsEnabled: true,
     isPro: false,
-    appLanguage: 'pt',
+    appLanguage: 'en',
     exportTrialStartDate: null,
     customPrompts: [],
     folders: [
@@ -34,7 +34,7 @@
       promptInserted: "⚡ Prompt inserido no ChatGPT!",
       quickPromptsTooltip: "Prompts Rápidos",
       defaultFolders: { f1: '💼 Trabalho', f2: '💡 Ideias', f3: '📚 Estudos' },
-      foldersHeader: "📁 Pastas & Favoritos",
+      foldersHeader: "Pastas & Favoritos",
       btnAddFolder: "+ Nova Pasta",
       promptNewFolderName: "Nome da nova pasta:",
       toastFolderCreated: "📁 Pasta criada!",
@@ -42,16 +42,16 @@
       btnPinChat: "📌 +Chat",
       noChatSaved: "Nenhum chat guardado ainda.",
       toastChatSaved: "📌 Conversa guardada nesta pasta!",
-      limitModalTitle: "🔒 Limite Diário Atingido",
+      limitModalTitle: "Limite Diário Atingido",
       limitModalHeading: "Atingiste as tuas 2 exportações gratuitas de hoje!",
       limitModalDesc: "O teu limite de 2 exportações diárias reseta automaticamente amanhã à meia-noite.",
-      limitOfferTitle: "🚀 Queres exportações infinitas?",
+      limitOfferTitle: "Queres exportações infinitas?",
       limitOfferDesc: "Com o plano PRO tens exportações ilimitadas para sempre sem restrições de cota.",
       limitSinglePay: "Pagamento Único",
-      limitUpgradeBtn: "👑 Desbloquear Exportações Ilimitadas (2,99€)",
-      exportModalHeading: (suffix) => `📥 Exportar ${suffix || 'Conversa'}`,
+      limitUpgradeBtn: "Desbloquear Exportações Ilimitadas (2,99€)",
+      exportModalHeading: (suffix) => `Exportar ${suffix || 'Conversa'}`,
       exportQuotaBadge: (rem) => `🎁 Grátis: ${rem}/2 hoje`,
-      exportQuotaBadgePro: "👑 Ilimitado PRO",
+      exportQuotaBadgePro: "Ilimitado PRO",
       cardPdfTitle: "Documento PDF (.pdf)",
       cardPdfDesc: "Layout formatado pronto para guardar ou imprimir",
       cardWordTitle: "Microsoft Word (.doc)",
@@ -69,7 +69,7 @@
       promptInserted: "⚡ Prompt inserted into ChatGPT!",
       quickPromptsTooltip: "Quick Prompts",
       defaultFolders: { f1: '💼 Work', f2: '💡 Ideas', f3: '📚 Studies' },
-      foldersHeader: "📁 Folders & Bookmarks",
+      foldersHeader: "Folders & Bookmarks",
       btnAddFolder: "+ New Folder",
       promptNewFolderName: "New folder name:",
       toastFolderCreated: "📁 Folder created!",
@@ -77,16 +77,16 @@
       btnPinChat: "📌 +Chat",
       noChatSaved: "No chats saved yet.",
       toastChatSaved: "📌 Conversation saved to this folder!",
-      limitModalTitle: "🔒 Daily Limit Reached",
+      limitModalTitle: "Daily Limit Reached",
       limitModalHeading: "You have reached your 2 free exports today!",
       limitModalDesc: "Your daily quota of 2 free exports will reset tomorrow at midnight.",
-      limitOfferTitle: "🚀 Want unlimited exports?",
+      limitOfferTitle: "Want unlimited exports?",
       limitOfferDesc: "With PRO plan you get lifetime unlimited exports without quota restrictions.",
       limitSinglePay: "One-Time Payment",
-      limitUpgradeBtn: "👑 Unlock Unlimited Exports ($2.99)",
-      exportModalHeading: (suffix) => `📥 Export ${suffix || 'Conversation'}`,
+      limitUpgradeBtn: "Unlock Unlimited Exports ($2.99)",
+      exportModalHeading: (suffix) => `Export ${suffix || 'Conversation'}`,
       exportQuotaBadge: (rem) => `🎁 Free: ${rem}/2 today`,
-      exportQuotaBadgePro: "👑 PRO Unlimited",
+      exportQuotaBadgePro: "PRO Unlimited",
       cardPdfTitle: "PDF Document (.pdf)",
       cardPdfDesc: "Formatted layout ready for saving or printing",
       cardWordTitle: "Microsoft Word (.doc)",
@@ -104,7 +104,7 @@
       promptInserted: "⚡ ¡Prompt insertado en ChatGPT!",
       quickPromptsTooltip: "Prompts Rápidos",
       defaultFolders: { f1: '💼 Trabajo', f2: '💡 Ideas', f3: '📚 Estudios' },
-      foldersHeader: "📁 Carpetas y Favoritos",
+      foldersHeader: "Carpetas y Favoritos",
       btnAddFolder: "+ Nueva Carpeta",
       promptNewFolderName: "Nombre de la nueva carpeta:",
       toastFolderCreated: "📁 ¡Carpeta creada!",
@@ -112,16 +112,16 @@
       btnPinChat: "📌 +Chat",
       noChatSaved: "Sin chats guardados aún.",
       toastChatSaved: "📌 ¡Conversación guardada en esta carpeta!",
-      limitModalTitle: "🔒 Límite Diario Alcanzado",
+      limitModalTitle: "Límite Diario Alcanzado",
       limitModalHeading: "¡Has alcanzado tus 2 exportaciones gratuitas de hoy!",
       limitModalDesc: "Tu cuota diaria de 2 exportaciones se restablecerá mañana a medianoche.",
-      limitOfferTitle: "🚀 ¿Quieres exportaciones ilimitadas?",
+      limitOfferTitle: "¿Quieres exportaciones ilimitadas?",
       limitOfferDesc: "Con el plan PRO tienes exportaciones infinitas de por vida sin restricciones.",
       limitSinglePay: "Pago Único",
-      limitUpgradeBtn: "👑 Desbloquear Exportaciones Ilimitadas (2,99€)",
-      exportModalHeading: (suffix) => `📥 Exportar ${suffix || 'Conversación'}`,
+      limitUpgradeBtn: "Desbloquear Exportaciones Ilimitadas (2,99€)",
+      exportModalHeading: (suffix) => `Exportar ${suffix || 'Conversación'}`,
       exportQuotaBadge: (rem) => `🎁 Gratis: ${rem}/2 hoy`,
-      exportQuotaBadgePro: "👑 Ilimitado PRO",
+      exportQuotaBadgePro: "Ilimitado PRO",
       cardPdfTitle: "Documento PDF (.pdf)",
       cardPdfDesc: "Diseño formateado listo para guardar o imprimir",
       cardWordTitle: "Microsoft Word (.doc)",
@@ -139,7 +139,7 @@
       promptInserted: "⚡ Prompt inséré dans ChatGPT !",
       quickPromptsTooltip: "Prompts Rapides",
       defaultFolders: { f1: '💼 Travail', f2: '💡 Idées', f3: '📚 Études' },
-      foldersHeader: "📁 Dossiers & Favoris",
+      foldersHeader: "Dossiers & Favoris",
       btnAddFolder: "+ Nouveau Dossier",
       promptNewFolderName: "Nom du nouveau dossier :",
       toastFolderCreated: "📁 Dossier créé !",
@@ -147,16 +147,16 @@
       btnPinChat: "📌 +Chat",
       noChatSaved: "Aucune discussion enregistrée.",
       toastChatSaved: "📌 Discussion enregistrée dans ce dossier !",
-      limitModalTitle: "🔒 Limite Quotidienne Atteinte",
+      limitModalTitle: "Limite Quotidienne Atteinte",
       limitModalHeading: "Vous avez atteint vos 2 exports gratuits aujourd'hui !",
       limitModalDesc: "Votre quota de 2 exports quotidiens sera réinitialisé demain à minuit.",
-      limitOfferTitle: "🚀 Vous voulez des exports illimités ?",
+      limitOfferTitle: "Vous voulez des exports illimités ?",
       limitOfferDesc: "Avec le forfait PRO, profitez d'exports illimités à vie sans aucune restriction.",
       limitSinglePay: "Paiement Unique",
-      limitUpgradeBtn: "👑 Débloquer les Exports Illimités (2,99€)",
-      exportModalHeading: (suffix) => `📥 Exporter ${suffix || 'Discussion'}`,
+      limitUpgradeBtn: "Débloquer les Exports Illimités (2,99€)",
+      exportModalHeading: (suffix) => `Exporter ${suffix || 'Discussion'}`,
       exportQuotaBadge: (rem) => `🎁 Gratuit : ${rem}/2 auj.`,
-      exportQuotaBadgePro: "👑 Illimité PRO",
+      exportQuotaBadgePro: "Illimité PRO",
       cardPdfTitle: "Document PDF (.pdf)",
       cardPdfDesc: "Mise en page prête pour impression ou archivage",
       cardWordTitle: "Microsoft Word (.doc)",
@@ -174,7 +174,7 @@
       promptInserted: "⚡ Prompt in ChatGPT eingefügt!",
       quickPromptsTooltip: "Schnelle Prompts",
       defaultFolders: { f1: '💼 Arbeit', f2: '💡 Ideen', f3: '📚 Studium' },
-      foldersHeader: "📁 Ordner & Lesezeichen",
+      foldersHeader: "Ordner & Lesezeichen",
       btnAddFolder: "+ Neuer Ordner",
       promptNewFolderName: "Name des neuen Ordners:",
       toastFolderCreated: "📁 Ordner erstellt!",
@@ -182,16 +182,16 @@
       btnPinChat: "📌 +Chat",
       noChatSaved: "Noch keine Chats gespeichert.",
       toastChatSaved: "📌 Chat in diesem Ordner gespeichert!",
-      limitModalTitle: "🔒 Tageslimit Erreicht",
+      limitModalTitle: "Tageslimit Erreicht",
       limitModalHeading: "Sie haben Ihre 2 kostenlosen Exporte für heute erreicht!",
       limitModalDesc: "Ihr tägliches Kontingent wird morgen um Mitternacht zurückgesetzt.",
-      limitOfferTitle: "🚀 Möchten Sie unbegrenzte Exporte?",
+      limitOfferTitle: "Möchten Sie unbegrenzte Exporte?",
       limitOfferDesc: "Mit dem PRO-Plan erhalten Sie lebenslang unbegrenzte Exporte ohne Limit.",
       limitSinglePay: "Einmalzahlung",
-      limitUpgradeBtn: "👑 Unbegrenzte Exporte Freischalten (2,99€)",
-      exportModalHeading: (suffix) => `📥 ${suffix || 'Chat'} Exportieren`,
+      limitUpgradeBtn: "Unbegrenzte Exporte Freischalten (2,99€)",
+      exportModalHeading: (suffix) => `${suffix || 'Chat'} Exportieren`,
       exportQuotaBadge: (rem) => `🎁 Gratis: ${rem}/2 heute`,
-      exportQuotaBadgePro: "👑 Unbegrenzt PRO",
+      exportQuotaBadgePro: "Unbegrenzt PRO",
       cardPdfTitle: "PDF-Dokument (.pdf)",
       cardPdfDesc: "Formatiertes Layout bereit zum Speichern oder Drucken",
       cardWordTitle: "Microsoft Word (.doc)",
@@ -209,7 +209,7 @@
       promptInserted: "⚡ Prompt inserito in ChatGPT!",
       quickPromptsTooltip: "Prompt Rapidi",
       defaultFolders: { f1: '💼 Lavoro', f2: '💡 Idee', f3: '📚 Studio' },
-      foldersHeader: "📁 Cartelle e Segnalibri",
+      foldersHeader: "Cartelle e Segnalibri",
       btnAddFolder: "+ Nuova Cartella",
       promptNewFolderName: "Nome della nuova cartella:",
       toastFolderCreated: "📁 Cartella creata!",
@@ -217,16 +217,16 @@
       btnPinChat: "📌 +Chat",
       noChatSaved: "Nessuna chat salvata.",
       toastChatSaved: "📌 Chat salvata in questa cartella!",
-      limitModalTitle: "🔒 Limite Giornaliero Raggiunto",
+      limitModalTitle: "Limite Giornaliero Raggiunto",
       limitModalHeading: "Hai raggiunto le tue 2 esportazioni gratuite di oggi!",
       limitModalDesc: "La tua quota giornaliera di 2 esportazioni si resetterà domani a mezzanotte.",
-      limitOfferTitle: "🚀 Vuoi esportazioni infinite?",
+      limitOfferTitle: "Vuoi esportazioni infinite?",
       limitOfferDesc: "Con il piano PRO hai esportazioni illimitate a vita senza restrizioni.",
       limitSinglePay: "Pagamento Singolo",
-      limitUpgradeBtn: "👑 Sblocca Esportazioni Illimitate (2,99€)",
-      exportModalHeading: (suffix) => `📥 Esporta ${suffix || 'Conversazione'}`,
+      limitUpgradeBtn: "Sblocca Esportazioni Illimitate (2,99€)",
+      exportModalHeading: (suffix) => `Esporta ${suffix || 'Conversazione'}`,
       exportQuotaBadge: (rem) => `🎁 Gratis: ${rem}/2 oggi`,
-      exportQuotaBadgePro: "👑 Illimitato PRO",
+      exportQuotaBadgePro: "Illimitato PRO",
       cardPdfTitle: "Documento PDF (.pdf)",
       cardPdfDesc: "Layout formattato pronto per il salvataggio o la stampa",
       cardWordTitle: "Microsoft Word (.doc)",
@@ -244,7 +244,7 @@
       promptInserted: "⚡ 提示词已成功插入输入框！",
       quickPromptsTooltip: "快捷提示词",
       defaultFolders: { f1: '💼 工作', f2: '💡 灵感', f3: '📚 学习' },
-      foldersHeader: "📁 侧边栏分类文件夹",
+      foldersHeader: "侧边栏分类文件夹",
       btnAddFolder: "+ 新建文件夹",
       promptNewFolderName: "请输入新文件夹名称：",
       toastFolderCreated: "📁 文件夹创建成功！",
@@ -252,16 +252,16 @@
       btnPinChat: "📌 +收藏",
       noChatSaved: "暂无收藏对话。",
       toastChatSaved: "📌 当前对话已成功收藏至此文件夹！",
-      limitModalTitle: "🔒 今日免费导出额度已用尽",
+      limitModalTitle: "今日免费导出额度已用尽",
       limitModalHeading: "您今日的2次免费导出额度已达上限！",
       limitModalDesc: "每日2次免费额度将于明日零点自动刷新重置。",
-      limitOfferTitle: "🚀 想要无限制极速导出？",
+      limitOfferTitle: "想要无限制极速导出？",
       limitOfferDesc: "升级PRO专业版，即可永久解锁终身无限次全格式导出特权。",
       limitSinglePay: "一次性买断",
-      limitUpgradeBtn: "👑 立即解锁无限导出 (2.99€)",
-      exportModalHeading: (suffix) => `📥 导出${suffix || '当前对话'}`,
+      limitUpgradeBtn: "立即解锁无限导出 (2.99€)",
+      exportModalHeading: (suffix) => `导出${suffix || '当前对话'}`,
       exportQuotaBadge: (rem) => `🎁 今日剩余: ${rem}/2`,
-      exportQuotaBadgePro: "👑 终身PRO无限",
+      exportQuotaBadgePro: "终身PRO无限",
       cardPdfTitle: "PDF 高清文档 (.pdf)",
       cardPdfDesc: "精美排版，支持直接打印或归档保存",
       cardWordTitle: "Microsoft Word 文档 (.doc)",
@@ -279,7 +279,7 @@
       promptInserted: "⚡ プロンプトを入力欄に挿入しました！",
       quickPromptsTooltip: "クイックプロンプト",
       defaultFolders: { f1: '💼 仕事', f2: '💡 アイデア', f3: '📚 学習' },
-      foldersHeader: "📁 フォルダ＆お気に入り",
+      foldersHeader: "フォルダ＆お気に入り",
       btnAddFolder: "+ 新規フォルダ",
       promptNewFolderName: "新しいフォルダ名を入力：",
       toastFolderCreated: "📁 フォルダを作成しました！",
@@ -287,16 +287,16 @@
       btnPinChat: "📌 +保存",
       noChatSaved: "保存されたチャットはありません。",
       toastChatSaved: "📌 このフォルダにチャットを保存しました！",
-      limitModalTitle: "🔒 本日の無料枠上限に達しました",
+      limitModalTitle: "本日の無料枠上限に達しました",
       limitModalHeading: "本日の2回無料エクスポートを使い切りました！",
       limitModalDesc: "1日2回の無料利用枠は明日の午前0時に自動リセットされます。",
-      limitOfferTitle: "🚀 無制限で利用したいですか？",
+      limitOfferTitle: "無制限で利用したいですか？",
       limitOfferDesc: "PROプランなら回数制限なしで永久に無制限エクスポートが可能です。",
       limitSinglePay: "買い切りプラン",
-      limitUpgradeBtn: "👑 無制限エクスポートを解放 (2.99€)",
-      exportModalHeading: (suffix) => `📥 ${suffix || '会話'}をエクスポート`,
+      limitUpgradeBtn: "無制限エクスポートを解放 (2.99€)",
+      exportModalHeading: (suffix) => `${suffix || '会話'}をエクスポート`,
       exportQuotaBadge: (rem) => `🎁 本日残り: ${rem}/2`,
-      exportQuotaBadgePro: "👑 永久PRO無制限",
+      exportQuotaBadgePro: "永久PRO無制限",
       cardPdfTitle: "PDF ドキュメント (.pdf)",
       cardPdfDesc: "印刷や保存に最適なフォーマット済みレイアウト",
       cardWordTitle: "Microsoft Word (.doc)",
@@ -538,7 +538,9 @@
 
   function injectExportButtons() {
     if (!state.exportBtnEnabled) return;
-    const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
+    const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.en;
+    const downloadIconUrl = chrome.runtime.getURL('icons/icones ua/icons8-downloads-folder-94.png');
+    const notebookIconUrl = chrome.runtime.getURL('icons/icones ua/3dicons-notebook-dynamic-color.png');
 
     // 1. Botão individual por resposta
     const actionBars = document.querySelectorAll('div[class*="items-center"][class*="gap-"]');
@@ -548,7 +550,7 @@
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'chatgpt-clean-export-btn';
-        btn.innerHTML = `<span>📥</span><span>${t.exportBtn}</span>`;
+        btn.innerHTML = `<img src="${downloadIconUrl}" class="chat-btn-3d-icon" alt="Export"><span>${t.exportBtn}</span>`;
         btn.title = t.exportBtnTitle;
 
         btn.addEventListener('click', (e) => {
@@ -575,7 +577,7 @@
       const globalBtn = document.createElement('button');
       globalBtn.type = 'button';
       globalBtn.className = 'chatgpt-clean-global-export-btn';
-      globalBtn.innerHTML = `<span>📑</span><span>${t.exportFullBtn}</span>`;
+      globalBtn.innerHTML = `<img src="${notebookIconUrl}" class="chat-btn-3d-icon" alt="Export All"><span>${t.exportFullBtn}</span>`;
       globalBtn.title = t.exportFullBtnTitle;
 
       globalBtn.addEventListener('click', (e) => {
@@ -615,7 +617,19 @@
 
   // Abre o Modal com as 3 opções de exportação ou o Paywall de Limite Atingido
   function openExportModal(cleanText, formattedHtml, titleSuffix) {
-    const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      chrome.storage.local.get(['appLanguage', 'isPro'], (items) => {
+        if (items && items.appLanguage) state.appLanguage = items.appLanguage;
+        if (items && items.isPro !== undefined) state.isPro = items.isPro;
+        renderModalWithQuota(cleanText, formattedHtml, titleSuffix);
+      });
+    } else {
+      renderModalWithQuota(cleanText, formattedHtml, titleSuffix);
+    }
+  }
+
+  function renderModalWithQuota(cleanText, formattedHtml, titleSuffix) {
+    const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.en;
     getDailyExportQuota((quota) => {
       const existing = document.querySelector('.chatgpt-clean-modal-overlay');
       if (existing) existing.remove();
@@ -623,21 +637,34 @@
       const overlay = document.createElement('div');
       overlay.className = 'chatgpt-clean-modal-overlay';
 
+      const lockIconUrl = chrome.runtime.getURL('icons/icones ua/icons8-lock-94.png');
+      const crownIconUrl = chrome.runtime.getURL('icons/icones ua/icons8-crown-100.png');
+      const rocketIconUrl = chrome.runtime.getURL('icons/icones ua/icons8-rocket-94.png');
+      const downloadIconUrl = chrome.runtime.getURL('icons/icones ua/icons8-downloads-folder-94.png');
+      const writeIconUrl = chrome.runtime.getURL('icons/icones ua/icons8-write-94.png');
+      const notebookIconUrl = chrome.runtime.getURL('icons/icones ua/3dicons-notebook-dynamic-color.png');
+
       // Se atingiu o limite de 2 por dia no modo Free -> Mostrar Paywall PRO
       if (!quota.isPro && quota.remaining <= 0) {
         overlay.innerHTML = `
           <div class="chatgpt-clean-export-modal chatgpt-clean-pro-limit-modal">
             <div class="chatgpt-clean-export-modal-header">
-              <h3>${t.limitModalTitle}</h3>
+              <div class="header-left-group" style="display:flex;align-items:center;gap:8px;">
+                <img src="${lockIconUrl}" class="chatgpt-clean-modal-header-icon" alt="Lock">
+                <h3>${t.limitModalTitle}</h3>
+              </div>
               <button class="chatgpt-clean-modal-close" id="chatgpt-clean-close-export">✕</button>
             </div>
             <div class="chatgpt-clean-limit-content">
-              <div class="limit-crown-icon">👑</div>
+              <img src="${crownIconUrl}" class="chatgpt-clean-modal-3d-crown" alt="PRO Crown">
               <h4>${t.limitModalHeading}</h4>
               <p>${t.limitModalDesc}</p>
               
               <div class="limit-offer-card">
-                <span class="offer-title">${t.limitOfferTitle}</span>
+                <div class="limit-offer-header">
+                  <img src="${rocketIconUrl}" class="limit-offer-3d-rocket" alt="Rocket">
+                  <span class="offer-title">${t.limitOfferTitle}</span>
+                </div>
                 <p class="offer-desc">${t.limitOfferDesc}</p>
                 <div class="offer-pricing">
                   <span class="old-price">9,99€</span>
@@ -645,7 +672,8 @@
                   <span class="badge-single">${t.limitSinglePay}</span>
                 </div>
                 <a href="https://buy.stripe.com/exemplo_link_checkout" target="_blank" class="limit-upgrade-btn">
-                  ${t.limitUpgradeBtn}
+                  <img src="${crownIconUrl}" class="limit-btn-3d-crown" alt="Crown">
+                  <span>${t.limitUpgradeBtn}</span>
                 </a>
               </div>
             </div>
@@ -654,13 +682,14 @@
       } else {
         // Modal Normal de Exportação com indicador de cota (2/dia)
         const quotaBadge = quota.isPro 
-          ? `<span class="export-quota-tag tag-pro">${t.exportQuotaBadgePro}</span>`
+          ? `<span class="export-quota-tag tag-pro">👑 ${t.exportQuotaBadgePro}</span>`
           : `<span class="export-quota-tag">${t.exportQuotaBadge(quota.remaining)}</span>`;
 
         overlay.innerHTML = `
           <div class="chatgpt-clean-export-modal">
             <div class="chatgpt-clean-export-modal-header">
-              <div class="header-left-group">
+              <div class="header-left-group" style="display:flex;align-items:center;gap:8px;">
+                <img src="${downloadIconUrl}" class="chatgpt-clean-modal-header-icon" alt="Export">
                 <h3>${t.exportModalHeading(titleSuffix)}</h3>
                 ${quotaBadge}
               </div>
@@ -668,21 +697,21 @@
             </div>
             <div class="chatgpt-clean-export-grid">
               <div class="chatgpt-clean-export-card" data-format="pdf">
-                <span class="icon">📄</span>
+                <img src="${downloadIconUrl}" class="export-card-3d-icon" alt="PDF">
                 <div class="info">
                   <strong>${t.cardPdfTitle}</strong>
                   <span>${t.cardPdfDesc}</span>
                 </div>
               </div>
               <div class="chatgpt-clean-export-card" data-format="word">
-                <span class="icon">📝</span>
+                <img src="${writeIconUrl}" class="export-card-3d-icon" alt="Word">
                 <div class="info">
                   <strong>${t.cardWordTitle}</strong>
                   <span>${t.cardWordDesc}</span>
                 </div>
               </div>
               <div class="chatgpt-clean-export-card" data-format="md">
-                <span class="icon">📑</span>
+                <img src="${notebookIconUrl}" class="export-card-3d-icon" alt="Markdown">
                 <div class="info">
                   <strong>${t.cardMdTitle}</strong>
                   <span>${t.cardMdDesc}</span>
@@ -835,9 +864,13 @@
       `;
     });
 
+    const folderIconUrl = chrome.runtime.getURL('icons/icones ua/icons8-folder-94.png');
     container.innerHTML = `
       <div class="chatgpt-clean-folders-header">
-        <span>${t.foldersHeader}</span>
+        <div class="folders-header-left" style="display:flex;align-items:center;gap:6px;">
+          <img src="${folderIconUrl}" class="folders-3d-icon" alt="Folders">
+          <span>${t.foldersHeader}</span>
+        </div>
         <button type="button" class="chatgpt-clean-add-folder-btn" id="chatgpt-clean-btn-new-folder">${t.btnAddFolder}</button>
       </div>
       <div class="chatgpt-clean-folder-list">

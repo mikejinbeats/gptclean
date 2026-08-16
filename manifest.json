@@ -39,5 +39,17 @@
       ],
       "run_at": "document_start"
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/*",
+        "icons/icones ua/*"
+      ],
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*"
+      ]
+    }
   ]
 }

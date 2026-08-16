@@ -172,6 +172,14 @@ iframe[src*="adnxs.com"] {
   gap: 8px;
 }
 
+.chatgpt-clean-modal-header-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4));
+  flex-shrink: 0;
+}
+
 .export-quota-tag {
   font-size: 10px;
   font-weight: 700;
@@ -208,16 +216,25 @@ iframe[src*="adnxs.com"] {
   color: #ffffff;
 }
 
-/* Paywall de Limite Atingido (5/dia) */
+/* Paywall de Limite Atingido */
 .chatgpt-clean-limit-content {
   text-align: center;
   padding: 10px 4px 6px;
 }
 
-.limit-crown-icon {
-  font-size: 36px;
-  margin-bottom: 8px;
-  filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.5));
+.chatgpt-clean-modal-3d-crown {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  margin: 0 auto 10px;
+  display: block;
+  filter: drop-shadow(0 4px 14px rgba(245, 158, 11, 0.45));
+  animation: floatCrownModal 3.2s ease-in-out infinite;
+}
+
+@keyframes floatCrownModal {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(2deg); }
 }
 
 .chatgpt-clean-limit-content h4 {
@@ -242,12 +259,25 @@ iframe[src*="adnxs.com"] {
   box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
 }
 
+.limit-offer-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.limit-offer-3d-rocket {
+  width: 17px;
+  height: 17px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+}
+
 .offer-title {
-  display: block;
   font-size: 12.5px;
   font-weight: 700;
   color: #f59e0b;
-  margin-bottom: 4px;
 }
 
 .offer-desc {
@@ -283,7 +313,11 @@ iframe[src*="adnxs.com"] {
 }
 
 .limit-upgrade-btn {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
   background: linear-gradient(135deg, #f59e0b, #d97706);
   color: #000000;
   text-decoration: none;
@@ -293,6 +327,14 @@ iframe[src*="adnxs.com"] {
   border-radius: 8px;
   box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
   transition: all 0.2s ease;
+}
+
+.limit-btn-3d-crown {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  flex-shrink: 0;
 }
 
 .limit-upgrade-btn:hover {
@@ -327,6 +369,35 @@ iframe[src*="adnxs.com"] {
   border-color: rgba(56, 189, 248, 0.4);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 16px rgba(56, 189, 248, 0.15);
   transform: translateX(3px);
+}
+
+.export-card-3d-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.chatgpt-clean-export-card:hover .export-card-3d-icon {
+  transform: scale(1.12);
+}
+
+.chat-btn-3d-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+  flex-shrink: 0;
+}
+
+.folders-3d-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+  flex-shrink: 0;
 }
 
 .chatgpt-clean-export-card .icon {
