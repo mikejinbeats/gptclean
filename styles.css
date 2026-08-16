@@ -1,0 +1,450 @@
+/* ==========================================================================
+   ChatGPT Clean & Power - Instant CSS Ad-Blocker & Injected Styles
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. REGISTO DE OCULTAÇÃO INSTANTÂNEA DE ANÚNCIOS (0ms)
+   -------------------------------------------------------------------------- */
+div[data-testid*="ad"],
+div[data-testid*="sponsored"],
+div[data-testid*="advertisement"],
+div[data-testid*="partner-result"],
+div[class*="sponsored-card"],
+div[class*="sponsored-message"],
+div[class*="ad-container"],
+div[class*="ad-unit"],
+div[class*="ad-banner"],
+div[aria-label*="sponsored" i],
+div[aria-label*="patrocinado" i],
+div[aria-label*="advertisement" i],
+section[aria-label*="sponsored" i],
+section[aria-label*="patrocinado" i] {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+}
+
+/* Ocultação de blocos com links de redes de anúncios externas */
+div:has(> a[href*="msn.com/"]),
+div:has(> a[href*="bing.com/aclick"]),
+div:has(> a[href*="ads.openai.com"]) {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  pointer-events: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. BOTÃO EXPORTAR & MODAL FLUTUANTE DE ESCOLHA (PDF / WORD / MD)
+   -------------------------------------------------------------------------- */
+.chatgpt-clean-export-btn, .chatgpt-clean-global-export-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(99, 102, 241, 0.15) !important;
+  border: 1px solid rgba(99, 102, 241, 0.4) !important;
+  color: #a5b4fc !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 4px 10px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  margin-left: 6px !important;
+  transition: all 0.2s ease !important;
+  user-select: none !important;
+}
+
+.chatgpt-clean-global-export-btn {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2)) !important;
+  border-color: rgba(168, 85, 247, 0.5) !important;
+  color: #e9d5ff !important;
+}
+
+.chatgpt-clean-export-btn:hover, .chatgpt-clean-global-export-btn:hover {
+  background: #6366f1 !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+/* Fundo escuro do modal */
+.chatgpt-clean-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 99999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInModal 0.15s ease-out;
+}
+
+/* Caixa do Modal */
+.chatgpt-clean-export-modal {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 420px;
+  padding: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #f8fafc;
+}
+
+.chatgpt-clean-export-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.chatgpt-clean-export-modal-header h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chatgpt-clean-modal-close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.chatgpt-clean-modal-close:hover {
+  color: #fff;
+}
+
+.chatgpt-clean-export-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.chatgpt-clean-export-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  width: 100%;
+}
+
+.chatgpt-clean-export-card:hover {
+  background: #27354d;
+  border-color: #6366f1;
+  transform: translateX(3px);
+}
+
+.chatgpt-clean-export-card .icon {
+  font-size: 22px;
+}
+
+.chatgpt-clean-export-card .info strong {
+  display: block;
+  font-size: 13px;
+  color: #f8fafc;
+  margin-bottom: 2px;
+}
+
+.chatgpt-clean-export-card .info span {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* --------------------------------------------------------------------------
+   3. GESTOR DE PASTAS E BOOKMARKS NA BARRA LATERAL
+   -------------------------------------------------------------------------- */
+.chatgpt-clean-folders-container {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.chatgpt-clean-folders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.chatgpt-clean-add-folder-btn {
+  background: rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  color: #818cf8;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.chatgpt-clean-add-folder-btn:hover {
+  background: #6366f1;
+  color: #ffffff;
+}
+
+.chatgpt-clean-folder-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.chatgpt-clean-folder-wrapper {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.chatgpt-clean-folder-item {
+  padding: 6px 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.chatgpt-clean-folder-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.chatgpt-clean-folder-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.folder-name-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.folder-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-save-current-chat {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-save-current-chat:hover {
+  background: #10b981;
+  color: #fff;
+}
+
+.chatgpt-clean-folder-count {
+  font-size: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1px 6px;
+  border-radius: 10px;
+  color: #94a3b8;
+}
+
+.chatgpt-clean-folder-chats {
+  padding: 4px 8px 6px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.chatgpt-clean-saved-chat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 11px;
+  color: #cbd5e1;
+  cursor: pointer;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+}
+
+.chatgpt-clean-saved-chat:hover .chat-title {
+  color: #60a5fa;
+  text-decoration: underline;
+}
+
+.chat-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+.btn-delete-saved-chat {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.btn-delete-saved-chat:hover {
+  color: #f87171;
+}
+
+.no-chats-hint {
+  font-size: 10px;
+  color: #64748b;
+  font-style: italic;
+  padding: 2px 0;
+}
+
+/* --------------------------------------------------------------------------
+   4. BOTÃO DE PROMPTS & MODAL FLUTUANTE
+   -------------------------------------------------------------------------- */
+.chatgpt-clean-prompt-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  color: #818cf8;
+  cursor: pointer;
+  margin-right: 6px;
+  transition: all 0.2s ease;
+  font-size: 15px;
+}
+
+.chatgpt-clean-prompt-trigger:hover {
+  background: #6366f1;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.5);
+}
+
+.chatgpt-clean-prompts-modal {
+  position: fixed;
+  bottom: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 520px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  padding: 16px;
+  z-index: 999999;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #f8fafc;
+  animation: fadeInModal 0.2s ease-out;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.chatgpt-clean-prompts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.chatgpt-clean-prompts-close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.chatgpt-clean-prompt-item {
+  background: #1e293b;
+  border: 1px solid #334155;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chatgpt-clean-prompt-item:hover {
+  background: #334155;
+  border-color: #6366f1;
+  transform: translateX(4px);
+}
+
+.chatgpt-clean-prompt-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #60a5fa;
+  margin-bottom: 3px;
+}
+
+.chatgpt-clean-prompt-text {
+  font-size: 12px;
+  color: #cbd5e1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Toast de notificação flutuante */
+.chatgpt-clean-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #10b981;
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  z-index: 99999999;
+  animation: fadeInModal 0.2s ease;
+}
