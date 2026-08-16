@@ -44,7 +44,7 @@
     {
       "resources": [
         "icons/*",
-        "icons/icones ua/*"
+        "icons/*/*"
       ],
       "matches": [
         "https://chatgpt.com/*",

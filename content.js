@@ -539,8 +539,8 @@
   function injectExportButtons() {
     if (!state.exportBtnEnabled) return;
     const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.en;
-    const downloadIconUrl = chrome.runtime.getURL('icons/icones ua/icons8-downloads-folder-94.png');
-    const notebookIconUrl = chrome.runtime.getURL('icons/icones ua/3dicons-notebook-dynamic-color.png');
+    const downloadIconUrl = chrome.runtime.getURL('icons/icons8-downloads-folder-94.png');
+    const notebookIconUrl = chrome.runtime.getURL('icons/3dicons-notebook-dynamic-color.png');
 
     // 1. Botão individual por resposta
     const actionBars = document.querySelectorAll('div[class*="items-center"][class*="gap-"]');
@@ -637,12 +637,12 @@
       const overlay = document.createElement('div');
       overlay.className = 'chatgpt-clean-modal-overlay';
 
-      const lockIconUrl = chrome.runtime.getURL('icons/icones ua/icons8-lock-94.png');
-      const crownIconUrl = chrome.runtime.getURL('icons/icones ua/icons8-crown-100.png');
-      const rocketIconUrl = chrome.runtime.getURL('icons/icones ua/icons8-rocket-94.png');
-      const downloadIconUrl = chrome.runtime.getURL('icons/icones ua/icons8-downloads-folder-94.png');
-      const writeIconUrl = chrome.runtime.getURL('icons/icones ua/icons8-write-94.png');
-      const notebookIconUrl = chrome.runtime.getURL('icons/icones ua/3dicons-notebook-dynamic-color.png');
+      const lockIconUrl = chrome.runtime.getURL('icons/icons8-lock-94.png');
+      const crownIconUrl = chrome.runtime.getURL('icons/icons8-crown-100.png');
+      const rocketIconUrl = chrome.runtime.getURL('icons/icons8-rocket-94.png');
+      const downloadIconUrl = chrome.runtime.getURL('icons/icons8-downloads-folder-94.png');
+      const writeIconUrl = chrome.runtime.getURL('icons/icons8-write-94.png');
+      const notebookIconUrl = chrome.runtime.getURL('icons/3dicons-notebook-dynamic-color.png');
 
       // Se atingiu o limite de 2 por dia no modo Free -> Mostrar Paywall PRO
       if (!quota.isPro && quota.remaining <= 0) {
@@ -864,7 +864,7 @@
       `;
     });
 
-    const folderIconUrl = chrome.runtime.getURL('icons/icones ua/icons8-folder-94.png');
+    const folderIconUrl = chrome.runtime.getURL('icons/icons8-folder-94.png');
     container.innerHTML = `
       <div class="chatgpt-clean-folders-header">
         <div class="folders-header-left" style="display:flex;align-items:center;gap:6px;">

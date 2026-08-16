@@ -841,13 +841,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const proHeroDesc = document.getElementById('i18n-pro-hero-desc');
     if (proHeroDesc) proHeroDesc.innerText = t.proHeroDesc;
     const proB1 = document.getElementById('i18n-pro-b1');
-    if (proB1) proB1.innerHTML = `<img src="icons/icones ua/icons8-star-94.png" alt="Star" class="pro-benefit-star"><span>${t.proB1}</span>`;
+    if (proB1) proB1.innerHTML = `<img src="icons/icons8-star-94.png" alt="Star" class="pro-benefit-star"><span>${t.proB1}</span>`;
     const proB2 = document.getElementById('i18n-pro-b2');
-    if (proB2) proB2.innerHTML = `<img src="icons/icones ua/icons8-star-94.png" alt="Star" class="pro-benefit-star"><span>${t.proB2}</span>`;
+    if (proB2) proB2.innerHTML = `<img src="icons/icons8-star-94.png" alt="Star" class="pro-benefit-star"><span>${t.proB2}</span>`;
     const proB3 = document.getElementById('i18n-pro-b3');
-    if (proB3) proB3.innerHTML = `<img src="icons/icones ua/icons8-star-94.png" alt="Star" class="pro-benefit-star"><span>${t.proB3}</span>`;
+    if (proB3) proB3.innerHTML = `<img src="icons/icons8-star-94.png" alt="Star" class="pro-benefit-star"><span>${t.proB3}</span>`;
     const proB4 = document.getElementById('i18n-pro-b4');
-    if (proB4) proB4.innerHTML = `<img src="icons/icones ua/icons8-star-94.png" alt="Star" class="pro-benefit-star"><span>${t.proB4}</span>`;
+    if (proB4) proB4.innerHTML = `<img src="icons/icons8-star-94.png" alt="Star" class="pro-benefit-star"><span>${t.proB4}</span>`;
     const proSinglePay = document.getElementById('i18n-pro-single-pay');
     if (proSinglePay) proSinglePay.innerText = t.proSinglePay;
     const btnBuyProText = document.getElementById('btn-buy-pro-text');
@@ -1093,9 +1093,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Prompts Padrão no Idioma Atual
     defaultList.forEach((p, idx) => {
-      let iconSrc = 'icons/icones ua/icons8-lightning-94.png';
-      if (idx === 1) iconSrc = 'icons/icones ua/icons8-write-94.png';
-      if (idx === 2) iconSrc = 'icons/icones ua/icons8-computer-94.png';
+      let iconSrc = 'icons/icons8-lightning-94.png';
+      if (idx === 1) iconSrc = 'icons/icons8-write-94.png';
+      if (idx === 2) iconSrc = 'icons/icons8-computer-94.png';
 
       const card = document.createElement('div');
       card.className = 'prompt-card';
@@ -1107,7 +1107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="prompt-card-desc">${p.desc}</div>
         <div class="prompt-card-actions">
           <button class="prompt-action-btn btn-insert" title="${t.btnInsert}">
-            <img src="icons/icones ua/icons8-lightning-94.png" class="btn-action-3d-icon" alt="insert">
+            <img src="icons/icons8-lightning-94.png" class="btn-action-3d-icon" alt="insert">
             <span class="btn-action-label">${t.btnInsert}</span>
           </button>
           <button class="prompt-action-btn btn-copy" title="${t.btnCopy}">
@@ -1145,7 +1145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.innerHTML = `
           <div class="prompt-card-header-row">
             <div class="prompt-card-title">
-              <img src="icons/icones ua/icons8-lightning-94.png" class="prompt-title-3d-icon" alt="icon">
+              <img src="icons/icons8-lightning-94.png" class="prompt-title-3d-icon" alt="icon">
               <span>${escapeHtml(cp.title)}</span>
             </div>
             <span class="custom-pro-tag">👑 PRO</span>
@@ -1153,7 +1153,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ${cp.desc ? `<div class="prompt-card-desc">${escapeHtml(cp.desc)}</div>` : ''}
           <div class="prompt-card-actions">
             <button class="prompt-action-btn btn-insert" title="${t.btnInsert}">
-              <img src="icons/icones ua/icons8-lightning-94.png" class="btn-action-3d-icon" alt="insert">
+              <img src="icons/icons8-lightning-94.png" class="btn-action-3d-icon" alt="insert">
               <span class="btn-action-label">${t.btnInsert}</span>
             </button>
             <button class="prompt-action-btn btn-copy" title="${t.btnCopy}">
