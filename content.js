@@ -1026,30 +1026,48 @@
   }
 
   // --------------------------------------------------------------------------
-  // 5. INJEÇÃO DE PROMPTS RÁPIDOS (BOTÃO ⚡ JUNTO AO INPUT)
+  // 5. INJEÇÃO DE PROMPTS RÁPIDOS (BOTÃO COM ÍCONE 3D LADO A LADO DO BOTÃO +)
   // --------------------------------------------------------------------------
   function injectPromptTrigger() {
     if (!state.promptsEnabled) return;
     if (document.querySelector('.chatgpt-clean-prompt-trigger')) return;
     const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
 
-    const promptContainer = document.querySelector('form div[class*="flex"][class*="items-end"]') ||
-                            document.querySelector('#prompt-textarea')?.parentElement ||
-                            document.querySelector('form');
+    // Procurar especificamente o botão de Anexar (+) do ChatGPT
+    const attachBtn = document.querySelector('button[data-testid="fruitjuice-plus-button"]') ||
+                      document.querySelector('button[data-testid="attach-button"]') ||
+                      document.querySelector('button[aria-label*="Attach" i]') ||
+                      document.querySelector('button[aria-label*="Anexar" i]') ||
+                      document.querySelector('button[aria-label*="Upload" i]') ||
+                      document.querySelector('button[aria-label*="ficheiro" i]') ||
+                      document.querySelector('button[aria-label*="Adicionar" i]') ||
+                      document.querySelector('button[aria-label*="Add" i]') ||
+                      document.querySelector('form button[aria-haspopup="menu"]');
 
-    if (promptContainer && !promptContainer.querySelector('.chatgpt-clean-prompt-trigger')) {
-      const trigger = document.createElement('button');
-      trigger.type = 'button';
-      trigger.className = 'chatgpt-clean-prompt-trigger';
-      trigger.innerHTML = `⚡`;
-      trigger.title = `ChatGPT Clean: ${t.quickPromptsTooltip}`;
-      trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        togglePromptsModal();
-      });
+    const lightningIconUrl = chrome.runtime.getURL('icons/icons8-lightning-94.png');
 
-      promptContainer.insertBefore(trigger, promptContainer.firstChild);
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'chatgpt-clean-prompt-trigger';
+    trigger.innerHTML = `<img src="${lightningIconUrl}" class="chat-prompt-trigger-icon" alt="Prompts">`;
+    trigger.title = `ChatGPT Clean: ${t.quickPromptsTooltip}`;
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      togglePromptsModal();
+    });
+
+    if (attachBtn && attachBtn.parentElement) {
+      // Injeta exatamente ao lado do botão de anexar (+)
+      attachBtn.insertAdjacentElement('afterend', trigger);
+    } else {
+      // Fallback: dentro da barra do form do ChatGPT
+      const formBar = document.querySelector('form div[class*="flex"][class*="items-center"]') ||
+                      document.querySelector('form div[class*="flex"][class*="items-end"]') ||
+                      document.querySelector('#prompt-textarea')?.parentElement;
+      if (formBar) {
+        formBar.insertBefore(trigger, formBar.firstChild);
+      }
     }
   }
 
@@ -1064,36 +1082,95 @@
     const modal = document.createElement('div');
     modal.className = 'chatgpt-clean-prompts-modal';
 
+    const lightningIconUrl = chrome.runtime.getURL('icons/icons8-lightning-94.png');
+    const writeIconUrl = chrome.runtime.getURL('icons/icons8-write-94.png');
+    const computerIconUrl = chrome.runtime.getURL('icons/icons8-computer-94.png');
+
+    const defaultPrompts = [
+      {
+        icon: lightningIconUrl,
+        title: state.appLanguage === 'en' ? 'Summarize in Bullet Points' :
+               state.appLanguage === 'es' ? 'Resumir en Viñetas' :
+               state.appLanguage === 'fr' ? 'Résumer en Puces' :
+               state.appLanguage === 'de' ? 'In Stichpunkten Zusammenfassen' :
+               state.appLanguage === 'it' ? 'Riassumi in Punti Elenco' :
+               state.appLanguage === 'zh' ? '要点提炼与摘要' :
+               state.appLanguage === 'ja' ? '箇条書きで要約' :
+               'Resumir em Bullet Points',
+        text: state.appLanguage === 'en' ? 'Please summarize the preceding text into clear, concise, and objective bullet points highlighting only the most important insights.' :
+              state.appLanguage === 'es' ? 'Por favor, resume el texto anterior en viñetas claras, directas y objetivas con los puntos clave más importantes.' :
+              state.appLanguage === 'fr' ? 'Veuillez résumer le texte précédent sous forme de puces claires, directes et concises avec les points essentiels.' :
+              state.appLanguage === 'de' ? 'Bitte fasse den vorherigen Text in klaren, prägnanten und objektiven Stichpunkten mit den wichtigsten Kernaussagen zusammen.' :
+              state.appLanguage === 'it' ? 'Per favore, riassumi il testo precedente in punti elenco chiari, diretti e concisi con le informazioni più importanti.' :
+              state.appLanguage === 'zh' ? '请将上述内容提炼为清晰、精炼、条理分明的要点列表，仅保留最核心的信息与结论。' :
+              state.appLanguage === 'ja' ? '前の文章を、重要なポイントのみを抽出して明確かつ簡潔な箇条書きで要約してください。' :
+              'Por favor, resume o texto anterior em tópicos claros, diretos e objetivos (bullet points), destacando apenas os pontos mais importantes.'
+      },
+      {
+        icon: writeIconUrl,
+        title: state.appLanguage === 'en' ? 'Improve & Fix Grammar' :
+               state.appLanguage === 'es' ? 'Mejorar y Corregir Texto' :
+               state.appLanguage === 'fr' ? 'Améliorer et Corriger le Texte' :
+               state.appLanguage === 'de' ? 'Text Optimieren & Korrigieren' :
+               state.appLanguage === 'it' ? 'Migliora e Correggi Testo' :
+               state.appLanguage === 'zh' ? '润色与语法纠错' :
+               state.appLanguage === 'ja' ? '文章の推敲・校正' :
+               'Melhorar e Corrigir Texto',
+        text: state.appLanguage === 'en' ? 'Please review and enhance the following text, correcting grammar mistakes and improving clarity and professionalism while preserving its core meaning:\n\n' :
+              state.appLanguage === 'es' ? 'Revisa y mejora el siguiente texto, corrigiendo errores gramaticales y haciendo el lenguaje más fluido y profesional:\n\n' :
+              state.appLanguage === 'fr' ? 'Veuillez relire et améliorer le texte suivant, en corrigeant les fautes et en renforçant le professionnalisme :\n\n' :
+              state.appLanguage === 'de' ? 'Bitte überprüfe und optimiere den folgenden Text, korrigiere Grammatikfehler und verbessere Klarheit und Ausdruck:\n\n' :
+              state.appLanguage === 'it' ? 'Rivedi e migliora il seguente testo, correggendo errori grammaticali e rendendolo più chiaro e professionale:\n\n' :
+              state.appLanguage === 'zh' ? '请审阅并优化以下文本，修正语法与拼写错误，提升清晰度与专业度，同时保留原意：\n\n' :
+              state.appLanguage === 'ja' ? '以下の文章を推敲・校正し、誤字脱字や文法ミスを修正して、より洗練された自然な文章に整えてください：\n\n' :
+              'Revê e melhora o seguinte texto, corrigindo erros gramaticais e tornando a linguagem mais fluida e profissional:\n\n'
+      },
+      {
+        icon: computerIconUrl,
+        title: state.appLanguage === 'en' ? 'Explain Code Step-by-Step' :
+               state.appLanguage === 'es' ? 'Explicar Código Paso a Paso' :
+               state.appLanguage === 'fr' ? 'Expliquer le Code Pas à Pas' :
+               state.appLanguage === 'de' ? 'Code Schritt für Schritt Erklären' :
+               state.appLanguage === 'it' ? 'Spiega il Codice Passo dopo Passo' :
+               state.appLanguage === 'zh' ? '逐步代码深度解析' :
+               state.appLanguage === 'ja' ? 'コードのステップ解説' :
+               'Explicar Código Passo a Passo',
+        text: state.appLanguage === 'en' ? 'Analyze the code below. Explain step-by-step how it works, highlight potential edge cases or bugs, and propose clean code improvements:\n\n' :
+              state.appLanguage === 'es' ? 'Analiza el siguiente código y explica línea por línea cómo funciona, señalando posibles fallos o mejoras:\n\n' :
+              state.appLanguage === 'fr' ? 'Analysez le code ci-dessous et expliquez son fonctionnement étape par étape, en signalant les bogues potentiels :\n\n' :
+              state.appLanguage === 'de' ? 'Analysiere den folgenden Code und erkläre Schritt für Schritt die Funktionsweise, weise auf Fehler hin und schlage Optimierungen vor:\n\n' :
+              state.appLanguage === 'it' ? 'Analizza il codice seguente e spiega riga per riga il suo funzionamento, indicando possibili bug o miglioramenti:\n\n' :
+              state.appLanguage === 'zh' ? '请分析以下代码，逐步解释其运行逻辑与核心机制，指出潜在隐患或性能瓶颈，并提供最佳实践重构方案：\n\n' :
+              state.appLanguage === 'ja' ? '以下のコードを分析してください。各ブロックの動作をステップごとに解説し、潜在的なバグや最適化の提案を教えてください：\n\n' :
+              'Analisa o código abaixo e explica linha por linha como funciona, apontando possíveis melhorias ou bugs:\n\n'
+      }
+    ];
+
     const promptsList = (state.customPrompts && state.customPrompts.length > 0)
-      ? state.customPrompts
-      : [
-          {
-            title: "⚡ Resumir em Bullet Points",
-            text: "Por favor, resume o texto anterior em tópicos claros, diretos e objetivos (bullet points), destacando apenas os pontos mais importantes."
-          },
-          {
-            title: "✍️ Melhorar e Corrigir Texto",
-            text: "Revê e melhora o seguinte texto, corrigindo erros gramaticais e tornando a linguagem mais fluida e profissional:\n\n"
-          },
-          {
-            title: "💻 Explicar Código Passo a Passo",
-            text: "Analisa o código abaixo e explica linha por linha como funciona, apontando possíveis melhorias ou bugs:\n\n"
-          }
-        ];
+      ? state.customPrompts.map(p => ({ icon: lightningIconUrl, title: p.title, text: p.text }))
+      : defaultPrompts;
 
     let itemsHtml = '';
     promptsList.forEach((p, idx) => {
       itemsHtml += `
         <div class="chatgpt-clean-prompt-item" data-index="${idx}">
-          <div class="chatgpt-clean-prompt-title">${escapeHtml(p.title)}</div>
-          <div class="chatgpt-clean-prompt-text">${escapeHtml(p.text)}</div>
+          <div class="prompt-item-content" style="display:flex;align-items:center;gap:10px;">
+            <img src="${p.icon || lightningIconUrl}" class="prompt-item-3d-icon" alt="Prompt" style="width:20px;height:20px;object-fit:contain;flex-shrink:0;">
+            <div style="flex:1;min-width:0;">
+              <div class="chatgpt-clean-prompt-title">${escapeHtml(p.title)}</div>
+              <div class="chatgpt-clean-prompt-text">${escapeHtml(p.text)}</div>
+            </div>
+          </div>
         </div>
       `;
     });
 
     modal.innerHTML = `
       <div class="chatgpt-clean-prompts-header">
-        <span>⚡ ${t.quickPromptsTooltip}</span>
+        <div style="display:flex;align-items:center;gap:7px;">
+          <img src="${lightningIconUrl}" alt="Prompts" style="width:16px;height:16px;object-fit:contain;">
+          <span>${t.quickPromptsTooltip}</span>
+        </div>
         <button class="chatgpt-clean-prompts-close" id="chatgpt-clean-close-modal">✕</button>
       </div>
       <div class="chatgpt-clean-prompts-list">
@@ -1114,7 +1191,7 @@
         if (selected) {
           insertPromptIntoInput(selected.text);
           modal.remove();
-          showToast(t.promptInserted);
+          showToast(t.promptInserted, 'success');
         }
       });
     });

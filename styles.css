@@ -582,46 +582,51 @@ iframe[src*="adnxs.com"] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  color: #38bdf8;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
   cursor: pointer;
-  margin-right: 6px;
+  margin: 0 3px;
+  flex-shrink: 0;
   transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
-  font-size: 14px;
+  padding: 0;
 }
 
 .chatgpt-clean-prompt-trigger:hover {
-  background: rgba(56, 189, 248, 0.2);
-  border-color: #38bdf8;
-  color: #ffffff;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 14px rgba(56, 189, 248, 0.35);
-  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.12);
+  transform: scale(1.08);
+}
+
+.chat-prompt-trigger-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
+  transition: transform 0.2s ease;
+}
+
+.chatgpt-clean-prompt-trigger:hover .chat-prompt-trigger-icon {
+  transform: scale(1.15);
 }
 
 .chatgpt-clean-prompts-modal {
   position: fixed;
-  bottom: 90px;
+  bottom: 85px;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  max-width: 520px;
-  background: rgba(11, 15, 25, 0.92);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 16px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.1);
-  padding: 16px;
+  max-width: 460px;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 0px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 1px rgba(0, 0, 0, 0.15) !important;
+  padding: 16px 18px;
   z-index: 999999;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  color: #f8fafc;
-  animation: fadeInGlass 0.2s cubic-bezier(0.2, 0, 0, 1);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  color: #0f172a !important;
+  animation: fadeInToast 0.2s cubic-bezier(0.2, 0, 0, 1);
 }
 
 .chatgpt-clean-prompts-header {
@@ -631,55 +636,58 @@ iframe[src*="adnxs.com"] {
   margin-bottom: 12px;
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  color: #0f172a !important;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 8px;
 }
 
 .chatgpt-clean-prompts-close {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #94a3b8;
+  background: #f1f5f9 !important;
+  border: none !important;
+  color: #64748b !important;
   width: 24px;
   height: 24px;
-  border-radius: 50%;
+  border-radius: 0px !important;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   font-size: 12px;
+  transition: all 0.15s;
 }
 
 .chatgpt-clean-prompts-close:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
 }
 
 .chatgpt-clean-prompt-item {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
   padding: 10px 12px;
-  border-radius: 10px;
+  border-radius: 0px !important;
   margin-bottom: 8px;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
 }
 
 .chatgpt-clean-prompt-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(56, 189, 248, 0.4);
-  transform: translateX(4px);
+  background: #f1f5f9 !important;
+  border-color: #38bdf8 !important;
+  transform: translateX(3px);
+  box-shadow: 0 2px 8px rgba(56, 189, 248, 0.15);
 }
 
 .chatgpt-clean-prompt-title {
-  font-size: 12px;
-  font-weight: 600;
-  color: #38bdf8;
-  margin-bottom: 2px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #0284c7 !important;
+  margin-bottom: 3px;
 }
 
 .chatgpt-clean-prompt-text {
   font-size: 11px;
-  color: #cbd5e1;
+  color: #64748b !important;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
