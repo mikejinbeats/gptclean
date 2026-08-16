@@ -919,7 +919,7 @@ document.addEventListener('DOMContentLoaded', () => {
         applyLanguage(savedLang);
 
         // Tema do Popup
-        const currentTheme = data.popupTheme || 'default';
+        const currentTheme = data.popupTheme || 'white';
         applyPopupTheme(currentTheme);
         themeRadios.forEach(r => {
           r.checked = (r.value === currentTheme);
