@@ -428,6 +428,28 @@ body.theme-default .nav-tabs {
   font-weight: 700;
 }
 
+.tab-3d-icon {
+  width: 17px;
+  height: 17px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), filter 0.2s ease;
+}
+
+.tab-btn:hover .tab-3d-icon {
+  transform: translateY(-2px) scale(1.1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.tab-btn.active .tab-3d-icon {
+  transform: scale(1.12);
+  filter: drop-shadow(0 3px 8px var(--accent-cyan-glow));
+}
+
+.pro-tab-btn.active .tab-3d-icon {
+  filter: drop-shadow(0 3px 8px var(--accent-gold-glow));
+}
+
 .tab-icon {
   font-size: 13px;
 }
@@ -1188,6 +1210,20 @@ body.theme-white .prompt-action-btn.btn-copy:hover {
 .pro-hero {
   text-align: center;
   margin-bottom: 12px;
+}
+
+.pro-hero-3d-crown {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 4px 14px rgba(245, 158, 11, 0.4));
+  animation: floatCrown 3.2s ease-in-out infinite;
+}
+
+@keyframes floatCrown {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(2deg); }
 }
 
 .crown-icon {
