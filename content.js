@@ -46,6 +46,9 @@
       toastChatAlreadySaved: "Esta conversa já está guardada nesta pasta.",
       noMessagesToExport: "Nenhuma mensagem encontrada para exportar.",
       toastAllowPopups: "Permite popups no navegador para imprimir em PDF.",
+      compilingTitle: "A compilar histórico do chat...",
+      compilingStatus: (count) => `${count} mensagens processadas`,
+      compilingDone: "Pronto! A abrir opções...",
       limitModalTitle: "Limite Diário Atingido",
       limitModalHeading: "Atingiste as tuas 2 exportações gratuitas de hoje!",
       limitModalDesc: "O teu limite de 2 exportações diárias reseta automaticamente amanhã à meia-noite.",
@@ -85,6 +88,9 @@
       toastChatAlreadySaved: "This chat is already saved in this folder.",
       noMessagesToExport: "No messages found to export.",
       toastAllowPopups: "Please allow popups in your browser to print PDF.",
+      compilingTitle: "Compiling conversation history...",
+      compilingStatus: (count) => `${count} messages processed`,
+      compilingDone: "Ready! Opening options...",
       limitModalTitle: "Daily Limit Reached",
       limitModalHeading: "You have reached your 2 free exports today!",
       limitModalDesc: "Your daily quota of 2 free exports will reset tomorrow at midnight.",
@@ -124,6 +130,9 @@
       toastChatAlreadySaved: "Esta conversación ya está guardada en esta carpeta.",
       noMessagesToExport: "No se encontraron mensajes para exportar.",
       toastAllowPopups: "Por favor permite ventanas emergentes para imprimir en PDF.",
+      compilingTitle: "Compilando historial del chat...",
+      compilingStatus: (count) => `${count} mensajes procesados`,
+      compilingDone: "¡Listo! Abriendo opciones...",
       limitModalTitle: "Límite Diario Alcanzado",
       limitModalHeading: "¡Has alcanzado tus 2 exportaciones gratuitas de hoy!",
       limitModalDesc: "Tu cuota diaria de 2 exportaciones se restablecerá mañana a medianoche.",
@@ -163,6 +172,9 @@
       toastChatAlreadySaved: "Cette discussion est déjà enregistrée dans ce dossier.",
       noMessagesToExport: "Aucun message trouvé à exporter.",
       toastAllowPopups: "Veuillez autoriser les fenêtres contextuelles pour imprimer en PDF.",
+      compilingTitle: "Compilation de la discussion...",
+      compilingStatus: (count) => `${count} messages traités`,
+      compilingDone: "Prêt ! Ouverture des options...",
       limitModalTitle: "Limite Quotidienne Atteinte",
       limitModalHeading: "Vous avez atteint vos 2 exports gratuits aujourd'hui !",
       limitModalDesc: "Votre quota de 2 exports quotidiens sera réinitialisé demain à minuit.",
@@ -202,6 +214,9 @@
       toastChatAlreadySaved: "Dieser Chat ist bereits in diesem Ordner gespeichert.",
       noMessagesToExport: "Keine Nachrichten zum Exportieren gefunden.",
       toastAllowPopups: "Bitte Popups im Browser erlauben, um PDF zu drucken.",
+      compilingTitle: "Konversation wird zusammengestellt...",
+      compilingStatus: (count) => `${count} Nachrichten verarbeitet`,
+      compilingDone: "Bereit! Optionen werden geöffnet...",
       limitModalTitle: "Tageslimit Erreicht",
       limitModalHeading: "Sie haben Ihre 2 kostenlosen Exporte für heute erreicht!",
       limitModalDesc: "Ihr tägliches Kontingent wird morgen um Mitternacht zurückgesetzt.",
@@ -241,6 +256,9 @@
       toastChatAlreadySaved: "Questa chat è già salvata in questa cartella.",
       noMessagesToExport: "Nessun messaggio trovato da esportare.",
       toastAllowPopups: "Consenti i popup nel browser per stampare in PDF.",
+      compilingTitle: "Compilazione della chat...",
+      compilingStatus: (count) => `${count} messaggi elaborati`,
+      compilingDone: "Pronto! Apertura opzioni...",
       limitModalTitle: "Limite Giornaliero Raggiunto",
       limitModalHeading: "Hai raggiunto le tue 2 esportazioni gratuite di oggi!",
       limitModalDesc: "La tua quota giornaliera di 2 esportazioni si resetterà domani a mezzanotte.",
@@ -280,6 +298,9 @@
       toastChatAlreadySaved: "此对话已保存在此文件夹中。",
       noMessagesToExport: "未找到可导出的对话内容。",
       toastAllowPopups: "请在浏览器中允许弹窗以打印PDF。",
+      compilingTitle: "正在整合完整聊天记录...",
+      compilingStatus: (count) => `已处理 ${count} 条消息`,
+      compilingDone: "处理完成！正在打开...",
       limitModalTitle: "今日免费导出额度已用尽",
       limitModalHeading: "您今日的2次免费导出额度已达上限！",
       limitModalDesc: "每日2次免费额度将于明日零点自动刷新重置。",
@@ -319,6 +340,9 @@
       toastChatAlreadySaved: "このチャットは既にこのフォルダに保存されています。",
       noMessagesToExport: "エクスポートするメッセージが見つかりません。",
       toastAllowPopups: "PDF印刷用にブラウザのポップアップを許可してください。",
+      compilingTitle: "チャット履歴を統合中...",
+      compilingStatus: (count) => `${count} 件のメッセージを処理完了`,
+      compilingDone: "準備完了！オプションを開いています...",
       limitModalTitle: "本日の無料枠上限に達しました",
       limitModalHeading: "本日の2回無料エクスポートを使い切りました！",
       limitModalDesc: "1日2回の無料利用枠は明日の午前0時に自動リセットされます。",
@@ -634,28 +658,84 @@
   }
 
   function runExportFullConversation() {
-    const turns = document.querySelectorAll('article, [data-testid^="conversation-turn-"]');
     const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
-    if (!turns || turns.length === 0) {
-      showToast(t.noMessagesToExport, 'warning');
-      return;
-    }
+    const rocketIconUrl = chrome.runtime.getURL('icons/icons8-rocket-94.png');
 
-    let fullMarkdown = `# Conversa ChatGPT - ${new Date().toLocaleDateString()}\n\n`;
-    let fullHtml = `<h2>Conversa ChatGPT (${new Date().toLocaleDateString()})</h2><hr/>`;
+    // Remover qualquer barra de progresso anterior
+    const oldProgress = document.querySelector('.chatgpt-clean-progress-overlay');
+    if (oldProgress) oldProgress.remove();
 
-    turns.forEach((turn, idx) => {
-      const isUser = turn.querySelector('[data-message-author-role="user"]') || (idx % 2 === 0);
-      const speaker = isUser ? '👤 User' : '🤖 ChatGPT';
-      const textNode = turn.querySelector('.markdown') || turn;
-      const text = (textNode.innerText || '').trim();
-      const html = turn.querySelector('.markdown')?.innerHTML || textNode.innerHTML;
+    // Criar Card HUD de Progresso
+    const progressEl = document.createElement('div');
+    progressEl.className = 'chatgpt-clean-progress-overlay';
+    progressEl.innerHTML = `
+      <div class="chatgpt-clean-progress-header">
+        <img src="${rocketIconUrl}" class="progress-header-icon" alt="Processing" style="width:20px;height:20px;object-fit:contain;">
+        <strong id="chatgpt-clean-prog-title">${t.compilingTitle}</strong>
+      </div>
+      <div class="chatgpt-clean-progress-track">
+        <div class="chatgpt-clean-progress-fill" id="chatgpt-clean-prog-fill" style="width: 20%;"></div>
+      </div>
+      <div class="chatgpt-clean-progress-status">
+        <span id="chatgpt-clean-prog-status">${t.compilingStatus(0)}</span>
+        <span id="chatgpt-clean-prog-percent" style="font-family:'JetBrains Mono',monospace;color:#38bdf8;font-weight:700;">20%</span>
+      </div>
+    `;
+    document.body.appendChild(progressEl);
 
-      fullMarkdown += `### ${speaker}:\n${text}\n\n---\n\n`;
-      fullHtml += `<div class="chat-turn-block" style="margin-bottom:18px;page-break-inside:avoid;break-inside:avoid;"><strong>${speaker}:</strong><div style="margin-top:4px;">${html}</div></div><hr style="border:0;border-top:1px solid #eee;"/>`;
-    });
+    const fillEl = progressEl.querySelector('#chatgpt-clean-prog-fill');
+    const statusEl = progressEl.querySelector('#chatgpt-clean-prog-status');
+    const percentEl = progressEl.querySelector('#chatgpt-clean-prog-percent');
+    const titleEl = progressEl.querySelector('#chatgpt-clean-prog-title');
 
-    openExportModal(fullMarkdown, fullHtml, t.exportFullBtn);
+    // Etapa 1: Varrer o DOM (50%)
+    setTimeout(() => {
+      if (fillEl) fillEl.style.width = '55%';
+      if (percentEl) percentEl.innerText = '55%';
+
+      const turns = document.querySelectorAll('article, [data-testid^="conversation-turn-"]');
+      const count = turns ? turns.length : 0;
+      if (statusEl) statusEl.innerText = t.compilingStatus(count);
+
+      if (!turns || turns.length === 0) {
+        progressEl.remove();
+        showToast(t.noMessagesToExport, 'warning');
+        return;
+      }
+
+      // Etapa 2: Compilar conteúdo estruturado (85%)
+      setTimeout(() => {
+        if (fillEl) fillEl.style.width = '85%';
+        if (percentEl) percentEl.innerText = '85%';
+
+        let fullMarkdown = `# Conversa ChatGPT - ${new Date().toLocaleDateString()}\n\n`;
+        let fullHtml = `<h2>Conversa ChatGPT (${new Date().toLocaleDateString()})</h2><hr/>`;
+
+        turns.forEach((turn, idx) => {
+          const isUser = turn.querySelector('[data-message-author-role="user"]') || (idx % 2 === 0);
+          const speaker = isUser ? '👤 User' : '🤖 ChatGPT';
+          const textNode = turn.querySelector('.markdown') || turn;
+          const text = (textNode.innerText || '').trim();
+          const html = turn.querySelector('.markdown')?.innerHTML || textNode.innerHTML;
+
+          fullMarkdown += `### ${speaker}:\n${text}\n\n---\n\n`;
+          fullHtml += `<div class="chat-turn-block" style="margin-bottom:18px;page-break-inside:avoid;break-inside:avoid;"><strong>${speaker}:</strong><div style="margin-top:4px;">${html}</div></div><hr style="border:0;border-top:1px solid #eee;"/>`;
+        });
+
+        // Etapa 3: Concluir 100% com animação
+        setTimeout(() => {
+          if (fillEl) fillEl.style.width = '100%';
+          if (percentEl) percentEl.innerText = '100%';
+          if (titleEl) titleEl.innerText = t.compilingDone;
+          if (statusEl) statusEl.innerText = t.compilingStatus(count);
+
+          setTimeout(() => {
+            progressEl.remove();
+            openExportModal(fullMarkdown, fullHtml, t.exportFullBtn);
+          }, 400);
+        }, 250);
+      }, 300);
+    }, 200);
   }
 
   // Abre o Modal com as 3 opções de exportação ou o Paywall de Limite Atingido
