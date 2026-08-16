@@ -1085,7 +1085,18 @@
   }
 
   function openCreateFolderModal() {
-    const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      chrome.storage.local.get(['appLanguage'], (items) => {
+        if (items && items.appLanguage) state.appLanguage = items.appLanguage;
+        renderCreateFolderModal();
+      });
+    } else {
+      renderCreateFolderModal();
+    }
+  }
+
+  function renderCreateFolderModal() {
+    const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.en;
     const existing = document.querySelector('.chatgpt-clean-modal-overlay');
     if (existing) existing.remove();
 
@@ -1156,7 +1167,18 @@
   }
 
   function openDeleteFolderConfirmModal(folderId, folderName) {
-    const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.pt;
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      chrome.storage.local.get(['appLanguage'], (items) => {
+        if (items && items.appLanguage) state.appLanguage = items.appLanguage;
+        renderDeleteFolderConfirmModal(folderId, folderName);
+      });
+    } else {
+      renderDeleteFolderConfirmModal(folderId, folderName);
+    }
+  }
+
+  function renderDeleteFolderConfirmModal(folderId, folderName) {
+    const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.en;
     const existing = document.querySelector('.chatgpt-clean-modal-overlay');
     if (existing) existing.remove();
 
@@ -1830,6 +1852,125 @@
       });
     }
   });
+
+  // --------------------------------------------------------------------------
+  // CARREGAR CONFIGURAÇÕES E SINCRONIZAÇÃO EM TEMPO REAL
+  // --------------------------------------------------------------------------
+  function loadSettings() {
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      chrome.storage.local.get([
+        'adBlockEnabled',
+        'exportBtnEnabled',
+        'foldersEnabled',
+        'promptsEnabled',
+        'appLanguage',
+        'isPro',
+        'exportTrialStartDate',
+        'customPrompts',
+        'folders',
+        'foldersByAccount'
+      ], (items) => {
+        if (!items) items = {};
+        if (items.adBlockEnabled !== undefined) state.adBlockEnabled = items.adBlockEnabled;
+        if (items.exportBtnEnabled !== undefined) state.exportBtnEnabled = items.exportBtnEnabled;
+        if (items.foldersEnabled !== undefined) state.foldersEnabled = items.foldersEnabled;
+        if (items.promptsEnabled !== undefined) state.promptsEnabled = items.promptsEnabled;
+        if (items.appLanguage) state.appLanguage = items.appLanguage;
+        if (items.isPro !== undefined) state.isPro = items.isPro;
+        if (items.customPrompts) state.customPrompts = items.customPrompts;
+
+        const currentAcc = getCurrentAccountId();
+        state.currentAccountId = currentAcc;
+
+        if (items.foldersByAccount) {
+          state.foldersByAccount = items.foldersByAccount;
+        } else {
+          try {
+            const rawAcc = localStorage.getItem('__cgpt_clean_folders_by_account__');
+            if (rawAcc) state.foldersByAccount = JSON.parse(rawAcc) || {};
+          } catch (e) {}
+        }
+
+        if (state.foldersByAccount && state.foldersByAccount[currentAcc]) {
+          state.folders = state.foldersByAccount[currentAcc];
+        } else if (items.folders && Array.isArray(items.folders) && items.folders.length > 0) {
+          state.folders = items.folders;
+          if (!state.foldersByAccount) state.foldersByAccount = {};
+          state.foldersByAccount[currentAcc] = items.folders;
+        } else {
+          const t = CONTENT_I18N[state.appLanguage] || CONTENT_I18N.en;
+          state.folders = [
+            { id: 'f1', name: t.defaultFolders.f1, chats: [] },
+            { id: 'f2', name: t.defaultFolders.f2, chats: [] },
+            { id: 'f3', name: t.defaultFolders.f3, chats: [] }
+          ];
+          if (!state.foldersByAccount) state.foldersByAccount = {};
+          state.foldersByAccount[currentAcc] = state.folders;
+        }
+
+        if (state.adBlockEnabled) {
+          cleanAds();
+        }
+        injectTools();
+      });
+    }
+  }
+
+  // Ouvir alterações em tempo real no storage (troca de idioma no popup, etc)
+  if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.onChanged) {
+    chrome.storage.onChanged.addListener((changes, area) => {
+      if (area === 'local' || area === 'sync') {
+        let needsReinject = false;
+
+        if (changes.appLanguage && changes.appLanguage.newValue) {
+          state.appLanguage = changes.appLanguage.newValue;
+          needsReinject = true;
+        }
+        if (changes.isPro && changes.isPro.newValue !== undefined) {
+          state.isPro = changes.isPro.newValue;
+        }
+        if (changes.foldersEnabled && changes.foldersEnabled.newValue !== undefined) {
+          state.foldersEnabled = changes.foldersEnabled.newValue;
+          needsReinject = true;
+        }
+        if (changes.promptsEnabled && changes.promptsEnabled.newValue !== undefined) {
+          state.promptsEnabled = changes.promptsEnabled.newValue;
+          needsReinject = true;
+        }
+        if (changes.adBlockEnabled && changes.adBlockEnabled.newValue !== undefined) {
+          state.adBlockEnabled = changes.adBlockEnabled.newValue;
+          if (state.adBlockEnabled) cleanAds();
+        }
+        if (changes.folders && changes.folders.newValue) {
+          state.folders = changes.folders.newValue;
+          needsReinject = true;
+        }
+
+        if (needsReinject) {
+          const existingFolders = document.querySelector('.chatgpt-clean-folders-container');
+          if (existingFolders) existingFolders.remove();
+          const existingPromptBar = document.querySelector('.chatgpt-clean-prompt-bar');
+          if (existingPromptBar) existingPromptBar.remove();
+          injectTools();
+        }
+      }
+    });
+  }
+
+  // Ouvir mensagens diretas do popup
+  if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.onMessage) {
+    chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+      if (msg && msg.action === 'updateLanguage' && msg.language) {
+        state.appLanguage = msg.language;
+        const existingFolders = document.querySelector('.chatgpt-clean-folders-container');
+        if (existingFolders) existingFolders.remove();
+        const existingPromptBar = document.querySelector('.chatgpt-clean-prompt-bar');
+        if (existingPromptBar) existingPromptBar.remove();
+        injectTools();
+        sendResponse({ success: true });
+      }
+    });
+  }
 
   function init() {
     loadSettings();
