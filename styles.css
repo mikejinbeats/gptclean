@@ -1,9 +1,10 @@
 /* ==========================================================================
-   ChatGPT Clean & Power - Instant CSS Ad-Blocker & Injected Styles
+   ChatGPT Clean & Power - Injected HUD Styles & Instant Ad-Blocker
+   Design System: Obsidian Glass HUD (v1.2.0)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. REGISTO DE OCULTAÇÃO INSTANTÂNEA DE ANÚNCIOS (0ms)
+   1. OCULTAÇÃO INSTANTÂNEA DE ANÚNCIOS (0ms)
    -------------------------------------------------------------------------- */
 div[data-testid*="ad"],
 div[data-testid*="sponsored"],
@@ -31,7 +32,6 @@ section[aria-label*="patrocinado" i] {
   overflow: hidden !important;
 }
 
-/* Ocultação de blocos com links de redes de anúncios externas */
 div:has(> a[href*="msn.com/"]),
 div:has(> a[href*="bing.com/aclick"]),
 div:has(> a[href*="ads.openai.com"]) {
@@ -44,62 +44,81 @@ div:has(> a[href*="ads.openai.com"]) {
 }
 
 /* --------------------------------------------------------------------------
-   2. BOTÃO EXPORTAR & MODAL FLUTUANTE DE ESCOLHA (PDF / WORD / MD)
+   2. BOTÕES DE EXPORTAÇÃO (GLASS PILL BUTTONS)
    -------------------------------------------------------------------------- */
 .chatgpt-clean-export-btn, .chatgpt-clean-global-export-btn {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  background: rgba(99, 102, 241, 0.15) !important;
-  border: 1px solid rgba(99, 102, 241, 0.4) !important;
-  color: #a5b4fc !important;
-  font-size: 12px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+  color: #38bdf8 !important;
+  font-size: 11.5px !important;
   font-weight: 600 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   padding: 4px 10px !important;
-  border-radius: 6px !important;
+  border-radius: 8px !important;
   cursor: pointer !important;
   margin-left: 6px !important;
-  transition: all 0.2s ease !important;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1) !important;
   user-select: none !important;
 }
 
 .chatgpt-clean-global-export-btn {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2)) !important;
-  border-color: rgba(168, 85, 247, 0.5) !important;
-  color: #e9d5ff !important;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(129, 140, 248, 0.15)) !important;
+  border-color: rgba(56, 189, 248, 0.35) !important;
+  color: #e0f2fe !important;
 }
 
 .chatgpt-clean-export-btn:hover, .chatgpt-clean-global-export-btn:hover {
-  background: #6366f1 !important;
+  background: rgba(56, 189, 248, 0.25) !important;
+  border-color: #38bdf8 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 14px rgba(56, 189, 248, 0.3) !important;
   color: #ffffff !important;
   transform: translateY(-1px);
 }
 
-/* Fundo escuro do modal */
+.chatgpt-clean-export-btn:active, .chatgpt-clean-global-export-btn:active {
+  transform: scale(0.97) !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. MODAL DE EXPORTAÇÃO OBSIDIAN GLASS
+   -------------------------------------------------------------------------- */
 .chatgpt-clean-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(4px);
+  background: rgba(4, 6, 10, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 99999999;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: fadeInModal 0.15s ease-out;
+  animation: fadeInGlass 0.2s cubic-bezier(0.2, 0, 0, 1);
 }
 
-/* Caixa do Modal */
+@keyframes fadeInGlass {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 .chatgpt-clean-export-modal {
-  background: #0f172a;
-  border: 1px solid #334155;
-  border-radius: 14px;
+  background: rgba(11, 15, 25, 0.9);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
   width: 90%;
-  max-width: 420px;
+  max-width: 440px;
   padding: 20px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.1);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: #f8fafc;
 }
@@ -108,57 +127,66 @@ div:has(> a[href*="ads.openai.com"]) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #1e293b;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .chatgpt-clean-export-modal-header h3 {
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 700;
+  letter-spacing: -0.01em;
   color: #f8fafc;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .chatgpt-clean-modal-close {
-  background: none;
-  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #94a3b8;
-  font-size: 20px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
   cursor: pointer;
-  line-height: 1;
+  transition: all 0.15s;
 }
 
 .chatgpt-clean-modal-close:hover {
-  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
 }
 
 .chatgpt-clean-export-grid {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 12px;
 }
 
 .chatgpt-clean-export-card {
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: #1e293b;
-  border: 1px solid #334155;
-  border-radius: 10px;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
   padding: 12px 14px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
   text-align: left;
   width: 100%;
 }
 
 .chatgpt-clean-export-card:hover {
-  background: #27354d;
-  border-color: #6366f1;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 16px rgba(56, 189, 248, 0.15);
   transform: translateX(3px);
 }
 
@@ -168,22 +196,23 @@ div:has(> a[href*="ads.openai.com"]) {
 
 .chatgpt-clean-export-card .info strong {
   display: block;
-  font-size: 13px;
+  font-size: 12.5px;
+  font-weight: 600;
   color: #f8fafc;
   margin-bottom: 2px;
 }
 
 .chatgpt-clean-export-card .info span {
-  font-size: 11px;
+  font-size: 10.5px;
   color: #94a3b8;
 }
 
 /* --------------------------------------------------------------------------
-   3. GESTOR DE PASTAS E BOOKMARKS NA BARRA LATERAL
+   4. GESTOR DE PASTAS OBSIDIAN GLASS NA BARRA LATERAL
    -------------------------------------------------------------------------- */
 .chatgpt-clean-folders-container {
   padding: 10px 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   margin-bottom: 8px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
@@ -192,29 +221,29 @@ div:has(> a[href*="ads.openai.com"]) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  color: #94a3b8;
+  color: #64748b;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.08em;
   margin-bottom: 8px;
 }
 
 .chatgpt-clean-add-folder-btn {
-  background: rgba(99, 102, 241, 0.2);
-  border: 1px solid rgba(99, 102, 241, 0.4);
-  color: #818cf8;
-  font-size: 10px;
-  font-weight: 600;
-  padding: 2px 8px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 2px 7px;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .chatgpt-clean-add-folder-btn:hover {
-  background: #6366f1;
-  color: #ffffff;
+  background: #38bdf8;
+  color: #000;
 }
 
 .chatgpt-clean-folder-list {
@@ -224,27 +253,27 @@ div:has(> a[href*="ads.openai.com"]) {
 }
 
 .chatgpt-clean-folder-wrapper {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
   overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.chatgpt-clean-folder-wrapper:hover {
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .chatgpt-clean-folder-item {
   padding: 6px 8px;
   cursor: pointer;
-  transition: background 0.2s;
-}
-
-.chatgpt-clean-folder-item:hover {
-  background: rgba(255, 255, 255, 0.06);
 }
 
 .chatgpt-clean-folder-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 600;
   color: #e2e8f0;
 }
@@ -264,33 +293,34 @@ div:has(> a[href*="ads.openai.com"]) {
 
 .btn-save-current-chat {
   background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border: 1px solid rgba(16, 185, 129, 0.35);
   color: #34d399;
   font-size: 9px;
   font-weight: 700;
-  padding: 2px 5px;
-  border-radius: 3px;
+  padding: 2px 6px;
+  border-radius: 4px;
   cursor: pointer;
   transition: all 0.15s;
 }
 
 .btn-save-current-chat:hover {
   background: #10b981;
-  color: #fff;
+  color: #000;
 }
 
 .chatgpt-clean-folder-count {
-  font-size: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 1px 6px;
+  font-size: 9.5px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 5px;
   border-radius: 10px;
   color: #94a3b8;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .chatgpt-clean-folder-chats {
   padding: 4px 8px 6px 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(0, 0, 0, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .chatgpt-clean-saved-chat {
@@ -298,14 +328,14 @@ div:has(> a[href*="ads.openai.com"]) {
   align-items: center;
   justify-content: space-between;
   padding: 4px 0;
-  font-size: 11px;
+  font-size: 10.5px;
   color: #cbd5e1;
   cursor: pointer;
   border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
 }
 
 .chatgpt-clean-saved-chat:hover .chat-title {
-  color: #60a5fa;
+  color: #38bdf8;
   text-decoration: underline;
 }
 
@@ -319,7 +349,7 @@ div:has(> a[href*="ads.openai.com"]) {
 .btn-delete-saved-chat {
   background: none;
   border: none;
-  color: #94a3b8;
+  color: #64748b;
   font-size: 11px;
   cursor: pointer;
   padding: 0 4px;
@@ -330,58 +360,59 @@ div:has(> a[href*="ads.openai.com"]) {
 }
 
 .no-chats-hint {
-  font-size: 10px;
-  color: #64748b;
+  font-size: 9.5px;
+  color: #475569;
   font-style: italic;
   padding: 2px 0;
 }
 
 /* --------------------------------------------------------------------------
-   4. BOTÃO DE PROMPTS & MODAL FLUTUANTE
+   5. BOTÃO DE PROMPTS ⚡ JUNTO AO INPUT DO CHATGPT
    -------------------------------------------------------------------------- */
 .chatgpt-clean-prompt-trigger {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 8px;
-  background: rgba(99, 102, 241, 0.15);
-  border: 1px solid rgba(99, 102, 241, 0.4);
-  color: #818cf8;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  color: #38bdf8;
   cursor: pointer;
   margin-right: 6px;
-  transition: all 0.2s ease;
-  font-size: 15px;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+  font-size: 14px;
 }
 
 .chatgpt-clean-prompt-trigger:hover {
-  background: #6366f1;
+  background: rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
   color: #ffffff;
-  box-shadow: 0 0 12px rgba(99, 102, 241, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 14px rgba(56, 189, 248, 0.35);
+  transform: scale(1.05);
 }
 
 .chatgpt-clean-prompts-modal {
   position: fixed;
-  bottom: 85px;
+  bottom: 90px;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
   max-width: 520px;
-  background: #0f172a;
-  border: 1px solid #334155;
-  border-radius: 14px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  background: rgba(11, 15, 25, 0.92);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.1);
   padding: 16px;
   z-index: 999999;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: #f8fafc;
-  animation: fadeInModal 0.2s ease-out;
-}
-
-@keyframes fadeInModal {
-  from { opacity: 0; transform: scale(0.96); }
-  to { opacity: 1; transform: scale(1); }
+  animation: fadeInGlass 0.2s cubic-bezier(0.2, 0, 0, 1);
 }
 
 .chatgpt-clean-prompts-header {
@@ -389,62 +420,75 @@ div:has(> a[href*="ads.openai.com"]) {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .chatgpt-clean-prompts-close {
-  background: none;
-  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #94a3b8;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  font-size: 18px;
-  line-height: 1;
+  font-size: 12px;
+}
+
+.chatgpt-clean-prompts-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
 }
 
 .chatgpt-clean-prompt-item {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   padding: 10px 12px;
-  border-radius: 8px;
+  border-radius: 10px;
   margin-bottom: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
 }
 
 .chatgpt-clean-prompt-item:hover {
-  background: #334155;
-  border-color: #6366f1;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(56, 189, 248, 0.4);
   transform: translateX(4px);
 }
 
 .chatgpt-clean-prompt-title {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
-  color: #60a5fa;
-  margin-bottom: 3px;
+  color: #38bdf8;
+  margin-bottom: 2px;
 }
 
 .chatgpt-clean-prompt-text {
-  font-size: 12px;
+  font-size: 11px;
   color: #cbd5e1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Toast de notificação flutuante */
+/* Toast de Notificação HUD */
 .chatgpt-clean-toast {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  background: #10b981;
+  background: rgba(16, 185, 129, 0.9);
+  backdrop-filter: blur(16px);
   color: #ffffff;
   padding: 10px 18px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(16, 185, 129, 0.4);
   z-index: 99999999;
-  animation: fadeInModal 0.2s ease;
+  animation: fadeInGlass 0.2s ease;
 }

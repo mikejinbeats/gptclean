@@ -4,17 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ChatGPT Clean & Power</title>
+  <!-- Google Fonts: Inter & JetBrains Mono para HUD Design -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="popup.css">
 </head>
 <body class="theme-default">
+  <div class="ambient-glow"></div>
   <div class="app-container">
-    <!-- Header -->
+    
+    <!-- HUD Header -->
     <header class="app-header">
       <div class="brand">
-        <div class="logo-badge">⚡</div>
+        <div class="logo-badge">
+          <span class="logo-icon">⚡</span>
+        </div>
         <div class="brand-info">
           <h1>ChatGPT Clean</h1>
-          <span class="version-tag">v1.2.0</span>
+          <span class="version-tag">PRO HUD v1.2.0</span>
         </div>
       </div>
       <div class="status-indicator" id="status-badge">
@@ -23,19 +31,19 @@
       </div>
     </header>
 
-    <!-- Navigation Tabs -->
+    <!-- Glass Navigation Tabs -->
     <nav class="nav-tabs">
       <button class="tab-btn active" data-tab="tab-adblock">
         <span class="tab-icon">🛡️</span>
-        <span class="tab-label">Bloqueador</span>
+        <span class="tab-label">ESCUDO</span>
       </button>
       <button class="tab-btn" data-tab="tab-prompts">
         <span class="tab-icon">⚡</span>
-        <span class="tab-label">Prompts</span>
+        <span class="tab-label">PROMPTS</span>
       </button>
       <button class="tab-btn" data-tab="tab-tools">
         <span class="tab-icon">📁</span>
-        <span class="tab-label">Ferramentas</span>
+        <span class="tab-label">FERRAMENTAS</span>
       </button>
       <button class="tab-btn pro-tab-btn" data-tab="tab-pro">
         <span class="tab-icon">👑</span>
@@ -46,12 +54,12 @@
     <!-- Tab Contents -->
     <main class="tab-content-wrapper">
 
-      <!-- TAB 1: BLOQUEADOR -->
+      <!-- TAB 1: BLOQUEADOR / ESCUDO -->
       <section class="tab-pane active" id="tab-adblock">
-        <div class="card toggle-card">
+        <div class="card toggle-card glass-panel">
           <div class="toggle-info">
             <span class="card-title">Bloquear Anúncios</span>
-            <span class="card-desc">Remove cards patrocinados em tempo real</span>
+            <span class="card-desc">Elimina conteúdo patrocinado em tempo real</span>
           </div>
           <label class="switch">
             <input type="checkbox" id="toggle-adblock" checked>
@@ -60,90 +68,90 @@
         </div>
 
         <div class="stats-grid">
-          <div class="stat-box">
-            <span class="stat-number" id="stat-today">0</span>
-            <span class="stat-label">Bloqueados Hoje</span>
+          <div class="stat-box glass-panel">
+            <span class="stat-number mono-telemetry" id="stat-today">0</span>
+            <span class="stat-label">BLOQUEADOS HOJE</span>
           </div>
-          <div class="stat-box">
-            <span class="stat-number" id="stat-total">0</span>
-            <span class="stat-label">Total Acumulado</span>
+          <div class="stat-box glass-panel">
+            <span class="stat-number mono-telemetry" id="stat-total">0</span>
+            <span class="stat-label">TOTAL ACUMULADO</span>
           </div>
         </div>
 
-        <button class="action-btn" id="btn-update-filters">
+        <button class="action-btn glass-btn" id="btn-update-filters">
           <span class="btn-icon">🔄</span>
-          <span id="update-btn-text">Atualizar Filtros de Anúncios</span>
+          <span id="update-btn-text">Atualizar Filtros Anti-Ad</span>
         </button>
 
-        <div class="info-banner">
+        <div class="info-banner glass-panel">
           <span class="info-icon">💡</span>
-          <p>O contador só soma quando um anúncio real da OpenAI for destruído na página.</p>
+          <p>O escudo monitoriza o DOM do ChatGPT e destrói anúncios antes de serem renderizados.</p>
         </div>
       </section>
 
       <!-- TAB 2: PROMPTS -->
       <section class="tab-pane" id="tab-prompts">
         <div class="pane-header">
-          <h3>⚡ Prompts Rápidos</h3>
-          <span class="badge-free">3 Prontos a Usar</span>
+          <h3>⚡ Prompts de Produtividade</h3>
+          <span class="badge-free">3 Prontos</span>
         </div>
-        <p class="section-hint">Clica para injetar diretamente no teu chat ou copiar:</p>
+        <p class="section-hint">Clica para injetar instantaneamente no chat ativo:</p>
         
         <div class="prompts-list" id="popup-prompts-list">
-          <!-- Injetado via JS -->
+          <!-- Renderizado via JS com Glass Cards -->
         </div>
 
-        <div class="pro-lock-banner" id="prompts-pro-lock">
+        <div class="pro-lock-banner glass-panel" id="prompts-pro-lock">
           <div class="lock-icon">🔒</div>
           <div class="lock-info">
             <strong>Adicionar Prompts Ilimitados</strong>
-            <p>Guarda os teus próprios comandos na versão PRO.</p>
+            <p>Guarda a tua biblioteca de comandos na versão PRO.</p>
           </div>
           <button class="mini-pro-btn" id="go-to-pro-from-prompts">PRO</button>
         </div>
       </section>
 
-      <!-- TAB 3: FERRAMENTAS & TEMAS DA EXTENSÃO -->
+      <!-- TAB 3: FERRAMENTAS & TEMAS -->
       <section class="tab-pane" id="tab-tools">
         
-        <!-- SELETOR DE TEMA DO PLUGIN -->
-        <div class="card theme-card">
-          <span class="card-title">🎨 Tema Visual da Extensão</span>
-          <span class="card-desc">Personaliza as cores do teu menu:</span>
+        <!-- SELETOR DE TEMA -->
+        <div class="card theme-card glass-panel">
+          <span class="card-title">🎨 Tema Visual do Menu</span>
+          <span class="card-desc">Personaliza a estética da extensão:</span>
           
           <div class="theme-selector">
             <label class="theme-option">
               <input type="radio" name="theme-radio" value="default" checked>
               <div class="theme-box default-box">
-                <span class="theme-icon">🌙</span>
-                <span class="theme-name">Escuro</span>
+                <span class="theme-icon">🌌</span>
+                <span class="theme-name">Obsidian</span>
               </div>
             </label>
             <label class="theme-option">
               <input type="radio" name="theme-radio" value="white">
               <div class="theme-box white-box">
-                <span class="theme-icon">☀️</span>
-                <span class="theme-name">Branco</span>
+                <span class="theme-icon">❄️</span>
+                <span class="theme-name">Titânio</span>
               </div>
             </label>
             <label class="theme-option">
               <input type="radio" name="theme-radio" value="cyber">
               <div class="theme-box cyber-box">
                 <span class="theme-icon">⚡</span>
-                <span class="theme-name">Indigo</span>
+                <span class="theme-name">Cyan Void</span>
               </div>
             </label>
           </div>
         </div>
 
         <!-- EXPORTAR COM TRIAL BADGE -->
-        <div class="card tool-item">
+        <div class="card tool-item glass-panel">
           <div class="tool-text">
             <div class="title-with-badge">
               <span class="card-title">📥 Menu de Exportação</span>
               <span class="badge-trial" id="export-trial-badge">🎁 30 Dias Grátis</span>
             </div>
-            <span class="card-desc">Permite baixar em PDF, Word e Markdown</span>
+            <span class="card-desc">Exportação para PDF, Word (.doc) e Markdown (.md)</span>
           </div>
           <label class="switch">
             <input type="checkbox" id="toggle-export" checked>
@@ -152,13 +160,13 @@
         </div>
 
         <!-- PASTAS NA BARRA LATERAL -->
-        <div class="card tool-item">
+        <div class="card tool-item glass-panel">
           <div class="tool-text">
             <div class="title-with-badge">
               <span class="card-title">📁 Pastas na Barra Lateral</span>
               <span class="badge-active">Ativo</span>
             </div>
-            <span class="card-desc">Cria e organiza conversas em categorias</span>
+            <span class="card-desc">Organiza e guarda chats favoritos em categorias</span>
           </div>
           <label class="switch">
             <input type="checkbox" id="toggle-folders" checked>
@@ -172,31 +180,31 @@
         <div class="pro-hero">
           <div class="crown-icon">👑</div>
           <h2>ChatGPT Power PRO</h2>
-          <p class="pro-subtitle">Desbloqueia todas as ferramentas de produtividade com pagamento único.</p>
+          <p class="pro-subtitle">Desbloqueia todo o ecossistema com licença única vitalícia.</p>
         </div>
 
-        <ul class="pro-benefits">
-          <li>✨ <strong>Exportação vitalícia</strong> para PDF, Word e Markdown</li>
-          <li>✨ <strong>Pastas ilimitadas</strong> na barra lateral do ChatGPT</li>
+        <ul class="pro-benefits glass-panel">
+          <li>✨ <strong>Exportação vitalícia</strong> em PDF, Word e Markdown</li>
+          <li>✨ <strong>Pastas & Marcadores ilimitados</strong> no ChatGPT</li>
           <li>✨ <strong>Biblioteca pessoal</strong> de prompts personalizados</li>
           <li>✨ <strong>Atualizações prioritárias</strong> de filtros anti-anúncio</li>
         </ul>
 
-        <div class="pricing-card" id="pricing-box">
+        <div class="pricing-card glass-panel" id="pricing-box">
           <div class="price-header">
             <span class="old-price">9,99€</span>
-            <span class="current-price">2,99€</span>
-            <span class="price-type">Taxa Única</span>
+            <span class="current-price mono-telemetry">2,99€</span>
+            <span class="price-type">Pagamento Único</span>
           </div>
           <a href="https://buy.stripe.com/exemplo_link_checkout" target="_blank" class="buy-pro-btn" id="btn-buy-pro">
-            🚀 Obter Licença Vitalícia (2,99€)
+            🚀 Desbloquear Modo PRO (2,99€)
           </a>
         </div>
 
-        <div class="license-box">
+        <div class="license-box glass-panel">
           <label for="license-key-input">Já tens uma chave de licença?</label>
           <div class="license-input-group">
-            <input type="text" id="license-key-input" placeholder="Ex: PRO-8492-CHAT">
+            <input type="text" id="license-key-input" placeholder="Ex: PRO-8492-CHAT" class="mono-telemetry">
             <button id="btn-activate-license">Ativar</button>
           </div>
           <span class="license-message" id="license-msg"></span>
@@ -204,11 +212,11 @@
       </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Glass Footer -->
     <footer class="app-footer">
       <a href="https://chatgpt.com" target="_blank" class="footer-link">Abrir ChatGPT</a>
       <span class="footer-divider">•</span>
-      <span class="footer-status" id="trial-footer-status">Trial: 30 dias restantes</span>
+      <span class="footer-status mono-telemetry" id="trial-footer-status">Trial: 30 dias restantes</span>
     </footer>
   </div>
 
